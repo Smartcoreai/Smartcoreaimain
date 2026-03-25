@@ -1,19 +1,27 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
-import { MessageCircle, X, Send, Loader2, Bot } from "lucide-react";
+import { MessageCircle, X, Send, Bot, Sparkles } from "lucide-react";
 
 type Message = { role: "user" | "assistant"; content: string };
 
 const WELCOME: Message = {
   role: "assistant",
-  content: "Hi! I'm Aria, your SmartcoreAI assistant. I can answer questions about our services, pricing, or help you figure out which AI solution fits your business. What kind of business do you run?",
+  content: "Hey! I'm Aria, your SmartcoreAI assistant 👋\n\nI can answer questions about our services, pricing, or help you figure out which AI solution fits your business. What kind of business do you run?",
 };
+
+const QUICK_REPLIES = [
+  "What services do you offer?",
+  "How much does it cost?",
+  "How fast can we get started?",
+];
 
 export default function ChatWidget() {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([WELCOME]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showQuickReplies, setShowQuickReplies] = useState(true);
+  const [pulseCount, setPulseCount] = useState(0);
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -25,12 +33,20 @@ export default function ChatWidget() {
     if (open) setTimeout(() => inputRef.current?.focus(), 100);
   }, [open]);
 
-  async function send() {
-    const text = input.trim();
-    if (!text || loading) return;
-    setInput("");
+  // Attention pulse after 6 seconds
+  useEffect(() => {
+    if (open) return;
+    const t = setTimeout(() => setPulseCount(1), 6000);
+    return () => clearTimeout(t);
+  }, [open]);
 
-    const newMessages: Message[] = [...messages, { role: "user", content: text }];
+  async function send(text?: string) {
+    const msgText = (text || input).trim();
+    if (!msgText || loading) return;
+    setInput("");
+    setShowQuickReplies(false);
+
+    const newMessages: Message[] = [...messages, { role: "user", content: msgText }];
     setMessages(newMessages);
     setLoading(true);
 
@@ -43,7 +59,7 @@ export default function ChatWidget() {
       const data = await res.json();
       setMessages([...newMessages, { role: "assistant", content: data.reply }]);
     } catch {
-      setMessages([...newMessages, { role: "assistant", content: "Sorry, something went wrong. Please try again." }]);
+      setMessages([...newMessages, { role: "assistant", content: "Sorry, something went wrong. Please try again or email us at hello@smartcoreai.com" }]);
     } finally {
       setLoading(false);
     }
@@ -53,88 +69,173 @@ export default function ChatWidget() {
     <>
       {/* Floating button */}
       <button
-        onClick={() => setOpen(true)}
-        className={`fixed bottom-6 right-6 z-50 w-14 h-14 bg-brand-600 hover:bg-brand-700 text-white rounded-full shadow-xl flex items-center justify-center transition-all duration-300 active:scale-95 ${open ? "scale-0 opacity-0 pointer-events-none" : "scale-100 opacity-100"}`}
-        aria-label="Open chat"
+        onClick={() => { setOpen(true); setPulseCount(0); }}
+        aria-label="Open AI chat"
+        style={{
+          position: "fixed", bottom: 24, right: 24, zIndex: 9998,
+          width: 56, height: 56,
+          background: "linear-gradient(135deg, #a855f7, #7c3aed)",
+          border: "none", borderRadius: "50%", cursor: "pointer",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          boxShadow: "0 4px 24px rgba(168,85,247,0.5)",
+          transition: "all 0.3s ease",
+          transform: open ? "scale(0) rotate(90deg)" : "scale(1) rotate(0deg)",
+          opacity: open ? 0 : 1,
+          pointerEvents: open ? "none" : "auto",
+        }}
       >
-        <MessageCircle className="w-6 h-6" />
-        <span className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white" />
+        <MessageCircle size={24} color="white" />
+        {/* Online indicator */}
+        <div style={{
+          position: "absolute", top: -1, right: -1,
+          width: 14, height: 14, background: "#4ade80", borderRadius: "50%",
+          border: "2px solid #08080c",
+          boxShadow: "0 0 8px #4ade80",
+        }} />
+        {/* Pulse ring */}
+        {pulseCount > 0 && (
+          <div style={{
+            position: "absolute", inset: -8,
+            borderRadius: "50%", border: "2px solid rgba(168,85,247,0.5)",
+            animation: "pulseRing 1.5s ease-out 3",
+          }} />
+        )}
       </button>
 
       {/* Chat window */}
-      <div className={`fixed bottom-6 right-6 z-50 w-80 md:w-96 flex flex-col rounded-2xl shadow-2xl border border-gray-100 overflow-hidden bg-white transition-all duration-300 origin-bottom-right ${open ? "scale-100 opacity-100" : "scale-75 opacity-0 pointer-events-none"}`}
-        style={{ height: "520px" }}>
+      <div style={{
+        position: "fixed", bottom: 24, right: 24, zIndex: 9999,
+        width: 360, display: "flex", flexDirection: "column",
+        background: "#0f0f16", border: "1px solid rgba(255,255,255,0.08)",
+        borderRadius: 22, boxShadow: "0 24px 80px rgba(0,0,0,0.6)",
+        overflow: "hidden", height: 520,
+        transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+        transform: open ? "scale(1) translateY(0)" : "scale(0.85) translateY(20px)",
+        opacity: open ? 1 : 0,
+        pointerEvents: open ? "auto" : "none",
+        transformOrigin: "bottom right",
+      }}>
         {/* Header */}
-        <div className="bg-brand-600 px-4 py-3 flex items-center justify-between flex-shrink-0">
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
-              <Bot className="w-4 h-4 text-white" />
+        <div style={{
+          padding: "16px 18px", display: "flex", alignItems: "center", justifyContent: "space-between",
+          background: "linear-gradient(135deg, #1a0a2e, #0d0d1e)",
+          borderBottom: "1px solid rgba(255,255,255,0.06)",
+        }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            <div style={{ position: "relative" }}>
+              <div style={{
+                width: 38, height: 38, borderRadius: 12,
+                background: "linear-gradient(135deg,#7c3aed,#a855f7)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+              }}>
+                <Bot size={20} color="white" />
+              </div>
+              <div style={{ position: "absolute", bottom: -1, right: -1, width: 10, height: 10, background: "#4ade80", borderRadius: "50%", border: "2px solid #0f0f16", boxShadow: "0 0 6px #4ade80" }} />
             </div>
             <div>
-              <div className="text-white font-semibold text-sm">Aria — SmartcoreAI</div>
-              <div className="flex items-center gap-1">
-                <span className="w-1.5 h-1.5 bg-green-400 rounded-full" />
-                <span className="text-white/70 text-xs">Online</span>
+              <div style={{ fontSize: 14, fontWeight: 700, color: "#f4f4f8", display: "flex", alignItems: "center", gap: 6 }}>
+                Aria <Sparkles size={12} color="#a855f7" />
               </div>
+              <div style={{ fontSize: 11, color: "#8888a0" }}>SmartcoreAI · Always online</div>
             </div>
           </div>
-          <button onClick={() => setOpen(false)} className="text-white/70 hover:text-white p-1">
-            <X className="w-5 h-5" />
+          <button onClick={() => setOpen(false)} style={{ background: "rgba(255,255,255,0.06)", border: "none", borderRadius: 8, padding: "6px", color: "#8888a0", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <X size={16} />
           </button>
         </div>
 
         {/* Messages */}
-        <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3 bg-gray-50">
+        <div style={{ flex: 1, overflowY: "auto", padding: "16px 14px", display: "flex", flexDirection: "column", gap: 12 }}>
           {messages.map((m, i) => (
-            <div key={i} className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}>
+            <div key={i} style={{ display: "flex", justifyContent: m.role === "user" ? "flex-end" : "flex-start", gap: 8, alignItems: "flex-end" }}>
               {m.role === "assistant" && (
-                <div className="w-6 h-6 bg-brand-100 rounded-full flex items-center justify-center mr-2 mt-1 flex-shrink-0">
-                  <Bot className="w-3 h-3 text-brand-600" />
+                <div style={{ width: 28, height: 28, borderRadius: 9, background: "linear-gradient(135deg,#7c3aed,#a855f7)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                  <Bot size={14} color="white" />
                 </div>
               )}
-              <div className={`max-w-[75%] px-3.5 py-2.5 rounded-2xl text-sm leading-relaxed ${
-                m.role === "user"
-                  ? "bg-brand-600 text-white rounded-br-sm"
-                  : "bg-white text-gray-800 border border-gray-100 shadow-sm rounded-bl-sm"
-              }`}>
-                {m.content}
-              </div>
+              <div style={{
+                padding: "10px 14px",
+                borderRadius: m.role === "user" ? "18px 18px 4px 18px" : "18px 18px 18px 4px",
+                background: m.role === "user" ? "linear-gradient(135deg,#7c3aed,#a855f7)" : "rgba(25,25,36,0.9)",
+                border: m.role === "assistant" ? "1px solid rgba(255,255,255,0.07)" : "none",
+                fontSize: 13, color: "#f4f4f8", maxWidth: "78%", lineHeight: 1.6,
+                whiteSpace: "pre-wrap",
+              }}>{m.content}</div>
             </div>
           ))}
+
+          {/* Typing indicator */}
           {loading && (
-            <div className="flex items-start gap-2">
-              <div className="w-6 h-6 bg-brand-100 rounded-full flex items-center justify-center flex-shrink-0">
-                <Bot className="w-3 h-3 text-brand-600" />
+            <div style={{ display: "flex", alignItems: "flex-end", gap: 8 }}>
+              <div style={{ width: 28, height: 28, borderRadius: 9, background: "linear-gradient(135deg,#7c3aed,#a855f7)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <Bot size={14} color="white" />
               </div>
-              <div className="bg-white border border-gray-100 shadow-sm rounded-2xl rounded-bl-sm px-3.5 py-2.5">
-                <Loader2 className="w-4 h-4 text-gray-400 animate-spin" />
+              <div style={{ padding: "12px 16px", borderRadius: "18px 18px 18px 4px", background: "rgba(25,25,36,0.9)", border: "1px solid rgba(255,255,255,0.07)", display: "flex", gap: 4, alignItems: "center" }}>
+                {[0, 1, 2].map(j => (
+                  <div key={j} style={{ width: 5, height: 5, borderRadius: "50%", background: "#a855f7", animation: `blink 1.2s ${j * 0.2}s step-end infinite` }} />
+                ))}
               </div>
             </div>
           )}
+
+          {/* Quick replies */}
+          {showQuickReplies && messages.length === 1 && !loading && (
+            <div style={{ display: "flex", flexDirection: "column", gap: 6, marginTop: 4 }}>
+              {QUICK_REPLIES.map(q => (
+                <button key={q} onClick={() => send(q)} style={{
+                  padding: "8px 14px", textAlign: "left", fontSize: 12, color: "#c084fc",
+                  background: "rgba(168,85,247,0.08)", border: "1px solid rgba(168,85,247,0.2)",
+                  borderRadius: 12, cursor: "pointer", fontFamily: "inherit", transition: "all 0.2s",
+                }}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "rgba(168,85,247,0.15)"; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "rgba(168,85,247,0.08)"; }}
+                >{q}</button>
+              ))}
+            </div>
+          )}
+
           <div ref={bottomRef} />
         </div>
 
         {/* Input */}
-        <div className="px-3 py-3 border-t border-gray-100 bg-white flex-shrink-0">
-          <div className="flex items-center gap-2 bg-gray-50 rounded-xl border border-gray-200 px-3 py-2">
+        <div style={{ padding: "12px 14px", borderTop: "1px solid rgba(255,255,255,0.05)", background: "rgba(255,255,255,0.01)" }}>
+          <div style={{ display: "flex", gap: 8, alignItems: "center", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 14, padding: "6px 8px 6px 14px" }}>
             <input
               ref={inputRef}
               value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && send()}
+              onChange={e => setInput(e.target.value)}
+              onKeyDown={e => e.key === "Enter" && !e.shiftKey && send()}
               placeholder="Ask me anything..."
-              className="flex-1 bg-transparent text-sm outline-none text-gray-800 placeholder-gray-400"
+              style={{ flex: 1, background: "transparent", border: "none", outline: "none", fontSize: 13, color: "#f4f4f8", fontFamily: "inherit" }}
             />
             <button
-              onClick={send}
+              onClick={() => send()}
               disabled={!input.trim() || loading}
-              className="w-8 h-8 bg-brand-600 disabled:bg-gray-200 text-white rounded-lg flex items-center justify-center transition-colors flex-shrink-0"
-            >
-              <Send className="w-3.5 h-3.5" />
+              style={{
+                width: 34, height: 34, borderRadius: 10, border: "none", cursor: input.trim() ? "pointer" : "not-allowed",
+                background: input.trim() ? "linear-gradient(135deg,#7c3aed,#a855f7)" : "rgba(255,255,255,0.06)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                transition: "all 0.2s", flexShrink: 0,
+              }}>
+              <Send size={14} color={input.trim() ? "white" : "#44444e"} />
             </button>
+          </div>
+          <div style={{ textAlign: "center", marginTop: 8, fontSize: 10, color: "#44444e" }}>
+            Powered by SmartcoreAI · responses may vary
           </div>
         </div>
       </div>
+
+      <style>{`
+        @keyframes blink {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.2; }
+        }
+        @keyframes pulseRing {
+          0% { transform: scale(0.8); opacity: 1; }
+          100% { transform: scale(2); opacity: 0; }
+        }
+      `}</style>
     </>
   );
 }

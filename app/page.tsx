@@ -1,11 +1,13 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import Ticker from "@/components/Ticker";
 import Services from "@/components/Services";
-import QuoteCalculator from "@/components/QuoteCalculator";
-import GoogleReviews from "@/components/GoogleReviews";
+import Pricing from "@/components/Pricing";
+import Pipeline from "@/components/Pipeline";
+import BookingSection from "@/components/BookingSection";
 import ContactSection from "@/components/ContactSection";
-import ChatWidget from "@/components/ChatWidget";
 import Footer from "@/components/Footer";
+import ChatWidget from "@/components/ChatWidget";
 
 export default function HomePage() {
   return (
@@ -13,9 +15,11 @@ export default function HomePage() {
       <Navbar />
       <main>
         <Hero />
+        <Ticker />
         <Services />
-        <QuoteCalculator />
-        <GoogleReviews />
+        <Pricing />
+        <Pipeline />
+        <BookingSection />
         <ContactSection />
       </main>
       <Footer />

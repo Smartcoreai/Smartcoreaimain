@@ -1,71 +1,265 @@
-import { ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
+"use client";
+import { useEffect, useRef } from "react";
+import { ArrowRight, Sparkles, TrendingUp, Users, Zap } from "lucide-react";
 
-const BADGES = [
-  "No tech skills needed",
-  "Setup in 48 hours",
-  "Cancel anytime",
+const STATS = [
+  { value: "340%", label: "Avg revenue lift" },
+  { value: "12h", label: "Setup time" },
+  { value: "98%", label: "Client satisfaction" },
+  { value: "500+", label: "Businesses automated" },
+];
+
+const FLOATING_BADGES = [
+  { icon: "💬", text: "Lead captured", sub: "via AI chat", x: "8%", y: "35%", delay: "0s" },
+  { icon: "📅", text: "Booking confirmed", sub: "Tue 2:00 PM", x: "78%", y: "25%", delay: "1.5s" },
+  { icon: "💰", text: "$4,200 revenue", sub: "this week", x: "82%", y: "65%", delay: "0.8s" },
+  { icon: "🤖", text: "AI responding", sub: "24/7 active", x: "5%", y: "68%", delay: "2s" },
 ];
 
 export default function Hero() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let animId: number;
+    const particles: Array<{ x: number; y: number; vx: number; vy: number; size: number; opacity: number; color: string }> = [];
+
+    const resize = () => {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    };
+    resize();
+    window.addEventListener("resize", resize);
+
+    const colors = ["rgba(168,85,247", "rgba(34,211,238", "rgba(124,58,237"];
+    for (let i = 0; i < 60; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
+        size: Math.random() * 2 + 0.5,
+        opacity: Math.random() * 0.5 + 0.1,
+        color: colors[Math.floor(Math.random() * colors.length)],
+      });
+    }
+
+    const draw = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach((p) => {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0) p.x = canvas.width;
+        if (p.x > canvas.width) p.x = 0;
+        if (p.y < 0) p.y = canvas.height;
+        if (p.y > canvas.height) p.y = 0;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = `${p.color},${p.opacity})`;
+        ctx.fill();
+      });
+
+      // Draw connections
+      particles.forEach((p, i) => {
+        particles.slice(i + 1).forEach((p2) => {
+          const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+          if (dist < 120) {
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = `rgba(168,85,247,${0.06 * (1 - dist / 120)})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        });
+      });
+
+      animId = requestAnimationFrame(draw);
+    };
+    draw();
+    return () => { cancelAnimationFrame(animId); window.removeEventListener("resize", resize); };
+  }, []);
+
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-brand-900 via-brand-700 to-indigo-500 pt-16">
-      {/* Background blobs */}
-      <div className="absolute top-1/4 -left-32 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-indigo-300/10 rounded-full blur-3xl" />
+    <section style={{
+      position: "relative",
+      minHeight: "100vh",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      overflow: "hidden",
+      background: "#08080c",
+    }}>
+      {/* Canvas particles */}
+      <canvas ref={canvasRef} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", zIndex: 1 }} />
 
-      <div className="container-max mx-auto px-4 py-24 relative">
-        <div className="max-w-3xl">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur text-white text-sm font-medium px-4 py-2 rounded-full mb-6 border border-white/20">
-            <Sparkles className="w-4 h-4 text-yellow-300" />
-            Trusted by 500+ small businesses
+      {/* Grid background */}
+      <div className="bg-grid" style={{ position: "absolute", inset: 0, zIndex: 0 }} />
+
+      {/* Glow orbs */}
+      <div style={{
+        position: "absolute", top: "10%", left: "50%", transform: "translateX(-50%)",
+        width: 600, height: 600, borderRadius: "50%",
+        background: "radial-gradient(circle, rgba(168,85,247,0.12) 0%, transparent 70%)",
+        zIndex: 1, pointerEvents: "none",
+      }} />
+      <div style={{
+        position: "absolute", top: "20%", right: "-10%",
+        width: 400, height: 400, borderRadius: "50%",
+        background: "radial-gradient(circle, rgba(34,211,238,0.08) 0%, transparent 70%)",
+        zIndex: 1, pointerEvents: "none",
+      }} />
+
+      {/* Floating badges — desktop only */}
+      {FLOATING_BADGES.map((b) => (
+        <div key={b.text} className="hidden lg:flex" style={{
+          position: "absolute",
+          left: b.x,
+          top: b.y,
+          zIndex: 10,
+          animation: `float 6s ease-in-out ${b.delay} infinite`,
+        }}>
+          <div style={{
+            display: "flex", alignItems: "center", gap: 10,
+            background: "rgba(20,20,27,0.85)",
+            border: "1px solid rgba(255,255,255,0.08)",
+            backdropFilter: "blur(12px)",
+            borderRadius: 14,
+            padding: "10px 14px",
+            boxShadow: "0 8px 32px rgba(0,0,0,0.4)",
+            whiteSpace: "nowrap",
+          }}>
+            <span style={{ fontSize: 20 }}>{b.icon}</span>
+            <div>
+              <div style={{ fontSize: 12, fontWeight: 600, color: "#f4f4f8" }}>{b.text}</div>
+              <div style={{ fontSize: 11, color: "#8888a0" }}>{b.sub}</div>
+            </div>
+            <div className="dot-glow" style={{ marginLeft: 4 }} />
           </div>
+        </div>
+      ))}
 
-          {/* Headline */}
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-6">
-            AI that actually{" "}
-            <span className="text-yellow-300">works</span>{" "}
-            for your business
-          </h1>
-
-          <p className="text-xl text-white/80 mb-8 max-w-xl leading-relaxed">
-            Chatbots, automation, and smart analytics — designed for small businesses. Start saving time and winning more customers today.
-          </p>
-
-          {/* CTAs */}
-          <div className="flex flex-wrap gap-4 mb-10">
-            <a href="#calculator" className="btn-primary flex items-center gap-2 text-base">
-              Get Your Free Quote <ArrowRight className="w-4 h-4" />
-            </a>
-            <a href="#services" className="btn-secondary text-base">
-              See What We Do
-            </a>
+      {/* Main content */}
+      <div className="wrap" style={{
+        position: "relative", zIndex: 10,
+        padding: "140px 24px 80px",
+        textAlign: "center",
+      }}>
+        {/* Badge */}
+        <div style={{ display: "flex", justifyContent: "center", marginBottom: 28 }}>
+          <div className="tag" style={{ animation: "fadeIn 0.6s ease forwards" }}>
+            <Sparkles size={12} />
+            AI-powered growth systems
           </div>
+        </div>
 
-          {/* Trust badges */}
-          <div className="flex flex-wrap gap-4">
-            {BADGES.map((b) => (
-              <div key={b} className="flex items-center gap-1.5 text-white/80 text-sm">
-                <CheckCircle2 className="w-4 h-4 text-green-400" />
-                {b}
-              </div>
-            ))}
-          </div>
+        {/* Headline */}
+        <h1 style={{
+          fontFamily: "Syne, system-ui, sans-serif",
+          fontSize: "clamp(42px, 6vw, 88px)",
+          fontWeight: 800,
+          lineHeight: 1.05,
+          letterSpacing: "-0.03em",
+          color: "#f4f4f8",
+          marginBottom: 24,
+          maxWidth: 900,
+          margin: "0 auto 24px",
+          animation: "slideUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.1s both",
+        }}>
+          Your business,{" "}
+          <span style={{
+            background: "linear-gradient(135deg, #a855f7 0%, #22d3ee 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+          }}>
+            running itself.
+          </span>
+        </h1>
+
+        {/* Subtext */}
+        <p style={{
+          fontSize: "clamp(16px, 2vw, 20px)",
+          color: "#8888a0",
+          maxWidth: 560,
+          margin: "0 auto 48px",
+          lineHeight: 1.7,
+          fontWeight: 400,
+          animation: "slideUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.2s both",
+        }}>
+          AI chatbots, booking automation, CRM systems — fully integrated,
+          deployed in days. Not months.
+        </p>
+
+        {/* CTAs */}
+        <div style={{
+          display: "flex", flexWrap: "wrap", gap: 14,
+          justifyContent: "center", marginBottom: 80,
+          animation: "slideUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.3s both",
+        }}>
+          <a href="#booking" className="btn-primary" style={{ fontSize: 15, padding: "14px 28px" }}>
+            Book a free call <ArrowRight size={16} />
+          </a>
+          <a href="#services" className="btn-outline" style={{ fontSize: 15, padding: "14px 28px" }}>
+            See what we build
+          </a>
         </div>
 
         {/* Stats row */}
-        <div className="grid grid-cols-3 gap-6 mt-20 pt-10 border-t border-white/10 max-w-lg">
-          {[
-            { value: "500+", label: "Businesses served" },
-            { value: "4.9★", label: "Average rating" },
-            { value: "48h", label: "Average setup" },
-          ].map((s) => (
-            <div key={s.label} className="text-center">
-              <div className="text-3xl font-bold text-white">{s.value}</div>
-              <div className="text-white/60 text-sm mt-1">{s.label}</div>
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))",
+          gap: 2,
+          maxWidth: 700,
+          margin: "0 auto",
+          background: "rgba(255,255,255,0.02)",
+          border: "1px solid rgba(255,255,255,0.05)",
+          borderRadius: 18,
+          overflow: "hidden",
+          animation: "slideUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.4s both",
+        }}>
+          {STATS.map((s, i) => (
+            <div key={s.label} style={{
+              padding: "20px 16px",
+              textAlign: "center",
+              borderRight: i < STATS.length - 1 ? "1px solid rgba(255,255,255,0.04)" : "none",
+            }}>
+              <div style={{
+                fontFamily: "Syne, system-ui, sans-serif",
+                fontSize: 28,
+                fontWeight: 800,
+                background: "linear-gradient(135deg, #a855f7, #22d3ee)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+                lineHeight: 1.1,
+              }}>{s.value}</div>
+              <div style={{ fontSize: 12, color: "#8888a0", marginTop: 4, fontWeight: 500 }}>{s.label}</div>
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Scroll indicator */}
+      <div style={{
+        position: "absolute", bottom: 36, left: "50%", transform: "translateX(-50%)",
+        display: "flex", flexDirection: "column", alignItems: "center", gap: 8,
+        zIndex: 10, animation: "fadeIn 1s ease 1s both",
+      }}>
+        <div style={{ fontSize: 11, color: "#44444e", letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 500 }}>
+          Scroll to explore
+        </div>
+        <div style={{
+          width: 1, height: 40,
+          background: "linear-gradient(180deg, rgba(168,85,247,0.5), transparent)",
+          animation: "float 2s ease-in-out infinite",
+        }} />
       </div>
     </section>
   );
