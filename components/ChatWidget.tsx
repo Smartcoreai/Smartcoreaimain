@@ -6,7 +6,7 @@ type Message = { role: "user" | "assistant"; content: string };
 
 const WELCOME: Message = {
   role: "assistant",
-  content: "Hi! I'm Aria, your SmartCore assistant. I can answer questions about our services, pricing, or help you figure out which AI solution fits your business. What kind of business do you run?",
+  content: "Hi! I'm Aria, your SmartcoreAI assistant. I can answer questions about our services, pricing, or help you figure out which AI solution fits your business. What kind of business do you run?",
 };
 
 export default function ChatWidget() {
@@ -71,7 +71,7 @@ export default function ChatWidget() {
               <Bot className="w-4 h-4 text-white" />
             </div>
             <div>
-              <div className="text-white font-semibold text-sm">Aria — SmartCore</div>
+              <div className="text-white font-semibold text-sm">Aria — SmartcoreAI</div>
               <div className="flex items-center gap-1">
                 <span className="w-1.5 h-1.5 bg-green-400 rounded-full" />
                 <span className="text-white/70 text-xs">Online</span>

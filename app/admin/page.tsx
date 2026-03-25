@@ -40,7 +40,7 @@ function LoginScreen({ onLogin }: { onLogin: (pw: string) => void }) {
           <div className="w-8 h-8 bg-brand-600 rounded-lg flex items-center justify-center">
             <Zap className="w-5 h-5 text-white" />
           </div>
-          SmartCore Admin
+          SmartcoreAI Admin
         </div>
         <h2 className="text-2xl font-bold mb-1">Sign in</h2>
         <p className="text-gray-500 text-sm mb-6">Enter your admin password to continue.</p>
@@ -218,7 +218,7 @@ export default function AdminPage() {
           <div className="w-8 h-8 bg-brand-600 rounded-lg flex items-center justify-center">
             <Zap className="w-5 h-5 text-white" />
           </div>
-          SmartCore Admin
+          SmartcoreAI Admin
         </div>
         <div className="flex items-center gap-3">
           <button onClick={() => fetchLeads(password)} className="text-gray-500 hover:text-gray-700 p-2">
