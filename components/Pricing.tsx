@@ -38,13 +38,14 @@ export default function Pricing() {
         </div>
 
         {/* Grid */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 18, alignItems: "start" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 18, alignItems: "stretch" }}>
           {PLANS.map((plan) => (
             <div key={plan.name} style={{
               position: "relative",
               background: plan.popular ? `linear-gradient(145deg, rgba(168,85,247,0.10), rgba(34,211,238,0.04))` : "rgba(15,15,20,0.8)",
               border: `1px solid ${plan.popular ? "rgba(168,85,247,0.4)" : "rgba(255,255,255,0.06)"}`,
               borderRadius: 22, padding: 28, transition: "all 0.4s ease",
+              display: "flex", flexDirection: "column",
             }}
             onMouseEnter={e => {
               (e.currentTarget as HTMLElement).style.transform = "translateY(-5px)";
@@ -76,7 +77,7 @@ export default function Pricing() {
                   <span style={{ fontSize: 13, fontWeight: 600, color: plan.color }}>{plan.name}</span>
                 </div>
                 <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 8 }}>
-                  <span style={{ fontFamily: "Syne, sans-serif", fontSize: 42, fontWeight: 800, color: "#f4f4f8", letterSpacing: "-0.03em" }}>
+                  <span style={{ fontFamily: "Syne, sans-serif", fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 800, color: "#f4f4f8", letterSpacing: "-0.03em", whiteSpace: "nowrap" }}>
                     {formatPrice(plan.price, lang)}
                   </span>
                   <span style={{ fontSize: 13, color: "#8888a0" }}>/{t.pricing.period}</span>
@@ -86,7 +87,7 @@ export default function Pricing() {
 
               <div style={{ height: 1, background: "rgba(255,255,255,0.05)", marginBottom: 20 }} />
 
-              <ul style={{ listStyle: "none", padding: 0, margin: "0 0 28px", display: "flex", flexDirection: "column", gap: 10 }}>
+              <ul style={{ listStyle: "none", padding: 0, margin: "0 0 28px", display: "flex", flexDirection: "column", gap: 10, flexGrow: 1 }}>
                 {plan.features.map(f => (
                   <li key={f} style={{ display: "flex", alignItems: "flex-start", gap: 10, fontSize: 13, color: "#c4c4d0" }}>
                     <div style={{ width: 18, height: 18, borderRadius: "50%", flexShrink: 0, background: plan.color + "20", display: "flex", alignItems: "center", justifyContent: "center", marginTop: 1 }}>
@@ -100,7 +101,7 @@ export default function Pricing() {
               <a href="#booking" style={{
                 display: "block", textAlign: "center", padding: "13px",
                 borderRadius: 12, fontWeight: 600, fontSize: 14,
-                textDecoration: "none", transition: "all 0.3s ease",
+                textDecoration: "none", transition: "all 0.3s ease", marginTop: "auto",
                 ...(plan.popular ? {
                   background: "linear-gradient(135deg,#a855f7,#7c3aed)",
                   color: "white",
