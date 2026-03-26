@@ -1,29 +1,26 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 import { MessageCircle, X, Send, Bot, Sparkles } from "lucide-react";
+import { useLanguage } from "@/lib/i18n";
 
 type Message = { role: "user" | "assistant"; content: string };
 
-const WELCOME: Message = {
-  role: "assistant",
-  content: "Hey! I'm Aria, SmartcoreAI's assistant 👋\n\nI can tell you about our services and pricing, or help you figure out which solution fits your business best.\n\nWhat can I help you with?",
-};
-
-const QUICK_REPLIES = [
-  "What services do you offer?",
-  "How much does it cost?",
-  "How fast can we get started?",
-];
-
 export default function ChatWidget() {
+  const { lang, t } = useLanguage();
   const [open, setOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([WELCOME]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [showQuickReplies, setShowQuickReplies] = useState(true);
   const [pulseCount, setPulseCount] = useState(0);
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  // Reset messages when language changes so the welcome is in the right language
+  useEffect(() => {
+    setMessages([{ role: "assistant", content: t.chat.welcome }]);
+    setShowQuickReplies(true);
+  }, [lang, t.chat.welcome]);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -33,11 +30,10 @@ export default function ChatWidget() {
     if (open) setTimeout(() => inputRef.current?.focus(), 100);
   }, [open]);
 
-  // Attention pulse after 6 seconds
   useEffect(() => {
     if (open) return;
-    const t = setTimeout(() => setPulseCount(1), 6000);
-    return () => clearTimeout(t);
+    const timer = setTimeout(() => setPulseCount(1), 6000);
+    return () => clearTimeout(timer);
   }, [open]);
 
   async function send(text?: string) {
@@ -54,7 +50,7 @@ export default function ChatWidget() {
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: newMessages }),
+        body: JSON.stringify({ messages: newMessages, lang }),
       });
       const data = await res.json();
       setMessages([...newMessages, { role: "assistant", content: data.reply }]);
@@ -85,18 +81,15 @@ export default function ChatWidget() {
         }}
       >
         <MessageCircle size={24} color="white" />
-        {/* Online indicator */}
         <div style={{
           position: "absolute", top: -1, right: -1,
           width: 14, height: 14, background: "#4ade80", borderRadius: "50%",
-          border: "2px solid #08080c",
-          boxShadow: "0 0 8px #4ade80",
+          border: "2px solid #08080c", boxShadow: "0 0 8px #4ade80",
         }} />
-        {/* Pulse ring */}
         {pulseCount > 0 && (
           <div style={{
-            position: "absolute", inset: -8,
-            borderRadius: "50%", border: "2px solid rgba(168,85,247,0.5)",
+            position: "absolute", inset: -8, borderRadius: "50%",
+            border: "2px solid rgba(168,85,247,0.5)",
             animation: "pulseRing 1.5s ease-out 3",
           }} />
         )}
@@ -123,11 +116,7 @@ export default function ChatWidget() {
         }}>
           <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
             <div style={{ position: "relative" }}>
-              <div style={{
-                width: 38, height: 38, borderRadius: 12,
-                background: "linear-gradient(135deg,#7c3aed,#a855f7)",
-                display: "flex", alignItems: "center", justifyContent: "center",
-              }}>
+              <div style={{ width: 38, height: 38, borderRadius: 12, background: "linear-gradient(135deg,#7c3aed,#a855f7)", display: "flex", alignItems: "center", justifyContent: "center" }}>
                 <Bot size={20} color="white" />
               </div>
               <div style={{ position: "absolute", bottom: -1, right: -1, width: 10, height: 10, background: "#4ade80", borderRadius: "50%", border: "2px solid #0f0f16", boxShadow: "0 0 6px #4ade80" }} />
@@ -164,7 +153,6 @@ export default function ChatWidget() {
             </div>
           ))}
 
-          {/* Typing indicator */}
           {loading && (
             <div style={{ display: "flex", alignItems: "flex-end", gap: 8 }}>
               <div style={{ width: 28, height: 28, borderRadius: 9, background: "linear-gradient(135deg,#7c3aed,#a855f7)", display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -178,10 +166,9 @@ export default function ChatWidget() {
             </div>
           )}
 
-          {/* Quick replies */}
           {showQuickReplies && messages.length === 1 && !loading && (
             <div style={{ display: "flex", flexDirection: "column", gap: 6, marginTop: 4 }}>
-              {QUICK_REPLIES.map(q => (
+              {t.chat.quickReplies.map(q => (
                 <button key={q} onClick={() => send(q)} style={{
                   padding: "8px 14px", textAlign: "left", fontSize: 12, color: "#c084fc",
                   background: "rgba(168,85,247,0.08)", border: "1px solid rgba(168,85,247,0.2)",
@@ -205,7 +192,7 @@ export default function ChatWidget() {
               value={input}
               onChange={e => setInput(e.target.value)}
               onKeyDown={e => e.key === "Enter" && !e.shiftKey && send()}
-              placeholder="Ask me anything..."
+              placeholder={t.chat.placeholder}
               style={{ flex: 1, background: "transparent", border: "none", outline: "none", fontSize: 13, color: "#f4f4f8", fontFamily: "inherit" }}
             />
             <button
@@ -221,20 +208,14 @@ export default function ChatWidget() {
             </button>
           </div>
           <div style={{ textAlign: "center", marginTop: 8, fontSize: 10, color: "#44444e" }}>
-            Powered by SmartcoreAI · responses may vary
+            {t.chat.poweredBy}
           </div>
         </div>
       </div>
 
       <style>{`
-        @keyframes blink {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.2; }
-        }
-        @keyframes pulseRing {
-          0% { transform: scale(0.8); opacity: 1; }
-          100% { transform: scale(2); opacity: 0; }
-        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+        @keyframes pulseRing { 0% { transform: scale(0.8); opacity: 1; } 100% { transform: scale(2); opacity: 0; } }
       `}</style>
     </>
   );

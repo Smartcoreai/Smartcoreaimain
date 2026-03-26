@@ -1,32 +1,10 @@
 "use client";
 import { Zap, Twitter, Linkedin, Instagram, ArrowUpRight } from "lucide-react";
-
-const LINKS: Record<string, { label: string; href: string }[]> = {
-  Services: [
-    { label: "AI Chatbot", href: "#services" },
-    { label: "Booking System", href: "#services" },
-    { label: "CRM System", href: "#services" },
-    { label: "Custom AI Integrations", href: "#services" },
-  ],
-  Company: [
-    { label: "Objections", href: "/objections" },
-    { label: "Contact", href: "#contact" },
-    { label: "Book a call", href: "#booking" },
-    { label: "Pricing", href: "#pricing" },
-  ],
-  Resources: [
-    { label: "FAQ", href: "#objections" },
-    { label: "Pricing", href: "#pricing" },
-    { label: "FAQ", href: "#contact" },
-  ],
-  Legal: [
-    { label: "Privacy Policy", href: "#" },
-    { label: "Terms of Service", href: "#" },
-    { label: "Cookie Policy", href: "#" },
-  ],
-};
+import { useLanguage } from "@/lib/i18n";
 
 export default function Footer() {
+  const { t } = useLanguage();
+
   return (
     <footer style={{ background: "#08080c", borderTop: "1px solid rgba(255,255,255,0.04)", padding: "64px 24px 32px" }}>
       <div className="wrap">
@@ -43,14 +21,10 @@ export default function Footer() {
               </span>
             </a>
             <p style={{ fontSize: 14, color: "#8888a0", lineHeight: 1.7, maxWidth: 240, margin: "0 0 20px" }}>
-              AI-powered growth systems for businesses that want to move faster.
+              {t.footer.tagline}
             </p>
             <div style={{ display: "flex", gap: 10 }}>
-              {[
-                { icon: <Twitter size={14} />, href: "#" },
-                { icon: <Linkedin size={14} />, href: "#" },
-                { icon: <Instagram size={14} />, href: "#" },
-              ].map((s, i) => (
+              {[{ icon: <Twitter size={14} />, href: "#" }, { icon: <Linkedin size={14} />, href: "#" }, { icon: <Instagram size={14} />, href: "#" }].map((s, i) => (
                 <a key={i} href={s.href} style={{
                   width: 34, height: 34, borderRadius: 10,
                   background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)",
@@ -65,11 +39,13 @@ export default function Footer() {
           </div>
 
           {/* Link columns */}
-          {Object.entries(LINKS).map(([category, links]) => (
-            <div key={category}>
-              <div style={{ fontSize: 11, fontWeight: 700, color: "#f4f4f8", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 16 }}>{category}</div>
+          {(["Services", "Company", "Resources", "Legal"] as const).map((cat) => (
+            <div key={cat}>
+              <div style={{ fontSize: 11, fontWeight: 700, color: "#f4f4f8", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 16 }}>
+                {t.footer.categories[cat]}
+              </div>
               <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 10 }}>
-                {links.map(link => (
+                {t.footer.links[cat].map((link) => (
                   <li key={link.label}>
                     <a href={link.href} style={{ fontSize: 13, color: "#8888a0", textDecoration: "none", transition: "color 0.2s" }}
                     onMouseEnter={e => { (e.target as HTMLElement).style.color = "#f4f4f8"; }}
@@ -91,9 +67,9 @@ export default function Footer() {
         }}>
           <div>
             <div style={{ fontFamily: "Syne, sans-serif", fontSize: 20, fontWeight: 700, color: "#f4f4f8", letterSpacing: "-0.02em" }}>
-              Ready to automate your business?
+              {t.footer.ctaHeadline}
             </div>
-            <div style={{ fontSize: 13, color: "#8888a0", marginTop: 4 }}>Start with a free 30-min discovery call.</div>
+            <div style={{ fontSize: 13, color: "#8888a0", marginTop: 4 }}>{t.footer.ctaSub}</div>
           </div>
           <a href="#booking" style={{
             display: "inline-flex", alignItems: "center", gap: 8,
@@ -104,28 +80,24 @@ export default function Footer() {
           onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)"; (e.currentTarget as HTMLElement).style.boxShadow = "0 8px 32px rgba(168,85,247,0.4)"; }}
           onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 20px rgba(168,85,247,0.3)"; }}
           >
-            Book a free call <ArrowUpRight size={16} />
+            {t.footer.ctaButton} <ArrowUpRight size={16} />
           </a>
         </div>
 
         {/* Bottom */}
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>
           <div style={{ fontSize: 12, color: "#44444e" }}>
-            © {new Date().getFullYear()} SmartcoreAI. All rights reserved.
+            © {new Date().getFullYear()} SmartcoreAI. {t.footer.rights}
           </div>
           <div style={{ fontSize: 12, color: "#44444e" }}>
-            Built with AI · Deployed in days · Not months.
+            {t.footer.builtWith}
           </div>
         </div>
       </div>
 
       <style>{`
-        @media (max-width: 900px) {
-          .footer-grid { grid-template-columns: 1fr 1fr !important; }
-        }
-        @media (max-width: 600px) {
-          .footer-grid { grid-template-columns: 1fr !important; }
-        }
+        @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr !important; } }
+        @media (max-width: 600px) { .footer-grid { grid-template-columns: 1fr !important; } }
       `}</style>
     </footer>
   );

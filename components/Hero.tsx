@@ -1,22 +1,17 @@
 "use client";
 import { useEffect, useRef } from "react";
-import { ArrowRight, Sparkles, TrendingUp, Users, Zap } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
+import { useLanguage } from "@/lib/i18n";
 
-const STATS = [
-  { value: "340%", label: "Avg revenue lift" },
-  { value: "12h", label: "Setup time" },
-  { value: "98%", label: "Client satisfaction" },
-  { value: "500+", label: "Businesses automated" },
-];
-
-const FLOATING_BADGES = [
-  { icon: "💬", text: "Lead captured", sub: "via AI chat", x: "8%", y: "35%", delay: "0s" },
-  { icon: "📅", text: "Booking confirmed", sub: "Tue 2:00 PM", x: "78%", y: "25%", delay: "1.5s" },
-  { icon: "💰", text: "$4,200 revenue", sub: "this week", x: "82%", y: "65%", delay: "0.8s" },
-  { icon: "🤖", text: "AI responding", sub: "24/7 active", x: "5%", y: "68%", delay: "2s" },
+const BADGE_POSITIONS = [
+  { x: "8%",  y: "35%", delay: "0s" },
+  { x: "78%", y: "25%", delay: "1.5s" },
+  { x: "82%", y: "65%", delay: "0.8s" },
+  { x: "5%",  y: "68%", delay: "2s" },
 ];
 
 export default function Hero() {
+  const { t } = useLanguage();
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -64,7 +59,6 @@ export default function Hero() {
         ctx.fill();
       });
 
-      // Draw connections
       particles.forEach((p, i) => {
         particles.slice(i + 1).forEach((p2) => {
           const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
@@ -117,13 +111,13 @@ export default function Hero() {
       }} />
 
       {/* Floating badges — desktop only */}
-      {FLOATING_BADGES.map((b) => (
-        <div key={b.text} className="hidden lg:flex" style={{
+      {t.hero.floatingBadges.map((b, i) => (
+        <div key={i} className="hidden lg:flex" style={{
           position: "absolute",
-          left: b.x,
-          top: b.y,
+          left: BADGE_POSITIONS[i].x,
+          top: BADGE_POSITIONS[i].y,
           zIndex: 10,
-          animation: `float 6s ease-in-out ${b.delay} infinite`,
+          animation: `float 6s ease-in-out ${BADGE_POSITIONS[i].delay} infinite`,
         }}>
           <div style={{
             display: "flex", alignItems: "center", gap: 10,
@@ -155,7 +149,7 @@ export default function Hero() {
         <div style={{ display: "flex", justifyContent: "center", marginBottom: 28 }}>
           <div className="tag" style={{ animation: "fadeIn 0.6s ease forwards" }}>
             <Sparkles size={12} />
-            AI-powered growth systems
+            {t.hero.tag}
           </div>
         </div>
 
@@ -172,14 +166,14 @@ export default function Hero() {
           overflowWrap: "break-word",
           wordBreak: "break-word",
         }}>
-          Your business,{" "}
+          {t.hero.headline1}{" "}
           <span style={{
             background: "linear-gradient(135deg, #a855f7 0%, #22d3ee 100%)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
           }}>
-            running itself.
+            {t.hero.headline2}
           </span>
         </h1>
 
@@ -195,8 +189,7 @@ export default function Hero() {
           animation: "slideUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.2s both",
           overflowWrap: "break-word",
         }}>
-          AI chatbots, booking automation, CRM systems — fully integrated,
-          deployed in days. Not months.
+          {t.hero.subtext}
         </p>
 
         {/* CTAs */}
@@ -205,7 +198,6 @@ export default function Hero() {
           marginBottom: 80,
           animation: "slideUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.3s both",
         }}>
-          {/* Primary CTA with pulse rings */}
           <div style={{ position: "relative", display: "inline-flex" }}>
             <div style={{
               position: "absolute", inset: -6, borderRadius: 18,
@@ -220,11 +212,11 @@ export default function Hero() {
               pointerEvents: "none",
             }} />
             <a href="#booking" className="btn-primary" style={{ fontSize: 15, padding: "14px 28px", position: "relative", zIndex: 1 }}>
-              Book a free call <ArrowRight size={16} />
+              {t.hero.ctaPrimary} <ArrowRight size={16} />
             </a>
           </div>
           <a href="#services" className="btn-outline" style={{ fontSize: 15, padding: "14px 28px" }}>
-            See what we build
+            {t.hero.ctaSecondary}
           </a>
         </div>
 
@@ -238,7 +230,7 @@ export default function Hero() {
           overflow: "hidden",
           animation: "slideUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.4s both",
         }}>
-          {STATS.map((s, i) => (
+          {t.hero.stats.map((s) => (
             <div key={s.label} className="hero-stat-cell" style={{
               padding: "20px 16px",
               textAlign: "center",
@@ -258,7 +250,6 @@ export default function Hero() {
           ))}
         </div>
       </div>
-
     </section>
   );
 }

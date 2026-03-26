@@ -1,10 +1,9 @@
+"use client";
+import { useLanguage } from "@/lib/i18n";
+
 export default function Ticker() {
-  const items = [
-    "AI Chatbot", "Booking Automation", "CRM System", "Lead Capture",
-    "Custom Integrations", "24/7 Support", "Revenue Growth", "AI Workflows",
-    "Instant Setup", "Smart Automation", "Real-time Analytics", "Client Portal",
-  ];
-  const doubled = [...items, ...items];
+  const { t } = useLanguage();
+  const doubled = [...t.ticker, ...t.ticker];
 
   return (
     <div style={{

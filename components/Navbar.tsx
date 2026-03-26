@@ -1,23 +1,27 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Menu, X, Zap } from "lucide-react";
-
-const NAV_LINKS = [
-  { label: "Services", href: "#services" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "FAQ", href: "#objections" },
-  { label: "Contact", href: "#contact" },
-];
+import { useLanguage, type Lang } from "@/lib/i18n";
 
 export default function Navbar() {
+  const { lang, setLang, t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const NAV_LINKS = [
+    { label: t.nav.services, href: "#services" },
+    { label: t.nav.pricing,  href: "#pricing" },
+    { label: t.nav.faq,      href: "#objections" },
+    { label: t.nav.contact,  href: "#contact" },
+  ];
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handler, { passive: true });
     return () => window.removeEventListener("scroll", handler);
   }, []);
+
+  const toggleLang = () => setLang(lang === "en" ? "no" : "en");
 
   return (
     <header
@@ -59,7 +63,7 @@ export default function Navbar() {
           {/* Desktop nav */}
           <nav style={{ display: "flex", alignItems: "center", gap: 4 }} className="hidden md:flex">
             {NAV_LINKS.map((l) => (
-              <a key={l.label} href={l.href} style={{
+              <a key={l.href} href={l.href} style={{
                 padding: "8px 14px",
                 borderRadius: 8,
                 fontSize: 14,
@@ -76,10 +80,26 @@ export default function Navbar() {
             ))}
           </nav>
 
-          {/* CTA */}
-          <div style={{ display: "flex", alignItems: "center", gap: 12 }} className="hidden md:flex">
+          {/* CTA + Language toggle */}
+          <div style={{ display: "flex", alignItems: "center", gap: 10 }} className="hidden md:flex">
+            {/* Language toggle */}
+            <button
+              onClick={toggleLang}
+              style={{
+                padding: "7px 12px", borderRadius: 8,
+                background: "rgba(255,255,255,0.04)",
+                border: "1px solid rgba(255,255,255,0.08)",
+                color: "#8888a0", fontSize: 12, fontWeight: 700,
+                cursor: "pointer", letterSpacing: "0.05em",
+                fontFamily: "inherit", transition: "all 0.2s",
+              }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = "#a855f7"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(168,85,247,0.4)"; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = "#8888a0"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.08)"; }}
+            >
+              {lang === "en" ? "NO" : "EN"}
+            </button>
             <a href="#contact" className="btn-outline" style={{ padding: "9px 20px", fontSize: 13 }}>
-              Get started
+              {t.nav.getStarted}
             </a>
             <div style={{ position: "relative", display: "inline-flex" }}>
               <div style={{
@@ -95,7 +115,7 @@ export default function Navbar() {
                 pointerEvents: "none",
               }} />
               <a href="#booking" className="btn-primary" style={{ padding: "9px 20px", fontSize: 13, position: "relative", zIndex: 1 }}>
-                Book a call
+                {t.nav.bookCall}
               </a>
             </div>
           </div>
@@ -120,7 +140,7 @@ export default function Navbar() {
         }}>
           <nav style={{ display: "flex", flexDirection: "column", gap: 4 }}>
             {NAV_LINKS.map((l) => (
-              <a key={l.label} href={l.href}
+              <a key={l.href} href={l.href}
                 onClick={() => setMobileOpen(false)}
                 style={{
                   padding: "12px 16px",
@@ -137,8 +157,20 @@ export default function Navbar() {
               </a>
             ))}
             <div style={{ marginTop: 16, display: "flex", flexDirection: "column", gap: 10 }}>
-              <a href="#booking" className="btn-primary" style={{ textAlign: "center" }}>Book a call</a>
-              <a href="#contact" className="btn-outline" style={{ textAlign: "center" }}>Get started</a>
+              <a href="#booking" className="btn-primary" style={{ textAlign: "center" }}>{t.nav.bookCall}</a>
+              <a href="#contact" className="btn-outline" style={{ textAlign: "center" }}>{t.nav.getStarted}</a>
+              <button
+                onClick={toggleLang}
+                style={{
+                  padding: "12px 16px", borderRadius: 10,
+                  background: "rgba(255,255,255,0.02)",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                  color: "#8888a0", fontSize: 14, fontWeight: 600,
+                  cursor: "pointer", fontFamily: "inherit",
+                }}
+              >
+                {lang === "en" ? "Switch to Norwegian (NO)" : "Switch to English (EN)"}
+              </button>
             </div>
           </nav>
         </div>
