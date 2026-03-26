@@ -76,11 +76,11 @@ export default function Pricing() {
                   <div style={{ width: 8, height: 8, borderRadius: "50%", background: plan.color, boxShadow: `0 0 8px ${plan.color}` }} />
                   <span style={{ fontSize: 13, fontWeight: 600, color: plan.color }}>{plan.name}</span>
                 </div>
-                <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 8 }}>
-                  <span style={{ fontFamily: "Syne, sans-serif", fontSize: "clamp(28px, 4vw, 42px)", fontWeight: 800, color: "#f4f4f8", letterSpacing: "-0.03em", whiteSpace: "nowrap" }}>
+                <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 8, flexWrap: "nowrap", overflow: "hidden" }}>
+                  <span style={{ fontFamily: "Syne, sans-serif", fontSize: 28, fontWeight: 800, color: "#f4f4f8", letterSpacing: "-0.03em", whiteSpace: "nowrap", minWidth: 0, flexShrink: 1 }}>
                     {formatPrice(plan.price, lang)}
                   </span>
-                  <span style={{ fontSize: 13, color: "#8888a0" }}>/{t.pricing.period}</span>
+                  <span style={{ fontSize: 13, color: "#8888a0", whiteSpace: "nowrap", flexShrink: 0 }}>/{t.pricing.period}</span>
                 </div>
                 <p style={{ fontSize: 13, color: "#8888a0", lineHeight: 1.6, margin: 0 }}>{plan.desc}</p>
               </div>
