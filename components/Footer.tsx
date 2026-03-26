@@ -15,7 +15,7 @@ const LINKS: Record<string, { label: string; href: string }[]> = {
     { label: "Pricing", href: "#pricing" },
   ],
   Resources: [
-    { label: "How it works", href: "#pipeline" },
+    { label: "FAQ", href: "#objections" },
     { label: "Pricing", href: "#pricing" },
     { label: "FAQ", href: "#contact" },
   ],
