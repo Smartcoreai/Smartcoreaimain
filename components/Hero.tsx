@@ -259,21 +259,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div style={{
-        position: "absolute", bottom: 36, left: "50%", transform: "translateX(-50%)",
-        display: "flex", flexDirection: "column", alignItems: "center", gap: 8,
-        zIndex: 10, animation: "fadeIn 1s ease 1s both",
-      }}>
-        <div style={{ fontSize: 11, color: "#44444e", letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 500 }}>
-          Scroll to explore
-        </div>
-        <div style={{
-          width: 1, height: 40,
-          background: "linear-gradient(180deg, rgba(168,85,247,0.5), transparent)",
-          animation: "float 2s ease-in-out infinite",
-        }} />
-      </div>
     </section>
   );
 }

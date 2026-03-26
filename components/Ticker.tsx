@@ -23,7 +23,6 @@ export default function Ticker() {
       }} />
       <div style={{
         display: "flex",
-        animation: "ticker 30s linear infinite",
         width: "max-content",
       }}>
         {doubled.map((item, i) => (
