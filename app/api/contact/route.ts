@@ -47,13 +47,16 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  // Send to GoHighLevel as a new contact
+  // Send to GoHighLevel as a new contact + create opportunity
   const ghlKey = process.env.GHL_API_KEY;
-  if (ghlKey) {
+  const locationId = process.env.GHL_LOCATION_ID;
+  if (ghlKey && locationId) {
     try {
       const [firstName, ...rest] = name.trim().split(" ");
       const lastName = rest.join(" ") || "";
-      await fetch("https://services.leadconnectorhq.com/contacts/", {
+
+      // 1. Create contact and get contactId
+      const contactRes = await fetch("https://services.leadconnectorhq.com/contacts/", {
         method: "POST",
         headers: {
           "Authorization": `Bearer ${ghlKey}`,
@@ -66,10 +69,50 @@ export async function POST(req: NextRequest) {
           email,
           companyName: business || "",
           source: "SmartcoreAI Website",
-          locationId: process.env.GHL_LOCATION_ID,
+          locationId,
           tags: ["website-lead"],
         }),
       });
+      const contactData = await contactRes.json();
+      const contactId = contactData?.contact?.id;
+
+      // 2. Find pipeline "Smartcoreaimainweb" and stage "New lead"
+      const pipelinesRes = await fetch(
+        `https://services.leadconnectorhq.com/opportunities/pipelines?locationId=${locationId}`,
+        {
+          headers: {
+            "Authorization": `Bearer ${ghlKey}`,
+            "Version": "2021-07-28",
+          },
+        }
+      );
+      const pipelinesData = await pipelinesRes.json();
+      const pipeline = pipelinesData?.pipelines?.find(
+        (p: { name: string }) => p.name === "Smartcoreaimainweb"
+      );
+      const stage = pipeline?.stages?.find(
+        (s: { name: string }) => s.name === "New lead"
+      );
+
+      // 3. Create opportunity if pipeline/stage found
+      if (contactId && pipeline?.id && stage?.id) {
+        await fetch("https://services.leadconnectorhq.com/opportunities/", {
+          method: "POST",
+          headers: {
+            "Authorization": `Bearer ${ghlKey}`,
+            "Version": "2021-07-28",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            pipelineId: pipeline.id,
+            pipelineStageId: stage.id,
+            locationId,
+            contactId,
+            name: `${name}${business ? ` — ${business}` : ""}`,
+            status: "open",
+          }),
+        });
+      }
     } catch (err) {
       console.error("GoHighLevel sync failed:", err);
       // Still return success — lead was saved locally
