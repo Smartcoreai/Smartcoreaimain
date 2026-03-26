@@ -1,11 +1,29 @@
 "use client";
 import { Zap, Twitter, Linkedin, Instagram, ArrowUpRight } from "lucide-react";
 
-const LINKS = {
-  Services: ["AI Chatbot", "Booking System", "CRM System", "Custom AI"],
-  Company: ["About", "Blog", "Careers", "Press"],
-  Resources: ["Documentation", "Case Studies", "Pricing", "FAQ"],
-  Legal: ["Privacy Policy", "Terms of Service", "Cookie Policy"],
+const LINKS: Record<string, { label: string; href: string }[]> = {
+  Services: [
+    { label: "AI Chatbot", href: "#services" },
+    { label: "Booking System", href: "#services" },
+    { label: "CRM System", href: "#services" },
+    { label: "Custom AI", href: "#services" },
+  ],
+  Company: [
+    { label: "Objections", href: "/objections" },
+    { label: "Contact", href: "#contact" },
+    { label: "Book a call", href: "#booking" },
+    { label: "Pricing", href: "#pricing" },
+  ],
+  Resources: [
+    { label: "How it works", href: "#pipeline" },
+    { label: "Pricing", href: "#pricing" },
+    { label: "FAQ", href: "#contact" },
+  ],
+  Legal: [
+    { label: "Privacy Policy", href: "#" },
+    { label: "Terms of Service", href: "#" },
+    { label: "Cookie Policy", href: "#" },
+  ],
 };
 
 export default function Footer() {
@@ -52,11 +70,11 @@ export default function Footer() {
               <div style={{ fontSize: 11, fontWeight: 700, color: "#f4f4f8", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 16 }}>{category}</div>
               <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 10 }}>
                 {links.map(link => (
-                  <li key={link}>
-                    <a href="#" style={{ fontSize: 13, color: "#8888a0", textDecoration: "none", transition: "color 0.2s" }}
+                  <li key={link.label}>
+                    <a href={link.href} style={{ fontSize: 13, color: "#8888a0", textDecoration: "none", transition: "color 0.2s" }}
                     onMouseEnter={e => { (e.target as HTMLElement).style.color = "#f4f4f8"; }}
                     onMouseLeave={e => { (e.target as HTMLElement).style.color = "#8888a0"; }}
-                    >{link}</a>
+                    >{link.label}</a>
                   </li>
                 ))}
               </ul>

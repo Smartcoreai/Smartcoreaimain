@@ -3,7 +3,7 @@ import Hero from "@/components/Hero";
 import Ticker from "@/components/Ticker";
 import Services from "@/components/Services";
 import Pricing from "@/components/Pricing";
-import Pipeline from "@/components/Pipeline";
+import Objections from "@/components/Objections";
 import BookingSection from "@/components/BookingSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
@@ -18,7 +18,7 @@ export default function HomePage() {
         <Ticker />
         <Services />
         <Pricing />
-        <Pipeline />
+        <Objections />
         <BookingSection />
         <ContactSection />
       </main>

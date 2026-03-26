@@ -16,15 +16,15 @@ export default function ContactSection() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    // Simulate API call
-    await new Promise(r => setTimeout(r, 1200));
     try {
-      await fetch("/api/leads", {
+      await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, source: "contact-form" }),
+        body: JSON.stringify(form),
       });
-    } catch {}
+    } catch (err) {
+      console.error(err);
+    }
     setLoading(false);
     setSent(true);
   };

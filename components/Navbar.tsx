@@ -81,9 +81,23 @@ export default function Navbar() {
             <a href="#contact" className="btn-outline" style={{ padding: "9px 20px", fontSize: 13 }}>
               Get started
             </a>
-            <a href="#booking" className="btn-primary" style={{ padding: "9px 20px", fontSize: 13 }}>
-              Book a call
-            </a>
+            <div style={{ position: "relative", display: "inline-flex" }}>
+              <div style={{
+                position: "absolute", inset: -5, borderRadius: 16,
+                border: "1.5px solid rgba(168,85,247,0.5)",
+                animation: "pulseRing 2s ease-out infinite",
+                pointerEvents: "none",
+              }} />
+              <div style={{
+                position: "absolute", inset: -10, borderRadius: 20,
+                border: "1.5px solid rgba(168,85,247,0.2)",
+                animation: "pulseRing 2s ease-out 0.7s infinite",
+                pointerEvents: "none",
+              }} />
+              <a href="#booking" className="btn-primary" style={{ padding: "9px 20px", fontSize: 13, position: "relative", zIndex: 1 }}>
+                Book a call
+              </a>
+            </div>
           </div>
 
           {/* Mobile toggle */}

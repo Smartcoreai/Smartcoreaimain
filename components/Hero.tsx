@@ -203,9 +203,24 @@ export default function Hero() {
           justifyContent: "center", marginBottom: 80,
           animation: "slideUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.3s both",
         }}>
-          <a href="#booking" className="btn-primary" style={{ fontSize: 15, padding: "14px 28px" }}>
-            Book a free call <ArrowRight size={16} />
-          </a>
+          {/* Primary CTA with pulse rings */}
+          <div style={{ position: "relative", display: "inline-flex" }}>
+            <div style={{
+              position: "absolute", inset: -6, borderRadius: 18,
+              border: "2px solid rgba(168,85,247,0.5)",
+              animation: "pulseRing 2s ease-out infinite",
+              pointerEvents: "none",
+            }} />
+            <div style={{
+              position: "absolute", inset: -12, borderRadius: 22,
+              border: "2px solid rgba(168,85,247,0.25)",
+              animation: "pulseRing 2s ease-out 0.6s infinite",
+              pointerEvents: "none",
+            }} />
+            <a href="#booking" className="btn-primary" style={{ fontSize: 15, padding: "14px 28px", position: "relative", zIndex: 1 }}>
+              Book a free call <ArrowRight size={16} />
+            </a>
+          </div>
           <a href="#services" className="btn-outline" style={{ fontSize: 15, padding: "14px 28px" }}>
             See what we build
           </a>
