@@ -17,7 +17,7 @@ function ChatbotDemo() {
   const [step, setStep] = useState(0);
   const [typing, setTyping] = useState(false);
   const [input, setInput] = useState("");
-  const bottomRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (step >= CHAT_SCRIPT.length) return;
@@ -33,7 +33,9 @@ function ChatbotDemo() {
   }, [step]);
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
   }, [messages, typing]);
 
   return (
@@ -50,7 +52,7 @@ function ChatbotDemo() {
           </div>
         </div>
       </div>
-      <div style={{ flex: 1, overflowY: "auto", padding: "16px 12px", display: "flex", flexDirection: "column", gap: 10 }}>
+      <div ref={scrollRef} style={{ flex: 1, overflowY: "auto", padding: "16px 12px", display: "flex", flexDirection: "column", gap: 10 }}>
         {messages.map((m, i) => (
           <div key={i} style={{ display: "flex", justifyContent: m.role === "user" ? "flex-end" : "flex-start", gap: 8, alignItems: "flex-end" }}>
             {m.role === "bot" && (
@@ -76,7 +78,6 @@ function ChatbotDemo() {
             </div>
           </div>
         )}
-        <div ref={bottomRef} />
       </div>
       <div style={{ padding: "10px 12px", borderTop: "1px solid rgba(255,255,255,0.05)", display: "flex", gap: 8 }}>
         <input value={input} onChange={e => setInput(e.target.value)} placeholder="Try typing something..."
