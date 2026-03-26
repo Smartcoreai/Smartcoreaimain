@@ -66,10 +66,8 @@ export async function POST(req: NextRequest) {
           email,
           companyName: business || "",
           source: "SmartcoreAI Website",
+          locationId: process.env.GHL_LOCATION_ID,
           tags: ["website-lead"],
-          customField: [
-            { id: "message", field_value: message },
-          ],
         }),
       });
     } catch (err) {
