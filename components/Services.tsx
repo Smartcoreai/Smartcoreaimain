@@ -240,15 +240,24 @@ function CRMDemo() {
 }
 
 /* ─── AI Integration Demo ─── */
-const FLOW_NODES = [
+const FLOW_NODES_EN = [
   { label: "Trigger",    sub: "New lead from form",      icon: "⚡", color: "#a855f7" },
   { label: "AI Qualify", sub: "Score & segment lead",    icon: "🤖", color: "#22d3ee" },
   { label: "CRM Update", sub: "Auto-add to pipeline",    icon: "📊", color: "#f472b6" },
   { label: "Send Email", sub: "Personalized outreach",   icon: "📧", color: "#facc15" },
   { label: "Book Call",  sub: "AI schedules meeting",    icon: "📅", color: "#4ade80" },
 ];
+const FLOW_NODES_NO = [
+  { label: "Trigger",    sub: "Ny lead fra skjema",          icon: "⚡", color: "#a855f7" },
+  { label: "AI Qualify", sub: "Skår og segmenter lead",      icon: "🤖", color: "#22d3ee" },
+  { label: "CRM Update", sub: "Legg automatisk til i pipeline", icon: "📊", color: "#f472b6" },
+  { label: "Send Email", sub: "Personlig oppfølging",        icon: "📧", color: "#facc15" },
+  { label: "Book Call",  sub: "AI booker møte",              icon: "📅", color: "#4ade80" },
+];
 
 function AIIntegrationDemo() {
+  const { lang } = useLanguage();
+  const FLOW_NODES = lang === "no" ? FLOW_NODES_NO : FLOW_NODES_EN;
   const [active, setActive] = useState(0);
   useEffect(() => {
     const t = setInterval(() => setActive(a => (a + 1) % FLOW_NODES.length), 1400);
@@ -257,7 +266,7 @@ function AIIntegrationDemo() {
 
   return (
     <div style={{ background: "#0a0a10", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 16, height: 340, padding: "20px 16px", display: "flex", flexDirection: "column", gap: 8 }}>
-      <div style={{ fontSize: 11, fontWeight: 600, color: "#8888a0", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 4 }}>Live workflow · running</div>
+      <div style={{ fontSize: 11, fontWeight: 600, color: "#8888a0", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 4 }}>{lang === "no" ? "Live arbeidsflyt · kjører" : "Live workflow · running"}</div>
       {FLOW_NODES.map((node, i) => (
         <div key={node.label}>
           <div style={{
@@ -384,7 +393,7 @@ export default function Services() {
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
               <div>
-                <div style={{ fontFamily: "Syne, sans-serif", fontSize: 28, fontWeight: 800, color: "#f4f4f8" }}>{svc.price}</div>
+                <div style={{ fontFamily: "Syne, sans-serif", fontSize: 22, fontWeight: 800, color: "#f4f4f8", whiteSpace: "nowrap" }}>{svc.price}</div>
                 <div style={{ fontSize: 11, color: "#8888a0" }}>{t.services.monthNote}</div>
               </div>
               <a href="#booking" className="btn-primary" style={{ marginLeft: "auto" }}>
