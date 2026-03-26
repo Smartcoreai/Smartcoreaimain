@@ -10,11 +10,13 @@
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
   }
   body {
     background: #08080c;
     color: #f4f4f8;
     font-family: 'Inter', system-ui, sans-serif;
+    overflow-x: hidden;
   }
   ::selection {
     background: rgba(168, 85, 247, 0.3);
@@ -225,4 +227,23 @@
 @keyframes pulseRing {
   0% { transform: scale(0.8); opacity: 1; }
   100% { transform: scale(2); opacity: 0; }
+}
+
+/* ── Hero stat cell borders ── */
+/* Desktop (4-col): right border on first 3 cells */
+.hero-stat-cell { border-right: 1px solid rgba(255,255,255,0.04); }
+.hero-stat-cell:nth-child(4n) { border-right: none; }
+
+/* Mobile (2-col): right border only on odd cells, bottom border on top row */
+@media (max-width: 639px) {
+  .hero-stat-cell:nth-child(even) { border-right: none; }
+  .hero-stat-cell:nth-child(odd)  { border-right: 1px solid rgba(255,255,255,0.04); }
+  .hero-stat-cell:nth-child(1),
+  .hero-stat-cell:nth-child(2)    { border-bottom: 1px solid rgba(255,255,255,0.04); }
+}
+
+/* ── Section horizontal padding on mobile ── */
+@media (max-width: 640px) {
+  section { padding-left: 16px !important; padding-right: 16px !important; }
+  .wrap, .wrap-narrow { padding-left: 0; padding-right: 0; }
 }

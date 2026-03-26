@@ -160,16 +160,17 @@ export default function Hero() {
         </div>
 
         {/* Headline */}
-        <h1 className="text-[28px] sm:text-5xl md:text-6xl lg:text-[80px]" style={{
+        <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-[80px]" style={{
           fontFamily: "Syne, system-ui, sans-serif",
           fontWeight: 800,
-          lineHeight: 1.05,
+          lineHeight: 1.1,
           letterSpacing: "-0.03em",
           color: "#f4f4f8",
-          marginBottom: 24,
-          maxWidth: 900,
+          maxWidth: "min(900px, 100%)",
           margin: "0 auto 24px",
           animation: "slideUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.1s both",
+          overflowWrap: "break-word",
+          wordBreak: "break-word",
         }}>
           Your business,{" "}
           <span style={{
@@ -184,22 +185,24 @@ export default function Hero() {
 
         {/* Subtext */}
         <p style={{
-          fontSize: "clamp(16px, 2vw, 20px)",
+          fontSize: 16,
           color: "#8888a0",
-          maxWidth: 560,
+          maxWidth: "min(560px, 100%)",
+          width: "100%",
           margin: "0 auto 48px",
           lineHeight: 1.7,
           fontWeight: 400,
           animation: "slideUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.2s both",
+          overflowWrap: "break-word",
         }}>
           AI chatbots, booking automation, CRM systems — fully integrated,
           deployed in days. Not months.
         </p>
 
         {/* CTAs */}
-        <div style={{
-          display: "flex", flexWrap: "wrap", gap: 14,
-          justifyContent: "center", marginBottom: 80,
+        <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center" style={{
+          gap: 14,
+          marginBottom: 80,
           animation: "slideUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.3s both",
         }}>
           {/* Primary CTA with pulse rings */}
@@ -226,10 +229,7 @@ export default function Hero() {
         </div>
 
         {/* Stats row */}
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))",
-          gap: 2,
+        <div className="grid grid-cols-2 sm:grid-cols-4 hero-stats" style={{
           maxWidth: 700,
           margin: "0 auto",
           background: "rgba(255,255,255,0.02)",
@@ -239,10 +239,9 @@ export default function Hero() {
           animation: "slideUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.4s both",
         }}>
           {STATS.map((s, i) => (
-            <div key={s.label} style={{
+            <div key={s.label} className="hero-stat-cell" style={{
               padding: "20px 16px",
               textAlign: "center",
-              borderRight: i < STATS.length - 1 ? "1px solid rgba(255,255,255,0.04)" : "none",
             }}>
               <div style={{
                 fontFamily: "Syne, system-ui, sans-serif",
