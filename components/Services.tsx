@@ -374,7 +374,7 @@ const SERVICES = [
     id: "ai-integration",
     icon: <Cpu size={20} />,
     color: "#facc15",
-    label: "Custom AI Integration",
+    label: "Custom AI Integrations",
     price: "$1,500/mo",
     tag: "Enterprise",
     headline: "Your entire workflow, automated.",

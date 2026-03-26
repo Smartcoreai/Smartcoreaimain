@@ -6,7 +6,7 @@ const LINKS: Record<string, { label: string; href: string }[]> = {
     { label: "AI Chatbot", href: "#services" },
     { label: "Booking System", href: "#services" },
     { label: "CRM System", href: "#services" },
-    { label: "Custom AI", href: "#services" },
+    { label: "Custom AI Integrations", href: "#services" },
   ],
   Company: [
     { label: "Objections", href: "/objections" },

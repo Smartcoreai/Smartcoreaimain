@@ -55,7 +55,7 @@ const PLANS = [
     popular: true,
   },
   {
-    name: "Custom AI",
+    name: "Custom AI Integrations",
     price: 1500,
     period: "month",
     color: "#facc15",
