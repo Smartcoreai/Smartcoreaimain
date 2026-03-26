@@ -394,8 +394,8 @@ export default function Services() {
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: 56 }}>
           <div className="tag" style={{ display: "inline-flex", marginBottom: 16 }}>What we build</div>
-          <h2 style={{
-            fontFamily: "Syne, sans-serif", fontSize: "clamp(32px,4vw,52px)",
+          <h2 className="text-[22px] sm:text-4xl lg:text-[52px]" style={{
+            fontFamily: "Syne, sans-serif",
             fontWeight: 800, color: "#f4f4f8", letterSpacing: "-0.03em", marginBottom: 14, lineHeight: 1.1,
           }}>
             Tools that{" "}
@@ -450,7 +450,7 @@ export default function Services() {
                 }}>{svc.icon}</div>
                 <span style={{ fontSize: 11, padding: "3px 10px", borderRadius: 999, background: svc.color + "18", color: svc.color, fontWeight: 600, border: `1px solid ${svc.color}30` }}>{svc.tag}</span>
               </div>
-              <h3 style={{ fontFamily: "Syne, sans-serif", fontSize: 26, fontWeight: 800, color: "#f4f4f8", letterSpacing: "-0.02em", marginBottom: 10, lineHeight: 1.2 }}>
+              <h3 className="text-xl md:text-[26px]" style={{ fontFamily: "Syne, sans-serif", fontWeight: 800, color: "#f4f4f8", letterSpacing: "-0.02em", marginBottom: 10, lineHeight: 1.2 }}>
                 {svc.headline}
               </h3>
               <p style={{ fontSize: 14, color: "#8888a0", lineHeight: 1.7, marginBottom: 24 }}>{svc.desc}</p>

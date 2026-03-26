@@ -81,9 +81,8 @@ export default function Pricing() {
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: 60 }}>
           <div className="tag" style={{ display: "inline-flex", marginBottom: 16 }}>Transparent pricing</div>
-          <h2 style={{
+          <h2 className="text-[22px] sm:text-4xl lg:text-[52px]" style={{
             fontFamily: "Syne, sans-serif",
-            fontSize: "clamp(32px,4vw,52px)",
             fontWeight: 800, color: "#f4f4f8", letterSpacing: "-0.03em", marginBottom: 14, lineHeight: 1.1,
           }}>
             Simple, flat rates.{" "}

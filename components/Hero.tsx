@@ -160,9 +160,8 @@ export default function Hero() {
         </div>
 
         {/* Headline */}
-        <h1 style={{
+        <h1 className="text-[28px] sm:text-5xl md:text-6xl lg:text-[80px]" style={{
           fontFamily: "Syne, system-ui, sans-serif",
-          fontSize: "clamp(42px, 6vw, 88px)",
           fontWeight: 800,
           lineHeight: 1.05,
           letterSpacing: "-0.03em",

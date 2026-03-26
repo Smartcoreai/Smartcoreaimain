@@ -38,9 +38,8 @@ export default function ContactSection() {
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: 56 }}>
           <div className="tag" style={{ display: "inline-flex", marginBottom: 16 }}>Get in touch</div>
-          <h2 style={{
+          <h2 className="text-[22px] sm:text-4xl lg:text-[56px]" style={{
             fontFamily: "Syne, sans-serif",
-            fontSize: "clamp(32px,4vw,56px)",
             fontWeight: 800, color: "#f4f4f8", letterSpacing: "-0.03em", marginBottom: 14, lineHeight: 1.05,
           }}>
             Ready to automate{" "}
@@ -61,7 +60,7 @@ export default function ContactSection() {
             display: "flex", flexDirection: "column", gap: 28,
           }}>
             <div>
-              <h3 style={{ fontFamily: "Syne, sans-serif", fontSize: 22, fontWeight: 800, color: "#f4f4f8", marginBottom: 8, letterSpacing: "-0.02em" }}>
+              <h3 className="text-lg md:text-[22px]" style={{ fontFamily: "Syne, sans-serif", fontWeight: 800, color: "#f4f4f8", marginBottom: 8, letterSpacing: "-0.02em" }}>
                 Let's build something that works
               </h3>
               <p style={{ fontSize: 14, color: "#8888a0", lineHeight: 1.7, margin: 0 }}>

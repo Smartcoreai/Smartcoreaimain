@@ -24,9 +24,8 @@ export default function BookingSection() {
             <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#4ade80", boxShadow: "0 0 6px #4ade80" }} />
             Book a call
           </div>
-          <h2 style={{
+          <h2 className="text-[22px] sm:text-4xl lg:text-[52px]" style={{
             fontFamily: "Syne, sans-serif",
-            fontSize: "clamp(32px,4vw,52px)",
             fontWeight: 800, color: "#f4f4f8", letterSpacing: "-0.03em", marginBottom: 14, lineHeight: 1.1,
           }}>
             Let's talk{" "}
