@@ -48,21 +48,28 @@ export async function POST(req: NextRequest) {
   }
 
   // Send to GoHighLevel as a new contact + create opportunity
-  const ghlKey = process.env.GHL_API_KEY;
+  // Pipeline: "Smartcoreaimainweb" (BTQoCZdlr20nXOVPYvw7), Stage: "New lead" (39f56ebe-de61-4a09-bee1-c755b0c8eeca)
+  const GHL_PIPELINE_ID = "BTQoCZdlr20nXOVPYvw7";
+  const GHL_STAGE_ID    = "39f56ebe-de61-4a09-bee1-c755b0c8eeca";
+
+  const ghlKey    = process.env.GHL_API_KEY;
   const locationId = process.env.GHL_LOCATION_ID;
+
   if (ghlKey && locationId) {
+    const ghlHeaders = {
+      "Authorization": `Bearer ${ghlKey}`,
+      "Version": "2021-07-28",
+      "Content-Type": "application/json",
+    };
+
+    // 1. Create contact
+    let contactId: string | null = null;
     try {
       const [firstName, ...rest] = name.trim().split(" ");
       const lastName = rest.join(" ") || "";
-
-      // 1. Create contact and get contactId
       const contactRes = await fetch("https://services.leadconnectorhq.com/contacts/", {
         method: "POST",
-        headers: {
-          "Authorization": `Bearer ${ghlKey}`,
-          "Version": "2021-07-28",
-          "Content-Type": "application/json",
-        },
+        headers: ghlHeaders,
         body: JSON.stringify({
           firstName,
           lastName,
@@ -74,49 +81,37 @@ export async function POST(req: NextRequest) {
         }),
       });
       const contactData = await contactRes.json();
-      const contactId = contactData?.contact?.id;
+      console.log("[GHL] contact status:", contactRes.status, JSON.stringify(contactData));
+      contactId = contactData?.contact?.id ?? null;
+    } catch (err) {
+      console.error("[GHL] contact creation threw:", err);
+    }
 
-      // 2. Find pipeline "Smartcoreaimainweb" and stage "New lead"
-      const pipelinesRes = await fetch(
-        `https://services.leadconnectorhq.com/opportunities/pipelines?locationId=${locationId}`,
-        {
-          headers: {
-            "Authorization": `Bearer ${ghlKey}`,
-            "Version": "2021-07-28",
-          },
-        }
-      );
-      const pipelinesData = await pipelinesRes.json();
-      const pipeline = pipelinesData?.pipelines?.find(
-        (p: { name: string }) => p.name === "Smartcoreaimainweb"
-      );
-      const stage = pipeline?.stages?.find(
-        (s: { name: string }) => s.name === "New lead"
-      );
-
-      // 3. Create opportunity if pipeline/stage found
-      if (contactId && pipeline?.id && stage?.id) {
-        await fetch("https://services.leadconnectorhq.com/opportunities/", {
+    // 2. Create opportunity (hardcoded pipeline/stage IDs — confirmed valid)
+    if (contactId) {
+      try {
+        const oppRes = await fetch("https://services.leadconnectorhq.com/opportunities/", {
           method: "POST",
-          headers: {
-            "Authorization": `Bearer ${ghlKey}`,
-            "Version": "2021-07-28",
-            "Content-Type": "application/json",
-          },
+          headers: ghlHeaders,
           body: JSON.stringify({
-            pipelineId: pipeline.id,
-            pipelineStageId: stage.id,
+            pipelineId: GHL_PIPELINE_ID,
+            pipelineStageId: GHL_STAGE_ID,
             locationId,
             contactId,
             name: `${name}${business ? ` — ${business}` : ""}`,
             status: "open",
           }),
         });
+        const oppData = await oppRes.json();
+        console.log("[GHL] opportunity status:", oppRes.status, JSON.stringify(oppData));
+      } catch (err) {
+        console.error("[GHL] opportunity creation threw:", err);
       }
-    } catch (err) {
-      console.error("GoHighLevel sync failed:", err);
-      // Still return success — lead was saved locally
+    } else {
+      console.error("[GHL] skipping opportunity — no contactId");
     }
+  } else {
+    console.error("[GHL] missing GHL_API_KEY or GHL_LOCATION_ID env vars");
   }
 
   return NextResponse.json({ ok: true });
