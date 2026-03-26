@@ -47,5 +47,35 @@ export async function POST(req: NextRequest) {
     }
   }
 
+  // Send to GoHighLevel as a new contact
+  const ghlKey = process.env.GHL_API_KEY;
+  if (ghlKey) {
+    try {
+      const [firstName, ...rest] = name.trim().split(" ");
+      const lastName = rest.join(" ") || "";
+      await fetch("https://rest.gohighlevel.com/v1/contacts/", {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${ghlKey}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          email,
+          companyName: business || "",
+          source: "SmartcoreAI Website",
+          tags: ["website-lead"],
+          customField: [
+            { id: "message", field_value: message },
+          ],
+        }),
+      });
+    } catch (err) {
+      console.error("GoHighLevel sync failed:", err);
+      // Still return success — lead was saved locally
+    }
+  }
+
   return NextResponse.json({ ok: true });
 }
