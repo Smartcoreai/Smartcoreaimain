@@ -6,7 +6,7 @@ type Message = { role: "user" | "assistant"; content: string };
 
 const WELCOME: Message = {
   role: "assistant",
-  content: "Hey! I'm Aria, your SmartcoreAI assistant 👋\n\nI can answer questions about our services, pricing, or help you figure out which AI solution fits your business. What kind of business do you run?",
+  content: "Hey! I'm Aria, SmartcoreAI's assistant 👋\n\nI can tell you about our services and pricing, or help you figure out which solution fits your business best.\n\nWhat can I help you with?",
 };
 
 const QUICK_REPLIES = [
