@@ -8,6 +8,12 @@ const CALENDLY_URL =
   process.env.NEXT_PUBLIC_CALENDLY_URL ||
   "https://calendly.com/aleksanderb2006/30min";
 
+const CALL_URLS = [
+  "https://calendly.com/aleksanderb2006/new-meeting",
+  "https://calendly.com/aleksanderb2006/30min",
+  "https://calendly.com/aleksanderb2006/strategiokt",
+];
+
 const CALENDLY_EMBED = `${CALENDLY_URL}?hide_event_type_details=1&hide_gdpr_banner=1&background_color=0f0f14&text_color=f4f4f8&primary_color=a855f7`;
 
 export default function BookingSection() {
@@ -48,7 +54,7 @@ export default function BookingSection() {
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
                 {t.booking.callTypes.map((ct, i) => (
-                  <a key={i} href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", display: "block", padding: "14px 16px", borderRadius: 14, background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)", cursor: "pointer", transition: "border-color 0.2s, background 0.2s" }}
+                  <a key={i} href={CALL_URLS[i]} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", display: "block", padding: "14px 16px", borderRadius: 14, background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)", cursor: "pointer", transition: "border-color 0.2s, background 0.2s" }}
                     onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(168,85,247,0.4)"; (e.currentTarget as HTMLElement).style.background = "rgba(168,85,247,0.05)"; }}
                     onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.06)"; (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.02)"; }}
                   >

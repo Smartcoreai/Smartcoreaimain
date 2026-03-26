@@ -133,9 +133,9 @@ export const translations = {
       freeNote: "100% free · no obligation",
       freeDesc: "Just a conversation. We'll tell you exactly what's possible for your business.",
       callTypes: [
-        { label: "Discovery Call",    duration: "30 min", desc: "Learn what we can build for you" },
-        { label: "Product Demo",      duration: "45 min", desc: "See your system in action" },
-        { label: "Strategy Session",  duration: "60 min", desc: "Full roadmap for your business" },
+        { label: "Discovery Call",    duration: "15 min", desc: "Learn what we can build for you" },
+        { label: "Product Demo",      duration: "30 min", desc: "See your system in action" },
+        { label: "Strategy Session",  duration: "45 min", desc: "Full roadmap for your business" },
       ],
     },
     contact: {
@@ -325,9 +325,9 @@ export const translations = {
       freeNote: "100 % gratis · ingen forpliktelser",
       freeDesc: "Bare en samtale. Vi forteller deg nøyaktig hva som er mulig for din bedrift.",
       callTypes: [
-        { label: "Oppdagelsessamtale", duration: "30 min", desc: "Lær hva vi kan bygge for deg" },
-        { label: "Produktdemo",        duration: "45 min", desc: "Se systemet ditt i aksjon" },
-        { label: "Strategiøkt",        duration: "60 min", desc: "Full veikart for din bedrift" },
+        { label: "Oppdagelsessamtale", duration: "15 min", desc: "Lær hva vi kan bygge for deg" },
+        { label: "Produktdemo",        duration: "30 min", desc: "Se systemet ditt i aksjon" },
+        { label: "Strategiøkt",        duration: "45 min", desc: "Full veikart for din bedrift" },
       ],
     },
     contact: {
