@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { LanguageProvider } from "@/lib/i18n";
+import ScrollReset from "@/components/ScrollReset";
 
 export const metadata: Metadata = {
   title: "SmartcoreAI — AI-Powered Growth Systems for Modern Businesses",
@@ -16,6 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" style={{ background: "#08080c" }}>
       <body style={{ margin: 0, background: "#08080c" }}>
+        <ScrollReset />
         <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>
