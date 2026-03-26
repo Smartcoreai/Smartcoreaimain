@@ -53,10 +53,11 @@ export async function POST(req: NextRequest) {
     try {
       const [firstName, ...rest] = name.trim().split(" ");
       const lastName = rest.join(" ") || "";
-      await fetch("https://rest.gohighlevel.com/v1/contacts/", {
+      await fetch("https://services.leadconnectorhq.com/contacts/", {
         method: "POST",
         headers: {
           "Authorization": `Bearer ${ghlKey}`,
+          "Version": "2021-07-28",
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
