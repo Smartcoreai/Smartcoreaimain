@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
-import { Menu, X, Zap } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import Image from "next/image";
 import { useLanguage, type Lang } from "@/lib/i18n";
 
 export default function Navbar() {
@@ -41,14 +42,7 @@ export default function Navbar() {
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: 72 }}>
           {/* Logo */}
           <a href="#" style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none" }}>
-            <div style={{
-              width: 34, height: 34, borderRadius: 10,
-              background: "linear-gradient(135deg, #a855f7, #7c3aed)",
-              display: "flex", alignItems: "center", justifyContent: "center",
-              boxShadow: "0 0 20px rgba(168,85,247,0.4)"
-            }}>
-              <Zap size={18} color="white" fill="white" />
-            </div>
+            <Image src="/logo.png" alt="SmartcoreAI logo" height={40} width={40} style={{ width: "auto", height: 40, objectFit: "contain" }} />
             <span style={{
               fontFamily: "Syne, system-ui, sans-serif",
               fontWeight: 700,
