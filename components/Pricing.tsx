@@ -38,7 +38,7 @@ export default function Pricing() {
         </div>
 
         {/* Grid */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 18, alignItems: "stretch" }}>
+        <div className="pricing-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 18, alignItems: "stretch" }}>
           {PLANS.map((plan) => (
             <div key={plan.name} style={{
               position: "relative",
@@ -85,8 +85,8 @@ export default function Pricing() {
                     <div style={{ fontSize: 12, color: "#8888a0", textDecoration: "line-through", marginBottom: 2 }}>
                       {formatPrice(plan.originalPrice, lang)}
                     </div>
-                    <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 8, flexWrap: "nowrap", overflow: "hidden" }}>
-                      <span style={{ fontFamily: "Syne, sans-serif", fontSize: 28, fontWeight: 800, color: "#f4f4f8", letterSpacing: "-0.03em", whiteSpace: "nowrap", minWidth: 0, flexShrink: 1 }}>
+                    <div className="price-block" style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 8, flexWrap: "nowrap", overflow: "hidden" }}>
+                      <span className="price-main" style={{ fontFamily: "Syne, sans-serif", fontSize: 28, fontWeight: 800, color: "#f4f4f8", letterSpacing: "-0.03em", whiteSpace: "nowrap", minWidth: 0, flexShrink: 1 }}>
                         {formatPrice(plan.price, lang)}
                       </span>
                       <span style={{ fontSize: 13, color: "#8888a0", whiteSpace: "nowrap", flexShrink: 0 }}>/{t.pricing.period}</span>
@@ -131,6 +131,14 @@ export default function Pricing() {
             </div>
           ))}
         </div>
+
+        <style>{`
+          @media (max-width: 768px) {
+            .pricing-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
+            .price-block  { flex-direction: column !important; align-items: flex-start !important; flex-wrap: wrap !important; gap: 0 !important; }
+            .price-main   { font-size: 34px !important; }
+          }
+        `}</style>
 
         <div style={{ marginTop: 48, textAlign: "center" }}>
           <p style={{ fontSize: 13, color: "#8888a0" }}>

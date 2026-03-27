@@ -390,7 +390,7 @@ export default function Services() {
         </div>
 
         {/* Tab selector */}
-        <div style={{
+        <div className="services-tabs" style={{
           display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
           gap: 10, marginBottom: 36,
           background: "rgba(255,255,255,0.02)", padding: 8, borderRadius: 18,
@@ -465,7 +465,10 @@ export default function Services() {
       </div>
 
       <style>{`
-        @media (max-width: 768px) { .services-grid { grid-template-columns: 1fr !important; } }
+        @media (max-width: 768px) {
+          .services-grid { grid-template-columns: 1fr !important; }
+          .services-tabs { grid-template-columns: 1fr !important; }
+        }
         @keyframes shimmer { from { background-position: -200% 0; } to { background-position: 200% 0; } }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }

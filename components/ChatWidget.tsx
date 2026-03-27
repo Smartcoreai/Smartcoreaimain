@@ -134,7 +134,7 @@ export default function ChatWidget() {
         </div>
 
         {/* Messages */}
-        <div style={{ flex: 1, overflowY: "auto", padding: "16px 14px", display: "flex", flexDirection: "column", gap: 12 }}>
+        <div className="chat-messages" style={{ flex: 1, overflowY: "auto", padding: "16px 14px", display: "flex", flexDirection: "column", gap: 12 }}>
           {messages.map((m, i) => (
             <div key={i} style={{ display: "flex", justifyContent: m.role === "user" ? "flex-end" : "flex-start", gap: 8, alignItems: "flex-end" }}>
               {m.role === "assistant" && (
@@ -142,7 +142,7 @@ export default function ChatWidget() {
                   <Bot size={14} color="white" />
                 </div>
               )}
-              <div style={{
+              <div className="chat-bubble" style={{
                 padding: "10px 14px",
                 borderRadius: m.role === "user" ? "18px 18px 4px 18px" : "18px 18px 18px 4px",
                 background: m.role === "user" ? "linear-gradient(135deg,#7c3aed,#a855f7)" : "rgba(25,25,36,0.9)",
@@ -216,6 +216,10 @@ export default function ChatWidget() {
       <style>{`
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
         @keyframes pulseRing { 0% { transform: scale(0.8); opacity: 1; } 100% { transform: scale(2); opacity: 0; } }
+        @media (max-width: 768px) {
+          .chat-messages { overflow-x: hidden; width: 100%; }
+          .chat-bubble { max-width: 85% !important; white-space: normal !important; }
+        }
       `}</style>
     </>
   );
