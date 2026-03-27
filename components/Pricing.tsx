@@ -18,7 +18,7 @@ export default function Pricing() {
   }));
 
   return (
-    <section id="pricing" style={{ background: "#08080c", padding: "100px 24px" }}>
+    <section id="pricing" style={{ background: "#080812", padding: "100px 24px" }}>
       <div className="wrap">
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: 60 }}>

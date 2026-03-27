@@ -13,7 +13,7 @@
     overflow-x: hidden;
   }
   body {
-    background: #08080c;
+    background: #080812;
     color: #f4f4f8;
     font-family: 'Inter', system-ui, sans-serif;
     overflow-x: hidden;
@@ -23,7 +23,7 @@
     color: #f4f4f8;
   }
   ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: #08080c; }
+  ::-webkit-scrollbar-track { background: #080812; }
   ::-webkit-scrollbar-thumb { background: #2a2a3a; border-radius: 3px; }
   ::-webkit-scrollbar-thumb:hover { background: #a855f7; }
 }

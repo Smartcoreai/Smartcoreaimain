@@ -88,7 +88,7 @@ export default function Hero() {
       alignItems: "center",
       justifyContent: "center",
       overflow: "hidden",
-      background: "#08080c",
+      background: "radial-gradient(ellipse at 50% 0%, rgba(120, 80, 255, 0.08) 0%, transparent 60%), #080812",
     }}>
       {/* Canvas particles */}
       <canvas ref={canvasRef} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", zIndex: 1 }} />

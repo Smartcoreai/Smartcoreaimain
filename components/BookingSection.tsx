@@ -29,7 +29,7 @@ export default function BookingSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="booking" style={{ background: "#08080c", padding: "100px 24px" }}>
+    <section ref={sectionRef} id="booking" style={{ background: "#080812", padding: "100px 24px" }}>
       <div className="wrap">
 
         {/* Header */}

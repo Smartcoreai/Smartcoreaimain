@@ -28,7 +28,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" style={{ background: "#08080c", padding: "100px 24px", position: "relative", overflow: "hidden" }}>
+    <section id="contact" style={{ background: "#0b0b18", padding: "100px 24px", position: "relative", overflow: "hidden" }}>
       <div style={{ position: "absolute", bottom: 0, left: "50%", transform: "translateX(-50%)", width: 800, height: 400, borderRadius: "50%", background: "radial-gradient(ellipse, rgba(168,85,247,0.08) 0%, transparent 70%)", pointerEvents: "none" }} />
 
       <div className="wrap">

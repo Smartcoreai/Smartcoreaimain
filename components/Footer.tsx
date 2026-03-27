@@ -6,7 +6,7 @@ export default function Footer() {
   const { t } = useLanguage();
 
   return (
-    <footer style={{ background: "#08080c", borderTop: "1px solid rgba(255,255,255,0.04)", padding: "64px 24px 32px" }}>
+    <footer style={{ background: "#080812", borderTop: "1px solid rgba(255,255,255,0.04)", padding: "64px 24px 32px" }}>
       <div className="wrap">
         {/* Top row */}
         <div style={{ display: "grid", gridTemplateColumns: "2fr repeat(4, 1fr)", gap: 40, marginBottom: 56 }} className="footer-grid">

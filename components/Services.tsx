@@ -370,7 +370,7 @@ export default function Services() {
   const svc = SERVICES[active];
 
   return (
-    <section id="services" style={{ background: "#08080c", padding: "100px 24px" }}>
+    <section id="services" style={{ background: "#0b0b18", padding: "100px 24px" }}>
       <div className="wrap">
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: 56 }}>

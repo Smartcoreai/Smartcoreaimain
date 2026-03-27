@@ -19,7 +19,7 @@ const config: Config = {
           900: "#1e1b4b",
         },
         // New dark premium palette
-        void:    "#08080c",
+        void:    "#080812",
         surface: "#0f0f14",
         card:    "#14141b",
         border:  "#1e1e2a",
