@@ -148,7 +148,7 @@ export default function ChatWidget() {
                 background: m.role === "user" ? "linear-gradient(135deg,#7c3aed,#a855f7)" : "rgba(25,25,36,0.9)",
                 border: m.role === "assistant" ? "1px solid rgba(255,255,255,0.07)" : "none",
                 fontSize: 13, color: "#f4f4f8", maxWidth: "78%", lineHeight: 1.6,
-                whiteSpace: "pre-wrap",
+                whiteSpace: "pre-wrap", wordBreak: "break-word", overflowWrap: "break-word",
               }}>{m.content}</div>
             </div>
           ))}
