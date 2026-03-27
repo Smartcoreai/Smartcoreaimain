@@ -205,56 +205,90 @@ function VoiceAgentDemo() {
 }
 
 /* ─── Custom AI Demo ─── */
-const WORKFLOW_STEPS = [
-  { icon: "🔔", label: "New lead from website",      sub: "Trigger",    color: "#a855f7" },
-  { icon: "🤖", label: "AI scores & qualifies",       sub: "Processing", color: "#22d3ee" },
-  { icon: "📋", label: "Added to CRM pipeline",       sub: "Action",     color: "#06b6d4" },
-  { icon: "✉️", label: "Personalized email sent",     sub: "Action",     color: "#06b6d4" },
-  { icon: "📅", label: "Meeting booked automatically",sub: "Outcome",    color: "#4ade80" },
+const AI_STACK_NODES = [
+  { icon: "🔔", title: "Website / CRM / WhatsApp", sub: "Trigger sources",         color: "#a855f7", hero: false },
+  { icon: "🤖", title: "AI Brain",                  sub: "Scores, routes & decides", color: "#22d3ee", hero: true  },
+  { icon: "📋", title: "CRM Pipeline",              sub: "Auto-updated",            color: "#06b6d4", hero: false },
+  { icon: "✉️", title: "Email + SMS",               sub: "Personalized outreach",   color: "#06b6d4", hero: false },
+  { icon: "📅", title: "Calendar",                  sub: "Meeting booked",          color: "#4ade80", hero: false },
 ];
 
 function CustomAIDemo() {
   const [dotStep, setDotStep] = useState(0);
   useEffect(() => {
-    const t = setInterval(() => setDotStep(s => (s + 1) % WORKFLOW_STEPS.length), 1300);
+    const t = setInterval(() => setDotStep(s => (s + 1) % AI_STACK_NODES.length), 1400);
     return () => clearInterval(t);
   }, []);
 
   return (
-    <div style={{ background: "#0a0a10", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 16, height: 340, padding: "14px 14px 12px", display: "flex", flexDirection: "column" }}>
-      <div style={{ fontSize: 10, fontWeight: 600, color: "#8888a0", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 8 }}>Your custom AI workflow</div>
-      <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-        {WORKFLOW_STEPS.map((step, i) => (
+    <div style={{
+      background: "radial-gradient(ellipse at 50% 0%, rgba(250,204,21,0.05) 0%, #0a0a10 65%)",
+      border: "1px solid rgba(250,204,21,0.15)", borderRadius: 16, overflow: "hidden",
+      display: "flex", flexDirection: "column", position: "relative",
+    }}>
+      {/* Dot grid background */}
+      <div style={{
+        position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0,
+        backgroundImage: "radial-gradient(circle, rgba(250,204,21,0.07) 1px, transparent 1px)",
+        backgroundSize: "20px 20px",
+      }} />
+
+      {/* Header */}
+      <div style={{ position: "relative", zIndex: 1, padding: "10px 14px", borderBottom: "1px solid rgba(250,204,21,0.1)", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 7 }}>
+          <span style={{ fontSize: 13, display: "inline-block", animation: "spin 5s linear infinite" }}>⚙️</span>
+          <span style={{ fontSize: 10, fontWeight: 700, color: "#facc15", textTransform: "uppercase", letterSpacing: "0.1em" }}>Your custom AI stack</span>
+        </div>
+        <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
+          <div style={{ width: 5, height: 5, borderRadius: "50%", background: "#4ade80", animation: "blink 1.5s infinite" }} />
+          <span style={{ fontSize: 10, color: "#8888a0" }}>Live · Building your workflow</span>
+        </div>
+      </div>
+
+      {/* Nodes */}
+      <div style={{ position: "relative", zIndex: 1, padding: "10px 14px 8px", display: "flex", flexDirection: "column" }}>
+        {AI_STACK_NODES.map((node, i) => (
           <div key={i}>
             <div style={{
-              display: "flex", alignItems: "center", gap: 10, padding: "7px 10px", borderRadius: 10,
-              background: dotStep === i ? `${step.color}12` : "rgba(255,255,255,0.02)",
-              border: `1px solid ${dotStep === i ? step.color + "40" : "rgba(255,255,255,0.05)"}`,
+              display: "flex", alignItems: "center", gap: 10,
+              padding: node.hero ? "9px 12px" : "6px 12px", borderRadius: 10,
+              background: dotStep === i ? `${node.color}14` : node.hero ? "rgba(34,211,238,0.05)" : "rgba(255,255,255,0.02)",
+              border: `1px solid ${dotStep === i ? node.color + "55" : node.hero ? "rgba(34,211,238,0.18)" : "rgba(255,255,255,0.05)"}`,
+              boxShadow: node.hero ? (dotStep === i ? `0 0 22px rgba(34,211,238,0.25)` : `0 0 10px rgba(34,211,238,0.1)`) : "none",
               transition: "all 0.4s ease", position: "relative", overflow: "hidden",
             }}>
               {dotStep === i && (
-                <div style={{ position: "absolute", inset: 0, background: `linear-gradient(90deg, transparent, ${step.color}08, transparent)`, animation: "shimmer 1.5s ease infinite", backgroundSize: "200% 100%" }} />
+                <div style={{ position: "absolute", inset: 0, background: `linear-gradient(90deg, transparent, ${node.color}08, transparent)`, animation: "shimmer 1.5s ease infinite", backgroundSize: "200% 100%" }} />
               )}
-              <div style={{ width: 28, height: 28, borderRadius: 8, background: `${step.color}18`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14, flexShrink: 0 }}>{step.icon}</div>
+              <div style={{
+                width: node.hero ? 32 : 26, height: node.hero ? 32 : 26, borderRadius: 9, flexShrink: 0,
+                background: `${node.color}20`, border: `1px solid ${node.color}35`,
+                display: "flex", alignItems: "center", justifyContent: "center", fontSize: node.hero ? 16 : 13,
+                animation: node.hero ? "breathe 2.5s ease-in-out infinite" : undefined,
+              }}>{node.icon}</div>
               <div style={{ flex: 1 }}>
-                <div style={{ fontSize: 12, fontWeight: 600, color: dotStep === i ? step.color : "#f4f4f8", transition: "color 0.3s", lineHeight: 1.2 }}>{step.label}</div>
-                <div style={{ fontSize: 10, color: "#44444e" }}>{step.sub}</div>
+                <div style={{ fontSize: node.hero ? 13 : 11, fontWeight: 700, color: dotStep === i ? node.color : node.hero ? "#f4f4f8" : "#8888a0", transition: "color 0.3s", lineHeight: 1.2 }}>{node.title}</div>
+                <div style={{ fontSize: 10, color: "#44444e" }}>{node.sub}</div>
               </div>
               {dotStep === i
-                ? <div style={{ width: 7, height: 7, borderRadius: "50%", background: step.color, boxShadow: `0 0 8px ${step.color}`, animation: "blink 1s infinite", flexShrink: 0 }} />
-                : i < dotStep ? <Check size={11} color="#4ade80" />
-                : null}
+                ? <div style={{ width: 7, height: 7, borderRadius: "50%", background: node.color, boxShadow: `0 0 10px ${node.color}`, animation: "blink 1s infinite", flexShrink: 0 }} />
+                : i < dotStep ? <Check size={11} color="#4ade80" /> : null}
             </div>
-            {i < WORKFLOW_STEPS.length - 1 && (
-              <div style={{ position: "relative", width: 1, height: 8, marginLeft: 23 }}>
-                <div style={{ position: "absolute", inset: 0, background: "rgba(168,85,247,0.2)" }} />
+            {i < AI_STACK_NODES.length - 1 && (
+              <div style={{ position: "relative", width: 1, height: 8, marginLeft: 22 }}>
+                <div style={{ position: "absolute", inset: 0, background: "rgba(250,204,21,0.15)" }} />
                 {dotStep === i && (
-                  <div style={{ position: "absolute", top: 0, left: -2, width: 5, height: 5, borderRadius: "50%", background: step.color, boxShadow: `0 0 6px ${step.color}`, animation: "travelDown 1.3s linear" }} />
+                  <div style={{ position: "absolute", top: 0, left: -2, width: 5, height: 5, borderRadius: "50%", background: node.color, boxShadow: `0 0 6px ${node.color}`, animation: "travelDown 1.4s linear" }} />
                 )}
               </div>
             )}
           </div>
         ))}
+      </div>
+
+      {/* Footer */}
+      <div style={{ position: "relative", zIndex: 1, padding: "7px 14px 11px", borderTop: "1px solid rgba(250,204,21,0.08)" }}>
+        <span style={{ fontSize: 10, color: "rgba(250,204,21,0.45)", letterSpacing: "0.02em" }}>⚡ Built specifically for your business · Unlimited integrations</span>
       </div>
     </div>
   );
@@ -383,6 +417,8 @@ export default function Services() {
         @keyframes slideUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes travelDown { from { top: 0; opacity: 1; } to { top: 8px; opacity: 0; } }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes breathe { 0%, 100% { box-shadow: 0 0 18px rgba(250,204,21,0.35); } 50% { box-shadow: 0 0 36px rgba(250,204,21,0.65); } }
       `}</style>
     </section>
   );
