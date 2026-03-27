@@ -276,7 +276,7 @@ function CustomAIDemo() {
   }, []);
 
   return (
-    <div style={{
+    <div className="custom-ai-demo" style={{
       background: "radial-gradient(ellipse at 50% 0%, rgba(250,204,21,0.05) 0%, #0a0a10 65%)",
       border: "1px solid rgba(250,204,21,0.15)", borderRadius: 16, overflow: "hidden",
       display: "flex", flexDirection: "column", position: "relative",
@@ -304,7 +304,7 @@ function CustomAIDemo() {
       <div style={{ position: "relative", zIndex: 1, padding: "10px 14px 8px", display: "flex", flexDirection: "column" }}>
         {nodes.map((node, i) => (
           <div key={i}>
-            <div style={{
+            <div className="custom-ai-node" style={{
               display: "flex", alignItems: "center", gap: 10,
               padding: node.hero ? "9px 12px" : "6px 12px", borderRadius: 10,
               background: dotStep === i ? `${node.color}14` : node.hero ? "rgba(34,211,238,0.05)" : "rgba(255,255,255,0.02)",
@@ -322,7 +322,7 @@ function CustomAIDemo() {
                 animation: node.hero ? "breathe 2.5s ease-in-out infinite" : undefined,
               }}>{node.icon}</div>
               <div style={{ flex: 1 }}>
-                <div style={{ fontSize: node.hero ? 13 : 11, fontWeight: 700, color: dotStep === i ? node.color : node.hero ? "#f4f4f8" : "#8888a0", transition: "color 0.3s", lineHeight: 1.2 }}>{node.title}</div>
+                <div className="custom-ai-title" style={{ fontSize: node.hero ? 13 : 11, fontWeight: 700, color: dotStep === i ? node.color : node.hero ? "#f4f4f8" : "#8888a0", transition: "color 0.3s", lineHeight: 1.2 }}>{node.title}</div>
                 <div style={{ fontSize: 10, color: "#44444e" }}>{node.sub}</div>
               </div>
               {dotStep === i
@@ -330,10 +330,10 @@ function CustomAIDemo() {
                 : i < dotStep ? <Check size={11} color="#4ade80" /> : null}
             </div>
             {i < nodes.length - 1 && (
-              <div style={{ position: "relative", width: 1, height: 8, marginLeft: 22 }}>
+              <div className="custom-ai-connector" style={{ position: "relative", width: 1, height: 8, marginLeft: 22 }}>
                 <div style={{ position: "absolute", inset: 0, background: "rgba(250,204,21,0.15)" }} />
                 {dotStep === i && (
-                  <div style={{ position: "absolute", top: 0, left: -2, width: 5, height: 5, borderRadius: "50%", background: node.color, boxShadow: `0 0 6px ${node.color}`, animation: "travelDown 1.4s linear" }} />
+                  <div className="custom-ai-travel-dot" style={{ position: "absolute", top: 0, left: -2, width: 5, height: 5, borderRadius: "50%", background: node.color, boxShadow: `0 0 6px ${node.color}`, animation: "travelDown 1.4s linear" }} />
                 )}
               </div>
             )}
@@ -343,7 +343,7 @@ function CustomAIDemo() {
 
       {/* Footer */}
       <div style={{ position: "relative", zIndex: 1, padding: "7px 14px 11px", borderTop: "1px solid rgba(250,204,21,0.08)" }}>
-        <span style={{ fontSize: 10, color: "rgba(250,204,21,0.45)", letterSpacing: "0.02em" }}>{lang === "no" ? "⚡ Bygget spesifikt for din bedrift · Ubegrensede integrasjoner" : "⚡ Built specifically for your business · Unlimited integrations"}</span>
+        <span className="custom-ai-footer" style={{ fontSize: 10, color: "rgba(250,204,21,0.45)", letterSpacing: "0.02em" }}>{lang === "no" ? "⚡ Bygget spesifikt for din bedrift · Ubegrensede integrasjoner" : "⚡ Built specifically for your business · Unlimited integrations"}</span>
       </div>
     </div>
   );
@@ -468,6 +468,12 @@ export default function Services() {
         @media (max-width: 768px) {
           .services-grid { grid-template-columns: 1fr !important; }
           .services-tabs { grid-template-columns: 1fr !important; }
+          .custom-ai-demo { max-width: 100%; overflow: hidden; box-sizing: border-box; }
+          .custom-ai-node { flex-wrap: wrap !important; max-width: 100%; overflow: hidden; box-sizing: border-box; padding: 8px !important; }
+          .custom-ai-title { font-size: 13px !important; word-break: break-word; overflow-wrap: anywhere; white-space: normal; }
+          .custom-ai-connector { max-width: 100%; overflow: hidden; }
+          .custom-ai-travel-dot { display: none; }
+          .custom-ai-footer { word-break: break-word; overflow-wrap: anywhere; white-space: normal; }
         }
         @keyframes shimmer { from { background-position: -200% 0; } to { background-position: 200% 0; } }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
