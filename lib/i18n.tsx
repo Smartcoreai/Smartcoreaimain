@@ -95,14 +95,14 @@ export const translations = {
           cta: "Get started",
         },
         {
-          desc: "End back-and-forth scheduling. Your clients book instantly, automatically.",
-          features: ["Online booking portal", "Calendar sync (Google/Outlook)", "Auto reminders via SMS & email", "Payment collection", "Cancellation handling", "No-show protection"],
+          desc: "Turn website visitors into booked meetings — fully automated lead generation.",
+          features: ["AI lead capture forms", "Instant lead qualification", "Auto-routing to sales pipeline", "CRM integration", "Email & SMS follow-up", "Monthly performance report"],
           cta: "Get started",
         },
         {
-          desc: "A full CRM pipeline purpose-built for small teams that move fast.",
-          features: ["Custom CRM dashboard", "AI lead scoring & routing", "Pipeline automation", "Revenue forecasting", "Team collaboration tools", "API access", "Priority support"],
-          cta: "Get the CRM",
+          desc: "AI that calls, qualifies and follows up with leads — around the clock.",
+          features: ["AI-powered voice calls", "Lead qualification by phone", "Auto follow-up", "CRM integration", "Call recording & transcripts", "24/7 availability"],
+          cta: "Get started",
         },
         {
           desc: "We design a fully custom AI layer that plugs into every part of your business.",
@@ -287,14 +287,14 @@ export const translations = {
           cta: "Kom i gang",
         },
         {
-          desc: "Avslutt frem-og-tilbake-planleggingen. Kundene booker øyeblikkelig, automatisk.",
-          features: ["Online bookingportal", "Kalendersynk (Google/Outlook)", "Auto-påminnelser via SMS og e-post", "Betalingsinnkreving", "Avbestillingshåndtering", "Beskyttelse mot uteblivelse"],
+          desc: "Gjør nettstedsbesøkende til bookede møter — helt automatisk leadgenerering.",
+          features: ["AI-leadfangstskjemaer", "Øyeblikkelig leadkvalifisering", "Auto-ruting til salgspipeline", "CRM-integrasjon", "E-post og SMS-oppfølging", "Månedlig ytelsesrapport"],
           cta: "Kom i gang",
         },
         {
-          desc: "En komplett CRM-pipeline bygget for små team som beveger seg raskt.",
-          features: ["Tilpasset CRM-dashboard", "AI-leadscoring og -ruting", "Pipeline-automatisering", "Inntektsprognoser", "Teamsamarbeidsverktøy", "API-tilgang", "Prioritert support"],
-          cta: "Få CRM-en",
+          desc: "AI som ringer, kvalifiserer og følger opp leads — døgnet rundt.",
+          features: ["AI-drevne stemmeanrop", "Leadkvalifisering per telefon", "Automatisk oppfølging", "CRM-integrasjon", "Samtaleopptak og transkripsjoner", "Tilgjengelighet 24/7"],
+          cta: "Kom i gang",
         },
         {
           desc: "Vi designer et fullt tilpasset AI-lag som kobles inn i alle deler av virksomheten din.",

@@ -3,10 +3,10 @@ import { Check, Star } from "lucide-react";
 import { useLanguage, formatPrice } from "@/lib/i18n";
 
 const PLAN_META = [
-  { name: "AI Chatbot",            price: 399,  color: "#a855f7", popular: false },
-  { name: "Booking System",        price: 499,  color: "#22d3ee", popular: false },
-  { name: "CRM System",            price: 899,  color: "#a855f7", popular: true  },
-  { name: "Custom AI Integrations",price: 1500, color: "#facc15", popular: false },
+  { name: "AI Chatbot",             price: 699,  originalPrice: 999,  color: "#a855f7", popular: false },
+  { name: "Leadgen System",         price: 1099, originalPrice: 1599, color: "#22d3ee", popular: false },
+  { name: "AI Voice Agent",         price: 1599, originalPrice: 2199, color: "#f472b6", popular: true  },
+  { name: "Custom AI Integrations", price: 1500, originalPrice: 2199, color: "#facc15", popular: false },
 ];
 
 export default function Pricing() {
@@ -75,6 +75,9 @@ export default function Pricing() {
                 <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
                   <div style={{ width: 8, height: 8, borderRadius: "50%", background: plan.color, boxShadow: `0 0 8px ${plan.color}` }} />
                   <span style={{ fontSize: 13, fontWeight: 600, color: plan.color }}>{plan.name}</span>
+                </div>
+                <div style={{ fontSize: 12, color: "#8888a0", textDecoration: "line-through", marginBottom: 2 }}>
+                  {formatPrice(plan.originalPrice, lang)}
                 </div>
                 <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 8, flexWrap: "nowrap", overflow: "hidden" }}>
                   <span style={{ fontFamily: "Syne, sans-serif", fontSize: 28, fontWeight: 800, color: "#f4f4f8", letterSpacing: "-0.03em", whiteSpace: "nowrap", minWidth: 0, flexShrink: 1 }}>
