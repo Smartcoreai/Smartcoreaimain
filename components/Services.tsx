@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import { MessageCircle, Calendar, BarChart3, Cpu, Send, ChevronRight, Check, Bot } from "lucide-react";
+import { MessageCircle, Calendar, Phone, Cpu, Send, ChevronRight, Check, Bot } from "lucide-react";
 import { useLanguage, formatPriceWithPeriod } from "@/lib/i18n";
 
 /* ─── Chatbot Demo ─── */
@@ -18,6 +18,18 @@ function ChatbotDemo() {
   const [typing, setTyping] = useState(false);
   const [input, setInput] = useState("");
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  const handleSend = () => {
+    if (!input.trim()) return;
+    const userMsg = { role: "user" as const, text: input.trim() };
+    setMessages(prev => [...prev, userMsg]);
+    setInput("");
+    setTyping(true);
+    setTimeout(() => {
+      setTyping(false);
+      setMessages(prev => [...prev, { role: "bot" as const, text: "Great question! Book a free discovery call and I'll show you exactly what's possible for your business. 🚀" }]);
+    }, 1200);
+  };
 
   useEffect(() => {
     if (step >= CHAT_SCRIPT.length) return;
@@ -80,9 +92,9 @@ function ChatbotDemo() {
         )}
       </div>
       <div style={{ padding: "10px 12px", borderTop: "1px solid rgba(255,255,255,0.05)", display: "flex", gap: 8 }}>
-        <input value={input} onChange={e => setInput(e.target.value)} placeholder="Try typing something..."
+        <input value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => e.key === "Enter" && handleSend()} placeholder="Try typing something..."
           style={{ flex: 1, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 10, padding: "8px 12px", fontSize: 12, color: "#f4f4f8", outline: "none", fontFamily: "inherit" }} />
-        <button style={{ padding: "8px 12px", background: "linear-gradient(135deg,#7c3aed,#a855f7)", border: "none", borderRadius: 10, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <button onClick={handleSend} style={{ padding: "8px 12px", background: "linear-gradient(135deg,#7c3aed,#a855f7)", border: "none", borderRadius: 10, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>
           <Send size={14} color="white" />
         </button>
       </div>
@@ -302,10 +314,10 @@ function AIIntegrationDemo() {
 
 /* ─── Static service data (icons, colors, prices, demos) ─── */
 const SERVICE_META = [
-  { id: "chatbot",        icon: <MessageCircle size={20} />, color: "#a855f7", usdPrice: 399,  demo: <ChatbotDemo /> },
-  { id: "booking",        icon: <Calendar size={20} />,      color: "#22d3ee", usdPrice: 499,  demo: <BookingDemo /> },
-  { id: "crm",            icon: <BarChart3 size={20} />,     color: "#f472b6", usdPrice: 899,  demo: <CRMDemo /> },
-  { id: "ai-integration", icon: <Cpu size={20} />,           color: "#facc15", usdPrice: 1500, demo: <AIIntegrationDemo /> },
+  { id: "chatbot",        icon: <MessageCircle size={20} />, color: "#a855f7", usdPrice: 699,  priceCustom: false, demo: <ChatbotDemo /> },
+  { id: "leadgen",        icon: <Calendar size={20} />,      color: "#22d3ee", usdPrice: 1099, priceCustom: false, demo: <BookingDemo /> },
+  { id: "voice-agent",    icon: <Phone size={20} />,         color: "#f472b6", usdPrice: 1599, priceCustom: false, demo: <CRMDemo /> },
+  { id: "ai-integration", icon: <Cpu size={20} />,           color: "#facc15", usdPrice: 1500, priceCustom: true,  demo: <AIIntegrationDemo /> },
 ];
 
 export default function Services() {
@@ -315,7 +327,7 @@ export default function Services() {
   const SERVICES = SERVICE_META.map((meta, i) => ({
     ...meta,
     ...t.services.items[i],
-    price: formatPriceWithPeriod(meta.usdPrice, lang),
+    price: meta.priceCustom ? t.services.priceCustom : formatPriceWithPeriod(meta.usdPrice, lang),
   }));
 
   const svc = SERVICES[active];
