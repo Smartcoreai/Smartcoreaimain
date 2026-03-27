@@ -1,5 +1,5 @@
 "use client";
-import { Zap, Twitter, Linkedin, Instagram, ArrowUpRight } from "lucide-react";
+import { Twitter, Linkedin, Instagram, ArrowUpRight } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
 
 export default function Footer() {
@@ -13,9 +13,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <a href="#" style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", marginBottom: 16 }}>
-              <div style={{ width: 34, height: 34, borderRadius: 10, background: "linear-gradient(135deg,#a855f7,#7c3aed)", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 0 20px rgba(168,85,247,0.3)" }}>
-                <Zap size={18} color="white" fill="white" />
-              </div>
+              <img src="/logo.png" alt="SmartcoreAI logo" style={{ height: 40, width: "auto", objectFit: "contain" }} />
               <span style={{ fontFamily: "Syne, system-ui, sans-serif", fontWeight: 700, fontSize: 18, color: "#f4f4f8", letterSpacing: "-0.02em" }}>
                 Smartcore<span style={{ color: "#a855f7" }}>AI</span>
               </span>
