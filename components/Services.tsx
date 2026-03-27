@@ -4,15 +4,21 @@ import { MessageCircle, Calendar, Phone, Cpu, Send, ChevronRight, Check, Bot } f
 import { useLanguage, formatPriceWithPeriod } from "@/lib/i18n";
 
 /* ─── Chatbot Demo ─── */
-const CHAT_SCRIPT = [
-  { role: "bot",  text: "Hey! I'm Aria 👋 How can I help your business today?" },
-  { role: "user", text: "I need help booking appointments" },
-  { role: "bot",  text: "Perfect! I can collect their details and book them straight into your calendar. Want me to demo that?" },
-  { role: "user", text: "Yes please!" },
-  { role: "bot",  text: "Great! I've set up your booking flow. You'll get notified instantly for every new booking. ✅" },
-];
-
 function ChatbotDemo() {
+  const { lang } = useLanguage();
+  const CHAT_SCRIPT = lang === "no" ? [
+    { role: "bot",  text: "Hei! Jeg er Aria 👋 Hvordan kan jeg hjelpe bedriften din i dag?" },
+    { role: "user", text: "Jeg trenger hjelp med å booke avtaler" },
+    { role: "bot",  text: "Perfekt! Jeg kan samle inn detaljene deres og booke dem rett inn i kalenderen din. Vil du at jeg demonstrerer det?" },
+    { role: "user", text: "Ja takk!" },
+    { role: "bot",  text: "Supert! Jeg har satt opp bookingflyten din. Du blir varslet umiddelbart for hver ny booking. ✅" },
+  ] : [
+    { role: "bot",  text: "Hey! I'm Aria 👋 How can I help your business today?" },
+    { role: "user", text: "I need help booking appointments" },
+    { role: "bot",  text: "Perfect! I can collect their details and book them straight into your calendar. Want me to demo that?" },
+    { role: "user", text: "Yes please!" },
+    { role: "bot",  text: "Great! I've set up your booking flow. You'll get notified instantly for every new booking. ✅" },
+  ];
   const [messages, setMessages] = useState<typeof CHAT_SCRIPT>([]);
   const [step, setStep] = useState(0);
   const [typing, setTyping] = useState(false);
@@ -27,7 +33,7 @@ function ChatbotDemo() {
     setTyping(true);
     setTimeout(() => {
       setTyping(false);
-      setMessages(prev => [...prev, { role: "bot" as const, text: "Great question! Book a free discovery call and I'll show you exactly what's possible for your business. 🚀" }]);
+      setMessages(prev => [...prev, { role: "bot" as const, text: lang === "no" ? "Godt spørsmål! Book en gratis oppdagelsessamtale, så viser jeg deg nøyaktig hva som er mulig for din bedrift. 🚀" : "Great question! Book a free discovery call and I'll show you exactly what's possible for your business. 🚀" }]);
     }, 1200);
   };
 
@@ -57,10 +63,10 @@ function ChatbotDemo() {
           <Bot size={16} color="white" />
         </div>
         <div>
-          <div style={{ fontSize: 13, fontWeight: 600, color: "white" }}>Aria — AI Assistant</div>
+          <div style={{ fontSize: 13, fontWeight: 600, color: "white" }}>{lang === "no" ? "Aria — AI-assistent" : "Aria — AI Assistant"}</div>
           <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
             <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#4ade80" }} />
-            <span style={{ fontSize: 11, color: "rgba(255,255,255,0.7)" }}>Online · replying instantly</span>
+            <span style={{ fontSize: 11, color: "rgba(255,255,255,0.7)" }}>{lang === "no" ? "Online · svarer umiddelbart" : "Online · replying instantly"}</span>
           </div>
         </div>
       </div>
@@ -92,7 +98,7 @@ function ChatbotDemo() {
         )}
       </div>
       <div style={{ padding: "10px 12px", borderTop: "1px solid rgba(255,255,255,0.05)", display: "flex", gap: 8 }}>
-        <input value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => e.key === "Enter" && handleSend()} placeholder="Try typing something..."
+        <input value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => e.key === "Enter" && handleSend()} placeholder={lang === "no" ? "Prøv å skriv noe..." : "Try typing something..."}
           style={{ flex: 1, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 10, padding: "8px 12px", fontSize: 12, color: "#f4f4f8", outline: "none", fontFamily: "inherit" }} />
         <button onClick={handleSend} style={{ padding: "8px 12px", background: "linear-gradient(135deg,#7c3aed,#a855f7)", border: "none", borderRadius: 10, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>
           <Send size={14} color="white" />
