@@ -1,5 +1,5 @@
 "use client";
-import { Video, Zap, Calendar } from "lucide-react";
+import { Video, Zap, Calendar, Star } from "lucide-react";
 import { useRef, useEffect, useState } from "react";
 import { useLanguage } from "@/lib/i18n";
 
@@ -91,6 +91,18 @@ export default function BookingSection() {
                   el.style.animation = `${anim} 4s ease-in-out ${i * 0.9}s infinite`;
                 }}
               >
+                {i === 1 && (
+                  <div style={{
+                    position: "absolute", top: -12, left: "50%", transform: "translateX(-50%)",
+                    padding: "4px 16px", borderRadius: 999,
+                    background: "linear-gradient(135deg,#a855f7,#7c3aed)",
+                    fontSize: 11, fontWeight: 700, color: "white",
+                    display: "flex", alignItems: "center", gap: 5, whiteSpace: "nowrap",
+                    boxShadow: "0 4px 20px rgba(168,85,247,0.4)", zIndex: 1,
+                  }}>
+                    <Star size={10} fill="currentColor" /> {t.booking.popular}
+                  </div>
+                )}
                 {/* Icon + duration pill */}
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 22 }}>
                   <div style={{

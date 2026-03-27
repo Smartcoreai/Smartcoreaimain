@@ -140,6 +140,7 @@ export const translations = {
         { label: "Strategy Session",  duration: "45 min", desc: "Full roadmap for your business" },
       ],
       bookNow: "Book now →",
+      popular: "Most Popular",
     },
     contact: {
       tag: "Get in touch",
@@ -335,6 +336,7 @@ export const translations = {
         { label: "Strategiøkt",        duration: "45 min", desc: "Full veikart for din bedrift" },
       ],
       bookNow: "Book nå →",
+      popular: "Mest populær",
     },
     contact: {
       tag: "Ta kontakt",

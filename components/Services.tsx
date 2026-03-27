@@ -110,7 +110,13 @@ const LEADGEN_STEPS = [
 ];
 
 function LeadgenDemo() {
+  const { lang } = useLanguage();
   const [activeStep, setActiveStep] = useState(0);
+  const steps = lang === "no" ? [
+    { icon: "📥", label: "Lead fanget",          detail: "Alex Johnson · alex@company.com", color: "#a855f7" },
+    { icon: "🤖", label: "AI kvalifiserer lead", detail: "Høy verdi · 92%",                color: "#22d3ee" },
+    { icon: "📅", label: "Booket i kalender",    detail: "Meeting confirmed · Thu 14:00",  color: "#4ade80" },
+  ] : LEADGEN_STEPS;
   useEffect(() => {
     const t = setInterval(() => setActiveStep(s => (s + 1) % LEADGEN_STEPS.length), 2000);
     return () => clearInterval(t);
@@ -123,7 +129,7 @@ function LeadgenDemo() {
         <span style={{ fontSize: 12, color: "#f4f4f8", fontWeight: 500 }}>New lead · <span style={{ color: "#8888a0" }}>Alex Johnson · alex@company.com</span></span>
       </div>
       <div style={{ padding: "14px", display: "flex", flexDirection: "column", gap: 0 }}>
-        {LEADGEN_STEPS.map((step, i) => (
+        {steps.map((step, i) => (
           <div key={i}>
             <div style={{
               display: "flex", alignItems: "center", gap: 10, padding: "9px 12px", borderRadius: 10,
@@ -159,7 +165,16 @@ const TRANSCRIPT = [
 ];
 
 function VoiceAgentDemo() {
+  const { lang } = useLanguage();
   const [visibleLines, setVisibleLines] = useState(0);
+  const transcript = lang === "no" ? [
+    { role: "ai",   text: "Hei, dette er Aria fra SmartcoreAI — passer det nå?" },
+    { role: "lead", text: "Ja, jeg er interessert i chatbot-tjenesten" },
+    { role: "ai",   text: "Perfekt! Jeg booker deg inn til en demo — passer torsdag kl. 14?" },
+  ] : TRANSCRIPT;
+  const ui = lang === "no"
+    ? { incoming: "Innkommende lead", answering: "AI svarer", outcome: "Resultat: Møte booket ✓" }
+    : { incoming: "Incoming lead", answering: "AI answering", outcome: "Outcome: Meeting booked ✓" };
 
   useEffect(() => {
     const delay = visibleLines >= TRANSCRIPT.length ? 3000 : visibleLines === 0 ? 700 : 1900;
@@ -173,16 +188,16 @@ function VoiceAgentDemo() {
     <div style={{ background: "#0a0a10", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 16, height: 340, overflow: "hidden", display: "flex", flexDirection: "column" }}>
       <div style={{ padding: "12px 16px", borderBottom: "1px solid rgba(255,255,255,0.05)", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <div>
-          <div style={{ fontSize: 12, fontWeight: 700, color: "#f4f4f8" }}>Incoming lead</div>
+          <div style={{ fontSize: 12, fontWeight: 700, color: "#f4f4f8" }}>{ui.incoming}</div>
           <div style={{ fontSize: 11, color: "#8888a0" }}>+47 900 12 345</div>
         </div>
         <div style={{ padding: "4px 10px", borderRadius: 999, background: "rgba(74,222,128,0.1)", border: "1px solid rgba(74,222,128,0.3)", display: "flex", alignItems: "center", gap: 5 }}>
           <div style={{ width: 5, height: 5, borderRadius: "50%", background: "#4ade80", animation: "blink 1.2s infinite" }} />
-          <span style={{ fontSize: 10, fontWeight: 600, color: "#4ade80" }}>AI answering</span>
+          <span style={{ fontSize: 10, fontWeight: 600, color: "#4ade80" }}>{ui.answering}</span>
         </div>
       </div>
       <div style={{ flex: 1, padding: "12px 14px", display: "flex", flexDirection: "column", gap: 10, overflowY: "auto" }}>
-        {TRANSCRIPT.slice(0, visibleLines).map((line, i) => (
+        {transcript.slice(0, visibleLines).map((line, i) => (
           <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 8, justifyContent: line.role === "lead" ? "flex-end" : "flex-start", animation: "slideUp 0.3s ease both" }}>
             {line.role === "ai" && (
               <div style={{ width: 22, height: 22, borderRadius: "50%", background: "rgba(168,85,247,0.15)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontSize: 11 }}>🤖</div>
@@ -198,7 +213,7 @@ function VoiceAgentDemo() {
       </div>
       <div style={{ padding: "10px 16px", borderTop: "1px solid rgba(255,255,255,0.05)", display: "flex", alignItems: "center", gap: 8, transition: "opacity 0.5s", opacity: done ? 1 : 0.2 }}>
         <Check size={14} color="#4ade80" />
-        <span style={{ fontSize: 12, fontWeight: 600, color: "#4ade80" }}>Outcome: Meeting booked ✓</span>
+        <span style={{ fontSize: 12, fontWeight: 600, color: "#4ade80" }}>{ui.outcome}</span>
       </div>
     </div>
   );
@@ -214,7 +229,15 @@ const AI_STACK_NODES = [
 ];
 
 function CustomAIDemo() {
+  const { lang } = useLanguage();
   const [dotStep, setDotStep] = useState(0);
+  const nodes = lang === "no" ? [
+    { icon: "🔔", title: "Website / CRM / WhatsApp", sub: "Triggerkilder",              color: "#a855f7", hero: false },
+    { icon: "🤖", title: "AI-hjerne",                sub: "Skårer, ruter og bestemmer", color: "#22d3ee", hero: true  },
+    { icon: "📋", title: "CRM-pipeline",             sub: "Automatisk oppdatert",       color: "#06b6d4", hero: false },
+    { icon: "✉️", title: "Email + SMS",              sub: "Personlig oppfølging",       color: "#06b6d4", hero: false },
+    { icon: "📅", title: "Kalender",                 sub: "Møte booket",                color: "#4ade80", hero: false },
+  ] : AI_STACK_NODES;
   useEffect(() => {
     const t = setInterval(() => setDotStep(s => (s + 1) % AI_STACK_NODES.length), 1400);
     return () => clearInterval(t);
@@ -237,17 +260,17 @@ function CustomAIDemo() {
       <div style={{ position: "relative", zIndex: 1, padding: "10px 14px", borderBottom: "1px solid rgba(250,204,21,0.1)", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 7 }}>
           <span style={{ fontSize: 13, display: "inline-block", animation: "spin 5s linear infinite" }}>⚙️</span>
-          <span style={{ fontSize: 10, fontWeight: 700, color: "#facc15", textTransform: "uppercase", letterSpacing: "0.1em" }}>Your custom AI stack</span>
+          <span style={{ fontSize: 10, fontWeight: 700, color: "#facc15", textTransform: "uppercase", letterSpacing: "0.1em" }}>{lang === "no" ? "Din skreddersydde AI-stack" : "Your custom AI stack"}</span>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
           <div style={{ width: 5, height: 5, borderRadius: "50%", background: "#4ade80", animation: "blink 1.5s infinite" }} />
-          <span style={{ fontSize: 10, color: "#8888a0" }}>Live · Building your workflow</span>
+          <span style={{ fontSize: 10, color: "#8888a0" }}>{lang === "no" ? "Live · Bygger din arbeidsflyt" : "Live · Building your workflow"}</span>
         </div>
       </div>
 
       {/* Nodes */}
       <div style={{ position: "relative", zIndex: 1, padding: "10px 14px 8px", display: "flex", flexDirection: "column" }}>
-        {AI_STACK_NODES.map((node, i) => (
+        {nodes.map((node, i) => (
           <div key={i}>
             <div style={{
               display: "flex", alignItems: "center", gap: 10,
@@ -274,7 +297,7 @@ function CustomAIDemo() {
                 ? <div style={{ width: 7, height: 7, borderRadius: "50%", background: node.color, boxShadow: `0 0 10px ${node.color}`, animation: "blink 1s infinite", flexShrink: 0 }} />
                 : i < dotStep ? <Check size={11} color="#4ade80" /> : null}
             </div>
-            {i < AI_STACK_NODES.length - 1 && (
+            {i < nodes.length - 1 && (
               <div style={{ position: "relative", width: 1, height: 8, marginLeft: 22 }}>
                 <div style={{ position: "absolute", inset: 0, background: "rgba(250,204,21,0.15)" }} />
                 {dotStep === i && (
@@ -288,7 +311,7 @@ function CustomAIDemo() {
 
       {/* Footer */}
       <div style={{ position: "relative", zIndex: 1, padding: "7px 14px 11px", borderTop: "1px solid rgba(250,204,21,0.08)" }}>
-        <span style={{ fontSize: 10, color: "rgba(250,204,21,0.45)", letterSpacing: "0.02em" }}>⚡ Built specifically for your business · Unlimited integrations</span>
+        <span style={{ fontSize: 10, color: "rgba(250,204,21,0.45)", letterSpacing: "0.02em" }}>{lang === "no" ? "⚡ Bygget spesifikt for din bedrift · Ubegrensede integrasjoner" : "⚡ Built specifically for your business · Unlimited integrations"}</span>
       </div>
     </div>
   );
