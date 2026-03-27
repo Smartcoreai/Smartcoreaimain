@@ -54,16 +54,41 @@ export default function BookingSection() {
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
                 {t.booking.callTypes.map((ct, i) => (
-                  <a key={i} href={CALL_URLS[i]} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", display: "block", padding: "14px 16px", borderRadius: 14, background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)", cursor: "pointer", transition: "border-color 0.2s, background 0.2s" }}
-                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(168,85,247,0.4)"; (e.currentTarget as HTMLElement).style.background = "rgba(168,85,247,0.05)"; }}
-                    onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.06)"; (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.02)"; }}
+                  <a key={i} href={CALL_URLS[i]} target="_blank" rel="noopener noreferrer" style={{
+                    textDecoration: "none", display: "block", padding: "16px 18px", borderRadius: 16,
+                    background: "rgba(10,10,18,0.9)", border: "1px solid rgba(168,85,247,0.18)",
+                    cursor: "pointer", transition: "all 0.3s ease",
+                    animation: `fadeSlideIn 0.5s ease ${i * 0.12}s both`,
+                  }}
+                    onMouseEnter={e => {
+                      const el = e.currentTarget as HTMLElement;
+                      el.style.borderColor = "rgba(168,85,247,0.55)";
+                      el.style.background = "rgba(168,85,247,0.07)";
+                      el.style.boxShadow = "0 0 28px rgba(168,85,247,0.14), inset 0 1px 0 rgba(168,85,247,0.08)";
+                      el.style.transform = "translateY(-2px)";
+                    }}
+                    onMouseLeave={e => {
+                      const el = e.currentTarget as HTMLElement;
+                      el.style.borderColor = "rgba(168,85,247,0.18)";
+                      el.style.background = "rgba(10,10,18,0.9)";
+                      el.style.boxShadow = "none";
+                      el.style.transform = "translateY(0)";
+                    }}
                   >
-                    <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
-                      <div style={{ color: "#a855f7" }}>{CALL_ICONS[i]}</div>
-                      <span style={{ fontSize: 13, fontWeight: 600, color: "#f4f4f8" }}>{ct.label}</span>
-                      <span style={{ marginLeft: "auto", fontSize: 11, color: "#44444e" }}>{ct.duration}</span>
+                    <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 6 }}>
+                      <div style={{
+                        width: 30, height: 30, borderRadius: 9, flexShrink: 0,
+                        background: "rgba(168,85,247,0.12)", border: "1px solid rgba(168,85,247,0.22)",
+                        display: "flex", alignItems: "center", justifyContent: "center", color: "#a855f7",
+                      }}>{CALL_ICONS[i]}</div>
+                      <span style={{ fontSize: 13, fontWeight: 700, color: "#f4f4f8", flex: 1 }}>{ct.label}</span>
+                      <span style={{
+                        fontSize: 11, fontWeight: 600, color: "#a855f7",
+                        background: "rgba(168,85,247,0.1)", border: "1px solid rgba(168,85,247,0.25)",
+                        padding: "2px 10px", borderRadius: 999, whiteSpace: "nowrap",
+                      }}>{ct.duration}</span>
                     </div>
-                    <div style={{ fontSize: 12, color: "#44444e" }}>{ct.desc}</div>
+                    <div style={{ fontSize: 12, color: "#8888a0", lineHeight: 1.5, paddingLeft: 40 }}>{ct.desc}</div>
                   </a>
                 ))}
               </div>
@@ -94,6 +119,10 @@ export default function BookingSection() {
           .booking-grid { grid-template-columns: 1fr !important; }
           .booking-grid > div:first-child { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.05); }
           .calendly-frame { height: 800px !important; }
+        }
+        @keyframes fadeSlideIn {
+          from { opacity: 0; transform: translateY(10px); }
+          to   { opacity: 1; transform: translateY(0); }
         }
       `}</style>
     </section>

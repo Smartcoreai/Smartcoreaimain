@@ -6,7 +6,7 @@ const PLAN_META = [
   { name: "AI Chatbot",             price: 699,  originalPrice: 999,  color: "#a855f7", popular: false },
   { name: "Leadgen System",         price: 1099, originalPrice: 1599, color: "#22d3ee", popular: false },
   { name: "AI Voice Agent",         price: 1599, originalPrice: 2199, color: "#f472b6", popular: true  },
-  { name: "Custom AI Integrations", price: 1500, originalPrice: 2199, color: "#facc15", popular: false },
+  { name: "Custom AI Integrations", price: 1500, originalPrice: 2199, color: "#facc15", popular: false, priceCustom: true },
 ];
 
 export default function Pricing() {
@@ -76,15 +76,23 @@ export default function Pricing() {
                   <div style={{ width: 8, height: 8, borderRadius: "50%", background: plan.color, boxShadow: `0 0 8px ${plan.color}` }} />
                   <span style={{ fontSize: 13, fontWeight: 600, color: plan.color }}>{plan.name}</span>
                 </div>
-                <div style={{ fontSize: 12, color: "#8888a0", textDecoration: "line-through", marginBottom: 2 }}>
-                  {formatPrice(plan.originalPrice, lang)}
-                </div>
-                <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 8, flexWrap: "nowrap", overflow: "hidden" }}>
-                  <span style={{ fontFamily: "Syne, sans-serif", fontSize: 28, fontWeight: 800, color: "#f4f4f8", letterSpacing: "-0.03em", whiteSpace: "nowrap", minWidth: 0, flexShrink: 1 }}>
-                    {formatPrice(plan.price, lang)}
-                  </span>
-                  <span style={{ fontSize: 13, color: "#8888a0", whiteSpace: "nowrap", flexShrink: 0 }}>/{t.pricing.period}</span>
-                </div>
+                {plan.priceCustom ? (
+                  <div style={{ marginBottom: 8 }}>
+                    <span style={{ fontFamily: "Syne, sans-serif", fontSize: 18, fontWeight: 700, color: plan.color }}>{t.pricing.priceCustom}</span>
+                  </div>
+                ) : (
+                  <>
+                    <div style={{ fontSize: 12, color: "#8888a0", textDecoration: "line-through", marginBottom: 2 }}>
+                      {formatPrice(plan.originalPrice, lang)}
+                    </div>
+                    <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 8, flexWrap: "nowrap", overflow: "hidden" }}>
+                      <span style={{ fontFamily: "Syne, sans-serif", fontSize: 28, fontWeight: 800, color: "#f4f4f8", letterSpacing: "-0.03em", whiteSpace: "nowrap", minWidth: 0, flexShrink: 1 }}>
+                        {formatPrice(plan.price, lang)}
+                      </span>
+                      <span style={{ fontSize: 13, color: "#8888a0", whiteSpace: "nowrap", flexShrink: 0 }}>/{t.pricing.period}</span>
+                    </div>
+                  </>
+                )}
                 <p style={{ fontSize: 13, color: "#8888a0", lineHeight: 1.6, margin: 0 }}>{plan.desc}</p>
               </div>
 

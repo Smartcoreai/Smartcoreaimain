@@ -89,6 +89,7 @@ export const translations = {
       period: "month",
       bottomNote: "All plans include onboarding support · 14-day money-back guarantee · ",
       customBundles: "Custom bundles available",
+      priceCustom: "Price can be discussed",
       plans: [
         {
           desc: "Perfect for service businesses wanting to capture & qualify leads 24/7.",
@@ -282,6 +283,7 @@ export const translations = {
       period: "måned",
       bottomNote: "Alle planer inkluderer onboarding-støtte · 14-dagers pengene-tilbake-garanti · ",
       customBundles: "Tilpassede pakker tilgjengelig",
+      priceCustom: "Pris kan diskuteres",
       plans: [
         {
           desc: "Perfekt for servicebedrifter som ønsker å fange og kvalifisere leads 24/7.",
