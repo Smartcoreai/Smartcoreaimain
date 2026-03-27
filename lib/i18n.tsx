@@ -23,10 +23,10 @@ export const translations = {
       ctaPrimary: "Book a free call",
       ctaSecondary: "See what we build",
       stats: [
-        { value: "340%", label: "Avg revenue lift" },
-        { value: "12h",  label: "Setup time" },
-        { value: "98%",  label: "Client satisfaction" },
-        { value: "500+", label: "Businesses automated" },
+        { value: "🚀", label: "Built for growth" },
+        { value: "⚡", label: "Ready in days, not months" },
+        { value: "🎯", label: "Tailored to your business" },
+        { value: "💬", label: "We're not done until you're happy" },
       ],
       floatingBadges: [
         { icon: "💬", text: "Lead captured",     sub: "via AI chat" },
@@ -215,10 +215,10 @@ export const translations = {
       ctaPrimary: "Book gratis samtale",
       ctaSecondary: "Se hva vi bygger",
       stats: [
-        { value: "340%", label: "Gjennomsnittlig inntektsvekst" },
-        { value: "12t",  label: "Oppsettid" },
-        { value: "98%",  label: "Kundetilfredshet" },
-        { value: "500+", label: "Bedrifter automatisert" },
+        { value: "🚀", label: "Bygget for vekst" },
+        { value: "⚡", label: "Klar på dager, ikke måneder" },
+        { value: "🎯", label: "Skreddersydd for din bedrift" },
+        { value: "💬", label: "Vi er ikke fornøyd før du er det" },
       ],
       floatingBadges: [
         { icon: "💬", text: "Lead fanget",        sub: "via AI-chat" },
