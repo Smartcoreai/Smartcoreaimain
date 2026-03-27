@@ -102,212 +102,165 @@ function ChatbotDemo() {
   );
 }
 
-/* ─── Booking Demo ─── */
-const DAYS  = ["Mon", "Tue", "Wed", "Thu", "Fri"];
-const TIMES = ["9:00 AM", "10:30 AM", "1:00 PM", "2:30 PM", "4:00 PM"];
-const DATES = [24, 25, 26, 27, 28];
-
-function BookingDemo() {
-  const [selectedDate, setSelectedDate] = useState<number | null>(null);
-  const [selectedTime, setSelectedTime] = useState<string | null>(null);
-  const [booked, setBooked] = useState(false);
-  const bookedSlots = new Set([0, 2, 6, 9, 11]);
-
-  if (booked) return (
-    <div style={{ background: "#0a0a10", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 16, height: 340, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 12 }}>
-      <div style={{ width: 56, height: 56, borderRadius: "50%", background: "rgba(74,222,128,0.15)", display: "flex", alignItems: "center", justifyContent: "center", border: "1px solid rgba(74,222,128,0.3)" }}>
-        <Check size={28} color="#4ade80" />
-      </div>
-      <div style={{ fontFamily: "Syne, sans-serif", fontSize: 18, fontWeight: 700, color: "#f4f4f8" }}>Booking Confirmed!</div>
-      <div style={{ fontSize: 13, color: "#8888a0" }}>{DAYS[selectedDate!]} Mar {DATES[selectedDate!]} · {selectedTime}</div>
-      <div style={{ marginTop: 4, fontSize: 12, color: "#4ade80" }}>Calendar invite sent ✓</div>
-      <button onClick={() => { setBooked(false); setSelectedDate(null); setSelectedTime(null); }}
-        style={{ marginTop: 12, padding: "8px 16px", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, color: "#8888a0", fontSize: 12, cursor: "pointer", fontFamily: "inherit" }}>
-        Try again
-      </button>
-    </div>
-  );
-
-  return (
-    <div style={{ background: "#0a0a10", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 16, overflow: "hidden", height: 340, display: "flex", flexDirection: "column" }}>
-      <div style={{ padding: "12px 16px", borderBottom: "1px solid rgba(255,255,255,0.05)", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <div style={{ fontSize: 13, fontWeight: 600, color: "#f4f4f8" }}>Book a Discovery Call</div>
-        <div style={{ fontSize: 11, color: "#8888a0" }}>March 2025 · 30 min</div>
-      </div>
-      <div style={{ flex: 1, padding: "12px 14px", overflowY: "auto", display: "flex", flexDirection: "column", gap: 12 }}>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 6 }}>
-          {DAYS.map((d, i) => (
-            <button key={d} onClick={() => setSelectedDate(i)} style={{
-              padding: "8px 4px", borderRadius: 10, border: "1px solid",
-              borderColor: selectedDate === i ? "#a855f7" : "rgba(255,255,255,0.07)",
-              background: selectedDate === i ? "rgba(168,85,247,0.15)" : "rgba(255,255,255,0.02)",
-              cursor: "pointer", textAlign: "center", fontFamily: "inherit",
-            }}>
-              <div style={{ fontSize: 10, color: "#8888a0", marginBottom: 2 }}>{d}</div>
-              <div style={{ fontSize: 14, fontWeight: 600, color: selectedDate === i ? "#a855f7" : "#f4f4f8" }}>{DATES[i]}</div>
-            </button>
-          ))}
-        </div>
-        {selectedDate !== null && (
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6 }}>
-            {TIMES.map((t, ti) => {
-              const slotIdx = selectedDate * TIMES.length + ti;
-              const taken = bookedSlots.has(slotIdx);
-              return (
-                <button key={t} disabled={taken} onClick={() => !taken && setSelectedTime(t)} style={{
-                  padding: "8px 10px", borderRadius: 10, border: "1px solid",
-                  borderColor: selectedTime === t ? "#a855f7" : taken ? "rgba(255,255,255,0.03)" : "rgba(255,255,255,0.07)",
-                  background: selectedTime === t ? "rgba(168,85,247,0.15)" : taken ? "rgba(255,255,255,0.01)" : "rgba(255,255,255,0.02)",
-                  cursor: taken ? "not-allowed" : "pointer",
-                  fontSize: 12, color: taken ? "#44444e" : selectedTime === t ? "#a855f7" : "#f4f4f8",
-                  fontFamily: "inherit", textAlign: "center",
-                }}>
-                  {taken ? <s>{t}</s> : t}
-                </button>
-              );
-            })}
-          </div>
-        )}
-      </div>
-      <div style={{ padding: "12px 14px", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
-        <button onClick={() => selectedDate !== null && selectedTime && setBooked(true)}
-          style={{
-            width: "100%", padding: "10px", borderRadius: 10,
-            background: (selectedDate !== null && selectedTime) ? "linear-gradient(135deg,#7c3aed,#a855f7)" : "rgba(255,255,255,0.04)",
-            border: "none", cursor: (selectedDate !== null && selectedTime) ? "pointer" : "not-allowed",
-            fontSize: 13, fontWeight: 600, color: (selectedDate !== null && selectedTime) ? "white" : "#44444e",
-            fontFamily: "inherit", transition: "all 0.2s",
-          }}>
-          {selectedDate !== null && selectedTime ? `Confirm · ${DAYS[selectedDate]} ${selectedTime}` : "Select a slot"}
-        </button>
-      </div>
-    </div>
-  );
-}
-
-/* ─── CRM Demo ─── */
-const CRM_LEADS = [
-  { name: "James Carter",   company: "Carter & Co",   value: "$8,400",  stage: "Proposal",    prob: 85, avatar: "JC", color: "#a855f7" },
-  { name: "Sarah Mitchell", company: "Bloom Studio",  value: "$3,200",  stage: "Discovery",   prob: 60, avatar: "SM", color: "#22d3ee" },
-  { name: "Daniel Park",    company: "NovaBuild",     value: "$14,500", stage: "Negotiation", prob: 90, avatar: "DP", color: "#f472b6" },
-  { name: "Lily Torres",    company: "Torres Media",  value: "$2,100",  stage: "Qualified",   prob: 40, avatar: "LT", color: "#facc15" },
+/* ─── Leadgen Demo ─── */
+const LEADGEN_STEPS = [
+  { icon: "📥", label: "Lead captured",       detail: "Alex Johnson · alex@company.com", color: "#a855f7" },
+  { icon: "🤖", label: "AI qualifies lead",   detail: "High value · 92%",               color: "#22d3ee" },
+  { icon: "📅", label: "Booked in calendar",  detail: "Meeting confirmed · Thu 14:00",  color: "#4ade80" },
 ];
 
-function CRMDemo() {
-  const [activeRow, setActiveRow] = useState<number | null>(null);
-  const total = CRM_LEADS.reduce((sum, l) => sum + parseInt(l.value.replace(/\D/g, "")), 0);
-  const stageColors: Record<string, string> = { "Proposal": "#a855f7", "Discovery": "#22d3ee", "Negotiation": "#4ade80", "Qualified": "#facc15" };
-
-  return (
-    <div style={{ background: "#0a0a10", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 16, overflow: "hidden", height: 340, display: "flex", flexDirection: "column" }}>
-      <div style={{ padding: "10px 14px", borderBottom: "1px solid rgba(255,255,255,0.05)", display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 8 }}>
-        {[{ label: "Pipeline", value: `$${(total/1000).toFixed(0)}K` }, { label: "Active Leads", value: "4" }, { label: "Win Rate", value: "68%" }].map(s => (
-          <div key={s.label} style={{ textAlign: "center", padding: "6px" }}>
-            <div style={{ fontSize: 16, fontWeight: 700, fontFamily: "Syne, sans-serif", background: "linear-gradient(135deg,#a855f7,#22d3ee)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>{s.value}</div>
-            <div style={{ fontSize: 10, color: "#8888a0", marginTop: 1 }}>{s.label}</div>
-          </div>
-        ))}
-      </div>
-      <div style={{ flex: 1, overflowY: "auto" }}>
-        <table style={{ width: "100%", borderCollapse: "collapse" }}>
-          <thead>
-            <tr style={{ borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
-              {["Contact", "Value", "Stage", "Prob."].map(h => (
-                <th key={h} style={{ padding: "7px 10px", fontSize: 10, color: "#44444e", fontWeight: 600, textAlign: "left", textTransform: "uppercase", letterSpacing: "0.08em" }}>{h}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {CRM_LEADS.map((l, i) => (
-              <tr key={i} onClick={() => setActiveRow(activeRow === i ? null : i)}
-                style={{ borderBottom: "1px solid rgba(255,255,255,0.03)", background: activeRow === i ? "rgba(168,85,247,0.05)" : "transparent", cursor: "pointer", transition: "background 0.2s" }}>
-                <td style={{ padding: "8px 10px" }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                    <div style={{ width: 26, height: 26, borderRadius: "50%", background: l.color + "30", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 9, fontWeight: 700, color: l.color, flexShrink: 0 }}>{l.avatar}</div>
-                    <div>
-                      <div style={{ fontSize: 12, fontWeight: 600, color: "#f4f4f8", lineHeight: 1.2 }}>{l.name}</div>
-                      <div style={{ fontSize: 10, color: "#44444e" }}>{l.company}</div>
-                    </div>
-                  </div>
-                </td>
-                <td style={{ padding: "8px 10px", fontSize: 12, fontWeight: 600, color: "#4ade80" }}>{l.value}</td>
-                <td style={{ padding: "8px 10px" }}>
-                  <span style={{ fontSize: 10, padding: "2px 7px", borderRadius: 999, background: stageColors[l.stage] + "20", color: stageColors[l.stage], fontWeight: 600 }}>{l.stage}</span>
-                </td>
-                <td style={{ padding: "8px 10px" }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                    <div style={{ flex: 1, height: 3, background: "rgba(255,255,255,0.06)", borderRadius: 2, overflow: "hidden" }}>
-                      <div style={{ width: `${l.prob}%`, height: "100%", background: stageColors[l.stage], borderRadius: 2 }} />
-                    </div>
-                    <span style={{ fontSize: 10, color: "#8888a0" }}>{l.prob}%</span>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
-}
-
-/* ─── AI Integration Demo ─── */
-const FLOW_NODES_EN = [
-  { label: "Trigger",    sub: "New lead from form",      icon: "⚡", color: "#a855f7" },
-  { label: "AI Qualify", sub: "Score & segment lead",    icon: "🤖", color: "#22d3ee" },
-  { label: "CRM Update", sub: "Auto-add to pipeline",    icon: "📊", color: "#f472b6" },
-  { label: "Send Email", sub: "Personalized outreach",   icon: "📧", color: "#facc15" },
-  { label: "Book Call",  sub: "AI schedules meeting",    icon: "📅", color: "#4ade80" },
-];
-const FLOW_NODES_NO = [
-  { label: "Trigger",    sub: "Ny lead fra skjema",          icon: "⚡", color: "#a855f7" },
-  { label: "AI Qualify", sub: "Skår og segmenter lead",      icon: "🤖", color: "#22d3ee" },
-  { label: "CRM Update", sub: "Legg automatisk til i pipeline", icon: "📊", color: "#f472b6" },
-  { label: "Send Email", sub: "Personlig oppfølging",        icon: "📧", color: "#facc15" },
-  { label: "Book Call",  sub: "AI booker møte",              icon: "📅", color: "#4ade80" },
-];
-
-function AIIntegrationDemo() {
-  const { lang } = useLanguage();
-  const FLOW_NODES = lang === "no" ? FLOW_NODES_NO : FLOW_NODES_EN;
-  const [active, setActive] = useState(0);
+function LeadgenDemo() {
+  const [activeStep, setActiveStep] = useState(0);
   useEffect(() => {
-    const t = setInterval(() => setActive(a => (a + 1) % FLOW_NODES.length), 1400);
+    const t = setInterval(() => setActiveStep(s => (s + 1) % LEADGEN_STEPS.length), 2000);
     return () => clearInterval(t);
   }, []);
 
   return (
-    <div style={{ background: "#0a0a10", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 16, height: 340, padding: "20px 16px", display: "flex", flexDirection: "column", gap: 8 }}>
-      <div style={{ fontSize: 11, fontWeight: 600, color: "#8888a0", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 4 }}>{lang === "no" ? "Live arbeidsflyt · kjører" : "Live workflow · running"}</div>
-      {FLOW_NODES.map((node, i) => (
-        <div key={node.label}>
-          <div style={{
-            display: "flex", alignItems: "center", gap: 12, padding: "10px 14px", borderRadius: 12,
-            background: active === i ? `${node.color}15` : "rgba(255,255,255,0.02)",
-            border: `1px solid ${active === i ? node.color + "40" : "rgba(255,255,255,0.05)"}`,
-            transition: "all 0.4s ease", position: "relative", overflow: "hidden",
-          }}>
-            {active === i && (
-              <div style={{ position: "absolute", inset: 0, background: `linear-gradient(90deg, transparent, ${node.color}08, transparent)`, animation: "shimmer 1.5s ease infinite", backgroundSize: "200% 100%" }} />
-            )}
-            <div style={{ width: 32, height: 32, borderRadius: 10, background: `${node.color}20`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16, flexShrink: 0 }}>{node.icon}</div>
-            <div style={{ flex: 1 }}>
-              <div style={{ fontSize: 13, fontWeight: 600, color: active === i ? node.color : "#f4f4f8", transition: "color 0.3s" }}>{node.label}</div>
-              <div style={{ fontSize: 11, color: "#8888a0" }}>{node.sub}</div>
+    <div style={{ background: "#0a0a10", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 16, height: 340, overflow: "hidden", display: "flex", flexDirection: "column" }}>
+      <div style={{ padding: "10px 14px", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
+        <div style={{ fontSize: 10, fontWeight: 600, color: "#8888a0", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 7 }}>Lead capture form</div>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 5, marginBottom: 5 }}>
+          {["Name", "Email", "Phone", "What do you need?"].map((p, i) => (
+            <div key={p} style={{ gridColumn: i === 3 ? "1 / -1" : undefined, background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 7, padding: "5px 9px", fontSize: 11, color: "#44444e" }}>{p}</div>
+          ))}
+        </div>
+        <div style={{ background: "linear-gradient(135deg,#7c3aed,#a855f7)", borderRadius: 7, padding: "5px 10px", fontSize: 11, fontWeight: 600, color: "white", textAlign: "center" }}>Submit →</div>
+      </div>
+      <div style={{ flex: 1, padding: "12px 14px", display: "flex", flexDirection: "column", justifyContent: "center", gap: 0 }}>
+        {LEADGEN_STEPS.map((step, i) => (
+          <div key={i}>
+            <div style={{
+              display: "flex", alignItems: "center", gap: 10, padding: "9px 12px", borderRadius: 10,
+              background: activeStep === i ? `${step.color}12` : activeStep > i ? "rgba(74,222,128,0.04)" : "rgba(255,255,255,0.02)",
+              border: `1px solid ${activeStep === i ? step.color + "40" : activeStep > i ? "rgba(74,222,128,0.2)" : "rgba(255,255,255,0.05)"}`,
+              transition: "all 0.5s ease",
+            }}>
+              <span style={{ fontSize: 15, flexShrink: 0 }}>{step.icon}</span>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontSize: 12, fontWeight: 600, color: activeStep === i ? step.color : activeStep > i ? "#4ade80" : "#8888a0", transition: "color 0.3s" }}>{step.label}</div>
+                <div style={{ fontSize: 10, color: "#44444e", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{step.detail}</div>
+              </div>
+              {activeStep === i
+                ? <div style={{ width: 7, height: 7, borderRadius: "50%", background: step.color, boxShadow: `0 0 8px ${step.color}`, animation: "blink 1s infinite", flexShrink: 0 }} />
+                : activeStep > i ? <Check size={12} color="#4ade80" />
+                : <div style={{ width: 7, height: 7, borderRadius: "50%", background: "rgba(255,255,255,0.1)", flexShrink: 0 }} />}
             </div>
-            {active === i ? (
-              <div style={{ width: 8, height: 8, borderRadius: "50%", background: node.color, boxShadow: `0 0 8px ${node.color}`, animation: "blink 1s infinite" }} />
-            ) : i < active ? (
-              <Check size={14} color="#4ade80" />
-            ) : (
-              <div style={{ width: 8, height: 8, borderRadius: "50%", background: "rgba(255,255,255,0.1)" }} />
+            {i < LEADGEN_STEPS.length - 1 && (
+              <div style={{ width: 1, height: 10, background: activeStep > i ? "rgba(74,222,128,0.5)" : "rgba(168,85,247,0.3)", marginLeft: 22, transition: "background 0.5s" }} />
             )}
           </div>
-          {i < FLOW_NODES.length - 1 && (
-            <div style={{ width: 1, height: 10, background: "linear-gradient(180deg,rgba(168,85,247,0.4),transparent)", marginLeft: 30 }} />
-          )}
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ─── Voice Agent Demo ─── */
+const TRANSCRIPT = [
+  { role: "ai",   text: "Hi, this is Aria from SmartcoreAI — is now a good time?" },
+  { role: "lead", text: "Yes, I'm interested in the chatbot service" },
+  { role: "ai",   text: "Perfect! I'll book you in for a demo — does Thursday at 2PM work?" },
+];
+
+function VoiceAgentDemo() {
+  const [visibleLines, setVisibleLines] = useState(0);
+
+  useEffect(() => {
+    const delay = visibleLines >= TRANSCRIPT.length ? 3000 : visibleLines === 0 ? 700 : 1900;
+    const t = setTimeout(() => setVisibleLines(v => v >= TRANSCRIPT.length ? 0 : v + 1), delay);
+    return () => clearTimeout(t);
+  }, [visibleLines]);
+
+  const done = visibleLines >= TRANSCRIPT.length;
+
+  return (
+    <div style={{ background: "#0a0a10", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 16, height: 340, overflow: "hidden", display: "flex", flexDirection: "column" }}>
+      <div style={{ padding: "12px 16px", borderBottom: "1px solid rgba(255,255,255,0.05)", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <div>
+          <div style={{ fontSize: 12, fontWeight: 700, color: "#f4f4f8" }}>Incoming lead</div>
+          <div style={{ fontSize: 11, color: "#8888a0" }}>+47 900 12 345</div>
         </div>
-      ))}
+        <div style={{ padding: "4px 10px", borderRadius: 999, background: "rgba(74,222,128,0.1)", border: "1px solid rgba(74,222,128,0.3)", display: "flex", alignItems: "center", gap: 5 }}>
+          <div style={{ width: 5, height: 5, borderRadius: "50%", background: "#4ade80", animation: "blink 1.2s infinite" }} />
+          <span style={{ fontSize: 10, fontWeight: 600, color: "#4ade80" }}>AI answering</span>
+        </div>
+      </div>
+      <div style={{ flex: 1, padding: "12px 14px", display: "flex", flexDirection: "column", gap: 10, overflowY: "auto" }}>
+        {TRANSCRIPT.slice(0, visibleLines).map((line, i) => (
+          <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 8, justifyContent: line.role === "lead" ? "flex-end" : "flex-start", animation: "slideUp 0.3s ease both" }}>
+            {line.role === "ai" && (
+              <div style={{ width: 22, height: 22, borderRadius: "50%", background: "rgba(168,85,247,0.15)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontSize: 11 }}>🤖</div>
+            )}
+            <div style={{
+              padding: "7px 12px", borderRadius: line.role === "ai" ? "14px 14px 14px 4px" : "14px 14px 4px 14px",
+              background: line.role === "ai" ? "rgba(168,85,247,0.1)" : "rgba(34,211,238,0.08)",
+              border: `1px solid ${line.role === "ai" ? "rgba(168,85,247,0.2)" : "rgba(34,211,238,0.2)"}`,
+              fontSize: 12, color: "#f4f4f8", maxWidth: "82%", lineHeight: 1.5,
+            }}>{line.text}</div>
+          </div>
+        ))}
+      </div>
+      <div style={{ padding: "10px 16px", borderTop: "1px solid rgba(255,255,255,0.05)", display: "flex", alignItems: "center", gap: 8, transition: "opacity 0.5s", opacity: done ? 1 : 0.2 }}>
+        <Check size={14} color="#4ade80" />
+        <span style={{ fontSize: 12, fontWeight: 600, color: "#4ade80" }}>Outcome: Meeting booked ✓</span>
+      </div>
+    </div>
+  );
+}
+
+/* ─── Custom AI Demo ─── */
+const WORKFLOW_STEPS = [
+  { icon: "🔔", label: "New lead from website",      sub: "Trigger",    color: "#a855f7" },
+  { icon: "🤖", label: "AI scores & qualifies",       sub: "Processing", color: "#22d3ee" },
+  { icon: "📋", label: "Added to CRM pipeline",       sub: "Action",     color: "#06b6d4" },
+  { icon: "✉️", label: "Personalized email sent",     sub: "Action",     color: "#06b6d4" },
+  { icon: "📅", label: "Meeting booked automatically",sub: "Outcome",    color: "#4ade80" },
+];
+
+function CustomAIDemo() {
+  const [dotStep, setDotStep] = useState(0);
+  useEffect(() => {
+    const t = setInterval(() => setDotStep(s => (s + 1) % WORKFLOW_STEPS.length), 1300);
+    return () => clearInterval(t);
+  }, []);
+
+  return (
+    <div style={{ background: "#0a0a10", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 16, height: 340, padding: "14px 14px 12px", display: "flex", flexDirection: "column" }}>
+      <div style={{ fontSize: 10, fontWeight: 600, color: "#8888a0", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 8 }}>Your custom AI workflow</div>
+      <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+        {WORKFLOW_STEPS.map((step, i) => (
+          <div key={i}>
+            <div style={{
+              display: "flex", alignItems: "center", gap: 10, padding: "7px 10px", borderRadius: 10,
+              background: dotStep === i ? `${step.color}12` : "rgba(255,255,255,0.02)",
+              border: `1px solid ${dotStep === i ? step.color + "40" : "rgba(255,255,255,0.05)"}`,
+              transition: "all 0.4s ease", position: "relative", overflow: "hidden",
+            }}>
+              {dotStep === i && (
+                <div style={{ position: "absolute", inset: 0, background: `linear-gradient(90deg, transparent, ${step.color}08, transparent)`, animation: "shimmer 1.5s ease infinite", backgroundSize: "200% 100%" }} />
+              )}
+              <div style={{ width: 28, height: 28, borderRadius: 8, background: `${step.color}18`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14, flexShrink: 0 }}>{step.icon}</div>
+              <div style={{ flex: 1 }}>
+                <div style={{ fontSize: 12, fontWeight: 600, color: dotStep === i ? step.color : "#f4f4f8", transition: "color 0.3s", lineHeight: 1.2 }}>{step.label}</div>
+                <div style={{ fontSize: 10, color: "#44444e" }}>{step.sub}</div>
+              </div>
+              {dotStep === i
+                ? <div style={{ width: 7, height: 7, borderRadius: "50%", background: step.color, boxShadow: `0 0 8px ${step.color}`, animation: "blink 1s infinite", flexShrink: 0 }} />
+                : i < dotStep ? <Check size={11} color="#4ade80" />
+                : null}
+            </div>
+            {i < WORKFLOW_STEPS.length - 1 && (
+              <div style={{ position: "relative", width: 1, height: 8, marginLeft: 23 }}>
+                <div style={{ position: "absolute", inset: 0, background: "rgba(168,85,247,0.2)" }} />
+                {dotStep === i && (
+                  <div style={{ position: "absolute", top: 0, left: -2, width: 5, height: 5, borderRadius: "50%", background: step.color, boxShadow: `0 0 6px ${step.color}`, animation: "travelDown 1.3s linear" }} />
+                )}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
@@ -315,9 +268,9 @@ function AIIntegrationDemo() {
 /* ─── Static service data (icons, colors, prices, demos) ─── */
 const SERVICE_META = [
   { id: "chatbot",        icon: <MessageCircle size={20} />, color: "#a855f7", usdPrice: 699,  priceCustom: false, demo: <ChatbotDemo /> },
-  { id: "leadgen",        icon: <Calendar size={20} />,      color: "#22d3ee", usdPrice: 1099, priceCustom: false, demo: <BookingDemo /> },
-  { id: "voice-agent",    icon: <Phone size={20} />,         color: "#f472b6", usdPrice: 1599, priceCustom: false, demo: <CRMDemo /> },
-  { id: "ai-integration", icon: <Cpu size={20} />,           color: "#facc15", usdPrice: 1500, priceCustom: true,  demo: <AIIntegrationDemo /> },
+  { id: "leadgen",        icon: <Calendar size={20} />,      color: "#22d3ee", usdPrice: 1099, priceCustom: false, demo: <LeadgenDemo /> },
+  { id: "voice-agent",    icon: <Phone size={20} />,         color: "#f472b6", usdPrice: 1599, priceCustom: false, demo: <VoiceAgentDemo /> },
+  { id: "ai-integration", icon: <Cpu size={20} />,           color: "#facc15", usdPrice: 1500, priceCustom: true,  demo: <CustomAIDemo /> },
 ];
 
 export default function Services() {
@@ -434,6 +387,7 @@ export default function Services() {
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
         @keyframes slideUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes travelDown { from { top: 0; opacity: 1; } to { top: 8px; opacity: 0; } }
       `}</style>
     </section>
   );
