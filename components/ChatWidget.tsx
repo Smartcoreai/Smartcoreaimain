@@ -55,7 +55,7 @@ export default function ChatWidget() {
       const data = await res.json();
       setMessages([...newMessages, { role: "assistant", content: data.reply }]);
     } catch {
-      setMessages([...newMessages, { role: "assistant", content: "Sorry, something went wrong. Please try again or email us at hello@smartcoreai.com" }]);
+      setMessages([...newMessages, { role: "assistant", content: "Sorry, something went wrong. Please try again or email us at hei@smartcoreai.no" }]);
     } finally {
       setLoading(false);
     }

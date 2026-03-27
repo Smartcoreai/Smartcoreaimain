@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
       const resend = new Resend(apiKey);
       await resend.emails.send({
         from: "SmartcoreAI <onboarding@resend.dev>",
-        to: process.env.CONTACT_EMAIL || "aleksanderb2006@gmail.com",
+        to: process.env.CONTACT_EMAIL || "hei@smartcoreai.no",
         subject: `New enquiry from ${name}`,
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
