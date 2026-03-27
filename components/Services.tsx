@@ -289,19 +289,19 @@ function CustomAIDemo() {
       }} />
 
       {/* Header */}
-      <div style={{ position: "relative", zIndex: 1, padding: "10px 14px", borderBottom: "1px solid rgba(250,204,21,0.1)", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+      <div className="custom-ai-header" style={{ position: "relative", zIndex: 1, padding: "10px 14px", borderBottom: "1px solid rgba(250,204,21,0.1)", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 7 }}>
           <span style={{ fontSize: 13, display: "inline-block", animation: "spin 5s linear infinite" }}>⚙️</span>
           <span style={{ fontSize: 10, fontWeight: 700, color: "#facc15", textTransform: "uppercase", letterSpacing: "0.1em" }}>{lang === "no" ? "Din skreddersydde AI-stack" : "Your custom AI stack"}</span>
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
+        <div className="custom-ai-live" style={{ display: "flex", alignItems: "center", gap: 5 }}>
           <div style={{ width: 5, height: 5, borderRadius: "50%", background: "#4ade80", animation: "blink 1.5s infinite" }} />
           <span style={{ fontSize: 10, color: "#8888a0" }}>{lang === "no" ? "Live · Bygger din arbeidsflyt" : "Live · Building your workflow"}</span>
         </div>
       </div>
 
       {/* Nodes */}
-      <div style={{ position: "relative", zIndex: 1, padding: "10px 14px 8px", display: "flex", flexDirection: "column" }}>
+      <div className="custom-ai-nodes" style={{ position: "relative", zIndex: 1, padding: "10px 14px 8px", display: "flex", flexDirection: "column" }}>
         {nodes.map((node, i) => (
           <div key={i}>
             <div className="custom-ai-node" style={{
@@ -315,7 +315,7 @@ function CustomAIDemo() {
               {dotStep === i && (
                 <div style={{ position: "absolute", inset: 0, background: `linear-gradient(90deg, transparent, ${node.color}08, transparent)`, animation: "shimmer 1.5s ease infinite", backgroundSize: "200% 100%" }} />
               )}
-              <div style={{
+              <div className="custom-ai-icon" style={{
                 width: node.hero ? 32 : 26, height: node.hero ? 32 : 26, borderRadius: 9, flexShrink: 0,
                 background: `${node.color}20`, border: `1px solid ${node.color}35`,
                 display: "flex", alignItems: "center", justifyContent: "center", fontSize: node.hero ? 16 : 13,
@@ -452,7 +452,7 @@ export default function Services() {
           </div>
 
           {/* Right: Live Demo */}
-          <div>
+          <div className="services-demo-panel">
             <div style={{ marginBottom: 12, display: "flex", alignItems: "center", gap: 8 }}>
               <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#4ade80", boxShadow: "0 0 6px #4ade80" }} />
               <span style={{ fontSize: 11, color: "#8888a0", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.08em" }}>
@@ -466,11 +466,16 @@ export default function Services() {
 
       <style>{`
         @media (max-width: 768px) {
-          .services-grid { grid-template-columns: 1fr !important; }
+          .services-grid { grid-template-columns: 1fr !important; overflow: hidden; }
           .services-tabs { grid-template-columns: 1fr !important; }
-          .custom-ai-demo { max-width: 100%; overflow: hidden; box-sizing: border-box; }
-          .custom-ai-node { flex-wrap: wrap !important; max-width: 100%; overflow: hidden; box-sizing: border-box; padding: 8px !important; }
-          .custom-ai-title { font-size: 13px !important; word-break: break-word; overflow-wrap: anywhere; white-space: normal; }
+          .services-demo-panel { width: 100%; max-width: 100%; overflow: hidden; box-sizing: border-box; }
+          .custom-ai-demo { width: 100%; max-width: 100%; overflow: hidden; box-sizing: border-box; }
+          .custom-ai-header { flex-wrap: wrap; gap: 4px; max-width: 100%; overflow: hidden; }
+          .custom-ai-live { display: none; }
+          .custom-ai-nodes { width: 100%; max-width: 100%; box-sizing: border-box; overflow: hidden; padding: 8px 10px 6px !important; }
+          .custom-ai-node { width: 100%; max-width: 100%; box-sizing: border-box; overflow: hidden; padding: 8px 10px !important; flex-wrap: nowrap !important; }
+          .custom-ai-icon { flex-shrink: 0; width: 32px !important; height: 32px !important; }
+          .custom-ai-title { font-size: 13px !important; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
           .custom-ai-connector { max-width: 100%; overflow: hidden; }
           .custom-ai-travel-dot { display: none; }
           .custom-ai-footer { word-break: break-word; overflow-wrap: anywhere; white-space: normal; }
