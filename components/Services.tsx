@@ -117,17 +117,12 @@ function LeadgenDemo() {
   }, []);
 
   return (
-    <div style={{ background: "#0a0a10", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 16, height: 340, overflow: "hidden", display: "flex", flexDirection: "column" }}>
-      <div style={{ padding: "10px 14px", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
-        <div style={{ fontSize: 10, fontWeight: 600, color: "#8888a0", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 7 }}>Lead capture form</div>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 5, marginBottom: 5 }}>
-          {["Name", "Email", "Phone", "What do you need?"].map((p, i) => (
-            <div key={p} style={{ gridColumn: i === 3 ? "1 / -1" : undefined, background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 7, padding: "5px 9px", fontSize: 11, color: "#44444e" }}>{p}</div>
-          ))}
-        </div>
-        <div style={{ background: "linear-gradient(135deg,#7c3aed,#a855f7)", borderRadius: 7, padding: "5px 10px", fontSize: 11, fontWeight: 600, color: "white", textAlign: "center" }}>Submit →</div>
+    <div style={{ background: "#0a0a10", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 16, overflow: "hidden", display: "flex", flexDirection: "column" }}>
+      <div style={{ padding: "10px 14px", borderBottom: "1px solid rgba(255,255,255,0.05)", display: "flex", alignItems: "center", gap: 8 }}>
+        <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#4ade80", boxShadow: "0 0 6px #4ade80", flexShrink: 0 }} />
+        <span style={{ fontSize: 12, color: "#f4f4f8", fontWeight: 500 }}>New lead · <span style={{ color: "#8888a0" }}>Alex Johnson · alex@company.com</span></span>
       </div>
-      <div style={{ flex: 1, padding: "12px 14px", display: "flex", flexDirection: "column", justifyContent: "center", gap: 0 }}>
+      <div style={{ padding: "14px", display: "flex", flexDirection: "column", gap: 0 }}>
         {LEADGEN_STEPS.map((step, i) => (
           <div key={i}>
             <div style={{
