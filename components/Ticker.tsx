@@ -20,9 +20,16 @@ export default function Ticker() {
         position: "absolute", inset: 0, zIndex: 2, pointerEvents: "none",
         background: "linear-gradient(90deg, #08080c 0%, transparent 8%, transparent 92%, #08080c 100%)",
       }} />
+      <style>{`
+        @keyframes ticker {
+          from { transform: translateX(0); }
+          to   { transform: translateX(-50%); }
+        }
+      `}</style>
       <div style={{
         display: "flex",
         width: "max-content",
+        animation: "ticker 30s linear infinite",
       }}>
         {doubled.map((item, i) => (
           <div key={i} style={{
