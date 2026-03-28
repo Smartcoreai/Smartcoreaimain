@@ -3,7 +3,7 @@ import { Resend } from "resend";
 import { insertLead } from "@/lib/db";
 
 export async function POST(req: NextRequest) {
-  const { name, email, business, message } = await req.json();
+  const { name, email, phone, business, message } = await req.json();
 
   if (!name || !email || !message) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
@@ -74,10 +74,11 @@ export async function POST(req: NextRequest) {
           firstName,
           lastName,
           email,
+          phone: phone || undefined,
           companyName: business || "",
           source: "SmartcoreAI Website",
           locationId,
-          tags: ["website-lead"],
+          tags: ["website-lead", "website-inquiry"],
         }),
       });
       const contactData = await contactRes.json();
@@ -87,7 +88,27 @@ export async function POST(req: NextRequest) {
       console.error("[GHL] contact creation threw:", err);
     }
 
-    // 2. Create opportunity (hardcoded pipeline/stage IDs — confirmed valid)
+    // 2. Add message as a note on the contact
+    if (contactId) {
+      try {
+        const noteRes = await fetch(
+          `https://services.leadconnectorhq.com/contacts/${contactId}/notes`,
+          {
+            method: "POST",
+            headers: ghlHeaders,
+            body: JSON.stringify({
+              body: "Melding fra nettskjema:\n\n" + message,
+            }),
+          }
+        );
+        const noteData = await noteRes.json();
+        console.log("[GHL] note status:", noteRes.status, JSON.stringify(noteData));
+      } catch (err) {
+        console.error("[GHL] note creation threw:", err);
+      }
+    }
+
+    // 3. Create opportunity (hardcoded pipeline/stage IDs — confirmed valid)
     if (contactId) {
       try {
         const oppRes = await fetch("https://services.leadconnectorhq.com/opportunities/", {
