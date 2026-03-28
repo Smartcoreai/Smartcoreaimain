@@ -96,7 +96,7 @@ export default function ChatWidget() {
       </button>
 
       {/* Chat window */}
-      <div style={{
+      <div className="chat-window" style={{
         position: "fixed", bottom: 24, right: 24, zIndex: 9999,
         width: 360, display: "flex", flexDirection: "column",
         background: "#0f0f16", border: "1px solid rgba(255,255,255,0.08)",
@@ -216,7 +216,13 @@ export default function ChatWidget() {
       <style>{`
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
         @keyframes pulseRing { 0% { transform: scale(0.8); opacity: 1; } 100% { transform: scale(2); opacity: 0; } }
-        @media (max-width: 768px) {
+        @media (max-width: 480px) {
+          .chat-window { width: calc(100vw - 16px) !important; right: 8px !important; left: 8px !important; }
+          .chat-messages { overflow-x: hidden; width: 100%; }
+          .chat-bubble { max-width: 85% !important; white-space: normal !important; }
+        }
+        @media (min-width: 481px) and (max-width: 768px) {
+          .chat-window { width: calc(100vw - 32px) !important; }
           .chat-messages { overflow-x: hidden; width: 100%; }
           .chat-bubble { max-width: 85% !important; white-space: normal !important; }
         }

@@ -417,6 +417,7 @@ export default function Services() {
           display: "grid", gridTemplateColumns: "1fr 1fr", gap: 28,
           background: "rgba(20,20,27,0.6)", border: "1px solid rgba(255,255,255,0.06)",
           borderRadius: 24, padding: 28, backdropFilter: "blur(12px)",
+          boxSizing: "border-box", width: "100%",
         }} className="services-grid">
           {/* Left: Info */}
           <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", gap: 24 }}>
@@ -440,12 +441,12 @@ export default function Services() {
                 ))}
               </ul>
             </div>
-            <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            <div className="services-price-row" style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
               <div>
-                <div style={{ fontFamily: "Syne, sans-serif", fontSize: 22, fontWeight: 800, color: "#f4f4f8", whiteSpace: "nowrap" }}>{svc.price}</div>
+                <div style={{ fontFamily: "Syne, sans-serif", fontSize: 22, fontWeight: 800, color: "#f4f4f8" }}>{svc.price}</div>
                 <div style={{ fontSize: 11, color: "#8888a0" }}>{t.services.monthNote}</div>
               </div>
-              <a href="#booking" className="btn-primary" style={{ marginLeft: "auto" }}>
+              <a href="#booking" className="btn-primary services-cta" style={{ marginLeft: "auto" }}>
                 {t.services.getStarted} <ChevronRight size={16} />
               </a>
             </div>
@@ -466,9 +467,11 @@ export default function Services() {
 
       <style>{`
         @media (max-width: 768px) {
-          .services-grid { grid-template-columns: 1fr !important; overflow: hidden; }
-          .services-tabs { grid-template-columns: 1fr !important; }
+          .services-grid { grid-template-columns: 1fr !important; overflow: hidden; width: 100%; max-width: 100%; box-sizing: border-box; padding: 18px !important; }
+          .services-tabs { grid-template-columns: 1fr !important; width: 100%; box-sizing: border-box; }
           .services-demo-panel { width: 100%; max-width: 100%; overflow: hidden; box-sizing: border-box; }
+          .services-price-row { gap: 8px !important; }
+          .services-cta { margin-left: 0 !important; }
           .custom-ai-demo { width: 100%; max-width: 100%; overflow: hidden; box-sizing: border-box; }
           .custom-ai-header { flex-wrap: wrap; gap: 4px; max-width: 100%; overflow: hidden; }
           .custom-ai-live { display: none; }

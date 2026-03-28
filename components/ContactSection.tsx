@@ -104,7 +104,7 @@ export default function ContactSection() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+                <div className="contact-name-email" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
                   <div>
                     <label style={{ display: "block", fontSize: 12, fontWeight: 500, color: "#8888a0", marginBottom: 6 }}>{t.contact.labels.name}</label>
                     <input className="input-dark" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} placeholder={t.contact.placeholders.name} required />
@@ -143,7 +143,11 @@ export default function ContactSection() {
 
       <style>{`
         @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        @media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr !important; } }
+        @media (max-width: 768px) {
+          .contact-grid { grid-template-columns: 1fr !important; }
+          .contact-grid > div { padding: 20px !important; box-sizing: border-box; width: 100%; }
+          .contact-name-email { grid-template-columns: 1fr !important; }
+        }
       `}</style>
     </section>
   );

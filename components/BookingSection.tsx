@@ -6,9 +6,9 @@ import { useLanguage } from "@/lib/i18n";
 const CALL_ICONS = [<Video size={20} />, <Zap size={20} />, <Calendar size={20} />];
 
 const CALL_URLS = [
-  "https://calendly.com/aleksanderb2006/new-meeting",
-  "https://calendly.com/aleksanderb2006/30min",
-  "https://calendly.com/aleksanderb2006/strategiokt",
+  "https://calendly.com/smartcoreaimeeting/new-meeting",
+  "https://calendly.com/smartcoreaimeeting/30min",
+  "https://calendly.com/smartcoreaimeeting/strategiokt",
 ];
 
 const CARD_COLORS = ["#a855f7", "#22d3ee", "#f472b6"];
@@ -202,6 +202,9 @@ export default function BookingSection() {
       <style>{`
         @media (max-width: 900px)  { .booking-cards { grid-template-columns: 1fr !important; } }
         @media (min-width: 901px) and (max-width: 1100px) { .booking-cards { grid-template-columns: repeat(2, 1fr) !important; } }
+        @media (max-width: 768px) {
+          .booking-cards > div { padding: 24px 20px !important; box-sizing: border-box; width: 100%; }
+        }
         @keyframes glowPurple {
           0%, 100% { box-shadow: 0 0 18px rgba(168,85,247,0.08); }
           50%       { box-shadow: 0 0 38px rgba(168,85,247,0.22), 0 0 70px rgba(168,85,247,0.05); }
