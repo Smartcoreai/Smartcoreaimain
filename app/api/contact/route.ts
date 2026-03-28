@@ -97,7 +97,7 @@ export async function POST(req: NextRequest) {
             method: "POST",
             headers: ghlHeaders,
             body: JSON.stringify({
-              body: "Melding fra nettskjema:\n\n" + message,
+              body: "Melding fra nettskjema:\n\nHva trenger du: " + message,
             }),
           }
         );
