@@ -109,7 +109,7 @@ export default function Pricing() {
                 ))}
               </ul>
 
-              <a href="#booking" style={{
+              <a href={plan.priceCustom ? "/#booking" : "/pricing"} style={{
                 display: "block", textAlign: "center", padding: "13px",
                 borderRadius: 12, fontWeight: 600, fontSize: 14,
                 textDecoration: "none", transition: "all 0.3s ease", marginTop: "auto",

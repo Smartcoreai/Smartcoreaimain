@@ -200,6 +200,40 @@ export const translations = {
       placeholder: "Ask me anything...",
       poweredBy: "Powered by SmartcoreAI · responses may vary",
     },
+    pricingPage: {
+      back: "← Back",
+      title: "Choose your plan",
+      subtitle: "Start today. Cancel anytime.",
+      popular: "Most Popular",
+      period: "mo",
+      priceCustom: "Price can be discussed",
+      getStarted: "Get started →",
+      bookCall: "Book a call →",
+      bottomNote: "All plans include onboarding support · 14-day money-back guarantee",
+      plans: [
+        {
+          desc: "A custom-trained AI assistant that handles leads, FAQs, bookings and follow-ups — 24/7.",
+          features: ["Custom AI training", "Unlimited conversations", "Lead capture", "CRM integration", "Booking integration", "Monthly report"],
+        },
+        {
+          desc: "Fully automated lead generation that captures and qualifies leads 24/7.",
+          features: ["AI lead capture forms", "Instant qualification", "Auto-routing", "CRM integration", "Email & SMS follow-up", "Monthly report"],
+        },
+        {
+          desc: "An AI voice agent that calls and qualifies leads around the clock.",
+          features: ["AI-powered voice calls", "Lead qualification by phone", "Auto follow-up", "CRM integration", "Call recording", "24/7 availability"],
+        },
+        {
+          desc: "A fully custom AI system tailored to your business.",
+          features: ["Custom workflow design", "Multi-tool API integrations", "AI model training", "Dedicated support", "SLA guarantee", "Unlimited revisions"],
+        },
+      ],
+    },
+    thankYou: {
+      title: "Thank you! 🎉",
+      subtitle: "Your payment was successful. We'll be in touch within 4 hours.",
+      backButton: "Back to homepage",
+    },
   },
 
   no: {
@@ -395,6 +429,40 @@ export const translations = {
       quickReplies: ["Hvilke tjenester tilbyr dere?", "Hva koster det?", "Hvor raskt kan vi starte?"],
       placeholder: "Spør meg om hva som helst...",
       poweredBy: "Drevet av SmartcoreAI · svar kan variere",
+    },
+    pricingPage: {
+      back: "← Tilbake",
+      title: "Velg din plan",
+      subtitle: "Start i dag. Avslutt når som helst.",
+      popular: "Mest populær",
+      period: "mnd",
+      priceCustom: "Pris kan diskuteres",
+      getStarted: "Kom i gang →",
+      bookCall: "Book samtale →",
+      bottomNote: "Alle planer inkluderer onboardingstøtte · 14-dagers pengene-tilbake-garanti",
+      plans: [
+        {
+          desc: "En skreddersydd AI-assistent som håndterer leads, spørsmål, bookinger og oppfølging — 24/7.",
+          features: ["Skreddersydd AI-opplæring", "Ubegrenset antall samtaler", "Lead-innhenting", "CRM-integrasjon", "Bookingintegrasjon", "Månedlig rapport"],
+        },
+        {
+          desc: "Fullt automatisert leadgenerering som fanger og kvalifiserer leads 24/7.",
+          features: ["AI-skjema for leadinnhenting", "Øyeblikkelig kvalifisering", "Automatisk ruting", "CRM-integrasjon", "E-post & SMS-oppfølging", "Månedlig rapport"],
+        },
+        {
+          desc: "En AI-stemmeagent som ringer og kvalifiserer leads døgnet rundt.",
+          features: ["AI-drevne telefonsamtaler", "Leadkvalifisering på telefon", "Automatisk oppfølging", "CRM-integrasjon", "Samtaleopptak", "Tilgjengelig 24/7"],
+        },
+        {
+          desc: "Et fullt skreddersydd AI-system tilpasset din bedrift.",
+          features: ["Skreddersydd arbeidsflyt", "Fler-verktøy API-integrasjoner", "AI-modelltrening", "Dedikert støtte", "SLA-garanti", "Ubegrenset revisjoner"],
+        },
+      ],
+    },
+    thankYou: {
+      title: "Takk skal du ha! 🎉",
+      subtitle: "Betalingen din var vellykket. Vi tar kontakt innen 4 timer.",
+      backButton: "Tilbake til forsiden",
     },
   },
 } as const;

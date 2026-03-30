@@ -10,10 +10,10 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const NAV_LINKS = [
-    { label: t.nav.services, href: "#services" },
-    { label: t.nav.pricing,  href: "#pricing" },
-    { label: t.nav.faq,      href: "#objections" },
-    { label: t.nav.contact,  href: "#contact" },
+    { label: t.nav.services, href: "/#services" },
+    { label: t.nav.pricing,  href: "/#pricing" },
+    { label: t.nav.faq,      href: "/#objections" },
+    { label: t.nav.contact,  href: "/#contact" },
   ];
 
   useEffect(() => {
@@ -41,7 +41,7 @@ export default function Navbar() {
       <div className="wrap" style={{ padding: "0 24px" }}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: 72 }}>
           {/* Logo */}
-          <a href="#" style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none" }}>
+          <a href="/" style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none" }}>
             <Image src="/logo.png" alt="SmartcoreAI logo" height={40} width={40} style={{ width: "auto", height: 40, objectFit: "contain" }} />
             <span style={{
               fontFamily: "Syne, system-ui, sans-serif",
@@ -78,11 +78,11 @@ export default function Navbar() {
             onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = "#a855f7"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(168,85,247,0.4)"; }}
             onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = "#8888a0"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.08)"; }}
             >{lang === "en" ? "NO" : "EN"}</button>
-            <a href="#contact" className="btn-outline" style={{ padding: "9px 20px", fontSize: 13 }}>{t.nav.getStarted}</a>
+            <a href="/#contact" className="btn-outline" style={{ padding: "9px 20px", fontSize: 13 }}>{t.nav.getStarted}</a>
             <div style={{ position: "relative", display: "inline-flex" }}>
               <div style={{ position: "absolute", inset: -5, borderRadius: 16, border: "1.5px solid rgba(168,85,247,0.5)", animation: "pulseRing 2s ease-out infinite", pointerEvents: "none" }} />
               <div style={{ position: "absolute", inset: -10, borderRadius: 20, border: "1.5px solid rgba(168,85,247,0.2)", animation: "pulseRing 2s ease-out 0.7s infinite", pointerEvents: "none" }} />
-              <a href="#booking" className="btn-primary" style={{ padding: "9px 20px", fontSize: 13, position: "relative", zIndex: 1 }}>{t.nav.bookCall}</a>
+              <a href="/#booking" className="btn-primary" style={{ padding: "9px 20px", fontSize: 13, position: "relative", zIndex: 1 }}>{t.nav.bookCall}</a>
             </div>
           </div>
 
@@ -124,8 +124,8 @@ export default function Navbar() {
             </button>
 
             <div style={{ marginTop: 12, display: "flex", flexDirection: "column", gap: 10 }}>
-              <a href="#booking" className="btn-primary" onClick={() => setMobileOpen(false)} style={{ textAlign: "center" }}>{t.nav.bookCall}</a>
-              <a href="#contact" className="btn-outline" onClick={() => setMobileOpen(false)} style={{ textAlign: "center" }}>{t.nav.getStarted}</a>
+              <a href="/#booking" className="btn-primary" onClick={() => setMobileOpen(false)} style={{ textAlign: "center" }}>{t.nav.bookCall}</a>
+              <a href="/#contact" className="btn-outline" onClick={() => setMobileOpen(false)} style={{ textAlign: "center" }}>{t.nav.getStarted}</a>
             </div>
           </nav>
         </div>

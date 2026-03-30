@@ -446,7 +446,7 @@ export default function Services() {
                 <div style={{ fontFamily: "Syne, sans-serif", fontSize: 22, fontWeight: 800, color: "#f4f4f8" }}>{svc.price}</div>
                 <div style={{ fontSize: 11, color: "#8888a0" }}>{t.services.monthNote}</div>
               </div>
-              <a href="#booking" className="btn-primary services-cta" style={{ marginLeft: "auto" }}>
+              <a href={svc.priceCustom ? "/#booking" : "/pricing"} className="btn-primary services-cta" style={{ marginLeft: "auto" }}>
                 {t.services.getStarted} <ChevronRight size={16} />
               </a>
             </div>
