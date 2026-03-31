@@ -512,21 +512,21 @@ export function useLanguage() {
 }
 
 // ─── Price formatter ──────────────────────────────────────────────────────────
-// Converts a USD amount to the display string for the current language.
-// lang="en" → "$399"   lang="no" → "3 990 kr"  (1 USD = 10 NOK, space separator)
+// Converts a EUR amount to the display string for the current language.
+// lang="en" → "€699"   lang="no" → "kr 8 250"  (1 EUR ≈ 11.80 NOK, rounded to nearest 10)
 
-export function formatPrice(usd: number, lang: Lang): string {
+export function formatPrice(eur: number, lang: Lang): string {
   if (lang === "no") {
-    const nok = usd * 10;
+    const nok = Math.round((eur * 11.80) / 10) * 10;
     // nb-NO locale uses non-breaking space as thousands separator → replace with regular space
     const formatted = nok.toLocaleString("nb-NO").replace(/\u00A0/g, "\u0020");
-    return `${formatted} kr`;
+    return `kr ${formatted}`;
   }
-  return `$${usd.toLocaleString("en-US")}`;
+  return `€${eur.toLocaleString("en-US")}`;
 }
 
-export function formatPriceWithPeriod(usd: number, lang: Lang): string {
-  const price = formatPrice(usd, lang);
+export function formatPriceWithPeriod(eur: number, lang: Lang): string {
+  const price = formatPrice(eur, lang);
   const period = lang === "no" ? "/mnd" : "/mo";
   return `${price}${period}`;
 }

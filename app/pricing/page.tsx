@@ -2,17 +2,17 @@
 import { Check, Star } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { useLanguage } from "@/lib/i18n";
+import { useLanguage, formatPrice } from "@/lib/i18n";
 
 const PLAN_META = [
-  { name: "AI Chatbot",             price: "€699",   color: "#a855f7", popular: false, priceCustom: false, href: "https://buy.stripe.com/5kQ3cwf7qcIlaED37c6c000" },
-  { name: "Leadgen System",         price: "€1,099", color: "#22d3ee", popular: true,  priceCustom: false, href: "https://buy.stripe.com/5kQ3cwgbu4bP5kjfTY6c001" },
-  { name: "AI Voice Agent",         price: "€1,599", color: "#f472b6", popular: false, priceCustom: false, href: "https://buy.stripe.com/14A8wQbVefUxbIHazE6c004" },
+  { name: "AI Chatbot",             price: 699,  color: "#a855f7", popular: false, priceCustom: false, href: "https://buy.stripe.com/5kQ3cwf7qcIlaED37c6c000" },
+  { name: "Leadgen System",         price: 1099, color: "#22d3ee", popular: true,  priceCustom: false, href: "https://buy.stripe.com/5kQ3cwgbu4bP5kjfTY6c001" },
+  { name: "AI Voice Agent",         price: 1599, color: "#f472b6", popular: false, priceCustom: false, href: "https://buy.stripe.com/14A8wQbVefUxbIHazE6c004" },
   { name: "Custom AI Integrations", price: null,      color: "#facc15", popular: false, priceCustom: true,  href: "https://calendly.com/smartcoreaimeeting/strategiokt" },
 ];
 
 export default function PricingPage() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const p = t.pricingPage;
 
   const PLANS = PLAN_META.map((meta, i) => ({
@@ -94,7 +94,7 @@ export default function PricingPage() {
                   ) : (
                     <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 8 }}>
                       <span style={{ fontFamily: "Syne, sans-serif", fontSize: 32, fontWeight: 800, color: "#f4f4f8", letterSpacing: "-0.03em" }}>
-                        {plan.price}
+                        {formatPrice(plan.price!, lang)}
                       </span>
                       <span style={{ fontSize: 13, color: "#8888a0" }}>/{p.period}</span>
                     </div>
