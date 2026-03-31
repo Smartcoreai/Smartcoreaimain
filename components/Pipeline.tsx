@@ -45,7 +45,7 @@ const STEPS = [
     color: "#4ade80",
     title: "Revenue Generated",
     desc: "Invoices go out automatically, payments are tracked in the CRM, and your dashboard shows real revenue — in real time.",
-    outcome: "$4,200 revenue",
+    outcome: "Revenue generated",
     outcomeColor: "#4ade80",
     metric: "340%",
     metricLabel: "avg revenue lift",
