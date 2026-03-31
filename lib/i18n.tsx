@@ -31,7 +31,6 @@ export const translations = {
       floatingBadges: [
         { icon: "💬", text: "Lead captured",     sub: "via AI chat" },
         { icon: "📅", text: "Booking confirmed", sub: "Tue 2:00 PM" },
-        { icon: "💰", text: "$4,200 revenue",    sub: "this week" },
         { icon: "🤖", text: "AI responding",     sub: "24/7 active" },
       ],
     },
@@ -263,7 +262,6 @@ export const translations = {
       floatingBadges: [
         { icon: "💬", text: "Lead fanget",        sub: "via AI-chat" },
         { icon: "📅", text: "Booking bekreftet",  sub: "Tir 14:00" },
-        { icon: "💰", text: "42 000 kr inntekt",  sub: "denne uken" },
         { icon: "🤖", text: "AI svarer",          sub: "24/7 aktiv" },
       ],
     },

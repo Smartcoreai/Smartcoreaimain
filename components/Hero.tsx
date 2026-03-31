@@ -12,7 +12,6 @@ const SplineHero = dynamic(() => import("@/components/SplineHero"), {
 const BADGE_POSITIONS = [
   { x: "8%",  y: "35%", delay: "0s" },
   { x: "78%", y: "25%", delay: "1.5s" },
-  { x: "82%", y: "65%", delay: "0.8s" },
   { x: "5%",  y: "68%", delay: "2s" },
 ];
 
