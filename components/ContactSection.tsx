@@ -1,30 +1,34 @@
 "use client";
 import { useState } from "react";
-import { ArrowRight, Mail, MessageSquare, Send, CheckCircle, Zap, Shield, Clock } from "lucide-react";
+import { ArrowRight, Mail, MessageSquare, Send, CheckCircle, AlertCircle, Zap, Shield, Clock } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
 
 const PERK_ICONS = [<Clock size={16} />, <Shield size={16} />, <Zap size={16} />];
 
 export default function ContactSection() {
   const { t } = useLanguage();
-  const [form, setForm] = useState({ name: "", email: "", business: "", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", phone: "", business: "", message: "" });
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     try {
-      await fetch("/api/contact", {
+      const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
+      if (!res.ok) throw new Error("API error");
+      setSent(true);
     } catch (err) {
       console.error(err);
+      setError(true);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
-    setSent(true);
   };
 
   return (
@@ -97,7 +101,19 @@ export default function ContactSection() {
                 </div>
                 <div style={{ fontFamily: "Syne, sans-serif", fontSize: 22, fontWeight: 700, color: "#f4f4f8" }}>{t.contact.successTitle}</div>
                 <div style={{ fontSize: 14, color: "#8888a0", lineHeight: 1.7 }}>{t.contact.successDesc}</div>
-                <button onClick={() => { setSent(false); setForm({ name: "", email: "", business: "", message: "" }); }}
+                <button onClick={() => { setSent(false); setForm({ name: "", email: "", phone: "", business: "", message: "" }); }}
+                  style={{ padding: "10px 20px", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 10, color: "#8888a0", fontSize: 13, cursor: "pointer", fontFamily: "inherit" }}>
+                  {t.contact.sendAnother}
+                </button>
+              </div>
+            ) : error ? (
+              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100%", gap: 16, textAlign: "center" }}>
+                <div style={{ width: 64, height: 64, borderRadius: "50%", background: "rgba(239,68,68,0.12)", display: "flex", alignItems: "center", justifyContent: "center", border: "1px solid rgba(239,68,68,0.3)" }}>
+                  <AlertCircle size={32} color="#ef4444" />
+                </div>
+                <div style={{ fontFamily: "Syne, sans-serif", fontSize: 22, fontWeight: 700, color: "#f4f4f8" }}>{t.contact.errorTitle}</div>
+                <div style={{ fontSize: 14, color: "#8888a0", lineHeight: 1.7 }}>{t.contact.errorDesc}</div>
+                <button onClick={() => setError(false)}
                   style={{ padding: "10px 20px", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 10, color: "#8888a0", fontSize: 13, cursor: "pointer", fontFamily: "inherit" }}>
                   {t.contact.sendAnother}
                 </button>
@@ -113,6 +129,10 @@ export default function ContactSection() {
                     <label style={{ display: "block", fontSize: 12, fontWeight: 500, color: "#8888a0", marginBottom: 6 }}>{t.contact.labels.email}</label>
                     <input className="input-dark" type="email" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} placeholder={t.contact.placeholders.email} required />
                   </div>
+                </div>
+                <div>
+                  <label style={{ display: "block", fontSize: 12, fontWeight: 500, color: "#8888a0", marginBottom: 6 }}>{t.contact.labels.phone}</label>
+                  <input className="input-dark" type="tel" value={form.phone} onChange={e => setForm({ ...form, phone: e.target.value })} placeholder={t.contact.placeholders.phone} />
                 </div>
                 <div>
                   <label style={{ display: "block", fontSize: 12, fontWeight: 500, color: "#8888a0", marginBottom: 6 }}>{t.contact.labels.business}</label>
