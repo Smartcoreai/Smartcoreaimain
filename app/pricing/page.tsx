@@ -5,10 +5,10 @@ import Footer from "@/components/Footer";
 import { useLanguage, formatPrice } from "@/lib/i18n";
 
 const PLAN_META = [
-  { name: "AI Chatbot",             price: 699,  color: "#a855f7", popular: false, priceCustom: false, href: "https://buy.stripe.com/5kQ3cwf7qcIlaED37c6c000" },
-  { name: "Leadgen System",         price: 1099, color: "#22d3ee", popular: true,  priceCustom: false, href: "https://buy.stripe.com/5kQ3cwgbu4bP5kjfTY6c001" },
-  { name: "AI Voice Agent",         price: 1599, color: "#f472b6", popular: false, priceCustom: false, href: "https://buy.stripe.com/14A8wQbVefUxbIHazE6c004" },
-  { name: "Custom AI Integrations", price: null,      color: "#facc15", popular: false, priceCustom: true,  href: "https://calendly.com/smartcoreaimeeting/strategiokt" },
+  { name: "AI Chatbot",             price: 699,  originalPrice: 999,  color: "#a855f7", popular: false, priceCustom: false, href: "https://buy.stripe.com/5kQ3cwf7qcIlaED37c6c000" },
+  { name: "Leadgen System",         price: 1099, originalPrice: 1599, color: "#22d3ee", popular: true,  priceCustom: false, href: "https://buy.stripe.com/5kQ3cwgbu4bP5kjfTY6c001" },
+  { name: "AI Voice Agent",         price: 1599, originalPrice: 2135, color: "#f472b6", popular: false, priceCustom: false, href: "https://buy.stripe.com/14A8wQbVefUxbIHazE6c004" },
+  { name: "Custom AI Integrations", price: null, originalPrice: null, color: "#facc15", popular: false, priceCustom: true,  href: "https://calendly.com/smartcoreaimeeting/strategiokt" },
 ];
 
 export default function PricingPage() {
@@ -92,12 +92,17 @@ export default function PricingPage() {
                       <span style={{ fontFamily: "Syne, sans-serif", fontSize: 18, fontWeight: 700, color: plan.color }}>{p.priceCustom}</span>
                     </div>
                   ) : (
-                    <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 8 }}>
-                      <span style={{ fontFamily: "Syne, sans-serif", fontSize: 32, fontWeight: 800, color: "#f4f4f8", letterSpacing: "-0.03em" }}>
-                        {formatPrice(plan.price!, lang)}
-                      </span>
-                      <span style={{ fontSize: 13, color: "#8888a0" }}>/{p.period}</span>
-                    </div>
+                    <>
+                      <div style={{ fontSize: 12, color: "#8888a0", textDecoration: "line-through", marginBottom: 2 }}>
+                        {formatPrice(plan.originalPrice!, lang)}
+                      </div>
+                      <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 8 }}>
+                        <span style={{ fontFamily: "Syne, sans-serif", fontSize: 32, fontWeight: 800, color: "#f4f4f8", letterSpacing: "-0.03em" }}>
+                          {formatPrice(plan.price!, lang)}
+                        </span>
+                        <span style={{ fontSize: 13, color: "#8888a0" }}>/{p.period}</span>
+                      </div>
+                    </>
                   )}
                   <p style={{ fontSize: 13, color: "#8888a0", lineHeight: 1.6, margin: 0 }}>{plan.desc}</p>
                 </div>

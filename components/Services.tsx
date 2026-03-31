@@ -7,7 +7,7 @@ const SplineBoxes = dynamic(() => import("@/components/SplineBoxes"), {
   ssr: false,
   loading: () => <div style={{ width: "100%", height: "100%", background: "transparent" }} />,
 });
-import { useLanguage, formatPriceWithPeriod } from "@/lib/i18n";
+import { useLanguage, formatPrice, formatPriceWithPeriod } from "@/lib/i18n";
 
 /* ─── Chatbot Demo ─── */
 const CHATBOT_UI = {
@@ -357,10 +357,10 @@ function CustomAIDemo() {
 
 /* ─── Static service data (icons, colors, prices, demos) ─── */
 const SERVICE_META = [
-  { id: "chatbot",        icon: <MessageCircle size={20} />, color: "#a855f7", usdPrice: 699,  priceCustom: false, demo: <ChatbotDemo /> },
-  { id: "leadgen",        icon: <Calendar size={20} />,      color: "#22d3ee", usdPrice: 1099, priceCustom: false, demo: <LeadgenDemo /> },
-  { id: "voice-agent",    icon: <Phone size={20} />,         color: "#f472b6", usdPrice: 1599, priceCustom: false, demo: <VoiceAgentDemo /> },
-  { id: "ai-integration", icon: <Cpu size={20} />,           color: "#facc15", usdPrice: 1500, priceCustom: true,  demo: <CustomAIDemo /> },
+  { id: "chatbot",        icon: <MessageCircle size={20} />, color: "#a855f7", usdPrice: 699,  originalPrice: 999,  priceCustom: false, demo: <ChatbotDemo /> },
+  { id: "leadgen",        icon: <Calendar size={20} />,      color: "#22d3ee", usdPrice: 1099, originalPrice: 1599, priceCustom: false, demo: <LeadgenDemo /> },
+  { id: "voice-agent",    icon: <Phone size={20} />,         color: "#f472b6", usdPrice: 1599, originalPrice: 2135, priceCustom: false, demo: <VoiceAgentDemo /> },
+  { id: "ai-integration", icon: <Cpu size={20} />,           color: "#facc15", usdPrice: 1500, originalPrice: null, priceCustom: true,  demo: <CustomAIDemo /> },
 ];
 
 export default function Services() {
@@ -371,6 +371,7 @@ export default function Services() {
     ...meta,
     ...t.services.items[i],
     price: meta.priceCustom ? t.services.priceCustom : formatPriceWithPeriod(meta.usdPrice, lang),
+    originalPriceDisplay: (!meta.priceCustom && meta.originalPrice) ? formatPrice(meta.originalPrice, lang) : null,
   }));
 
   const svc = SERVICES[active];
@@ -417,6 +418,9 @@ export default function Services() {
                 <div style={{ color: active === i ? s.color : "#8888a0", transition: "color 0.25s" }}>{s.icon}</div>
                 <span style={{ fontSize: 13, fontWeight: 600, color: active === i ? "#f4f4f8" : "#8888a0", transition: "color 0.25s" }}>{s.label}</span>
               </div>
+              {s.originalPriceDisplay && (
+                <div style={{ fontSize: 10, color: "#555568", textDecoration: "line-through" }}>{s.originalPriceDisplay}</div>
+              )}
               <div style={{ fontSize: 12, color: active === i ? s.color : "#44444e", fontWeight: 600, transition: "color 0.25s" }}>{s.price}</div>
             </button>
           ))}
@@ -453,6 +457,9 @@ export default function Services() {
             </div>
             <div className="services-price-row" style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
               <div>
+                {svc.originalPriceDisplay && (
+                  <div style={{ fontSize: 12, color: "#8888a0", textDecoration: "line-through", marginBottom: 2 }}>{svc.originalPriceDisplay}</div>
+                )}
                 <div style={{ fontFamily: "Syne, sans-serif", fontSize: 22, fontWeight: 800, color: "#f4f4f8" }}>{svc.price}</div>
                 <div style={{ fontSize: 11, color: "#8888a0" }}>{t.services.monthNote}</div>
               </div>

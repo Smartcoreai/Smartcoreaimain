@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { Phone, Calendar, Rocket, TrendingUp, CheckCircle, ArrowDown } from "lucide-react";
+import { Phone, Calendar, Rocket, CheckCircle, ArrowDown } from "lucide-react";
 
 const STEPS = [
   {
@@ -38,18 +38,6 @@ const STEPS = [
     metric: "< 1 day",
     metricLabel: "onboarding time",
     details: ["CRM record created", "Welcome sequence triggered", "Intake form sent & tracked"],
-  },
-  {
-    step: "04",
-    icon: <TrendingUp size={22} />,
-    color: "#4ade80",
-    title: "Revenue Generated",
-    desc: "Invoices go out automatically, payments are tracked in the CRM, and your dashboard shows real revenue — in real time.",
-    outcome: "Revenue generated",
-    outcomeColor: "#4ade80",
-    metric: "340%",
-    metricLabel: "avg revenue lift",
-    details: ["Invoice auto-generated", "Payment tracked in CRM", "Revenue dashboard updated"],
   },
 ];
 
