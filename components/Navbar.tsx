@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import { useLanguage, type Lang } from "@/lib/i18n";
+import FoundingBanner from "@/components/FoundingBanner";
 
 export default function Navbar() {
   const { lang, setLang, t } = useLanguage();
@@ -31,13 +32,14 @@ export default function Navbar() {
         top: 0,
         left: 0,
         right: 0,
-        zIndex: 100,
+        zIndex: 200,
         transition: "all 0.4s ease",
         background: scrolled ? "rgba(8,8,12,0.85)" : "transparent",
         backdropFilter: scrolled ? "blur(20px)" : "none",
         borderBottom: scrolled ? "1px solid rgba(255,255,255,0.05)" : "1px solid transparent",
       }}
     >
+      <FoundingBanner />
       <div className="wrap" style={{ padding: "0 24px" }}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: 72 }}>
           {/* Logo */}

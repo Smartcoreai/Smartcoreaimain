@@ -3,9 +3,9 @@ import { Check, Star } from "lucide-react";
 import { useLanguage, formatPrice } from "@/lib/i18n";
 
 const PLAN_META = [
-  { name: "AI Chatbot",             price: 699,  originalPrice: 999,  color: "#a855f7", popular: false },
-  { name: "Leadgen System",         price: 1099, originalPrice: 1599, color: "#22d3ee", popular: false },
-  { name: "AI Voice Agent",         price: 1599, originalPrice: 2135, color: "#f472b6", popular: true  },
+  { name: "AI Chatbot",             price: 149,  originalPrice: 299,  color: "#a855f7", popular: false, founding: true  },
+  { name: "Leadgen System",         price: 249,  originalPrice: 499,  color: "#22d3ee", popular: false, founding: true  },
+  { name: "AI Voice Agent",         price: 399,  originalPrice: 799,  color: "#f472b6", popular: true,  founding: true  },
   { name: "Custom AI Integrations", price: 1500, originalPrice: 2199, color: "#facc15", popular: false, priceCustom: true },
 ];
 
@@ -72,10 +72,20 @@ export default function Pricing() {
               )}
 
               <div style={{ marginBottom: 20 }}>
-                <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
                   <div style={{ width: 8, height: 8, borderRadius: "50%", background: plan.color, boxShadow: `0 0 8px ${plan.color}` }} />
                   <span style={{ fontSize: 13, fontWeight: 600, color: plan.color }}>{plan.name}</span>
                 </div>
+                {plan.founding && (
+                  <div style={{
+                    display: "inline-flex", alignItems: "center",
+                    padding: "3px 10px", borderRadius: 999, marginBottom: 10,
+                    background: "rgba(251,146,60,0.12)", border: "1px solid rgba(251,146,60,0.3)",
+                    fontSize: 11, fontWeight: 700, color: "#fb923c",
+                  }}>
+                    {lang === "en" ? "🔥 Founding price — 5 spots only" : "🔥 Founding-pris — kun 5 plasser"}
+                  </div>
+                )}
                 {plan.priceCustom ? (
                   <div style={{ marginBottom: 8 }}>
                     <span style={{ fontFamily: "Syne, sans-serif", fontSize: 18, fontWeight: 700, color: plan.color }}>{t.pricing.priceCustom}</span>
@@ -85,12 +95,17 @@ export default function Pricing() {
                     <div style={{ fontSize: 12, color: "#8888a0", textDecoration: "line-through", marginBottom: 2 }}>
                       {formatPrice(plan.originalPrice, lang)}
                     </div>
-                    <div className="price-block" style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 8, flexWrap: "nowrap", overflow: "hidden" }}>
+                    <div className="price-block" style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 4, flexWrap: "nowrap", overflow: "hidden" }}>
                       <span className="price-main" style={{ fontFamily: "Syne, sans-serif", fontSize: 28, fontWeight: 800, color: "#f4f4f8", letterSpacing: "-0.03em", whiteSpace: "nowrap", minWidth: 0, flexShrink: 1 }}>
                         {formatPrice(plan.price, lang)}
                       </span>
                       <span style={{ fontSize: 13, color: "#8888a0", whiteSpace: "nowrap", flexShrink: 0 }}>/{t.pricing.period}</span>
                     </div>
+                    {plan.founding && (
+                      <div style={{ fontSize: 11, color: "#f59e0b", fontWeight: 600, marginBottom: 8 }}>
+                        {lang === "en" ? "Founding client price" : "Founding client-pris"}
+                      </div>
+                    )}
                   </>
                 )}
                 <p style={{ fontSize: 13, color: "#8888a0", lineHeight: 1.6, margin: 0 }}>{plan.desc}</p>
