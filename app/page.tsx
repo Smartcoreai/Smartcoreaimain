@@ -1,3 +1,4 @@
+// updated
 import Navbar from "@/components/Navbar";
 import FoundingBanner from "@/components/FoundingBanner";
 import Hero from "@/components/Hero";
