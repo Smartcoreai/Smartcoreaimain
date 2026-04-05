@@ -357,9 +357,9 @@ function CustomAIDemo() {
 
 /* ─── Static service data (icons, colors, prices, demos) ─── */
 const SERVICE_META = [
-  { id: "chatbot",        icon: <MessageCircle size={20} />, color: "#a855f7", usdPrice: 699,  originalPrice: 999,  priceCustom: false, demo: <ChatbotDemo /> },
-  { id: "leadgen",        icon: <Calendar size={20} />,      color: "#22d3ee", usdPrice: 1099, originalPrice: 1599, priceCustom: false, demo: <LeadgenDemo /> },
-  { id: "voice-agent",    icon: <Phone size={20} />,         color: "#f472b6", usdPrice: 1599, originalPrice: 2135, priceCustom: false, demo: <VoiceAgentDemo /> },
+  { id: "chatbot",        icon: <MessageCircle size={20} />, color: "#a855f7", usdPrice: 149,  originalPrice: 299,  priceCustom: false, demo: <ChatbotDemo /> },
+  { id: "leadgen",        icon: <Calendar size={20} />,      color: "#22d3ee", usdPrice: 249,  originalPrice: 499,  priceCustom: false, demo: <LeadgenDemo /> },
+  { id: "voice-agent",    icon: <Phone size={20} />,         color: "#f472b6", usdPrice: 399,  originalPrice: 799,  priceCustom: false, demo: <VoiceAgentDemo /> },
   { id: "ai-integration", icon: <Cpu size={20} />,           color: "#facc15", usdPrice: 1500, originalPrice: null, priceCustom: true,  demo: <CustomAIDemo /> },
 ];
 
