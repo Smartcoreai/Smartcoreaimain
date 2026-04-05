@@ -108,11 +108,6 @@ export default function Pricing() {
                       </span>
                       <span style={{ fontSize: 13, color: "#8888a0", whiteSpace: "nowrap", flexShrink: 0 }}>/{t.pricing.period}</span>
                     </div>
-                    {plan.founding && (
-                      <div style={{ fontSize: 11, color: "#f59e0b", fontWeight: 600, marginBottom: 8 }}>
-                        {lang === "en" ? "Founding client price" : "Founding client-pris"}
-                      </div>
-                    )}
                   </>
                 )}
                 <p style={{ fontSize: 13, color: "#8888a0", lineHeight: 1.6, margin: 0 }}>{plan.desc}</p>
