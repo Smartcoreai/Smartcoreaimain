@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
@@ -19,6 +19,24 @@ export default function Hero() {
   const { t } = useLanguage();
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
+  // ── Typewriter ──────────────────────────────────────────────────────────────
+  const fullText = t.hero.headline1 + " " + t.hero.headline2;
+  const splitAt = t.hero.headline1.length + 1; // after "headline1 "
+  const [typed, setTyped] = useState(0);
+
+  useEffect(() => {
+    setTyped(0); // reset when language changes
+  }, [fullText]);
+
+  useEffect(() => {
+    const delay = typed < fullText.length ? 80 : 3000;
+    const id = setTimeout(
+      () => setTyped((c) => (c < fullText.length ? c + 1 : 0)),
+      delay
+    );
+    return () => clearTimeout(id);
+  }, [typed, fullText.length]);
+
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -26,7 +44,7 @@ export default function Hero() {
     if (!ctx) return;
 
     let animId: number;
-    const particles: Array<{ x: number; y: number; vx: number; vy: number; size: number; opacity: number; color: string }> = [];
+    const particles: Array<{ x: number; y: number; vx: number; vy: number; size: number; opacity: number; maxOpacity: number; life: number; color: string }> = [];
 
     const resize = () => {
       canvas.width = canvas.offsetWidth;
@@ -36,46 +54,42 @@ export default function Hero() {
     window.addEventListener("resize", resize);
 
     const colors = ["rgba(168,85,247", "rgba(34,211,238", "rgba(124,58,237"];
+
+    const spawnParticle = () => ({
+      x: Math.random() * canvas.width,
+      y: canvas.height + Math.random() * 40,        // start below canvas
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: -(Math.random() * 0.5 + 0.2),             // drift upward
+      size: Math.random() * 2 + 0.5,
+      life: Math.random(),                           // stagger initial positions
+      maxOpacity: Math.random() * 0.5 + 0.15,
+      opacity: 0,
+      color: colors[Math.floor(Math.random() * colors.length)],
+    });
+
     for (let i = 0; i < 60; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: (Math.random() - 0.5) * 0.4,
-        size: Math.random() * 2 + 0.5,
-        opacity: Math.random() * 0.5 + 0.1,
-        color: colors[Math.floor(Math.random() * colors.length)],
-      });
+      const p = spawnParticle();
+      p.y = Math.random() * canvas.height;          // scatter on load
+      particles.push(p);
     }
 
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+
       particles.forEach((p) => {
+        p.life += 0.0018;
+        p.opacity = p.maxOpacity * Math.sin(Math.PI * Math.min(p.life, 1)); // fade in then out
         p.x += p.vx;
         p.y += p.vy;
-        if (p.x < 0) p.x = canvas.width;
-        if (p.x > canvas.width) p.x = 0;
-        if (p.y < 0) p.y = canvas.height;
-        if (p.y > canvas.height) p.y = 0;
+
+        if (p.life >= 1 || p.y < -10) {
+          Object.assign(p, spawnParticle());
+        }
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fillStyle = `${p.color},${p.opacity})`;
         ctx.fill();
-      });
-
-      particles.forEach((p, i) => {
-        particles.slice(i + 1).forEach((p2) => {
-          const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
-          if (dist < 120) {
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(168,85,247,${0.06 * (1 - dist / 120)})`;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
-          }
-        });
       });
 
       animId = requestAnimationFrame(draw);
@@ -163,7 +177,7 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Headline */}
+        {/* Headline — typewriter */}
         <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-[80px]" style={{
           fontFamily: "Syne, system-ui, sans-serif",
           fontWeight: 800,
@@ -176,15 +190,26 @@ export default function Hero() {
           overflowWrap: "break-word",
           wordBreak: "break-word",
         }}>
-          {t.hero.headline1}{" "}
+          {fullText.slice(0, Math.min(typed, splitAt))}
+          {typed > splitAt && (
+            <span style={{
+              background: "linear-gradient(135deg, #a855f7 0%, #22d3ee 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}>
+              {fullText.slice(splitAt, typed)}
+            </span>
+          )}
           <span style={{
-            background: "linear-gradient(135deg, #a855f7 0%, #22d3ee 100%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-          }}>
-            {t.hero.headline2}
-          </span>
+            display: "inline-block",
+            width: "3px",
+            height: "0.85em",
+            background: "#a855f7",
+            marginLeft: "3px",
+            verticalAlign: "middle",
+            animation: "blink 1s step-end infinite",
+          }} />
         </h1>
 
         {/* Subtext */}

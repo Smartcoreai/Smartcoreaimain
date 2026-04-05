@@ -42,8 +42,15 @@ export default function Pricing() {
           {PLANS.map((plan) => (
             <div key={plan.name} style={{
               position: "relative",
-              background: plan.popular ? `linear-gradient(145deg, rgba(168,85,247,0.10), rgba(34,211,238,0.04))` : "rgba(15,15,20,0.8)",
-              border: `1px solid ${plan.popular ? "rgba(168,85,247,0.4)" : "rgba(255,255,255,0.06)"}`,
+              background: plan.popular
+                ? `linear-gradient(145deg, rgba(168,85,247,0.12), rgba(34,211,238,0.05))`
+                : "rgba(10,10,16,0.55)",
+              backdropFilter: "blur(12px)",
+              WebkitBackdropFilter: "blur(12px)",
+              border: `1px solid ${plan.popular ? "rgba(168,85,247,0.45)" : "rgba(255,255,255,0.08)"}`,
+              boxShadow: plan.popular
+                ? "0 0 0 1px rgba(168,85,247,0.15) inset, 0 8px 40px rgba(168,85,247,0.08)"
+                : "0 0 0 1px rgba(255,255,255,0.03) inset",
               borderRadius: 22, padding: 28, transition: "all 0.4s ease",
               display: "flex", flexDirection: "column",
             }}

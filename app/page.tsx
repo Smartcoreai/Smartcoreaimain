@@ -10,6 +10,7 @@ import BookingSection from "@/components/BookingSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import ChatWidget from "@/components/ChatWidget";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export default function HomePage() {
   return (
@@ -18,12 +19,24 @@ export default function HomePage() {
       <Navbar />
       <main>
         <Hero />
-        <Ticker />
-        <Services />
-        <Pricing />
-        <Objections />
-        <BookingSection />
-        <ContactSection />
+        <ScrollReveal delay={0}>
+          <Ticker />
+        </ScrollReveal>
+        <ScrollReveal delay={0}>
+          <Services />
+        </ScrollReveal>
+        <ScrollReveal delay={0}>
+          <Pricing />
+        </ScrollReveal>
+        <ScrollReveal delay={0}>
+          <Objections />
+        </ScrollReveal>
+        <ScrollReveal delay={0}>
+          <BookingSection />
+        </ScrollReveal>
+        <ScrollReveal delay={0}>
+          <ContactSection />
+        </ScrollReveal>
       </main>
       <Footer />
       <ChatWidget />
