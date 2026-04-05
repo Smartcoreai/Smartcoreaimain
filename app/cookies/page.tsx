@@ -27,7 +27,7 @@ export default function CookiesPage() {
               { title: "Language preference", body: "We store your language selection (English or Norwegian) in your browser's localStorage so it persists across visits. This is not a cookie but serves a similar purpose." },
               { title: "Third-party cookies", body: "Calendly (our booking tool) and Stripe (our payment processor) may set their own cookies when you interact with their embedded services. Please refer to their respective privacy policies." },
               { title: "Managing cookies", body: "You can control and delete cookies through your browser settings. Disabling cookies may affect some functionality of the site." },
-              { title: "Contact", body: "Questions about our cookie use? Contact us at hei@smartcoreai.no." },
+              { title: "Contact", body: "Questions about our cookie use? Contact us at aleksander@smartcoreai.no or henrik@smartcoreai.no." },
             ].map(({ title, body }) => (
               <div key={title} style={{ borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: 32 }}>
                 <h2 style={{ fontFamily: "Syne, sans-serif", fontWeight: 700, fontSize: 20, color: "#f4f4f8", marginBottom: 12, letterSpacing: "-0.01em" }}>{title}</h2>

@@ -1,5 +1,6 @@
 // updated
 import Navbar from "@/components/Navbar";
+import FoundingBanner from "@/components/FoundingBanner";
 import Hero from "@/components/Hero";
 import Ticker from "@/components/Ticker";
 import Services from "@/components/Services";
@@ -14,6 +15,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 export default function HomePage() {
   return (
     <>
+      <FoundingBanner />
       <Navbar />
       <main>
         <Hero />

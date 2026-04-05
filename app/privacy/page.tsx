@@ -25,9 +25,9 @@ export default function PrivacyPage() {
               { title: "What we collect", body: "We collect information you provide directly to us, such as your name, email address, phone number, and business name when you fill out our contact form. We also collect usage data and analytics to improve our services." },
               { title: "How we use your data", body: "We use the information we collect to respond to your inquiries, provide our services, send relevant communications, and improve our platform. We do not sell your personal data to third parties." },
               { title: "Data storage", body: "Your data is stored securely on our servers and in our CRM system (GoHighLevel). We retain your data for as long as necessary to provide our services and comply with legal obligations." },
-              { title: "Your rights", body: "You have the right to access, correct, or delete your personal data at any time. To exercise these rights, contact us at hei@smartcoreai.no." },
+              { title: "Your rights", body: "You have the right to access, correct, or delete your personal data at any time. To exercise these rights, contact us at aleksander@smartcoreai.no or henrik@smartcoreai.no." },
               { title: "Cookies", body: "We use cookies to improve your experience on our website. You can control cookie settings through your browser. See our Cookie Policy for more details." },
-              { title: "Contact", body: "If you have questions about this privacy policy, please contact us at hei@smartcoreai.no." },
+              { title: "Contact", body: "If you have questions about this privacy policy, please contact us at aleksander@smartcoreai.no or henrik@smartcoreai.no." },
             ].map(({ title, body }) => (
               <div key={title} style={{ borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: 32 }}>
                 <h2 style={{ fontFamily: "Syne, sans-serif", fontWeight: 700, fontSize: 20, color: "#f4f4f8", marginBottom: 12, letterSpacing: "-0.01em" }}>{title}</h2>

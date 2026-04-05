@@ -27,7 +27,7 @@ export default function TermsPage() {
               { title: "Payment", body: "Services are billed monthly. All prices are in EUR. You may cancel at any time. Refunds are available within 14 days of purchase if you are not satisfied." },
               { title: "Intellectual property", body: "All AI systems, code, and deliverables built by SmartcoreAI for your business are yours upon full payment. We retain the right to use anonymized case studies for marketing purposes unless agreed otherwise." },
               { title: "Limitation of liability", body: "SmartcoreAI is not liable for indirect, incidental, or consequential damages arising from use of our services. Our total liability is limited to the amount paid in the preceding 3 months." },
-              { title: "Contact", body: "Questions about these terms? Contact us at hei@smartcoreai.no." },
+              { title: "Contact", body: "Questions about these terms? Contact us at aleksander@smartcoreai.no or henrik@smartcoreai.no." },
             ].map(({ title, body }) => (
               <div key={title} style={{ borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: 32 }}>
                 <h2 style={{ fontFamily: "Syne, sans-serif", fontWeight: 700, fontSize: 20, color: "#f4f4f8", marginBottom: 12, letterSpacing: "-0.01em" }}>{title}</h2>

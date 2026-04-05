@@ -81,9 +81,13 @@ export default function ContactSection() {
 
             <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: 24 }}>
               <div style={{ fontSize: 12, fontWeight: 600, color: "#8888a0", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 14 }}>{t.contact.directTitle}</div>
-              <a href="mailto:hei@smartcoreai.no" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none", marginBottom: 10 }}>
+              <a href="mailto:aleksander@smartcoreai.no" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none", marginBottom: 10 }}>
                 <Mail size={16} color="#a855f7" />
-                <span style={{ fontSize: 14, color: "#f4f4f8" }}>hei@smartcoreai.no</span>
+                <span style={{ fontSize: 14, color: "#f4f4f8" }}>aleksander@smartcoreai.no</span>
+              </a>
+              <a href="mailto:henrik@smartcoreai.no" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none", marginBottom: 10 }}>
+                <Mail size={16} color="#a855f7" />
+                <span style={{ fontSize: 14, color: "#f4f4f8" }}>henrik@smartcoreai.no</span>
               </a>
               <a href="#booking" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
                 <MessageSquare size={16} color="#22d3ee" />
