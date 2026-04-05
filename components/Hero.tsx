@@ -1,13 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import dynamic from "next/dynamic";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
-
-const SplineHero = dynamic(() => import("@/components/SplineHero"), {
-  ssr: false,
-  loading: () => <div style={{ width: "100%", height: "100%", background: "transparent" }} />,
-});
 
 const BADGE_POSITIONS = [
   { x: "8%",  y: "35%", delay: "0s" },
@@ -114,11 +108,6 @@ export default function Hero() {
 
       {/* Grid background */}
       <div className="bg-grid" style={{ position: "absolute", inset: 0, zIndex: 0 }} />
-
-      {/* Spline 3D background */}
-      <div style={{ position: "absolute", inset: 0, zIndex: 2, pointerEvents: "none", overflow: "hidden" }}>
-        <SplineHero />
-      </div>
 
       {/* Glow orbs */}
       <div style={{
