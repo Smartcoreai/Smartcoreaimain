@@ -5,10 +5,10 @@ import Footer from "@/components/Footer";
 import { useLanguage, formatPrice } from "@/lib/i18n";
 
 const PLAN_META = [
-  { name: "AI Chatbot",             price: 149,  originalPrice: 299,  color: "#a855f7", popular: false, priceCustom: false, href: "https://buy.stripe.com/5kQ3cwf7qcIlaED37c6c000" },
-  { name: "Leadgen System",         price: 249,  originalPrice: 499,  color: "#22d3ee", popular: true,  priceCustom: false, href: "https://buy.stripe.com/5kQ3cwgbu4bP5kjfTY6c001" },
-  { name: "AI Voice Agent",         price: 399,  originalPrice: 799,  color: "#f472b6", popular: false, priceCustom: false, href: "https://buy.stripe.com/14A8wQbVefUxbIHazE6c004" },
-  { name: "Custom AI Integrations", price: null, originalPrice: null, color: "#facc15", popular: false, priceCustom: true,  href: "https://calendly.com/smartcoreaimeeting/strategiokt" },
+  { name: "AI Chatbot",             price: 299,  originalPrice: 599,  color: "#a855f7", popular: false, priceCustom: false, href: "/#booking" },
+  { name: "Leadgen System",         price: 499,  originalPrice: 999,  color: "#22d3ee", popular: true,  priceCustom: false, href: "/#booking" },
+  { name: "AI Voice Agent",         price: 799,  originalPrice: 1599, color: "#f472b6", popular: false, priceCustom: false, href: "/#booking" },
+  { name: "Custom AI Integrations", price: null, originalPrice: null, color: "#facc15", popular: false, priceCustom: true,  href: "/#booking" },
 ];
 
 export default function PricingPage() {

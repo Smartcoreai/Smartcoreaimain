@@ -357,9 +357,9 @@ function CustomAIDemo() {
 
 /* ─── Static service data (icons, colors, prices, demos) ─── */
 const SERVICE_META = [
-  { id: "chatbot",        icon: <MessageCircle size={20} />, color: "#a855f7", usdPrice: 149,  originalPrice: 299,  priceCustom: false, demo: <ChatbotDemo /> },
-  { id: "leadgen",        icon: <Calendar size={20} />,      color: "#22d3ee", usdPrice: 249,  originalPrice: 499,  priceCustom: false, demo: <LeadgenDemo /> },
-  { id: "voice-agent",    icon: <Phone size={20} />,         color: "#f472b6", usdPrice: 399,  originalPrice: 799,  priceCustom: false, demo: <VoiceAgentDemo /> },
+  { id: "chatbot",        icon: <MessageCircle size={20} />, color: "#a855f7", usdPrice: 299,  originalPrice: 599,  priceCustom: false, demo: <ChatbotDemo /> },
+  { id: "leadgen",        icon: <Calendar size={20} />,      color: "#22d3ee", usdPrice: 499,  originalPrice: 999,  priceCustom: false, demo: <LeadgenDemo /> },
+  { id: "voice-agent",    icon: <Phone size={20} />,         color: "#f472b6", usdPrice: 799,  originalPrice: 1599, priceCustom: false, demo: <VoiceAgentDemo /> },
   { id: "ai-integration", icon: <Cpu size={20} />,           color: "#facc15", usdPrice: 1500, originalPrice: null, priceCustom: true,  demo: <CustomAIDemo /> },
 ];
 
@@ -463,7 +463,7 @@ export default function Services() {
                 <div style={{ fontFamily: "Syne, sans-serif", fontSize: 22, fontWeight: 800, color: "#f4f4f8" }}>{svc.price}</div>
                 <div style={{ fontSize: 11, color: "#8888a0" }}>{t.services.monthNote}</div>
               </div>
-              <a href={svc.priceCustom ? "/#booking" : "/pricing"} className="btn-primary services-cta" style={{ marginLeft: "auto" }}>
+              <a href="/#booking" className="btn-primary services-cta" style={{ marginLeft: "auto" }}>
                 {t.services.getStarted} <ChevronRight size={16} />
               </a>
             </div>
