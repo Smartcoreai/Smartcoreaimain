@@ -1,12 +1,6 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import dynamic from "next/dynamic";
 import { MessageCircle, Calendar, Phone, Cpu, Send, ChevronRight, Check, Bot } from "lucide-react";
-
-const SplineBoxes = dynamic(() => import("@/components/SplineBoxes"), {
-  ssr: false,
-  loading: () => <div style={{ width: "100%", height: "100%", background: "transparent" }} />,
-});
 import { useLanguage, formatPrice, formatPriceWithPeriod } from "@/lib/i18n";
 
 /* ─── Chatbot Demo ─── */
@@ -378,10 +372,6 @@ export default function Services() {
 
   return (
     <section id="services" style={{ background: "#0b0b18", padding: "100px 24px", position: "relative" }}>
-      {/* Spline 3D background */}
-      <div style={{ position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none", overflow: "hidden", opacity: 0.4 }}>
-        <SplineBoxes />
-      </div>
       <div className="wrap" style={{ position: "relative", zIndex: 1 }}>
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: 56 }}>
