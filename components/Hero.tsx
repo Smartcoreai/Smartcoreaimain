@@ -178,27 +178,48 @@ export default function Hero() {
           animation: "slideUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.1s both",
           overflowWrap: "break-word",
           wordBreak: "break-word",
+          position: "relative",
         }}>
-          {fullText.slice(0, Math.min(typed, splitAt))}
-          {typed > splitAt && (
+          {/* Invisible full text reserves two-line height from the start */}
+          <span aria-hidden="true" style={{
+            visibility: "hidden",
+            display: "block",
+            pointerEvents: "none",
+            userSelect: "none",
+          }}>
+            {fullText.slice(0, splitAt)}
             <span style={{
               background: "linear-gradient(135deg, #a855f7 0%, #22d3ee 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
             }}>
-              {fullText.slice(splitAt, typed)}
+              {fullText.slice(splitAt)}
             </span>
-          )}
-          <span style={{
-            display: "inline-block",
-            width: "3px",
-            height: "0.85em",
-            background: "#a855f7",
-            marginLeft: "3px",
-            verticalAlign: "middle",
-            animation: "blink 1s step-end infinite",
-          }} />
+          </span>
+          {/* Typed text overlaid absolutely so it doesn't affect layout */}
+          <span style={{ position: "absolute", top: 0, left: 0, right: 0, display: "block", textAlign: "center" }}>
+            {fullText.slice(0, Math.min(typed, splitAt))}
+            {typed > splitAt && (
+              <span style={{
+                background: "linear-gradient(135deg, #a855f7 0%, #22d3ee 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}>
+                {fullText.slice(splitAt, typed)}
+              </span>
+            )}
+            <span style={{
+              display: "inline-block",
+              width: "3px",
+              height: "0.85em",
+              background: "#a855f7",
+              marginLeft: "3px",
+              verticalAlign: "middle",
+              animation: "blink 1s step-end infinite",
+            }} />
+          </span>
         </h1>
 
         {/* Subtext */}
