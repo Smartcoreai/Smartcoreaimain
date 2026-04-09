@@ -3,27 +3,17 @@ import { useState } from "react";
 import { Calculator, CheckCircle2, Loader2 } from "lucide-react";
 
 const SERVICES_LIST = [
-  { id: "chatbot", label: "AI Chatbot", base: 299 },
-  { id: "automation", label: "Workflow Automation", base: 499 },
-  { id: "analytics", label: "Smart Analytics", base: 399 },
-  { id: "custom", label: "Custom Integration", base: 1500 },
+  { id: "chatbot", label: "AI Chatbot", base: 299, desc: "24/7 lead capture & booking" },
+  { id: "leadgen", label: "Leadgen System", base: 499, desc: "Automated lead follow-up" },
+  { id: "voice", label: "AI Voice Agent", base: 799, desc: "AI phone calls & outbound" },
+  { id: "custom", label: "Custom AI Integration", base: 0, desc: "Price discussed on a call" },
 ];
 
-const EMPLOYEE_MULTIPLIERS: Record<string, number> = {
-  "1-5": 1,
-  "6-20": 1.2,
-  "21-50": 1.5,
-  "51-100": 1.8,
-  "100+": 2.2,
-};
-
-function calcQuote(services: string[], employees: string): number {
-  const mult = EMPLOYEE_MULTIPLIERS[employees] ?? 1;
-  const base = services.reduce((sum, id) => {
+function calcQuote(services: string[]): number {
+  return services.reduce((sum, id) => {
     const s = SERVICES_LIST.find((s) => s.id === id);
     return sum + (s?.base ?? 0);
   }, 0);
-  return Math.round(base * mult);
 }
 
 type Step = "services" | "details" | "done";
@@ -31,12 +21,11 @@ type Step = "services" | "details" | "done";
 export default function QuoteCalculator() {
   const [step, setStep] = useState<Step>("services");
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
-  const [employees, setEmployees] = useState("1-5");
   const [form, setForm] = useState({ name: "", email: "", phone: "", company: "" });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const quote = calcQuote(selectedServices, employees);
+  const quote = calcQuote(selectedServices);
 
   function toggleService(id: string) {
     setSelectedServices((prev) =>
@@ -56,8 +45,7 @@ export default function QuoteCalculator() {
         body: JSON.stringify({
           ...form,
           services: selectedServices.join(", "),
-          employees,
-          budget: `$${quote}/mo`,
+          budget: `€${quote}/mo`,
           quote,
           source: "quote-calculator",
         }),
@@ -111,32 +99,20 @@ export default function QuoteCalculator() {
                       onClick={() => toggleService(s.id)}
                       className={`w-full flex items-center justify-between p-4 rounded-xl border-2 transition-all text-left ${selectedServices.includes(s.id) ? "border-brand-600 bg-brand-50" : "border-gray-100 hover:border-gray-300"}`}
                     >
-                      <span className="font-medium">{s.label}</span>
-                      <span className="text-sm text-gray-500">from ${s.base}/mo</span>
+                      <div>
+                        <span className="font-medium block">{s.label}</span>
+                        <span className="text-xs text-gray-400">{s.desc}</span>
+                      </div>
+                      <span className="text-sm text-gray-500 shrink-0 ml-4">{s.base > 0 ? `€${s.base}/mo` : "On request"}</span>
                     </button>
                   ))}
-                </div>
-
-                <div className="mb-6">
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">Number of employees</label>
-                  <div className="flex flex-wrap gap-2">
-                    {Object.keys(EMPLOYEE_MULTIPLIERS).map((e) => (
-                      <button
-                        key={e}
-                        onClick={() => setEmployees(e)}
-                        className={`px-4 py-2 rounded-xl text-sm font-medium border-2 transition-all ${employees === e ? "border-brand-600 bg-brand-50 text-brand-700" : "border-gray-100 hover:border-gray-300"}`}
-                      >
-                        {e}
-                      </button>
-                    ))}
-                  </div>
                 </div>
 
                 {selectedServices.length > 0 && (
                   <div className="bg-brand-50 rounded-xl p-4 mb-6 flex items-center justify-between">
                     <div>
                       <div className="text-sm text-gray-600">Estimated monthly investment</div>
-                      <div className="text-3xl font-bold text-brand-700">${quote.toLocaleString()}<span className="text-base font-normal">/mo</span></div>
+                      <div className="text-3xl font-bold text-brand-700">€{quote.toLocaleString()}<span className="text-base font-normal">/mo</span></div>
                     </div>
                     <Calculator className="w-8 h-8 text-brand-400" />
                   </div>
@@ -161,7 +137,7 @@ export default function QuoteCalculator() {
                 <div className="bg-brand-50 rounded-xl p-4 mb-6 flex items-center justify-between">
                   <div>
                     <div className="text-sm text-gray-600">Your estimate</div>
-                    <div className="text-2xl font-bold text-brand-700">${quote.toLocaleString()}<span className="text-sm font-normal">/mo</span></div>
+                    <div className="text-2xl font-bold text-brand-700">€{quote.toLocaleString()}<span className="text-sm font-normal">/mo</span></div>
                   </div>
                   <button type="button" onClick={() => setStep("services")} className="text-xs text-brand-600 underline">Edit</button>
                 </div>
@@ -228,7 +204,7 @@ export default function QuoteCalculator() {
                 </p>
                 <div className="bg-brand-50 rounded-xl p-4">
                   <div className="text-sm text-gray-600 mb-1">Your estimate</div>
-                  <div className="text-3xl font-bold text-brand-700">${quote.toLocaleString()}<span className="text-base font-normal">/mo</span></div>
+                  <div className="text-3xl font-bold text-brand-700">€{quote.toLocaleString()}<span className="text-base font-normal">/mo</span></div>
                 </div>
               </div>
             )}
