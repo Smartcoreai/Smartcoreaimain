@@ -21,7 +21,7 @@ export default function PricingPage() {
   }));
 
   return (
-    <div style={{ background: "#080808", minHeight: "100vh", color: "#F5F0E8" }}>
+    <div style={{ background: "#1A1A1A", minHeight: "100vh", color: "#F5F0E8" }}>
       <Navbar />
 
       <main style={{ paddingTop: 120, paddingBottom: 100, paddingLeft: 24, paddingRight: 24 }}>
@@ -74,7 +74,7 @@ export default function PricingPage() {
                     position: "absolute", top: -12, left: "50%", transform: "translateX(-50%)",
                     padding: "4px 16px", borderRadius: 999,
                     background: "linear-gradient(135deg,#D4AF37,#B8960C)",
-                    fontSize: 11, fontWeight: 700, color: "#080808",
+                    fontSize: 11, fontWeight: 700, color: "#1A1A1A",
                     display: "flex", alignItems: "center", gap: 5, whiteSpace: "nowrap",
                     boxShadow: "0 4px 20px rgba(168,85,247,0.4)",
                   }}>
@@ -130,7 +130,7 @@ export default function PricingPage() {
                     textDecoration: "none", transition: "all 0.3s ease", marginTop: "auto",
                     ...(plan.popular ? {
                       background: "linear-gradient(135deg,#D4AF37,#B8960C)",
-                      color: "#080808",
+                      color: "#1A1A1A",
                       boxShadow: "0 4px 20px rgba(212,175,55,0.25)",
                     } : {
                       background: `${plan.color}10`,

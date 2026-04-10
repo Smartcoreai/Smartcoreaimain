@@ -30,7 +30,7 @@ export default function ObjectionsPage() {
   return (
     <>
       <Navbar />
-      <main style={{ background: "#080808", minHeight: "100vh" }}>
+      <main style={{ background: "#1A1A1A", minHeight: "100vh" }}>
         {/* Hero */}
         <section style={{ padding: "140px 24px 80px", textAlign: "center", position: "relative" }}>
           <div style={{

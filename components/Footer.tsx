@@ -6,7 +6,7 @@ export default function Footer() {
   const { t } = useLanguage();
 
   return (
-    <footer style={{ background: "#080808", borderTop: "1px solid rgba(212,175,55,0.08)", padding: "64px 24px 32px" }}>
+    <footer style={{ background: "#1A1A1A", borderTop: "1px solid rgba(212,175,55,0.08)", padding: "64px 24px 32px" }}>
       <div className="wrap">
         {/* Top row */}
         <div style={{ display: "grid", gridTemplateColumns: "2fr repeat(4, 1fr)", gap: 40, marginBottom: 56 }} className="footer-grid">
@@ -72,7 +72,7 @@ export default function Footer() {
           <a href="#booking" style={{
             display: "inline-flex", alignItems: "center", gap: 8,
             padding: "12px 24px", borderRadius: 12, fontWeight: 600, fontSize: 14,
-            background: "linear-gradient(135deg,#D4AF37,#B8960C)", color: "#080808", textDecoration: "none",
+            background: "linear-gradient(135deg,#D4AF37,#B8960C)", color: "#1A1A1A", textDecoration: "none",
             boxShadow: "0 4px 20px rgba(212,175,55,0.25)", transition: "all 0.3s ease",
           }}
           onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)"; (e.currentTarget as HTMLElement).style.boxShadow = "0 8px 32px rgba(212,175,55,0.4)"; }}

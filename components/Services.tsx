@@ -89,7 +89,7 @@ function ChatbotDemo() {
   }, [messages, typing]);
 
   return (
-    <div style={{ background: "#080808", border: "1px solid rgba(212,175,55,0.12)", borderRadius: 16, overflow: "hidden", height: 340, display: "flex", flexDirection: "column" }}>
+    <div style={{ background: "#1A1A1A", border: "1px solid rgba(212,175,55,0.12)", borderRadius: 16, overflow: "hidden", height: 340, display: "flex", flexDirection: "column" }}>
       <div style={{ padding: "12px 16px", display: "flex", alignItems: "center", gap: 10, background: "linear-gradient(135deg, #1a1408, #2a1f08)" }}>
         <div style={{ width: 32, height: 32, borderRadius: "50%", background: "rgba(255,255,255,0.2)", display: "flex", alignItems: "center", justifyContent: "center" }}>
           <Bot size={16} color="white" />
@@ -133,7 +133,7 @@ function ChatbotDemo() {
         <input value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => e.key === "Enter" && handleSend()} placeholder={ui.placeholder}
           style={{ flex: 1, background: "rgba(212,175,55,0.03)", border: "1px solid rgba(212,175,55,0.10)", borderRadius: 10, padding: "8px 12px", fontSize: 12, color: "#F5F0E8", outline: "none", fontFamily: "inherit" }} />
         <button onClick={handleSend} style={{ padding: "8px 12px", background: "linear-gradient(135deg,#B8960C,#D4AF37)", border: "none", borderRadius: 10, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>
-          <Send size={14} color="#080808" />
+          <Send size={14} color="#1A1A1A" />
         </button>
       </div>
     </div>
@@ -186,7 +186,7 @@ function LeadgenDemo() {
                 : <div style={{ width: 7, height: 7, borderRadius: "50%", background: "rgba(255,255,255,0.1)", flexShrink: 0 }} />}
             </div>
             {i < LEADGEN_STEPS.length - 1 && (
-              <div style={{ width: 1, height: 10, background: activeStep > i ? "rgba(74,222,128,0.5)" : "rgba(168,85,247,0.3)", marginLeft: 22, transition: "background 0.5s" }} />
+              <div style={{ width: 1, height: 10, background: activeStep > i ? "rgba(74,222,128,0.5)" : "rgba(212,175,55,0.3)", marginLeft: 22, transition: "background 0.5s" }} />
             )}
           </div>
         ))}
@@ -223,7 +223,7 @@ function VoiceAgentDemo() {
   const done = visibleLines >= TRANSCRIPT.length;
 
   return (
-    <div style={{ background: "#080808", border: "1px solid rgba(212,175,55,0.12)", borderRadius: 16, height: 340, overflow: "hidden", display: "flex", flexDirection: "column" }}>
+    <div style={{ background: "#1A1A1A", border: "1px solid rgba(212,175,55,0.12)", borderRadius: 16, height: 340, overflow: "hidden", display: "flex", flexDirection: "column" }}>
       <div style={{ padding: "12px 16px", borderBottom: "1px solid rgba(212,175,55,0.08)", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <div>
           <div style={{ fontSize: 12, fontWeight: 700, color: "#F5F0E8" }}>{ui.incoming}</div>
@@ -283,7 +283,7 @@ function CustomAIDemo() {
 
   return (
     <div className="custom-ai-demo" style={{
-      background: "radial-gradient(ellipse at 50% 0%, rgba(212,175,55,0.06) 0%, #080808 65%)",
+      background: "radial-gradient(ellipse at 50% 0%, rgba(212,175,55,0.06) 0%, #1A1A1A 65%)",
       border: "1px solid rgba(212,175,55,0.15)", borderRadius: 16, overflow: "hidden",
       display: "flex", flexDirection: "column", position: "relative",
     }}>
@@ -313,9 +313,9 @@ function CustomAIDemo() {
             <div className="custom-ai-node" style={{
               display: "flex", alignItems: "center", gap: 10,
               padding: node.hero ? "9px 12px" : "6px 12px", borderRadius: 10,
-              background: dotStep === i ? `${node.color}14` : node.hero ? "rgba(34,211,238,0.05)" : "rgba(255,255,255,0.02)",
-              border: `1px solid ${dotStep === i ? node.color + "55" : node.hero ? "rgba(34,211,238,0.18)" : "rgba(255,255,255,0.05)"}`,
-              boxShadow: node.hero ? (dotStep === i ? `0 0 22px rgba(34,211,238,0.25)` : `0 0 10px rgba(34,211,238,0.1)`) : "none",
+              background: dotStep === i ? `${node.color}14` : node.hero ? "rgba(30,58,95,0.12)" : "rgba(255,255,255,0.02)",
+              border: `1px solid ${dotStep === i ? node.color + "55" : node.hero ? "rgba(30,58,95,0.4)" : "rgba(255,255,255,0.05)"}`,
+              boxShadow: node.hero ? (dotStep === i ? `0 0 22px rgba(30,58,95,0.4)` : `0 0 10px rgba(30,58,95,0.2)`) : "none",
               transition: "all 0.4s ease", position: "relative", overflow: "hidden",
             }}>
               {dotStep === i && (
@@ -377,11 +377,7 @@ export default function Services() {
   const svc = SERVICES[active];
 
   return (
-    <section id="services" style={{ background: "#080808", padding: "100px 24px", position: "relative" }}>
-      {/* Spline 3D background */}
-      <div style={{ position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none", overflow: "hidden", opacity: 0.4 }}>
-        <SplineBoxes />
-      </div>
+    <section id="services" style={{ background: "#1A1A1A", padding: "100px 24px", position: "relative" }}>
       <div className="wrap" style={{ position: "relative", zIndex: 1 }}>
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: 56 }}>

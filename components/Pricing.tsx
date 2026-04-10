@@ -18,7 +18,7 @@ export default function Pricing() {
   }));
 
   return (
-    <section id="pricing" style={{ background: "#080808", padding: "100px 24px" }}>
+    <section id="pricing" style={{ background: "#1A1A1A", padding: "100px 24px" }}>
       <div className="wrap">
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: 60 }}>
@@ -70,7 +70,7 @@ export default function Pricing() {
                   position: "absolute", top: -12, left: "50%", transform: "translateX(-50%)",
                   padding: "4px 16px", borderRadius: 999,
                   background: "linear-gradient(135deg,#D4AF37,#B8960C)",
-                  fontSize: 11, fontWeight: 700, color: "#080808",
+                  fontSize: 11, fontWeight: 700, color: "#1A1A1A",
                   display: "flex", alignItems: "center", gap: 5, whiteSpace: "nowrap",
                   boxShadow: "0 4px 20px rgba(212,175,55,0.35)",
                 }}>
@@ -122,7 +122,7 @@ export default function Pricing() {
                 textDecoration: "none", transition: "all 0.3s ease", marginTop: "auto",
                 ...(plan.popular ? {
                   background: "linear-gradient(135deg,#D4AF37,#B8960C)",
-                  color: "#080808",
+                  color: "#1A1A1A",
                   boxShadow: "0 4px 20px rgba(212,175,55,0.25)",
                 } : {
                   background: `${plan.color}10`,

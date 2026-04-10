@@ -18,7 +18,7 @@ export default function Ticker() {
       {/* Fade edges */}
       <div style={{
         position: "absolute", inset: 0, zIndex: 2, pointerEvents: "none",
-        background: "linear-gradient(90deg, #080808 0%, transparent 8%, transparent 92%, #080808 100%)",
+        background: "linear-gradient(90deg, #1A1A1A 0%, transparent 8%, transparent 92%, #1A1A1A 100%)",
       }} />
       <style>{`
         @keyframes ticker {

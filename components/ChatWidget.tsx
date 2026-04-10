@@ -80,11 +80,11 @@ export default function ChatWidget() {
           pointerEvents: open ? "none" : "auto",
         }}
       >
-        <MessageCircle size={24} color="#080808" />
+        <MessageCircle size={24} color="#1A1A1A" />
         <div style={{
           position: "absolute", top: -1, right: -1,
           width: 14, height: 14, background: "#4ade80", borderRadius: "50%",
-          border: "2px solid #080808", boxShadow: "0 0 8px #4ade80",
+          border: "2px solid #1A1A1A", boxShadow: "0 0 8px #4ade80",
         }} />
         {pulseCount > 0 && (
           <div style={{
@@ -147,7 +147,7 @@ export default function ChatWidget() {
                 borderRadius: m.role === "user" ? "18px 18px 4px 18px" : "18px 18px 18px 4px",
                 background: m.role === "user" ? "linear-gradient(135deg,#B8960C,#D4AF37)" : "rgba(10,15,30,0.9)",
                 border: m.role === "assistant" ? "1px solid rgba(212,175,55,0.12)" : "none",
-                fontSize: 13, color: m.role === "user" ? "#080808" : "#F5F0E8", maxWidth: "78%", lineHeight: 1.6,
+                fontSize: 13, color: m.role === "user" ? "#1A1A1A" : "#F5F0E8", maxWidth: "78%", lineHeight: 1.6,
                 whiteSpace: "pre-wrap", wordBreak: "break-word", overflowWrap: "break-word",
               }}>{m.content}</div>
             </div>
@@ -204,7 +204,7 @@ export default function ChatWidget() {
                 display: "flex", alignItems: "center", justifyContent: "center",
                 transition: "all 0.2s", flexShrink: 0,
               }}>
-              <Send size={14} color={input.trim() ? "#080808" : "#5A5248"} />
+              <Send size={14} color={input.trim() ? "#1A1A1A" : "#5A5248"} />
             </button>
           </div>
           <div style={{ textAlign: "center", marginTop: 8, fontSize: 10, color: "#5A5248" }}>

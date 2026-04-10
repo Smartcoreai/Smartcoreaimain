@@ -8,7 +8,7 @@ export default function Objections() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section id="objections" style={{ background: "#080808", padding: "100px 24px" }}>
+    <section id="objections" style={{ background: "#1A1A1A", padding: "100px 24px" }}>
       <div className="wrap">
         <div style={{ textAlign: "center", marginBottom: 56 }}>
           <div className="tag" style={{ display: "inline-flex", marginBottom: 16 }}>{t.objections.tag}</div>

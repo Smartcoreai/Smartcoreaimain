@@ -50,7 +50,7 @@ export default function Pipeline() {
   }, []);
 
   return (
-    <section id="pipeline" style={{ background: "#080808", padding: "100px 24px", position: "relative", overflow: "hidden" }}>
+    <section id="pipeline" style={{ background: "#1A1A1A", padding: "100px 24px", position: "relative", overflow: "hidden" }}>
       {/* Background glow */}
       <div style={{
         position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)",

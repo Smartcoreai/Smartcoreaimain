@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 
 export default function PrivacyPage() {
   return (
-    <div style={{ background: "#080808", minHeight: "100vh", color: "#F5F0E8" }}>
+    <div style={{ background: "#1A1A1A", minHeight: "100vh", color: "#F5F0E8" }}>
       <Navbar />
       <main style={{ paddingTop: 140, paddingBottom: 120, paddingLeft: 24, paddingRight: 24 }}>
         <div style={{ maxWidth: 720, margin: "0 auto" }}>

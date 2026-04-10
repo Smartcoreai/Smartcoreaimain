@@ -102,7 +102,7 @@ export default function Hero() {
       alignItems: "center",
       justifyContent: "center",
       overflow: "hidden",
-      background: "radial-gradient(ellipse at 50% 0%, rgba(212,175,55,0.06) 0%, transparent 60%), #080808",
+      background: "radial-gradient(ellipse at 50% 0%, rgba(212,175,55,0.06) 0%, transparent 60%), #1A1A1A",
     }}>
       {/* Canvas particles */}
       <canvas ref={canvasRef} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", zIndex: 1 }} />
@@ -186,6 +186,7 @@ export default function Hero() {
           animation: "slideUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.1s both",
           overflowWrap: "break-word",
           wordBreak: "break-word",
+          minHeight: "2.2em",
         }}>
           {fullText.slice(0, Math.min(typed, splitAt))}
           {typed > splitAt && (

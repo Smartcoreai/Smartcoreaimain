@@ -9,7 +9,7 @@ export default function TakkPage() {
   const ty = t.thankYou;
 
   return (
-    <div style={{ background: "#080808", minHeight: "100vh", color: "#F5F0E8" }}>
+    <div style={{ background: "#1A1A1A", minHeight: "100vh", color: "#F5F0E8" }}>
       <Navbar />
 
       <main style={{ paddingTop: 160, paddingBottom: 120, paddingLeft: 24, paddingRight: 24, display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -41,7 +41,7 @@ export default function TakkPage() {
             display: "inline-block", padding: "13px 32px",
             borderRadius: 12, fontWeight: 600, fontSize: 15,
             background: "linear-gradient(135deg,#D4AF37,#B8960C)",
-            color: "#080808", textDecoration: "none",
+            color: "#1A1A1A", textDecoration: "none",
             boxShadow: "0 4px 20px rgba(212,175,55,0.25)",
             transition: "all 0.3s ease",
           }}
