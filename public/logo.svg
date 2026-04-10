@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" fill="none">
+  <defs>
+    <linearGradient id="goldA" x1="130" y1="38" x2="70" y2="162" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#F5D87E"/>
+      <stop offset="100%" stop-color="#B8960C"/>
+    </linearGradient>
+    <linearGradient id="goldB" x1="150" y1="48" x2="60" y2="172" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#F5D87E"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background: rounded dark square -->
+  <rect width="200" height="200" rx="44" fill="#1A1A1A"/>
+
+  <!-- Back S shape (slightly offset, lower opacity) -->
+  <path
+    d="M 118,48 C 68,48 38,72 88,100 C 138,128 108,162 58,162"
+    stroke="url(#goldB)"
+    stroke-width="22"
+    stroke-linecap="round"
+    opacity="0.45"
+  />
+
+  <!-- Front S shape -->
+  <path
+    d="M 142,38 C 92,38 62,62 112,90 C 162,118 132,152 82,152"
+    stroke="url(#goldA)"
+    stroke-width="22"
+    stroke-linecap="round"
+  />
+</svg>
