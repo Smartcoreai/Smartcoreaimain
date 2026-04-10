@@ -117,7 +117,6 @@ export default function Pricing() {
                   <div style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 36, fontWeight: 700, color: plan.color, lineHeight: 1 }}>
                     {t.pricing.priceCustom}
                   </div>
-                  <div style={{ fontSize: 12, color: "#5A5248", marginTop: 6 }}>{t.pricing.monthNote}</div>
                 </div>
               ) : (
                 <div style={{ marginBottom: 28 }}>
