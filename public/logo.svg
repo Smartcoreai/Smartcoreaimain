@@ -1,32 +1,49 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" fill="none">
   <defs>
-    <linearGradient id="goldA" x1="130" y1="38" x2="70" y2="162" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#F5D87E"/>
-      <stop offset="100%" stop-color="#B8960C"/>
-    </linearGradient>
-    <linearGradient id="goldB" x1="150" y1="48" x2="60" y2="172" gradientUnits="userSpaceOnUse">
+    <!-- Left S: darker gold -->
+    <linearGradient id="gL" x1="100" y1="42" x2="30" y2="160" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#D4AF37"/>
-      <stop offset="100%" stop-color="#F5D87E"/>
+      <stop offset="100%" stop-color="#8C6D0A"/>
+    </linearGradient>
+    <!-- Right S: brighter gold -->
+    <linearGradient id="gR" x1="170" y1="42" x2="100" y2="160" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#F5D87E"/>
+      <stop offset="100%" stop-color="#D4AF37"/>
     </linearGradient>
   </defs>
 
-  <!-- Background: rounded dark square -->
+  <!-- Dark rounded background -->
   <rect width="200" height="200" rx="44" fill="#1A1A1A"/>
 
-  <!-- Back S shape (slightly offset, lower opacity) -->
+  <!--
+    Left S  — 3-segment cubic bezier tracing a proper S shape
+    Starts top-right (100,42), sweeps left for upper arc,
+    crosses centre, sweeps right for lower arc, ends bottom-left (30,160)
+  -->
   <path
-    d="M 118,48 C 68,48 38,72 88,100 C 138,128 108,162 58,162"
-    stroke="url(#goldB)"
-    stroke-width="22"
+    d="M 100,42
+       C 100,22 30,22 30,62
+       C 30,102 100,102 100,142
+       C 100,178 30,178 30,160"
+    stroke="url(#gL)"
+    stroke-width="20"
     stroke-linecap="round"
-    opacity="0.45"
+    fill="none"
   />
 
-  <!-- Front S shape -->
+  <!--
+    Right S — identical shape shifted +70 right
+    Starts top-right (170,42), ends bottom-left (100,160)
+    Interlocks with Left S at the shared centre point (100,102)
+  -->
   <path
-    d="M 142,38 C 92,38 62,62 112,90 C 162,118 132,152 82,152"
-    stroke="url(#goldA)"
-    stroke-width="22"
+    d="M 170,42
+       C 170,22 100,22 100,62
+       C 100,102 170,102 170,142
+       C 170,178 100,178 100,160"
+    stroke="url(#gR)"
+    stroke-width="20"
     stroke-linecap="round"
+    fill="none"
   />
 </svg>
