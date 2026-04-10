@@ -41,7 +41,7 @@ export default function Navbar() {
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: 72 }}>
           {/* Logo */}
           <a href="/" style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none" }}>
-            <Image src="/logo.svg" alt="SmartcoreAI logo" height={40} width={40} style={{ width: "auto", height: 40, objectFit: "contain" }} />
+            <Image src="/logo.png" alt="SmartcoreAI logo" height={40} width={40} style={{ width: "auto", height: 40, objectFit: "contain" }} />
             <span style={{
               fontFamily: "Syne, system-ui, sans-serif",
               fontWeight: 700,
