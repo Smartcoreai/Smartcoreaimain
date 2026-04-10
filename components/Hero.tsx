@@ -102,33 +102,38 @@ export default function Hero() {
       alignItems: "center",
       justifyContent: "center",
       overflow: "hidden",
-      background: "radial-gradient(ellipse at 50% 0%, rgba(212,175,55,0.06) 0%, transparent 60%), #1A1A1A",
+      background: "#0A0806",
     }}>
-      {/* Canvas particles */}
-      <canvas ref={canvasRef} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", zIndex: 1 }} />
+      {/* Bergen city photo background */}
+      <div style={{
+        position: "absolute", inset: 0, zIndex: 0,
+        backgroundImage: "url('/hero-bg.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center 40%",
+        backgroundRepeat: "no-repeat",
+      }} />
 
-      {/* Grid background */}
-      <div className="bg-grid" style={{ position: "absolute", inset: 0, zIndex: 0 }} />
+      {/* Dark overlay — keeps text readable over the photo */}
+      <div style={{
+        position: "absolute", inset: 0, zIndex: 1,
+        background: "linear-gradient(180deg, rgba(8,6,4,0.72) 0%, rgba(8,6,4,0.55) 45%, rgba(8,6,4,0.80) 100%)",
+      }} />
+
+      {/* Gold radial glow on top of overlay */}
+      <div style={{
+        position: "absolute", inset: 0, zIndex: 2,
+        background: "radial-gradient(ellipse at 50% 0%, rgba(212,175,55,0.10) 0%, transparent 55%)",
+        pointerEvents: "none",
+      }} />
+
+      {/* Canvas particles */}
+      <canvas ref={canvasRef} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", zIndex: 3 }} />
 
       {/* Hairline top border */}
       <div style={{
         position: "absolute", top: 0, left: 0, right: 0, height: 1,
         background: "linear-gradient(90deg, transparent 0%, rgba(212,175,55,0.4) 30%, rgba(245,216,126,0.6) 50%, rgba(212,175,55,0.4) 70%, transparent 100%)",
-        zIndex: 2,
-      }} />
-
-      {/* Glow orbs */}
-      <div style={{
-        position: "absolute", top: "10%", left: "50%", transform: "translateX(-50%)",
-        width: 600, height: 600, borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(212,175,55,0.09) 0%, transparent 70%)",
-        zIndex: 1, pointerEvents: "none",
-      }} />
-      <div style={{
-        position: "absolute", top: "20%", right: "-10%",
-        width: 400, height: 400, borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(10,15,30,0.6) 0%, transparent 70%)",
-        zIndex: 1, pointerEvents: "none",
+        zIndex: 10,
       }} />
 
       {/* Floating badges — desktop only */}
@@ -176,10 +181,10 @@ export default function Hero() {
 
         {/* Headline — typewriter */}
         <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-[80px]" style={{
-          fontFamily: "Syne, system-ui, sans-serif",
-          fontWeight: 800,
+          fontFamily: "'Playfair Display', Georgia, serif",
+          fontWeight: 700,
           lineHeight: 1.1,
-          letterSpacing: "-0.03em",
+          letterSpacing: "-0.01em",
           color: "#F5F0E8",
           maxWidth: "min(900px, 100%)",
           margin: "0 auto 24px",
@@ -187,6 +192,7 @@ export default function Hero() {
           overflowWrap: "break-word",
           wordBreak: "break-word",
           minHeight: "2.2em",
+          textShadow: "0 2px 40px rgba(0,0,0,0.6)",
         }}>
           {fullText.slice(0, Math.min(typed, splitAt))}
           {typed > splitAt && (
@@ -215,7 +221,7 @@ export default function Hero() {
         {/* Subtext */}
         <p style={{
           fontSize: 16,
-          color: "#8A8070",
+          color: "#C8BFB0",
           maxWidth: "min(560px, 100%)",
           width: "100%",
           margin: "0 auto 48px",

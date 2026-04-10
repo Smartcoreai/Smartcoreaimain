@@ -39,8 +39,8 @@ export default function ContactSection() {
         <div style={{ textAlign: "center", marginBottom: 56 }}>
           <div className="tag" style={{ display: "inline-flex", marginBottom: 16 }}>{t.contact.tag}</div>
           <h2 className="text-[22px] sm:text-4xl lg:text-[56px]" style={{
-            fontFamily: "Syne, sans-serif",
-            fontWeight: 800, color: "#F5F0E8", letterSpacing: "-0.03em", marginBottom: 14, lineHeight: 1.05,
+            fontFamily: "'Playfair Display', Georgia, serif",
+            fontWeight: 700, fontStyle: "italic", color: "#F5F0E8", letterSpacing: "-0.01em", marginBottom: 14, lineHeight: 1.05,
           }}>
             {t.contact.headline1}{" "}
             <span style={{ background: "linear-gradient(135deg,#D4AF37,#F5D87E)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
@@ -60,7 +60,7 @@ export default function ContactSection() {
             display: "flex", flexDirection: "column", gap: 28,
           }}>
             <div>
-              <h3 className="text-lg md:text-[22px]" style={{ fontFamily: "Syne, sans-serif", fontWeight: 800, color: "#F5F0E8", marginBottom: 8, letterSpacing: "-0.02em" }}>
+              <h3 className="text-lg md:text-[22px]" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 800, color: "#F5F0E8", marginBottom: 8, letterSpacing: "-0.02em" }}>
                 {t.contact.leftHeadline}
               </h3>
               <p style={{ fontSize: 14, color: "#8A8070", lineHeight: 1.7, margin: 0 }}>
@@ -103,7 +103,7 @@ export default function ContactSection() {
                 <div style={{ width: 64, height: 64, borderRadius: "50%", background: "rgba(74,222,128,0.12)", display: "flex", alignItems: "center", justifyContent: "center", border: "1px solid rgba(74,222,128,0.3)" }}>
                   <CheckCircle size={32} color="#4ade80" />
                 </div>
-                <div style={{ fontFamily: "Syne, sans-serif", fontSize: 22, fontWeight: 700, color: "#F5F0E8" }}>{t.contact.successTitle}</div>
+                <div style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 22, fontWeight: 700, color: "#F5F0E8" }}>{t.contact.successTitle}</div>
                 <div style={{ fontSize: 14, color: "#8A8070", lineHeight: 1.7 }}>{t.contact.successDesc}</div>
                 <button onClick={() => { setSent(false); setForm({ name: "", email: "", phone: "", business: "", message: "" }); }}
                   style={{ padding: "10px 20px", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 10, color: "#8A8070", fontSize: 13, cursor: "pointer", fontFamily: "inherit" }}>
@@ -115,7 +115,7 @@ export default function ContactSection() {
                 <div style={{ width: 64, height: 64, borderRadius: "50%", background: "rgba(239,68,68,0.12)", display: "flex", alignItems: "center", justifyContent: "center", border: "1px solid rgba(239,68,68,0.3)" }}>
                   <AlertCircle size={32} color="#ef4444" />
                 </div>
-                <div style={{ fontFamily: "Syne, sans-serif", fontSize: 22, fontWeight: 700, color: "#F5F0E8" }}>{t.contact.errorTitle}</div>
+                <div style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 22, fontWeight: 700, color: "#F5F0E8" }}>{t.contact.errorTitle}</div>
                 <div style={{ fontSize: 14, color: "#8A8070", lineHeight: 1.7 }}>{t.contact.errorDesc}</div>
                 <button onClick={() => setError(false)}
                   style={{ padding: "10px 20px", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 10, color: "#8A8070", fontSize: 13, cursor: "pointer", fontFamily: "inherit" }}>

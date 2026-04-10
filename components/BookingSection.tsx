@@ -39,8 +39,8 @@ export default function BookingSection() {
             {t.booking.tag}
           </div>
           <h2 className="text-[22px] sm:text-4xl lg:text-[52px]" style={{
-            fontFamily: "Syne, sans-serif",
-            fontWeight: 800, color: "#F5F0E8", letterSpacing: "-0.03em", marginBottom: 14, lineHeight: 1.1,
+            fontFamily: "'Playfair Display', Georgia, serif",
+            fontWeight: 700, fontStyle: "italic", color: "#F5F0E8", letterSpacing: "-0.01em", marginBottom: 14, lineHeight: 1.1,
           }}>
             {t.booking.headline1}{" "}
             <span style={{ background: "linear-gradient(135deg,#D4AF37,#F5D87E)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
@@ -123,7 +123,7 @@ export default function BookingSection() {
 
                 {/* Title */}
                 <div style={{
-                  fontFamily: "Syne, sans-serif", fontSize: 20, fontWeight: 800,
+                  fontFamily: "'Playfair Display', Georgia, serif", fontSize: 20, fontWeight: 800,
                   color: "#F5F0E8", letterSpacing: "-0.02em", marginBottom: 10,
                 }}>
                   {ct.label}

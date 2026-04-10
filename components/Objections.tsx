@@ -13,8 +13,8 @@ export default function Objections() {
         <div style={{ textAlign: "center", marginBottom: 56 }}>
           <div className="tag" style={{ display: "inline-flex", marginBottom: 16 }}>{t.objections.tag}</div>
           <h2 className="text-[22px] sm:text-4xl lg:text-[52px]" style={{
-            fontFamily: "Syne, sans-serif",
-            fontWeight: 800, color: "#F5F0E8", letterSpacing: "-0.03em", marginBottom: 14, lineHeight: 1.1,
+            fontFamily: "'Playfair Display', Georgia, serif",
+            fontWeight: 700, fontStyle: "italic", color: "#F5F0E8", letterSpacing: "-0.01em", marginBottom: 14, lineHeight: 1.1,
           }}>
             {t.objections.headline1}{" "}
             <span style={{ background: "linear-gradient(135deg,#D4AF37,#F5D87E)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
@@ -48,7 +48,7 @@ export default function Objections() {
                       {String(i + 1).padStart(2, "0")}
                     </div>
                     <span style={{
-                      fontFamily: "Syne, sans-serif",
+                      fontFamily: "'Playfair Display', Georgia, serif",
                       fontSize: "clamp(15px,2vw,18px)", fontWeight: 700,
                       color: isOpen ? "#F5F0E8" : "#D0CABC", transition: "color 0.2s",
                     }}>
