@@ -89,8 +89,8 @@ function ChatbotDemo() {
   }, [messages, typing]);
 
   return (
-    <div style={{ background: "#0a0a10", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 16, overflow: "hidden", height: 340, display: "flex", flexDirection: "column" }}>
-      <div style={{ padding: "12px 16px", display: "flex", alignItems: "center", gap: 10, background: "linear-gradient(135deg, #7c3aed, #a855f7)" }}>
+    <div style={{ background: "#080808", border: "1px solid rgba(212,175,55,0.12)", borderRadius: 16, overflow: "hidden", height: 340, display: "flex", flexDirection: "column" }}>
+      <div style={{ padding: "12px 16px", display: "flex", alignItems: "center", gap: 10, background: "linear-gradient(135deg, #1a1408, #2a1f08)" }}>
         <div style={{ width: 32, height: 32, borderRadius: "50%", background: "rgba(255,255,255,0.2)", display: "flex", alignItems: "center", justifyContent: "center" }}>
           <Bot size={16} color="white" />
         </div>
@@ -106,34 +106,34 @@ function ChatbotDemo() {
         {messages.map((m, i) => (
           <div key={i} style={{ display: "flex", justifyContent: m.role === "user" ? "flex-end" : "flex-start", gap: 8, alignItems: "flex-end" }}>
             {m.role === "bot" && (
-              <div style={{ width: 24, height: 24, borderRadius: "50%", background: "rgba(168,85,247,0.2)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                <Bot size={12} color="#a855f7" />
+              <div style={{ width: 24, height: 24, borderRadius: "50%", background: "rgba(212,175,55,0.15)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                <Bot size={12} color="#D4AF37" />
               </div>
             )}
             <div style={{
               padding: "8px 14px", borderRadius: m.role === "user" ? "18px 18px 4px 18px" : "18px 18px 18px 4px",
-              background: m.role === "user" ? "linear-gradient(135deg,#7c3aed,#a855f7)" : "rgba(30,30,42,0.9)",
-              border: m.role === "bot" ? "1px solid rgba(255,255,255,0.07)" : "none",
-              fontSize: 13, color: "#f4f4f8", maxWidth: "75%", lineHeight: 1.5,
+              background: m.role === "user" ? "linear-gradient(135deg,#B8960C,#D4AF37)" : "rgba(10,15,30,0.9)",
+              border: m.role === "bot" ? "1px solid rgba(212,175,55,0.12)" : "none",
+              fontSize: 13, color: "#F5F0E8", maxWidth: "75%", lineHeight: 1.5,
             }}>{m.text}</div>
           </div>
         ))}
         {typing && (
           <div style={{ display: "flex", alignItems: "flex-end", gap: 8 }}>
-            <div style={{ width: 24, height: 24, borderRadius: "50%", background: "rgba(168,85,247,0.2)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <Bot size={12} color="#a855f7" />
+            <div style={{ width: 24, height: 24, borderRadius: "50%", background: "rgba(212,175,55,0.15)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <Bot size={12} color="#D4AF37" />
             </div>
-            <div style={{ padding: "10px 14px", borderRadius: "18px 18px 18px 4px", background: "rgba(30,30,42,0.9)", border: "1px solid rgba(255,255,255,0.07)", display: "flex", gap: 4 }}>
-              {[0,1,2].map(i => <div key={i} style={{ width: 5, height: 5, borderRadius: "50%", background: "#a855f7", animation: `blink 1.2s ${i*0.2}s step-end infinite` }} />)}
+            <div style={{ padding: "10px 14px", borderRadius: "18px 18px 18px 4px", background: "rgba(10,15,30,0.9)", border: "1px solid rgba(212,175,55,0.12)", display: "flex", gap: 4 }}>
+              {[0,1,2].map(i => <div key={i} style={{ width: 5, height: 5, borderRadius: "50%", background: "#D4AF37", animation: `blink 1.2s ${i*0.2}s step-end infinite` }} />)}
             </div>
           </div>
         )}
       </div>
-      <div style={{ padding: "10px 12px", borderTop: "1px solid rgba(255,255,255,0.05)", display: "flex", gap: 8 }}>
+      <div style={{ padding: "10px 12px", borderTop: "1px solid rgba(212,175,55,0.08)", display: "flex", gap: 8 }}>
         <input value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => e.key === "Enter" && handleSend()} placeholder={ui.placeholder}
-          style={{ flex: 1, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 10, padding: "8px 12px", fontSize: 12, color: "#f4f4f8", outline: "none", fontFamily: "inherit" }} />
-        <button onClick={handleSend} style={{ padding: "8px 12px", background: "linear-gradient(135deg,#7c3aed,#a855f7)", border: "none", borderRadius: 10, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>
-          <Send size={14} color="white" />
+          style={{ flex: 1, background: "rgba(212,175,55,0.03)", border: "1px solid rgba(212,175,55,0.10)", borderRadius: 10, padding: "8px 12px", fontSize: 12, color: "#F5F0E8", outline: "none", fontFamily: "inherit" }} />
+        <button onClick={handleSend} style={{ padding: "8px 12px", background: "linear-gradient(135deg,#B8960C,#D4AF37)", border: "none", borderRadius: 10, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <Send size={14} color="#080808" />
         </button>
       </div>
     </div>
@@ -142,8 +142,8 @@ function ChatbotDemo() {
 
 /* ─── Leadgen Demo ─── */
 const LEADGEN_STEPS = [
-  { icon: "📥", label: "Lead captured",       detail: "Alex Johnson · alex@company.com", color: "#a855f7" },
-  { icon: "🤖", label: "AI qualifies lead",   detail: "High value · 92%",               color: "#22d3ee" },
+  { icon: "📥", label: "Lead captured",       detail: "Alex Johnson · alex@company.com", color: "#D4AF37" },
+  { icon: "🤖", label: "AI qualifies lead",   detail: "High value · 92%",               color: "#F5D87E" },
   { icon: "📅", label: "Booked in calendar",  detail: "Meeting confirmed · Thu 14:00",  color: "#4ade80" },
 ];
 
@@ -151,8 +151,8 @@ function LeadgenDemo() {
   const { lang } = useLanguage();
   const [activeStep, setActiveStep] = useState(0);
   const steps = lang === "no" ? [
-    { icon: "📥", label: "Lead fanget",          detail: "Alex Johnson · alex@company.com", color: "#a855f7" },
-    { icon: "🤖", label: "AI kvalifiserer lead", detail: "Høy verdi · 92%",                color: "#22d3ee" },
+    { icon: "📥", label: "Lead fanget",          detail: "Alex Johnson · alex@company.com", color: "#D4AF37" },
+    { icon: "🤖", label: "AI kvalifiserer lead", detail: "Høy verdi · 92%",                color: "#F5D87E" },
     { icon: "📅", label: "Booket i kalender",    detail: "Meeting confirmed · Thu 14:00",  color: "#4ade80" },
   ] : LEADGEN_STEPS;
   useEffect(() => {
@@ -164,7 +164,7 @@ function LeadgenDemo() {
     <div style={{ background: "#0a0a10", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 16, overflow: "hidden", display: "flex", flexDirection: "column" }}>
       <div style={{ padding: "10px 14px", borderBottom: "1px solid rgba(255,255,255,0.05)", display: "flex", alignItems: "center", gap: 8 }}>
         <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#4ade80", boxShadow: "0 0 6px #4ade80", flexShrink: 0 }} />
-        <span style={{ fontSize: 12, color: "#f4f4f8", fontWeight: 500 }}>New lead · <span style={{ color: "#8888a0" }}>Alex Johnson · alex@company.com</span></span>
+        <span style={{ fontSize: 12, color: "#F5F0E8", fontWeight: 500 }}>New lead · <span style={{ color: "#8A8070" }}>Alex Johnson · alex@company.com</span></span>
       </div>
       <div style={{ padding: "14px", display: "flex", flexDirection: "column", gap: 0 }}>
         {steps.map((step, i) => (
@@ -177,8 +177,8 @@ function LeadgenDemo() {
             }}>
               <span style={{ fontSize: 15, flexShrink: 0 }}>{step.icon}</span>
               <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: 12, fontWeight: 600, color: activeStep === i ? step.color : activeStep > i ? "#4ade80" : "#8888a0", transition: "color 0.3s" }}>{step.label}</div>
-                <div style={{ fontSize: 10, color: "#44444e", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{step.detail}</div>
+                <div style={{ fontSize: 12, fontWeight: 600, color: activeStep === i ? step.color : activeStep > i ? "#4ade80" : "#8A8070", transition: "color 0.3s" }}>{step.label}</div>
+                <div style={{ fontSize: 10, color: "#5A5248", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{step.detail}</div>
               </div>
               {activeStep === i
                 ? <div style={{ width: 7, height: 7, borderRadius: "50%", background: step.color, boxShadow: `0 0 8px ${step.color}`, animation: "blink 1s infinite", flexShrink: 0 }} />
@@ -223,11 +223,11 @@ function VoiceAgentDemo() {
   const done = visibleLines >= TRANSCRIPT.length;
 
   return (
-    <div style={{ background: "#0a0a10", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 16, height: 340, overflow: "hidden", display: "flex", flexDirection: "column" }}>
-      <div style={{ padding: "12px 16px", borderBottom: "1px solid rgba(255,255,255,0.05)", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+    <div style={{ background: "#080808", border: "1px solid rgba(212,175,55,0.12)", borderRadius: 16, height: 340, overflow: "hidden", display: "flex", flexDirection: "column" }}>
+      <div style={{ padding: "12px 16px", borderBottom: "1px solid rgba(212,175,55,0.08)", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <div>
-          <div style={{ fontSize: 12, fontWeight: 700, color: "#f4f4f8" }}>{ui.incoming}</div>
-          <div style={{ fontSize: 11, color: "#8888a0" }}>+47 900 12 345</div>
+          <div style={{ fontSize: 12, fontWeight: 700, color: "#F5F0E8" }}>{ui.incoming}</div>
+          <div style={{ fontSize: 11, color: "#8A8070" }}>+47 900 12 345</div>
         </div>
         <div style={{ padding: "4px 10px", borderRadius: 999, background: "rgba(74,222,128,0.1)", border: "1px solid rgba(74,222,128,0.3)", display: "flex", alignItems: "center", gap: 5 }}>
           <div style={{ width: 5, height: 5, borderRadius: "50%", background: "#4ade80", animation: "blink 1.2s infinite" }} />
@@ -238,18 +238,18 @@ function VoiceAgentDemo() {
         {transcript.slice(0, visibleLines).map((line, i) => (
           <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 8, justifyContent: line.role === "lead" ? "flex-end" : "flex-start", animation: "slideUp 0.3s ease both" }}>
             {line.role === "ai" && (
-              <div style={{ width: 22, height: 22, borderRadius: "50%", background: "rgba(168,85,247,0.15)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontSize: 11 }}>🤖</div>
+              <div style={{ width: 22, height: 22, borderRadius: "50%", background: "rgba(212,175,55,0.15)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontSize: 11 }}>🤖</div>
             )}
             <div style={{
               padding: "7px 12px", borderRadius: line.role === "ai" ? "14px 14px 14px 4px" : "14px 14px 4px 14px",
-              background: line.role === "ai" ? "rgba(168,85,247,0.1)" : "rgba(34,211,238,0.08)",
-              border: `1px solid ${line.role === "ai" ? "rgba(168,85,247,0.2)" : "rgba(34,211,238,0.2)"}`,
-              fontSize: 12, color: "#f4f4f8", maxWidth: "82%", lineHeight: 1.5,
+              background: line.role === "ai" ? "rgba(212,175,55,0.08)" : "rgba(10,15,30,0.6)",
+              border: `1px solid ${line.role === "ai" ? "rgba(212,175,55,0.18)" : "rgba(245,216,126,0.15)"}`,
+              fontSize: 12, color: "#F5F0E8", maxWidth: "82%", lineHeight: 1.5,
             }}>{line.text}</div>
           </div>
         ))}
       </div>
-      <div style={{ padding: "10px 16px", borderTop: "1px solid rgba(255,255,255,0.05)", display: "flex", alignItems: "center", gap: 8, transition: "opacity 0.5s", opacity: done ? 1 : 0.2 }}>
+      <div style={{ padding: "10px 16px", borderTop: "1px solid rgba(212,175,55,0.08)", display: "flex", alignItems: "center", gap: 8, transition: "opacity 0.5s", opacity: done ? 1 : 0.2 }}>
         <Check size={14} color="#4ade80" />
         <span style={{ fontSize: 12, fontWeight: 600, color: "#4ade80" }}>{ui.outcome}</span>
       </div>
@@ -259,10 +259,10 @@ function VoiceAgentDemo() {
 
 /* ─── Custom AI Demo ─── */
 const AI_STACK_NODES = [
-  { icon: "🔔", title: "Website / CRM / WhatsApp", sub: "Trigger sources",         color: "#a855f7", hero: false },
-  { icon: "🤖", title: "AI Brain",                  sub: "Scores, routes & decides", color: "#22d3ee", hero: true  },
-  { icon: "📋", title: "CRM Pipeline",              sub: "Auto-updated",            color: "#06b6d4", hero: false },
-  { icon: "✉️", title: "Email + SMS",               sub: "Personalized outreach",   color: "#06b6d4", hero: false },
+  { icon: "🔔", title: "Website / CRM / WhatsApp", sub: "Trigger sources",         color: "#D4AF37", hero: false },
+  { icon: "🤖", title: "AI Brain",                  sub: "Scores, routes & decides", color: "#F5D87E", hero: true  },
+  { icon: "📋", title: "CRM Pipeline",              sub: "Auto-updated",            color: "#C9A84C", hero: false },
+  { icon: "✉️", title: "Email + SMS",               sub: "Personalized outreach",   color: "#C9A84C", hero: false },
   { icon: "📅", title: "Calendar",                  sub: "Meeting booked",          color: "#4ade80", hero: false },
 ];
 
@@ -270,10 +270,10 @@ function CustomAIDemo() {
   const { lang } = useLanguage();
   const [dotStep, setDotStep] = useState(0);
   const nodes = lang === "no" ? [
-    { icon: "🔔", title: "Website / CRM / WhatsApp", sub: "Triggerkilder",              color: "#a855f7", hero: false },
-    { icon: "🤖", title: "AI-hjerne",                sub: "Skårer, ruter og bestemmer", color: "#22d3ee", hero: true  },
-    { icon: "📋", title: "CRM-pipeline",             sub: "Automatisk oppdatert",       color: "#06b6d4", hero: false },
-    { icon: "✉️", title: "Email + SMS",              sub: "Personlig oppfølging",       color: "#06b6d4", hero: false },
+    { icon: "🔔", title: "Website / CRM / WhatsApp", sub: "Triggerkilder",              color: "#D4AF37", hero: false },
+    { icon: "🤖", title: "AI-hjerne",                sub: "Skårer, ruter og bestemmer", color: "#F5D87E", hero: true  },
+    { icon: "📋", title: "CRM-pipeline",             sub: "Automatisk oppdatert",       color: "#C9A84C", hero: false },
+    { icon: "✉️", title: "Email + SMS",              sub: "Personlig oppfølging",       color: "#C9A84C", hero: false },
     { icon: "📅", title: "Kalender",                 sub: "Møte booket",                color: "#4ade80", hero: false },
   ] : AI_STACK_NODES;
   useEffect(() => {
@@ -283,26 +283,26 @@ function CustomAIDemo() {
 
   return (
     <div className="custom-ai-demo" style={{
-      background: "radial-gradient(ellipse at 50% 0%, rgba(250,204,21,0.05) 0%, #0a0a10 65%)",
-      border: "1px solid rgba(250,204,21,0.15)", borderRadius: 16, overflow: "hidden",
+      background: "radial-gradient(ellipse at 50% 0%, rgba(212,175,55,0.06) 0%, #080808 65%)",
+      border: "1px solid rgba(212,175,55,0.15)", borderRadius: 16, overflow: "hidden",
       display: "flex", flexDirection: "column", position: "relative",
     }}>
       {/* Dot grid background */}
       <div style={{
         position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0,
-        backgroundImage: "radial-gradient(circle, rgba(250,204,21,0.07) 1px, transparent 1px)",
+        backgroundImage: "radial-gradient(circle, rgba(212,175,55,0.07) 1px, transparent 1px)",
         backgroundSize: "20px 20px",
       }} />
 
       {/* Header */}
-      <div className="custom-ai-header" style={{ position: "relative", zIndex: 1, padding: "10px 14px", borderBottom: "1px solid rgba(250,204,21,0.1)", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+      <div className="custom-ai-header" style={{ position: "relative", zIndex: 1, padding: "10px 14px", borderBottom: "1px solid rgba(212,175,55,0.1)", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 7 }}>
           <span style={{ fontSize: 13, display: "inline-block", animation: "spin 5s linear infinite" }}>⚙️</span>
-          <span style={{ fontSize: 10, fontWeight: 700, color: "#facc15", textTransform: "uppercase", letterSpacing: "0.1em" }}>{lang === "no" ? "Din skreddersydde AI-stack" : "Your custom AI stack"}</span>
+          <span style={{ fontSize: 10, fontWeight: 700, color: "#D4AF37", textTransform: "uppercase", letterSpacing: "0.1em" }}>{lang === "no" ? "Din skreddersydde AI-stack" : "Your custom AI stack"}</span>
         </div>
         <div className="custom-ai-live" style={{ display: "flex", alignItems: "center", gap: 5 }}>
           <div style={{ width: 5, height: 5, borderRadius: "50%", background: "#4ade80", animation: "blink 1.5s infinite" }} />
-          <span style={{ fontSize: 10, color: "#8888a0" }}>{lang === "no" ? "Live · Bygger din arbeidsflyt" : "Live · Building your workflow"}</span>
+          <span style={{ fontSize: 10, color: "#8A8070" }}>{lang === "no" ? "Live · Bygger din arbeidsflyt" : "Live · Building your workflow"}</span>
         </div>
       </div>
 
@@ -328,8 +328,8 @@ function CustomAIDemo() {
                 animation: node.hero ? "breathe 2.5s ease-in-out infinite" : undefined,
               }}>{node.icon}</div>
               <div style={{ flex: 1 }}>
-                <div className="custom-ai-title" style={{ fontSize: node.hero ? 13 : 11, fontWeight: 700, color: dotStep === i ? node.color : node.hero ? "#f4f4f8" : "#8888a0", transition: "color 0.3s", lineHeight: 1.2 }}>{node.title}</div>
-                <div style={{ fontSize: 10, color: "#44444e" }}>{node.sub}</div>
+                <div className="custom-ai-title" style={{ fontSize: node.hero ? 13 : 11, fontWeight: 700, color: dotStep === i ? node.color : node.hero ? "#F5F0E8" : "#8A8070", transition: "color 0.3s", lineHeight: 1.2 }}>{node.title}</div>
+                <div style={{ fontSize: 10, color: "#5A5248" }}>{node.sub}</div>
               </div>
               {dotStep === i
                 ? <div style={{ width: 7, height: 7, borderRadius: "50%", background: node.color, boxShadow: `0 0 10px ${node.color}`, animation: "blink 1s infinite", flexShrink: 0 }} />
@@ -337,7 +337,7 @@ function CustomAIDemo() {
             </div>
             {i < nodes.length - 1 && (
               <div className="custom-ai-connector" style={{ position: "relative", width: 1, height: 8, marginLeft: 22 }}>
-                <div style={{ position: "absolute", inset: 0, background: "rgba(250,204,21,0.15)" }} />
+                <div style={{ position: "absolute", inset: 0, background: "rgba(212,175,55,0.15)" }} />
                 {dotStep === i && (
                   <div className="custom-ai-travel-dot" style={{ position: "absolute", top: 0, left: -2, width: 5, height: 5, borderRadius: "50%", background: node.color, boxShadow: `0 0 6px ${node.color}`, animation: "travelDown 1.4s linear" }} />
                 )}
@@ -348,7 +348,7 @@ function CustomAIDemo() {
       </div>
 
       {/* Footer */}
-      <div style={{ position: "relative", zIndex: 1, padding: "7px 14px 11px", borderTop: "1px solid rgba(250,204,21,0.08)" }}>
+      <div style={{ position: "relative", zIndex: 1, padding: "7px 14px 11px", borderTop: "1px solid rgba(212,175,55,0.08)" }}>
         <span className="custom-ai-footer" style={{ fontSize: 10, color: "rgba(250,204,21,0.45)", letterSpacing: "0.02em" }}>{lang === "no" ? "⚡ Bygget spesifikt for din bedrift · Ubegrensede integrasjoner" : "⚡ Built specifically for your business · Unlimited integrations"}</span>
       </div>
     </div>
@@ -357,10 +357,10 @@ function CustomAIDemo() {
 
 /* ─── Static service data (icons, colors, prices, demos) ─── */
 const SERVICE_META = [
-  { id: "chatbot",        icon: <MessageCircle size={20} />, color: "#a855f7", usdPrice: 299,  originalPrice: 599,  priceCustom: false, demo: <ChatbotDemo /> },
-  { id: "leadgen",        icon: <Calendar size={20} />,      color: "#22d3ee", usdPrice: 499,  originalPrice: 999,  priceCustom: false, demo: <LeadgenDemo /> },
-  { id: "voice-agent",    icon: <Phone size={20} />,         color: "#f472b6", usdPrice: 799,  originalPrice: 1599, priceCustom: false, demo: <VoiceAgentDemo /> },
-  { id: "ai-integration", icon: <Cpu size={20} />,           color: "#facc15", usdPrice: 1500, originalPrice: null, priceCustom: true,  demo: <CustomAIDemo /> },
+  { id: "chatbot",        icon: <MessageCircle size={20} />, color: "#D4AF37", usdPrice: 299,  originalPrice: 599,  priceCustom: false, demo: <ChatbotDemo /> },
+  { id: "leadgen",        icon: <Calendar size={20} />,      color: "#F5D87E", usdPrice: 499,  originalPrice: 999,  priceCustom: false, demo: <LeadgenDemo /> },
+  { id: "voice-agent",    icon: <Phone size={20} />,         color: "#C9A84C", usdPrice: 799,  originalPrice: 1599, priceCustom: false, demo: <VoiceAgentDemo /> },
+  { id: "ai-integration", icon: <Cpu size={20} />,           color: "#D4AF37", usdPrice: 1500, originalPrice: null, priceCustom: true,  demo: <CustomAIDemo /> },
 ];
 
 export default function Services() {
@@ -377,7 +377,7 @@ export default function Services() {
   const svc = SERVICES[active];
 
   return (
-    <section id="services" style={{ background: "#0b0b18", padding: "100px 24px", position: "relative" }}>
+    <section id="services" style={{ background: "#080808", padding: "100px 24px", position: "relative" }}>
       {/* Spline 3D background */}
       <div style={{ position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none", overflow: "hidden", opacity: 0.4 }}>
         <SplineBoxes />
@@ -388,14 +388,14 @@ export default function Services() {
           <div className="tag" style={{ display: "inline-flex", marginBottom: 16 }}>{t.services.tag}</div>
           <h2 className="text-[22px] sm:text-4xl lg:text-[52px]" style={{
             fontFamily: "Syne, sans-serif",
-            fontWeight: 800, color: "#f4f4f8", letterSpacing: "-0.03em", marginBottom: 14, lineHeight: 1.1,
+            fontWeight: 800, color: "#F5F0E8", letterSpacing: "-0.03em", marginBottom: 14, lineHeight: 1.1,
           }}>
             {t.services.headline1}{" "}
-            <span style={{ background: "linear-gradient(135deg,#a855f7,#22d3ee)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+            <span style={{ background: "linear-gradient(135deg,#D4AF37,#F5D87E)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
               {t.services.headline2}
             </span>
           </h2>
-          <p style={{ fontSize: 16, color: "#8888a0", maxWidth: 480, margin: "0 auto", lineHeight: 1.7 }}>
+          <p style={{ fontSize: 16, color: "#8A8070", maxWidth: 480, margin: "0 auto", lineHeight: 1.7 }}>
             {t.services.subtext}
           </p>
         </div>
@@ -404,8 +404,8 @@ export default function Services() {
         <div className="services-tabs" style={{
           display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
           gap: 10, marginBottom: 36,
-          background: "rgba(255,255,255,0.02)", padding: 8, borderRadius: 18,
-          border: "1px solid rgba(255,255,255,0.05)",
+          background: "rgba(212,175,55,0.02)", padding: 8, borderRadius: 18,
+          border: "1px solid rgba(212,175,55,0.08)",
         }}>
           {SERVICES.map((s, i) => (
             <button key={s.id} onClick={() => setActive(i)} style={{
@@ -415,11 +415,11 @@ export default function Services() {
               cursor: "pointer", textAlign: "left", transition: "all 0.25s", fontFamily: "inherit",
             }}>
               <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
-                <div style={{ color: active === i ? s.color : "#8888a0", transition: "color 0.25s" }}>{s.icon}</div>
-                <span style={{ fontSize: 13, fontWeight: 600, color: active === i ? "#f4f4f8" : "#8888a0", transition: "color 0.25s" }}>{s.label}</span>
+                <div style={{ color: active === i ? s.color : "#8A8070", transition: "color 0.25s" }}>{s.icon}</div>
+                <span style={{ fontSize: 13, fontWeight: 600, color: active === i ? "#F5F0E8" : "#8A8070", transition: "color 0.25s" }}>{s.label}</span>
               </div>
               {s.originalPriceDisplay && (
-                <div style={{ fontSize: 10, color: "#555568", textDecoration: "line-through" }}>{s.originalPriceDisplay}</div>
+                <div style={{ fontSize: 10, color: "#5A5248", textDecoration: "line-through" }}>{s.originalPriceDisplay}</div>
               )}
               <div style={{ fontSize: 12, color: active === i ? s.color : "#44444e", fontWeight: 600, transition: "color 0.25s" }}>{s.price}</div>
             </button>
@@ -429,7 +429,7 @@ export default function Services() {
         {/* Main panel */}
         <div style={{
           display: "grid", gridTemplateColumns: "1fr 1fr", gap: 28,
-          background: "rgba(20,20,27,0.6)", border: "1px solid rgba(255,255,255,0.06)",
+          background: "rgba(10,15,30,0.5)", border: "1px solid rgba(212,175,55,0.10)",
           borderRadius: 24, padding: 28, backdropFilter: "blur(12px)",
           boxSizing: "border-box", width: "100%",
         }} className="services-grid">
@@ -440,13 +440,13 @@ export default function Services() {
                 <div style={{ padding: "6px", borderRadius: 10, background: svc.color + "20", color: svc.color, border: `1px solid ${svc.color}30`, display: "flex", alignItems: "center", justifyContent: "center" }}>{svc.icon}</div>
                 <span style={{ fontSize: 11, padding: "3px 10px", borderRadius: 999, background: svc.color + "18", color: svc.color, fontWeight: 600, border: `1px solid ${svc.color}30` }}>{svc.tag}</span>
               </div>
-              <h3 className="text-xl md:text-[26px]" style={{ fontFamily: "Syne, sans-serif", fontWeight: 800, color: "#f4f4f8", letterSpacing: "-0.02em", marginBottom: 10, lineHeight: 1.2 }}>
+              <h3 className="text-xl md:text-[26px]" style={{ fontFamily: "Syne, sans-serif", fontWeight: 800, color: "#F5F0E8", letterSpacing: "-0.02em", marginBottom: 10, lineHeight: 1.2 }}>
                 {svc.headline}
               </h3>
-              <p style={{ fontSize: 14, color: "#8888a0", lineHeight: 1.7, marginBottom: 24 }}>{svc.desc}</p>
+              <p style={{ fontSize: 14, color: "#8A8070", lineHeight: 1.7, marginBottom: 24 }}>{svc.desc}</p>
               <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 8 }}>
                 {svc.features.map(f => (
-                  <li key={f} style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 13, color: "#f4f4f8" }}>
+                  <li key={f} style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 13, color: "#F5F0E8" }}>
                     <div style={{ width: 18, height: 18, borderRadius: "50%", background: svc.color + "20", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                       <Check size={10} color={svc.color} />
                     </div>
@@ -458,10 +458,10 @@ export default function Services() {
             <div className="services-price-row" style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
               <div>
                 {svc.originalPriceDisplay && (
-                  <div style={{ fontSize: 12, color: "#8888a0", textDecoration: "line-through", marginBottom: 2 }}>{svc.originalPriceDisplay}</div>
+                  <div style={{ fontSize: 12, color: "#8A8070", textDecoration: "line-through", marginBottom: 2 }}>{svc.originalPriceDisplay}</div>
                 )}
-                <div style={{ fontFamily: "Syne, sans-serif", fontSize: 22, fontWeight: 800, color: "#f4f4f8" }}>{svc.price}</div>
-                <div style={{ fontSize: 11, color: "#8888a0" }}>{t.services.monthNote}</div>
+                <div style={{ fontFamily: "Syne, sans-serif", fontSize: 22, fontWeight: 800, color: "#F5F0E8" }}>{svc.price}</div>
+                <div style={{ fontSize: 11, color: "#8A8070" }}>{t.services.monthNote}</div>
               </div>
               <a href="/#booking" className="btn-primary services-cta" style={{ marginLeft: "auto" }}>
                 {t.services.getStarted} <ChevronRight size={16} />
@@ -473,7 +473,7 @@ export default function Services() {
           <div className="services-demo-panel">
             <div style={{ marginBottom: 12, display: "flex", alignItems: "center", gap: 8 }}>
               <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#4ade80", boxShadow: "0 0 6px #4ade80" }} />
-              <span style={{ fontSize: 11, color: "#8888a0", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.08em" }}>
+              <span style={{ fontSize: 11, color: "#8A8070", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.08em" }}>
                 {t.services.liveDemo}
               </span>
             </div>
@@ -507,7 +507,7 @@ export default function Services() {
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes travelDown { from { top: 0; opacity: 1; } to { top: 8px; opacity: 0; } }
         @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        @keyframes breathe { 0%, 100% { box-shadow: 0 0 18px rgba(250,204,21,0.35); } 50% { box-shadow: 0 0 36px rgba(250,204,21,0.65); } }
+        @keyframes breathe { 0%, 100% { box-shadow: 0 0 18px rgba(212,175,55,0.25); } 50% { box-shadow: 0 0 36px rgba(212,175,55,0.45); } }
       `}</style>
     </section>
   );

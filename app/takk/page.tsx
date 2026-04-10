@@ -9,7 +9,7 @@ export default function TakkPage() {
   const ty = t.thankYou;
 
   return (
-    <div style={{ background: "#080812", minHeight: "100vh", color: "#f4f4f8" }}>
+    <div style={{ background: "#080808", minHeight: "100vh", color: "#F5F0E8" }}>
       <Navbar />
 
       <main style={{ paddingTop: 160, paddingBottom: 120, paddingLeft: 24, paddingRight: 24, display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -28,25 +28,25 @@ export default function TakkPage() {
           <h1 style={{
             fontFamily: "Syne, sans-serif", fontWeight: 800,
             fontSize: "clamp(28px, 6vw, 48px)", letterSpacing: "-0.03em",
-            color: "#f4f4f8", marginBottom: 16, lineHeight: 1.15,
+            color: "#F5F0E8", marginBottom: 16, lineHeight: 1.15,
           }}>
             {ty.title}
           </h1>
 
-          <p style={{ fontSize: 17, color: "#8888a0", lineHeight: 1.7, marginBottom: 48 }}>
+          <p style={{ fontSize: 17, color: "#8A8070", lineHeight: 1.7, marginBottom: 48 }}>
             {ty.subtitle}
           </p>
 
           <a href="/" style={{
             display: "inline-block", padding: "13px 32px",
             borderRadius: 12, fontWeight: 600, fontSize: 15,
-            background: "linear-gradient(135deg,#a855f7,#7c3aed)",
-            color: "white", textDecoration: "none",
-            boxShadow: "0 4px 20px rgba(168,85,247,0.3)",
+            background: "linear-gradient(135deg,#D4AF37,#B8960C)",
+            color: "#080808", textDecoration: "none",
+            boxShadow: "0 4px 20px rgba(212,175,55,0.25)",
             transition: "all 0.3s ease",
           }}
-          onMouseEnter={e => (e.currentTarget as HTMLElement).style.boxShadow = "0 8px 30px rgba(168,85,247,0.5)"}
-          onMouseLeave={e => (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 20px rgba(168,85,247,0.3)"}
+          onMouseEnter={e => (e.currentTarget as HTMLElement).style.boxShadow = "0 8px 30px rgba(212,175,55,0.45)"}
+          onMouseLeave={e => (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 20px rgba(212,175,55,0.25)"}
           >
             {ty.backButton}
           </a>

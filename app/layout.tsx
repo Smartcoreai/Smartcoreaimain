@@ -15,8 +15,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" style={{ background: "#080812" }}>
-      <body style={{ margin: 0, background: "#080812" }}>
+    <html lang="en" style={{ background: "#080808" }}>
+      <body style={{ margin: 0, background: "#080808" }}>
         <ScrollReset />
         <LanguageProvider>{children}</LanguageProvider>
       </body>

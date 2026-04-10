@@ -35,7 +35,8 @@ export default function FoundingBanner() {
     <div
       style={{
         position: "relative",
-        background: "linear-gradient(135deg, #6d28d9, #a855f7, #7c3aed)",
+        background: "linear-gradient(135deg, #1a1408, #2a1f08, #1a1408)",
+        borderBottom: "1px solid rgba(212,175,55,0.25)",
         padding: "10px 48px 10px 16px",
         textAlign: "center",
       }}
@@ -44,7 +45,7 @@ export default function FoundingBanner() {
         style={{
           margin: 0,
           fontSize: 14,
-          color: "white",
+          color: "#F5D87E",
           fontWeight: 500,
           lineHeight: 1.5,
         }}
@@ -59,7 +60,7 @@ export default function FoundingBanner() {
           justifyContent: "center",
           gap: 6,
           fontSize: 12,
-          color: "rgba(255,255,255,0.85)",
+          color: "rgba(212,175,55,0.7)",
         }}
       >
         {"⬛".repeat(SPOTS_REMAINING)}&nbsp;{spotsLabel}
@@ -72,10 +73,10 @@ export default function FoundingBanner() {
           top: "50%",
           right: 12,
           transform: "translateY(-50%)",
-          background: "rgba(255,255,255,0.15)",
+          background: "rgba(212,175,55,0.12)",
           border: "none",
           borderRadius: 6,
-          color: "white",
+          color: "#D4AF37",
           cursor: "pointer",
           padding: 5,
           display: "flex",

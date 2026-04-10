@@ -11,8 +11,8 @@ const CALL_URLS = [
   "https://calendly.com/smartcoreaimeeting/strategiokt",
 ];
 
-const CARD_COLORS = ["#a855f7", "#22d3ee", "#f472b6"];
-const GLOW_ANIMS  = ["glowPurple", "glowCyan", "glowPink"];
+const CARD_COLORS = ["#D4AF37", "#F5D87E", "#C9A84C"];
+const GLOW_ANIMS  = ["glowGold1", "glowGold2", "glowGold3"];
 
 export default function BookingSection() {
   const { t } = useLanguage();
@@ -29,7 +29,7 @@ export default function BookingSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="booking" style={{ background: "#080812", padding: "100px 24px" }}>
+    <section ref={sectionRef} id="booking" style={{ background: "#080808", padding: "100px 24px" }}>
       <div className="wrap">
 
         {/* Header */}
@@ -40,14 +40,14 @@ export default function BookingSection() {
           </div>
           <h2 className="text-[22px] sm:text-4xl lg:text-[52px]" style={{
             fontFamily: "Syne, sans-serif",
-            fontWeight: 800, color: "#f4f4f8", letterSpacing: "-0.03em", marginBottom: 14, lineHeight: 1.1,
+            fontWeight: 800, color: "#F5F0E8", letterSpacing: "-0.03em", marginBottom: 14, lineHeight: 1.1,
           }}>
             {t.booking.headline1}{" "}
-            <span style={{ background: "linear-gradient(135deg,#a855f7,#22d3ee)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+            <span style={{ background: "linear-gradient(135deg,#D4AF37,#F5D87E)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
               {t.booking.headline2}
             </span>
           </h2>
-          <p style={{ fontSize: 16, color: "#8888a0", maxWidth: 440, margin: "0 auto", lineHeight: 1.7 }}>
+          <p style={{ fontSize: 16, color: "#8A8070", maxWidth: 440, margin: "0 auto", lineHeight: 1.7 }}>
             {t.booking.subtext}
           </p>
         </div>
@@ -64,7 +64,7 @@ export default function BookingSection() {
                 style={{
                   position: "relative",
                   background: isPrimary
-                    ? "linear-gradient(145deg, rgba(168,85,247,0.08), rgba(124,58,237,0.03))"
+                    ? "linear-gradient(145deg, rgba(212,175,55,0.08), rgba(10,15,30,0.3))"
                     : "rgba(12,12,18,0.95)",
                   border: `1px solid ${color}${isPrimary ? "45" : "28"}`,
                   borderRadius: 22,
@@ -95,10 +95,10 @@ export default function BookingSection() {
                   <div style={{
                     position: "absolute", top: -12, left: "50%", transform: "translateX(-50%)",
                     padding: "4px 16px", borderRadius: 999,
-                    background: "linear-gradient(135deg,#a855f7,#7c3aed)",
-                    fontSize: 11, fontWeight: 700, color: "white",
+                    background: "linear-gradient(135deg,#D4AF37,#B8960C)",
+                    fontSize: 11, fontWeight: 700, color: "#080808",
                     display: "flex", alignItems: "center", gap: 5, whiteSpace: "nowrap",
-                    boxShadow: "0 4px 20px rgba(168,85,247,0.4)", zIndex: 1,
+                    boxShadow: "0 4px 20px rgba(212,175,55,0.35)", zIndex: 1,
                   }}>
                     <Star size={10} fill="currentColor" /> {t.booking.popular}
                   </div>
@@ -124,13 +124,13 @@ export default function BookingSection() {
                 {/* Title */}
                 <div style={{
                   fontFamily: "Syne, sans-serif", fontSize: 20, fontWeight: 800,
-                  color: "#f4f4f8", letterSpacing: "-0.02em", marginBottom: 10,
+                  color: "#F5F0E8", letterSpacing: "-0.02em", marginBottom: 10,
                 }}>
                   {ct.label}
                 </div>
 
                 {/* Description */}
-                <div style={{ fontSize: 14, color: "#8888a0", lineHeight: 1.65, marginBottom: 24, flexGrow: 1 }}>
+                <div style={{ fontSize: 14, color: "#8A8070", lineHeight: 1.65, marginBottom: 24, flexGrow: 1 }}>
                   {ct.desc}
                 </div>
 
@@ -157,9 +157,9 @@ export default function BookingSection() {
                     textDecoration: "none",
                     transition: "all 0.25s ease",
                     ...(isPrimary ? {
-                      background: "linear-gradient(135deg,#a855f7,#7c3aed)",
-                      color: "white",
-                      boxShadow: "0 4px 20px rgba(168,85,247,0.35)",
+                      background: "linear-gradient(135deg,#D4AF37,#B8960C)",
+                      color: "#080808",
+                      boxShadow: "0 4px 20px rgba(212,175,55,0.25)",
                     } : {
                       background: `${color}15`,
                       color,
@@ -170,7 +170,7 @@ export default function BookingSection() {
                     const el = e.currentTarget as HTMLElement;
                     el.style.transform = "translateY(-2px)";
                     if (isPrimary) {
-                      el.style.boxShadow = "0 8px 32px rgba(168,85,247,0.55)";
+                      el.style.boxShadow = "0 8px 32px rgba(212,175,55,0.45)";
                     } else {
                       el.style.background = `${color}28`;
                     }
@@ -179,7 +179,7 @@ export default function BookingSection() {
                     const el = e.currentTarget as HTMLElement;
                     el.style.transform = "translateY(0)";
                     if (isPrimary) {
-                      el.style.boxShadow = "0 4px 20px rgba(168,85,247,0.35)";
+                      el.style.boxShadow = "0 4px 20px rgba(212,175,55,0.25)";
                     } else {
                       el.style.background = `${color}15`;
                     }
@@ -194,7 +194,7 @@ export default function BookingSection() {
 
         {/* Bottom note */}
         <div style={{ marginTop: 44, textAlign: "center" }}>
-          <p style={{ fontSize: 13, color: "#8888a0" }}>{t.booking.freeDesc}</p>
+          <p style={{ fontSize: 13, color: "#8A8070" }}>{t.booking.freeDesc}</p>
         </div>
 
       </div>
@@ -205,17 +205,17 @@ export default function BookingSection() {
         @media (max-width: 768px) {
           .booking-cards > div { padding: 24px 20px !important; box-sizing: border-box; width: 100%; }
         }
-        @keyframes glowPurple {
-          0%, 100% { box-shadow: 0 0 18px rgba(168,85,247,0.08); }
-          50%       { box-shadow: 0 0 38px rgba(168,85,247,0.22), 0 0 70px rgba(168,85,247,0.05); }
+        @keyframes glowGold1 {
+          0%, 100% { box-shadow: 0 0 18px rgba(212,175,55,0.06); }
+          50%       { box-shadow: 0 0 38px rgba(212,175,55,0.18), 0 0 70px rgba(212,175,55,0.04); }
         }
-        @keyframes glowCyan {
-          0%, 100% { box-shadow: 0 0 18px rgba(34,211,238,0.08); }
-          50%       { box-shadow: 0 0 38px rgba(34,211,238,0.22), 0 0 70px rgba(34,211,238,0.05); }
+        @keyframes glowGold2 {
+          0%, 100% { box-shadow: 0 0 18px rgba(245,216,126,0.06); }
+          50%       { box-shadow: 0 0 38px rgba(245,216,126,0.16), 0 0 70px rgba(245,216,126,0.04); }
         }
-        @keyframes glowPink {
-          0%, 100% { box-shadow: 0 0 18px rgba(244,114,182,0.08); }
-          50%       { box-shadow: 0 0 38px rgba(244,114,182,0.22), 0 0 70px rgba(244,114,182,0.05); }
+        @keyframes glowGold3 {
+          0%, 100% { box-shadow: 0 0 18px rgba(201,168,76,0.06); }
+          50%       { box-shadow: 0 0 38px rgba(201,168,76,0.16), 0 0 70px rgba(201,168,76,0.04); }
         }
       `}</style>
     </section>
