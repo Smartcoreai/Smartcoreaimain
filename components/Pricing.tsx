@@ -121,16 +121,17 @@ export default function Pricing() {
               ) : (
                 <div style={{ marginBottom: 28 }}>
                   {/* Original (crossed out) */}
-                  <div style={{ fontSize: 13, color: "#4A4438", textDecoration: "line-through", marginBottom: 4, letterSpacing: "0.02em" }}>
+                  <div style={{ fontSize: 13, color: "#4A4438", textDecoration: "line-through", marginBottom: 4, letterSpacing: "0.02em", whiteSpace: "nowrap" }}>
                     {formatPrice(plan.originalPrice, lang)}/{t.pricing.period}
                   </div>
-                  {/* Live price — large gold */}
-                  <div style={{ display: "flex", alignItems: "baseline", gap: 6 }}>
+                  {/* Live price — large gold, never wraps */}
+                  <div style={{ whiteSpace: "nowrap", overflow: "hidden" }}>
                     <span style={{
                       fontFamily: "'Playfair Display', Georgia, serif",
-                      fontSize: 56,
+                      fontSize: "clamp(28px, 4.5vw, 48px)",
                       fontWeight: 700,
                       lineHeight: 1,
+                      whiteSpace: "nowrap",
                       background: `linear-gradient(135deg, ${plan.color} 0%, ${plan.accent} 60%, ${plan.color} 100%)`,
                       backgroundSize: "200% auto",
                       WebkitBackgroundClip: "text",
@@ -140,7 +141,7 @@ export default function Pricing() {
                     }}>
                       {formatPrice(plan.price, lang)}
                     </span>
-                    <span style={{ fontSize: 14, color: "#6A6050", fontWeight: 500 }}>/{t.pricing.period}</span>
+                    <span style={{ fontSize: 13, color: "#6A6050", fontWeight: 500, marginLeft: 4 }}>/{t.pricing.period}</span>
                   </div>
                   {/* Founding label */}
                   <div style={{ display: "inline-flex", alignItems: "center", gap: 5, marginTop: 8, padding: "3px 10px", borderRadius: 999, background: `${plan.color}14`, border: `1px solid ${plan.color}28` }}>
