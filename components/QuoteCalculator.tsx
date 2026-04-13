@@ -5,7 +5,7 @@ import { Calculator, CheckCircle2, Loader2 } from "lucide-react";
 const SERVICES_LIST = [
   { id: "chatbot", label: "AI Chatbot", base: 299, desc: "24/7 lead capture & booking" },
   { id: "leadgen", label: "Leadgen System", base: 499, desc: "Automated lead follow-up" },
-  { id: "voice", label: "AI Voice Agent", base: 799, desc: "AI phone calls & outbound" },
+  { id: "voice", label: "AI Receptionist", base: 799, desc: "AI-powered reception" },
   { id: "custom", label: "Custom AI Integration", base: 0, desc: "Price discussed on a call" },
 ];
 

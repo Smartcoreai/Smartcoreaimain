@@ -64,11 +64,11 @@ export const translations = {
           features: ["AI lead capture forms", "Instant qualification", "Auto pipeline routing", "Email & SMS follow-up"],
         },
         {
-          label: "AI Voice Agent",
+          label: "AI Receptionist",
           tag: "Always on",
-          headline: "AI that calls and qualifies leads while you sleep.",
-          desc: "Your AI voice agent handles inbound and outbound calls, qualifies leads and books meetings — 24/7.",
-          features: ["AI-powered voice calls", "Lead qualification by phone", "Auto follow-up", "CRM integration"],
+          headline: "AI receptionist that answers, qualifies and books — 24/7.",
+          desc: "Your AI receptionist handles inbound calls, qualifies leads and books meetings — 24/7.",
+          features: ["AI-powered reception", "Lead qualification by phone", "Auto follow-up", "CRM integration"],
         },
         {
           label: "Custom AI Integrations",
@@ -101,8 +101,8 @@ export const translations = {
           cta: "Get started",
         },
         {
-          desc: "AI that calls, qualifies and follows up with leads — around the clock.",
-          features: ["AI-powered voice calls", "Lead qualification by phone", "Auto follow-up", "CRM integration", "Call recording & transcripts", "24/7 availability"],
+          desc: "AI receptionist that answers, qualifies and follows up with leads — around the clock.",
+          features: ["AI-powered reception", "Lead qualification by phone", "Auto follow-up", "CRM integration", "Call recording & transcripts", "24/7 availability"],
           cta: "Get started",
         },
         {
@@ -221,8 +221,8 @@ export const translations = {
           features: ["AI lead capture forms", "Instant qualification", "Auto-routing", "CRM integration", "Email & SMS follow-up", "Monthly report"],
         },
         {
-          desc: "An AI voice agent that calls and qualifies leads around the clock.",
-          features: ["AI-powered voice calls", "Lead qualification by phone", "Auto follow-up", "CRM integration", "Call recording", "24/7 availability"],
+          desc: "An AI receptionist that answers, qualifies and books meetings — 24/7.",
+          features: ["AI-powered reception", "Lead qualification by phone", "Auto follow-up", "CRM integration", "Call recording", "24/7 availability"],
         },
         {
           desc: "A fully custom AI system tailored to your business.",
@@ -295,11 +295,11 @@ export const translations = {
           features: ["AI-leadfangstskjemaer", "Øyeblikkelig kvalifisering", "Automatisk pipeline-ruting", "E-post og SMS-oppfølging"],
         },
         {
-          label: "AI Stemmeagent",
+          label: "AI Resepsjonist",
           tag: "Alltid tilgjengelig",
-          headline: "AI som ringer og kvalifiserer leads mens du sover.",
-          desc: "Din AI-stemmeagent håndterer inn- og utgående samtaler, kvalifiserer leads og booker møter — 24/7.",
-          features: ["AI-drevne stemmeanrop", "Leadkvalifisering per telefon", "Automatisk oppfølging", "CRM-integrasjon"],
+          headline: "AI-resepsjonist som svarer, kvalifiserer og booker — 24/7.",
+          desc: "Din AI-resepsjonist håndterer innkommende samtaler, kvalifiserer leads og booker møter — 24/7.",
+          features: ["AI-drevet telefonsvar", "Leadkvalifisering per telefon", "Automatisk oppfølging", "CRM-integrasjon"],
         },
         {
           label: "Skreddersydde AI-integrasjoner",
@@ -332,8 +332,8 @@ export const translations = {
           cta: "Kom i gang",
         },
         {
-          desc: "AI som ringer, kvalifiserer og følger opp leads — døgnet rundt.",
-          features: ["AI-drevne stemmeanrop", "Leadkvalifisering per telefon", "Automatisk oppfølging", "CRM-integrasjon", "Samtaleopptak og transkripsjoner", "Tilgjengelighet 24/7"],
+          desc: "AI-resepsjonist som svarer, kvalifiserer og følger opp leads — døgnet rundt.",
+          features: ["AI-drevet telefonsvar", "Leadkvalifisering per telefon", "Automatisk oppfølging", "CRM-integrasjon", "Samtaleopptak og transkripsjoner", "Tilgjengelighet 24/7"],
           cta: "Kom i gang",
         },
         {
@@ -452,8 +452,8 @@ export const translations = {
           features: ["AI-skjema for leadinnhenting", "Øyeblikkelig kvalifisering", "Automatisk ruting", "CRM-integrasjon", "E-post & SMS-oppfølging", "Månedlig rapport"],
         },
         {
-          desc: "En AI-stemmeagent som ringer og kvalifiserer leads døgnet rundt.",
-          features: ["AI-drevne telefonsamtaler", "Leadkvalifisering på telefon", "Automatisk oppfølging", "CRM-integrasjon", "Samtaleopptak", "Tilgjengelig 24/7"],
+          desc: "En AI-resepsjonist som svarer, kvalifiserer og booker møter — 24/7.",
+          features: ["AI-drevet telefonsvar", "Leadkvalifisering på telefon", "Automatisk oppfølging", "CRM-integrasjon", "Samtaleopptak", "Tilgjengelig 24/7"],
         },
         {
           desc: "Et fullt skreddersydd AI-system tilpasset din bedrift.",

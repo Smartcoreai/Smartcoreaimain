@@ -5,7 +5,7 @@ import { useLanguage, formatPrice } from "@/lib/i18n";
 const PLAN_META = [
   { name: "AI Chatbot",             price: 299,  originalPrice: 599,  color: "#a855f7", popular: false },
   { name: "Leadgen System",         price: 499,  originalPrice: 999,  color: "#22d3ee", popular: false },
-  { name: "AI Voice Agent",         price: 799,  originalPrice: 1599, color: "#f472b6", popular: true  },
+  { name: "AI Receptionist",        price: 799,  originalPrice: 1599, color: "#f472b6", popular: true  },
   { name: "Custom AI Integrations", price: 1500, originalPrice: 2199, color: "#facc15", popular: false, priceCustom: true },
 ];
 
