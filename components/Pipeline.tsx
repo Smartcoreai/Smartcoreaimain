@@ -6,11 +6,11 @@ const STEPS = [
   {
     step: "01",
     icon: <Phone size={22} />,
-    color: "#a855f7",
+    color: "#D4AF37",
     title: "First Contact",
     desc: "Visitor lands on your site. The AI chatbot engages instantly, captures their details, and qualifies the lead — even at 3am.",
     outcome: "Lead captured",
-    outcomeColor: "#a855f7",
+    outcomeColor: "#D4AF37",
     metric: "Avg. 2 min",
     metricLabel: "to first response",
     details: ["Name & contact captured", "Business needs identified", "Urgency scored by AI"],
@@ -18,11 +18,11 @@ const STEPS = [
   {
     step: "02",
     icon: <Calendar size={22} />,
-    color: "#22d3ee",
+    color: "#F5D87E",
     title: "Instant Booking",
     desc: "The AI books them directly into your calendar — no back-and-forth, no phone calls. A confirmation lands in their inbox immediately.",
     outcome: "Booking confirmed",
-    outcomeColor: "#22d3ee",
+    outcomeColor: "#F5D87E",
     metric: "0 emails",
     metricLabel: "needed to schedule",
     details: ["Calendar sync checked", "SMS + email confirmation", "Reminder sent 24h before"],
@@ -30,11 +30,11 @@ const STEPS = [
   {
     step: "03",
     icon: <Rocket size={22} />,
-    color: "#f472b6",
+    color: "#C9A84C",
     title: "Onboarding",
     desc: "After the call, they're auto-added to your CRM. A tailored onboarding sequence kicks off with zero manual effort on your part.",
     outcome: "Client onboarded",
-    outcomeColor: "#f472b6",
+    outcomeColor: "#C9A84C",
     metric: "< 1 day",
     metricLabel: "onboarding time",
     details: ["CRM record created", "Welcome sequence triggered", "Intake form sent & tracked"],
@@ -50,12 +50,12 @@ export default function Pipeline() {
   }, []);
 
   return (
-    <section id="pipeline" style={{ background: "#0b0b18", padding: "100px 24px", position: "relative", overflow: "hidden" }}>
+    <section id="pipeline" style={{ background: "#1A1A1A", padding: "100px 24px", position: "relative", overflow: "hidden" }}>
       {/* Background glow */}
       <div style={{
         position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)",
         width: 600, height: 400, borderRadius: "50%",
-        background: "radial-gradient(ellipse, rgba(168,85,247,0.06) 0%, transparent 70%)",
+        background: "radial-gradient(ellipse, rgba(212,175,55,0.05) 0%, transparent 70%)",
         pointerEvents: "none",
       }} />
 
@@ -64,17 +64,17 @@ export default function Pipeline() {
         <div style={{ textAlign: "center", marginBottom: 64 }}>
           <div className="tag" style={{ display: "inline-flex", marginBottom: 16 }}>The pipeline</div>
           <h2 style={{
-            fontFamily: "Syne, sans-serif",
+            fontFamily: "'Playfair Display', Georgia, serif",
             fontSize: "clamp(32px,4vw,52px)",
-            fontWeight: 800, color: "#f4f4f8", letterSpacing: "-0.03em", marginBottom: 14, lineHeight: 1.1,
+            fontWeight: 700, fontStyle: "italic", color: "#F5F0E8", letterSpacing: "-0.01em", marginBottom: 14, lineHeight: 1.1,
           }}>
             From stranger to{" "}
-            <span style={{ background: "linear-gradient(135deg,#4ade80,#22d3ee)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+            <span style={{ background: "linear-gradient(135deg,#D4AF37,#F5D87E)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
               paying client
             </span>
             {" "}— automated.
           </h2>
-          <p style={{ fontSize: 16, color: "#8888a0", maxWidth: 480, margin: "0 auto", lineHeight: 1.7 }}>
+          <p style={{ fontSize: 16, color: "#8A8070", maxWidth: 480, margin: "0 auto", lineHeight: 1.7 }}>
             Here's exactly what happens from the moment someone visits your site to the moment they pay you.
           </p>
         </div>
@@ -106,7 +106,7 @@ export default function Pipeline() {
                     Step {s.step}
                   </span>
                 </div>
-                <div style={{ fontSize: 14, fontWeight: 600, color: activeStep === i ? "#f4f4f8" : "#8888a0", transition: "color 0.3s" }}>
+                <div style={{ fontSize: 14, fontWeight: 600, color: activeStep === i ? "#F5F0E8" : "#8A8070", transition: "color 0.3s" }}>
                   {s.title}
                 </div>
                 {/* Live indicator */}
@@ -139,11 +139,11 @@ export default function Pipeline() {
                       color: s.color, border: `1px solid ${s.color}30`,
                     }}>{s.icon}</div>
                     <div>
-                      <div style={{ fontSize: 11, color: "#8888a0", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.08em" }}>Step {s.step}</div>
-                      <div style={{ fontFamily: "Syne, sans-serif", fontSize: 22, fontWeight: 800, color: "#f4f4f8", letterSpacing: "-0.02em" }}>{s.title}</div>
+                      <div style={{ fontSize: 11, color: "#8A8070", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.08em" }}>Step {s.step}</div>
+                      <div style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 22, fontWeight: 800, color: "#F5F0E8", letterSpacing: "-0.02em" }}>{s.title}</div>
                     </div>
                   </div>
-                  <p style={{ fontSize: 15, color: "#8888a0", lineHeight: 1.75, marginBottom: 24 }}>{s.desc}</p>
+                  <p style={{ fontSize: 15, color: "#8A8070", lineHeight: 1.75, marginBottom: 24 }}>{s.desc}</p>
                   <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 10 }}>
                     {s.details.map(d => (
                       <li key={d} style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 13, color: "#c4c4d0" }}>
@@ -161,7 +161,7 @@ export default function Pipeline() {
                     background: s.color + "08", border: `1px solid ${s.color}25`,
                     borderRadius: 16, padding: "24px 24px", textAlign: "center",
                   }}>
-                    <div style={{ fontSize: 12, fontWeight: 600, color: "#8888a0", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 12 }}>Outcome</div>
+                    <div style={{ fontSize: 12, fontWeight: 600, color: "#8A8070", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 12 }}>Outcome</div>
                     <div style={{
                       display: "inline-flex", alignItems: "center", gap: 8, padding: "8px 18px",
                       background: s.outcomeColor + "20", borderRadius: 999,
@@ -177,10 +177,10 @@ export default function Pipeline() {
                     background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)",
                     borderRadius: 16, padding: "24px", textAlign: "center",
                   }}>
-                    <div style={{ fontFamily: "Syne, sans-serif", fontSize: 40, fontWeight: 800, color: "#f4f4f8", letterSpacing: "-0.03em", marginBottom: 4 }}>
+                    <div style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 40, fontWeight: 800, color: "#F5F0E8", letterSpacing: "-0.01em", marginBottom: 4 }}>
                       {s.metric}
                     </div>
-                    <div style={{ fontSize: 13, color: "#8888a0" }}>{s.metricLabel}</div>
+                    <div style={{ fontSize: 13, color: "#8A8070" }}>{s.metricLabel}</div>
                   </div>
 
                   {/* Next step hint */}
@@ -189,11 +189,11 @@ export default function Pipeline() {
                       display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
                       padding: "12px", borderRadius: 12,
                       background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)",
-                      color: "#8888a0", fontSize: 13, cursor: "pointer", fontFamily: "inherit",
+                      color: "#8A8070", fontSize: 13, cursor: "pointer", fontFamily: "inherit",
                       transition: "all 0.2s",
                     }}
-                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.06)"; (e.currentTarget as HTMLElement).style.color = "#f4f4f8"; }}
-                    onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.03)"; (e.currentTarget as HTMLElement).style.color = "#8888a0"; }}
+                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "rgba(212,175,55,0.08)"; (e.currentTarget as HTMLElement).style.color = "#F5F0E8"; }}
+                    onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "rgba(212,175,55,0.03)"; (e.currentTarget as HTMLElement).style.color = "#8A8070"; }}
                     >
                       Next: {STEPS[activeStep + 1].title} <ArrowDown size={14} />
                     </button>

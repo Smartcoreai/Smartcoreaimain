@@ -7,7 +7,7 @@ export default function FAQPage() {
   return (
     <>
       <Navbar />
-      <main style={{ background: "#080812", minHeight: "100vh", paddingTop: 80 }}>
+      <main style={{ background: "#1A1A1A", minHeight: "100vh", paddingTop: 80 }}>
         <Objections />
       </main>
       <Footer />

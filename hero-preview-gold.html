@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SmartcoreAI — Hero Preview (Gold Theme)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html {
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  body {
+    margin: 0;
+    background: #0D0D0D;
+    color: #f4f4f8;
+    font-family: 'Inter', system-ui, sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── Grid bg ── */
+  .bg-grid {
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  /* ── Buttons ── */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 15px;
+    color: #0D0D0D;
+    background: linear-gradient(135deg, #C9A84C, #e0b84a);
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(201,168,76,0.5);
+  }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 15px;
+    color: #f4f4f8;
+    background: rgba(201,168,76,0.06);
+    border: 1px solid rgba(201,168,76,0.4);
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  .btn-outline:hover {
+    border-color: rgba(201,168,76,0.8);
+    background: rgba(201,168,76,0.13);
+    transform: translateY(-2px);
+  }
+
+  /* ── Tag pill ── */
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 14px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: rgba(201,168,76,0.12);
+    border: 1px solid rgba(201,168,76,0.3);
+    color: #C9A84C;
+  }
+
+  /* ── Dot glow ── */
+  .dot-glow {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #C9A84C;
+    box-shadow: 0 0 10px #C9A84C;
+    flex-shrink: 0;
+  }
+
+  /* ── Hero stat cells ── */
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 700px;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 18px;
+    overflow: hidden;
+  }
+  .hero-stat-cell {
+    padding: 20px 16px;
+    text-align: center;
+    border-right: 1px solid rgba(255,255,255,0.04);
+  }
+  .hero-stat-cell:last-child { border-right: none; }
+  .stat-value {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #C9A84C, #e8c96a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.1;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: #888890;
+    margin-top: 4px;
+    font-weight: 500;
+  }
+
+  /* ── Floating badge ── */
+  .badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(26,26,26,0.9);
+    border: 1px solid rgba(201,168,76,0.15);
+    backdrop-filter: blur(12px);
+    border-radius: 14px;
+    padding: 10px 14px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 20px rgba(201,168,76,0.06);
+    white-space: nowrap;
+    position: absolute;
+  }
+  .badge-text { font-size: 12px; font-weight: 600; color: #f4f4f8; }
+  .badge-sub  { font-size: 11px; color: #888890; }
+
+  /* ── Animations ── */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-16px); }
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+  }
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes pulseRing {
+    0%   { transform: scale(0.85); opacity: 1; }
+    100% { transform: scale(2); opacity: 0; }
+  }
+
+  .blink { animation: blink 1s step-end infinite; }
+
+  @media (max-width: 640px) {
+    .hero-stats { grid-template-columns: repeat(2, 1fr); }
+    .hero-stat-cell:nth-child(even) { border-right: none; }
+    .hero-stat-cell:nth-child(1),
+    .hero-stat-cell:nth-child(2) { border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .badges-area { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<section style="
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.07) 0%, transparent 60%), #0D0D0D;
+">
+
+  <!-- Canvas for particles -->
+  <canvas id="particles" style="position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;"></canvas>
+
+  <!-- Grid -->
+  <div class="bg-grid" style="position:absolute;inset:0;z-index:0;"></div>
+
+  <!-- Glow orbs -->
+  <div style="
+    position:absolute; top:8%; left:50%; transform:translateX(-50%);
+    width:700px; height:700px; border-radius:50%;
+    background: radial-gradient(circle, rgba(201,168,76,0.10) 0%, transparent 70%);
+    z-index:1; pointer-events:none;
+  "></div>
+  <div style="
+    position:absolute; top:25%; right:-8%;
+    width:420px; height:420px; border-radius:50%;
+    background: radial-gradient(circle, rgba(30,58,95,0.18) 0%, transparent 70%);
+    z-index:1; pointer-events:none;
+  "></div>
+  <div style="
+    position:absolute; bottom:15%; left:-5%;
+    width:300px; height:300px; border-radius:50%;
+    background: radial-gradient(circle, rgba(30,58,95,0.12) 0%, transparent 70%);
+    z-index:1; pointer-events:none;
+  "></div>
+
+  <!-- Floating badges (desktop) -->
+  <div class="badges-area">
+    <div class="badge" style="left:8%;top:35%;animation:float 6s ease-in-out 0s infinite;">
+      <span style="font-size:20px;">💬</span>
+      <div>
+        <div class="badge-text">Lead captured</div>
+        <div class="badge-sub">via AI chat</div>
+      </div>
+      <div class="dot-glow" style="margin-left:4px;"></div>
+    </div>
+    <div class="badge" style="left:78%;top:25%;animation:float 6s ease-in-out 1.5s infinite;">
+      <span style="font-size:20px;">📅</span>
+      <div>
+        <div class="badge-text">Booking confirmed</div>
+        <div class="badge-sub">Tue 2:00 PM</div>
+      </div>
+      <div class="dot-glow" style="margin-left:4px;"></div>
+    </div>
+    <div class="badge" style="left:5%;top:68%;animation:float 6s ease-in-out 2s infinite;">
+      <span style="font-size:20px;">🤖</span>
+      <div>
+        <div class="badge-text">AI responding</div>
+        <div class="badge-sub">24/7 active</div>
+      </div>
+      <div class="dot-glow" style="margin-left:4px;"></div>
+    </div>
+  </div>
+
+  <!-- Main content -->
+  <div style="
+    position:relative; z-index:10;
+    max-width:1280px; margin:0 auto; width:100%;
+    padding:140px 24px 80px;
+    text-align:center;
+  ">
+
+    <!-- Tag -->
+    <div style="display:flex;justify-content:center;margin-bottom:28px;animation:fadeIn 0.6s ease forwards;">
+      <div class="tag">
+        ✦ AI-powered growth systems
+      </div>
+    </div>
+
+    <!-- Headline -->
+    <h1 id="headline" style="
+      font-family:'Syne',system-ui,sans-serif;
+      font-weight:800;
+      font-size:clamp(36px,7vw,80px);
+      line-height:1.1;
+      letter-spacing:-0.03em;
+      color:#f4f4f8;
+      max-width:min(900px,100%);
+      margin:0 auto 24px;
+      animation:slideUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.1s both;
+    ">
+      Your business,&nbsp;<span id="typed-accent" style="
+        background: linear-gradient(135deg, #C9A84C 0%, #e8c96a 60%, #C9A84C 100%);
+        -webkit-background-clip:text;
+        -webkit-text-fill-color:transparent;
+        background-clip:text;
+      "></span><span class="blink" style="
+        display:inline-block;width:3px;height:0.85em;
+        background:#C9A84C;margin-left:3px;vertical-align:middle;
+      "></span>
+    </h1>
+
+    <!-- Subtext -->
+    <p style="
+      font-size:16px;
+      color:#888890;
+      max-width:min(560px,100%);
+      width:100%;
+      margin:0 auto 48px;
+      line-height:1.7;
+      font-weight:400;
+      animation:slideUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.2s both;
+    ">
+      AI chatbots, booking automation, CRM systems — fully integrated, deployed in days. Not months.
+    </p>
+
+    <!-- CTAs -->
+    <div style="
+      display:flex;flex-wrap:wrap;justify-content:center;align-items:center;
+      gap:14px;margin-bottom:80px;
+      animation:slideUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.3s both;
+    ">
+      <div style="position:relative;display:inline-flex;">
+        <!-- Pulse rings -->
+        <div style="
+          position:absolute;inset:-6px;border-radius:18px;
+          border:2px solid rgba(201,168,76,0.55);
+          animation:pulseRing 2s ease-out infinite;
+          pointer-events:none;
+        "></div>
+        <div style="
+          position:absolute;inset:-12px;border-radius:22px;
+          border:2px solid rgba(201,168,76,0.25);
+          animation:pulseRing 2s ease-out 0.6s infinite;
+          pointer-events:none;
+        "></div>
+        <a href="#" class="btn-primary">
+          Book a free call
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+      <a href="#" class="btn-outline">See what we build</a>
+    </div>
+
+    <!-- Stats row -->
+    <div class="hero-stats" style="animation:slideUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.4s both;">
+      <div class="hero-stat-cell">
+        <div class="stat-value">🚀</div>
+        <div class="stat-label">Built for growth</div>
+      </div>
+      <div class="hero-stat-cell">
+        <div class="stat-value">⚡</div>
+        <div class="stat-label">Ready in days, not months</div>
+      </div>
+      <div class="hero-stat-cell">
+        <div class="stat-value">🎯</div>
+        <div class="stat-label">Tailored to your business</div>
+      </div>
+      <div class="hero-stat-cell">
+        <div class="stat-value">💬</div>
+        <div class="stat-label">We're not done until you're happy</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+// ── Typewriter ────────────────────────────────────────────────
+const phrase = "running itself.";
+const accentEl = document.getElementById("typed-accent");
+let i = 0, dir = 1;
+
+function tick() {
+  accentEl.textContent = phrase.slice(0, i);
+  if (i === phrase.length) {
+    dir = -1;
+    setTimeout(tick, 3000);
+    return;
+  }
+  if (i === 0 && dir === -1) {
+    dir = 1;
+    setTimeout(tick, 300);
+    return;
+  }
+  i += dir;
+  setTimeout(tick, dir === 1 ? 80 : 40);
+}
+tick();
+
+// ── Particles ─────────────────────────────────────────────────
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+let animId;
+
+// gold + steel-blue palette
+const colors = [
+  "rgba(201,168,76",
+  "rgba(30,58,95",
+  "rgba(228,195,100",
+  "rgba(60,100,150",
+];
+
+const particles = [];
+
+function resize() {
+  canvas.width  = canvas.offsetWidth;
+  canvas.height = canvas.offsetHeight;
+}
+resize();
+window.addEventListener("resize", resize);
+
+function spawnParticle() {
+  return {
+    x:   Math.random() * canvas.width,
+    y:   canvas.height + Math.random() * 40,
+    vx:  (Math.random() - 0.5) * 0.3,
+    vy:  -(Math.random() * 0.5 + 0.2),
+    size: Math.random() * 2 + 0.4,
+    life: Math.random(),
+    maxOpacity: Math.random() * 0.5 + 0.1,
+    opacity: 0,
+    color: colors[Math.floor(Math.random() * colors.length)],
+  };
+}
+
+for (let k = 0; k < 70; k++) {
+  const p = spawnParticle();
+  p.y = Math.random() * canvas.height;
+  particles.push(p);
+}
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(p => {
+    p.life += 0.0018;
+    p.opacity = p.maxOpacity * Math.sin(Math.PI * Math.min(p.life, 1));
+    p.x += p.vx;
+    p.y += p.vy;
+    if (p.life >= 1 || p.y < -10) Object.assign(p, spawnParticle());
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+    ctx.fillStyle = `${p.color},${p.opacity})`;
+    ctx.fill();
+  });
+  animId = requestAnimationFrame(draw);
+}
+draw();
+</script>
+</body>
+</html>

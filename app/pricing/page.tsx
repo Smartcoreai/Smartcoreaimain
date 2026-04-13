@@ -5,10 +5,10 @@ import Footer from "@/components/Footer";
 import { useLanguage, formatPrice } from "@/lib/i18n";
 
 const PLAN_META = [
-  { name: "AI Chatbot",             price: 299,  originalPrice: 599,  color: "#a855f7", popular: false, priceCustom: false, href: "/#booking" },
-  { name: "Leadgen System",         price: 499,  originalPrice: 999,  color: "#22d3ee", popular: true,  priceCustom: false, href: "/#booking" },
-  { name: "AI Receptionist",        price: 799,  originalPrice: 1599, color: "#f472b6", popular: false, priceCustom: false, href: "/#booking" },
-  { name: "Custom AI Integrations", price: null, originalPrice: null, color: "#facc15", popular: false, priceCustom: true,  href: "/#booking" },
+  { name: "AI Chatbot",             price: 299,  originalPrice: 599,  color: "#D4AF37", popular: false, priceCustom: false, href: "/#booking" },
+  { name: "Leadgen System",         price: 499,  originalPrice: 999,  color: "#F5D87E", popular: true,  priceCustom: false, href: "/#booking" },
+  { name: "AI Receptionist",        price: 799,  originalPrice: 1599, color: "#C9A84C", popular: false, priceCustom: false, href: "/#booking" },
+  { name: "Custom AI Integrations", price: null, originalPrice: null, color: "#D4AF37", popular: false, priceCustom: true,  href: "/#booking" },
 ];
 
 export default function PricingPage() {
@@ -21,15 +21,15 @@ export default function PricingPage() {
   }));
 
   return (
-    <div style={{ background: "#080812", minHeight: "100vh", color: "#f4f4f8" }}>
+    <div style={{ background: "#1A1A1A", minHeight: "100vh", color: "#F5F0E8" }}>
       <Navbar />
 
       <main style={{ paddingTop: 120, paddingBottom: 100, paddingLeft: 24, paddingRight: 24 }}>
         <div className="wrap">
           {/* Back button */}
-          <a href="/" style={{ display: "inline-block", color: "#8888a0", fontSize: 14, textDecoration: "none", marginBottom: 40, transition: "color 0.2s" }}
-            onMouseEnter={e => (e.currentTarget.style.color = "#a855f7")}
-            onMouseLeave={e => (e.currentTarget.style.color = "#8888a0")}
+          <a href="/" style={{ display: "inline-block", color: "#8A8070", fontSize: 14, textDecoration: "none", marginBottom: 40, transition: "color 0.2s" }}
+            onMouseEnter={e => (e.currentTarget.style.color = "#D4AF37")}
+            onMouseLeave={e => (e.currentTarget.style.color = "#8A8070")}
           >
             {p.back}
           </a>
@@ -38,14 +38,14 @@ export default function PricingPage() {
           <div style={{ textAlign: "center", marginBottom: 60 }}>
             <h1 style={{
               fontFamily: "Syne, sans-serif", fontWeight: 800, fontSize: "clamp(32px, 6vw, 56px)",
-              color: "#f4f4f8", letterSpacing: "-0.03em", marginBottom: 14, lineHeight: 1.1,
+              color: "#F5F0E8", letterSpacing: "-0.03em", marginBottom: 14, lineHeight: 1.1,
             }}>
               {p.title.split(" ").slice(0, -2).join(" ")}{" "}
-              <span style={{ background: "linear-gradient(135deg,#a855f7,#22d3ee)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+              <span style={{ background: "linear-gradient(135deg,#D4AF37,#F5D87E)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
                 {p.title.split(" ").slice(-2).join(" ")}
               </span>
             </h1>
-            <p style={{ fontSize: 16, color: "#8888a0", lineHeight: 1.7 }}>{p.subtitle}</p>
+            <p style={{ fontSize: 16, color: "#8A8070", lineHeight: 1.7 }}>{p.subtitle}</p>
           </div>
 
           {/* Cards grid */}
@@ -73,8 +73,8 @@ export default function PricingPage() {
                   <div style={{
                     position: "absolute", top: -12, left: "50%", transform: "translateX(-50%)",
                     padding: "4px 16px", borderRadius: 999,
-                    background: "linear-gradient(135deg,#a855f7,#7c3aed)",
-                    fontSize: 11, fontWeight: 700, color: "white",
+                    background: "linear-gradient(135deg,#D4AF37,#B8960C)",
+                    fontSize: 11, fontWeight: 700, color: "#1A1A1A",
                     display: "flex", alignItems: "center", gap: 5, whiteSpace: "nowrap",
                     boxShadow: "0 4px 20px rgba(168,85,247,0.4)",
                   }}>
@@ -93,18 +93,18 @@ export default function PricingPage() {
                     </div>
                   ) : (
                     <>
-                      <div style={{ fontSize: 12, color: "#8888a0", textDecoration: "line-through", marginBottom: 2 }}>
+                      <div style={{ fontSize: 12, color: "#8A8070", textDecoration: "line-through", marginBottom: 2 }}>
                         {formatPrice(plan.originalPrice!, lang)}
                       </div>
                       <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 8 }}>
-                        <span style={{ fontFamily: "Syne, sans-serif", fontSize: 32, fontWeight: 800, color: "#f4f4f8", letterSpacing: "-0.03em" }}>
+                        <span style={{ fontFamily: "Syne, sans-serif", fontSize: 32, fontWeight: 800, color: "#F5F0E8", letterSpacing: "-0.03em" }}>
                           {formatPrice(plan.price!, lang)}
                         </span>
-                        <span style={{ fontSize: 13, color: "#8888a0" }}>/{p.period}</span>
+                        <span style={{ fontSize: 13, color: "#8A8070" }}>/{p.period}</span>
                       </div>
                     </>
                   )}
-                  <p style={{ fontSize: 13, color: "#8888a0", lineHeight: 1.6, margin: 0 }}>{plan.desc}</p>
+                  <p style={{ fontSize: 13, color: "#8A8070", lineHeight: 1.6, margin: 0 }}>{plan.desc}</p>
                 </div>
 
                 <div style={{ height: 1, background: "rgba(255,255,255,0.05)", marginBottom: 20 }} />
@@ -129,9 +129,9 @@ export default function PricingPage() {
                     borderRadius: 12, fontWeight: 600, fontSize: 14,
                     textDecoration: "none", transition: "all 0.3s ease", marginTop: "auto",
                     ...(plan.popular ? {
-                      background: "linear-gradient(135deg,#a855f7,#7c3aed)",
-                      color: "white",
-                      boxShadow: "0 4px 20px rgba(168,85,247,0.3)",
+                      background: "linear-gradient(135deg,#D4AF37,#B8960C)",
+                      color: "#1A1A1A",
+                      boxShadow: "0 4px 20px rgba(212,175,55,0.25)",
                     } : {
                       background: `${plan.color}10`,
                       color: plan.color,
@@ -148,7 +148,7 @@ export default function PricingPage() {
           </div>
 
           {/* Bottom note */}
-          <p style={{ marginTop: 48, textAlign: "center", fontSize: 13, color: "#8888a0" }}>
+          <p style={{ marginTop: 48, textAlign: "center", fontSize: 13, color: "#8A8070" }}>
             {p.bottomNote}
           </p>
         </div>

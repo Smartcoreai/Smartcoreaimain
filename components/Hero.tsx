@@ -47,23 +47,24 @@ export default function Hero() {
     resize();
     window.addEventListener("resize", resize);
 
-    const colors = ["rgba(168,85,247", "rgba(34,211,238", "rgba(124,58,237"];
+    // Gold and warm-navy dust
+    const colors = ["rgba(212,175,55", "rgba(245,216,126", "rgba(184,150,12", "rgba(10,15,30"];
 
     const spawnParticle = () => ({
       x: Math.random() * canvas.width,
-      y: canvas.height + Math.random() * 40,        // start below canvas
+      y: canvas.height + Math.random() * 40,
       vx: (Math.random() - 0.5) * 0.3,
-      vy: -(Math.random() * 0.5 + 0.2),             // drift upward
+      vy: -(Math.random() * 0.5 + 0.2),
       size: Math.random() * 2 + 0.5,
-      life: Math.random(),                           // stagger initial positions
-      maxOpacity: Math.random() * 0.5 + 0.15,
+      life: Math.random(),
+      maxOpacity: Math.random() * 0.4 + 0.1,
       opacity: 0,
       color: colors[Math.floor(Math.random() * colors.length)],
     });
 
     for (let i = 0; i < 60; i++) {
       const p = spawnParticle();
-      p.y = Math.random() * canvas.height;          // scatter on load
+      p.y = Math.random() * canvas.height;
       particles.push(p);
     }
 
@@ -72,7 +73,7 @@ export default function Hero() {
 
       particles.forEach((p) => {
         p.life += 0.0018;
-        p.opacity = p.maxOpacity * Math.sin(Math.PI * Math.min(p.life, 1)); // fade in then out
+        p.opacity = p.maxOpacity * Math.sin(Math.PI * Math.min(p.life, 1));
         p.x += p.vx;
         p.y += p.vy;
 
@@ -101,26 +102,38 @@ export default function Hero() {
       alignItems: "center",
       justifyContent: "center",
       overflow: "hidden",
-      background: "radial-gradient(ellipse at 50% 0%, rgba(120, 80, 255, 0.08) 0%, transparent 60%), #080812",
+      background: "#0A0806",
     }}>
-      {/* Canvas particles */}
-      <canvas ref={canvasRef} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", zIndex: 1 }} />
-
-      {/* Grid background */}
-      <div className="bg-grid" style={{ position: "absolute", inset: 0, zIndex: 0 }} />
-
-      {/* Glow orbs */}
+      {/* Bergen city photo background */}
       <div style={{
-        position: "absolute", top: "10%", left: "50%", transform: "translateX(-50%)",
-        width: 600, height: 600, borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(168,85,247,0.12) 0%, transparent 70%)",
-        zIndex: 1, pointerEvents: "none",
+        position: "absolute", inset: 0, zIndex: 0,
+        backgroundImage: "url('/hero-bg.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center 40%",
+        backgroundRepeat: "no-repeat",
       }} />
+
+      {/* Dark overlay — keeps text readable over the photo */}
       <div style={{
-        position: "absolute", top: "20%", right: "-10%",
-        width: 400, height: 400, borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(34,211,238,0.08) 0%, transparent 70%)",
-        zIndex: 1, pointerEvents: "none",
+        position: "absolute", inset: 0, zIndex: 1,
+        background: "linear-gradient(180deg, rgba(8,6,4,0.72) 0%, rgba(8,6,4,0.55) 45%, rgba(8,6,4,0.80) 100%)",
+      }} />
+
+      {/* Gold radial glow on top of overlay */}
+      <div style={{
+        position: "absolute", inset: 0, zIndex: 2,
+        background: "radial-gradient(ellipse at 50% 0%, rgba(212,175,55,0.10) 0%, transparent 55%)",
+        pointerEvents: "none",
+      }} />
+
+      {/* Canvas particles */}
+      <canvas ref={canvasRef} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", zIndex: 3 }} />
+
+      {/* Hairline top border */}
+      <div style={{
+        position: "absolute", top: 0, left: 0, right: 0, height: 1,
+        background: "linear-gradient(90deg, transparent 0%, rgba(212,175,55,0.4) 30%, rgba(245,216,126,0.6) 50%, rgba(212,175,55,0.4) 70%, transparent 100%)",
+        zIndex: 10,
       }} />
 
       {/* Floating badges — desktop only */}
@@ -134,20 +147,20 @@ export default function Hero() {
         }}>
           <div style={{
             display: "flex", alignItems: "center", gap: 10,
-            background: "rgba(20,20,27,0.85)",
-            border: "1px solid rgba(255,255,255,0.08)",
+            background: "rgba(10,15,30,0.9)",
+            border: "1px solid rgba(212,175,55,0.18)",
             backdropFilter: "blur(12px)",
             borderRadius: 14,
             padding: "10px 14px",
-            boxShadow: "0 8px 32px rgba(0,0,0,0.4)",
+            boxShadow: "0 8px 32px rgba(0,0,0,0.5)",
             whiteSpace: "nowrap",
           }}>
             <span style={{ fontSize: 20 }}>{b.icon}</span>
             <div>
-              <div style={{ fontSize: 12, fontWeight: 600, color: "#f4f4f8" }}>{b.text}</div>
-              <div style={{ fontSize: 11, color: "#8888a0" }}>{b.sub}</div>
+              <div style={{ fontSize: 12, fontWeight: 600, color: "#F5F0E8" }}>{b.text}</div>
+              <div style={{ fontSize: 11, color: "#8A8070" }}>{b.sub}</div>
             </div>
-            <div className="dot-glow" style={{ marginLeft: 4 }} />
+            <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#D4AF37", boxShadow: "0 0 7px #D4AF37", marginLeft: 4 }} />
           </div>
         </div>
       ))}
@@ -168,64 +181,47 @@ export default function Hero() {
 
         {/* Headline — typewriter */}
         <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-[80px]" style={{
-          fontFamily: "Syne, system-ui, sans-serif",
-          fontWeight: 800,
+          fontFamily: "'Playfair Display', Georgia, serif",
+          fontWeight: 700,
           lineHeight: 1.1,
-          letterSpacing: "-0.03em",
-          color: "#f4f4f8",
+          letterSpacing: "-0.01em",
+          color: "#F5F0E8",
           maxWidth: "min(900px, 100%)",
           margin: "0 auto 24px",
           animation: "slideUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.1s both",
           overflowWrap: "break-word",
           wordBreak: "break-word",
-          position: "relative",
+          minHeight: "2.2em",
+          textShadow: "0 2px 40px rgba(0,0,0,0.6)",
         }}>
-          {/* Invisible full text reserves two-line height from the start */}
-          <span aria-hidden="true" style={{
-            visibility: "hidden",
-            display: "block",
-            pointerEvents: "none",
-            userSelect: "none",
-          }}>
-            {fullText.slice(0, splitAt)}
+          {fullText.slice(0, Math.min(typed, splitAt))}
+          {typed > splitAt && (
             <span style={{
-              background: "linear-gradient(135deg, #a855f7 0%, #22d3ee 100%)",
+              background: "linear-gradient(135deg, #D4AF37 0%, #F5D87E 60%, #D4AF37 100%)",
+              backgroundSize: "200% auto",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
+              animation: "shimmer 3s linear infinite",
             }}>
-              {fullText.slice(splitAt)}
+              {fullText.slice(splitAt, typed)}
             </span>
-          </span>
-          {/* Typed text overlaid absolutely so it doesn't affect layout */}
-          <span style={{ position: "absolute", top: 0, left: 0, right: 0, display: "block", textAlign: "center" }}>
-            {fullText.slice(0, Math.min(typed, splitAt))}
-            {typed > splitAt && (
-              <span style={{
-                background: "linear-gradient(135deg, #a855f7 0%, #22d3ee 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}>
-                {fullText.slice(splitAt, typed)}
-              </span>
-            )}
-            <span style={{
-              display: "inline-block",
-              width: "3px",
-              height: "0.85em",
-              background: "#a855f7",
-              marginLeft: "3px",
-              verticalAlign: "middle",
-              animation: "blink 1s step-end infinite",
-            }} />
-          </span>
+          )}
+          <span style={{
+            display: "inline-block",
+            width: "3px",
+            height: "0.85em",
+            background: "#D4AF37",
+            marginLeft: "3px",
+            verticalAlign: "middle",
+            animation: "blink 1s step-end infinite",
+          }} />
         </h1>
 
         {/* Subtext */}
         <p style={{
           fontSize: 16,
-          color: "#8888a0",
+          color: "#C8BFB0",
           maxWidth: "min(560px, 100%)",
           width: "100%",
           margin: "0 auto 48px",
@@ -246,13 +242,13 @@ export default function Hero() {
           <div style={{ position: "relative", display: "inline-flex" }}>
             <div style={{
               position: "absolute", inset: -6, borderRadius: 18,
-              border: "2px solid rgba(168,85,247,0.5)",
+              border: "2px solid rgba(212,175,55,0.5)",
               animation: "pulseRing 2s ease-out infinite",
               pointerEvents: "none",
             }} />
             <div style={{
               position: "absolute", inset: -12, borderRadius: 22,
-              border: "2px solid rgba(168,85,247,0.25)",
+              border: "2px solid rgba(212,175,55,0.22)",
               animation: "pulseRing 2s ease-out 0.6s infinite",
               pointerEvents: "none",
             }} />
@@ -269,8 +265,8 @@ export default function Hero() {
         <div className="grid grid-cols-2 sm:grid-cols-4 hero-stats" style={{
           maxWidth: 700,
           margin: "0 auto",
-          background: "rgba(255,255,255,0.02)",
-          border: "1px solid rgba(255,255,255,0.05)",
+          background: "rgba(212,175,55,0.02)",
+          border: "1px solid rgba(212,175,55,0.08)",
           borderRadius: 18,
           overflow: "hidden",
           animation: "slideUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.4s both",
@@ -284,13 +280,13 @@ export default function Hero() {
                 fontFamily: "Syne, system-ui, sans-serif",
                 fontSize: 28,
                 fontWeight: 800,
-                background: "linear-gradient(135deg, #a855f7, #22d3ee)",
+                background: "linear-gradient(135deg, #D4AF37, #F5D87E)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
                 lineHeight: 1.1,
               }}>{s.value}</div>
-              <div style={{ fontSize: 12, color: "#8888a0", marginTop: 4, fontWeight: 500 }}>{s.label}</div>
+              <div style={{ fontSize: 12, color: "#8A8070", marginTop: 4, fontWeight: 500 }}>{s.label}</div>
             </div>
           ))}
         </div>
