@@ -114,20 +114,20 @@ export default function Pricing() {
               {/* Price block */}
               {plan.priceCustom ? (
                 <div style={{ marginBottom: 28 }}>
-                  <div style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 36, fontWeight: 700, color: plan.color, lineHeight: 1 }}>
+                  <div style={{ fontFamily: "Syne, system-ui, sans-serif", fontSize: 28, fontWeight: 700, color: plan.color, lineHeight: 1 }}>
                     {t.pricing.priceCustom}
                   </div>
                 </div>
               ) : (
                 <div style={{ marginBottom: 28 }}>
                   {/* Original (crossed out) */}
-                  <div style={{ fontSize: 13, color: "#4A4438", textDecoration: "line-through", marginBottom: 4, letterSpacing: "0.02em", whiteSpace: "nowrap", fontVariantNumeric: "tabular-nums" }}>
+                  <div style={{ fontFamily: "Syne, system-ui, sans-serif", fontSize: 13, color: "#4A4438", textDecoration: "line-through", marginBottom: 4, letterSpacing: "0.02em", whiteSpace: "nowrap", fontVariantNumeric: "tabular-nums" }}>
                     {formatPrice(plan.originalPrice, lang)}/{t.pricing.period}
                   </div>
                   {/* Live price — large gold, never wraps */}
                   <div style={{ whiteSpace: "nowrap", overflow: "hidden" }}>
                     <span style={{
-                      fontFamily: "'Playfair Display', Georgia, serif",
+                      fontFamily: "Syne, system-ui, sans-serif",
                       fontSize: "clamp(28px, 4.5vw, 48px)",
                       fontWeight: 700,
                       lineHeight: 1,
