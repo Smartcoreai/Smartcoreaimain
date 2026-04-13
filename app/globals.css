@@ -7,12 +7,10 @@
 @layer base {
   *, *::before, *::after { box-sizing: border-box; }
   html {
-    zoom: 0.9;
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
-    max-width: 100vw;
   }
   body {
     background: #1A1A1A;
@@ -103,7 +101,8 @@
   }
 
   .section-pad { padding: 96px 24px; }
-  .wrap { max-width: 1280px; margin: 0 auto; width: 100%; box-sizing: border-box; }
+  /* Content wrapper — backgrounds always span full width, only content is constrained */
+  .wrap { max-width: 1440px; margin: 0 auto; width: 100%; box-sizing: border-box; }
   .wrap-narrow { max-width: 1024px; margin: 0 auto; width: 100%; box-sizing: border-box; }
 
   .tag {
@@ -263,4 +262,14 @@
   .wrap, .wrap-narrow { padding-left: 0; padding-right: 0; max-width: 100%; }
   /* Prevent any element from exceeding viewport width */
   img, video, iframe, table { max-width: 100%; }
+}
+
+/* ── Large screens (1440px–1920px): comfortable side padding ── */
+@media (min-width: 1440px) {
+  .wrap { padding-left: 48px; padding-right: 48px; }
+}
+
+/* ── Ultrawide screens (1920px+): cap content, let backgrounds fill ── */
+@media (min-width: 1920px) {
+  .wrap { padding-left: 80px; padding-right: 80px; }
 }
