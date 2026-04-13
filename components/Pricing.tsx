@@ -47,7 +47,7 @@ export default function Pricing() {
         </div>
 
         {/* Cards grid */}
-        <div className="pricing-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(270px, 1fr))", gap: 20, alignItems: "start" }}>
+        <div className="pricing-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(270px, 1fr))", gap: 20, alignItems: "stretch" }}>
           {PLANS.map((plan) => (
             <div key={plan.name} style={{
               position: "relative",
@@ -111,27 +111,26 @@ export default function Pricing() {
                 </div>
               </div>
 
-              {/* Price block */}
+              {/* Price block — fixed min-height so features start at the same vertical position across all cards */}
               {plan.priceCustom ? (
-                <div style={{ marginBottom: 28 }}>
-                  <div style={{ fontFamily: "Syne, system-ui, sans-serif", fontSize: 28, fontWeight: 700, color: plan.color, lineHeight: 1 }}>
+                <div style={{ marginBottom: 28, minHeight: 120, display: "flex", flexDirection: "column", justifyContent: "flex-start" }}>
+                  <div style={{ fontFamily: "system-ui, -apple-system, sans-serif", fontSize: 22, fontWeight: 700, color: plan.color, lineHeight: 1.3 }}>
                     {t.pricing.priceCustom}
                   </div>
                 </div>
               ) : (
-                <div style={{ marginBottom: 28 }}>
+                <div style={{ marginBottom: 28, minHeight: 120, display: "flex", flexDirection: "column", justifyContent: "flex-start" }}>
                   {/* Original (crossed out) */}
-                  <div style={{ fontFamily: "Syne, system-ui, sans-serif", fontSize: 13, color: "#4A4438", textDecoration: "line-through", marginBottom: 4, letterSpacing: "0.02em", whiteSpace: "nowrap", fontVariantNumeric: "tabular-nums" }}>
+                  <div style={{ fontFamily: "system-ui, -apple-system, sans-serif", fontSize: 13, color: "#4A4438", textDecoration: "line-through", marginBottom: 6, fontVariantNumeric: "tabular-nums" }}>
                     {formatPrice(plan.originalPrice, lang)}/{t.pricing.period}
                   </div>
-                  {/* Live price — large gold, never wraps */}
-                  <div style={{ whiteSpace: "nowrap", overflow: "hidden" }}>
+                  {/* Live price row — flex so /period is never clipped */}
+                  <div style={{ display: "flex", alignItems: "baseline", gap: 4, flexWrap: "wrap" }}>
                     <span style={{
-                      fontFamily: "Syne, system-ui, sans-serif",
-                      fontSize: "clamp(28px, 4.5vw, 48px)",
-                      fontWeight: 700,
+                      fontFamily: "system-ui, -apple-system, sans-serif",
+                      fontSize: "clamp(26px, 3.2vw, 38px)",
+                      fontWeight: 800,
                       lineHeight: 1,
-                      whiteSpace: "nowrap",
                       fontVariantNumeric: "tabular-nums",
                       background: `linear-gradient(135deg, ${plan.color} 0%, ${plan.accent} 60%, ${plan.color} 100%)`,
                       backgroundSize: "200% auto",
@@ -142,10 +141,10 @@ export default function Pricing() {
                     }}>
                       {formatPrice(plan.price, lang)}
                     </span>
-                    <span style={{ fontSize: 13, color: "#6A6050", fontWeight: 500, marginLeft: 4 }}>/{t.pricing.period}</span>
+                    <span style={{ fontFamily: "system-ui, -apple-system, sans-serif", fontSize: 13, color: "#6A6050", fontWeight: 500, whiteSpace: "nowrap" }}>/{t.pricing.period}</span>
                   </div>
                   {/* Founding label */}
-                  <div style={{ display: "inline-flex", alignItems: "center", gap: 5, marginTop: 8, padding: "3px 10px", borderRadius: 999, background: `${plan.color}14`, border: `1px solid ${plan.color}28` }}>
+                  <div style={{ display: "inline-flex", alignItems: "center", gap: 5, marginTop: 10, padding: "3px 10px", borderRadius: 999, background: `${plan.color}14`, border: `1px solid ${plan.color}28` }}>
                     <Zap size={10} color={plan.color} />
                     <span style={{ fontSize: 10, fontWeight: 700, color: plan.color, letterSpacing: "0.06em", textTransform: "uppercase" }}>Founding price</span>
                   </div>
