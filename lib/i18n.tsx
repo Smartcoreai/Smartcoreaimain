@@ -11,6 +11,7 @@ export const translations = {
       services: "Services",
       pricing: "Pricing",
       faq: "FAQ",
+      about: "About",
       contact: "Contact",
       getStarted: "Get started",
       bookCall: "Book a call",
@@ -178,6 +179,7 @@ export const translations = {
           { label: "Custom AI Integrations",  href: "#services" },
         ],
         Company: [
+          { label: "About",      href: "/about" },
           { label: "Objections", href: "/objections" },
           { label: "Contact",    href: "#contact" },
           { label: "Book a call", href: "#booking" },
@@ -235,6 +237,47 @@ export const translations = {
       subtitle: "Your payment was successful. We'll be in touch within 4 hours.",
       backButton: "Back to homepage",
     },
+    about: {
+      hero: {
+        tag: "Our story",
+        headline1: "Two best friends.",
+        headline2: "One mission.",
+        subtext: "We started SmartcoreAI because we saw the same problem everywhere: small and mid-sized businesses were being left behind in the AI revolution.",
+      },
+      team: {
+        tag: "The team",
+        headline: "The people behind SmartcoreAI",
+        members: [
+          {
+            name: "Aleksander Nordeide Bjørndal",
+            role: "Co-Founder & CEO",
+            bio: "20-year-old entrepreneur from Bergen. Built SmartcoreAI from scratch with his best friend. Aleksander's philosophy is simple: AI should only cost you money when it makes you money.",
+            email: "aleksander@smartcoreai.no",
+          },
+          {
+            name: "Henrik Andreassen Bøe",
+            role: "Co-Founder & CEO",
+            bio: "20-year-old entrepreneur from Bergen. Started building AI solutions while studying Economics at UiA. Founded SmartcoreAI with a simple conviction: every business deserves AI that works from day one — no tech team required, no long-term contracts, just results.",
+            email: "henrik@smartcoreai.no",
+          },
+        ],
+      },
+      story: {
+        tag: "Our story",
+        headline: "How we got here",
+        paragraphs: [
+          "SmartcoreAI was founded in 2026 in Bergen, Norway by two best friends who saw the same problem everywhere: small and mid-sized businesses were being left behind in the AI revolution. Enterprises had the budgets. For everyone else, AI was a luxury they couldn't afford.",
+          "We built SmartcoreAI to change that. No six-month implementation projects. No technical jargon. Just AI systems that plug into your business and start working — in days, not months.",
+          "Our model is built on commitment. A one-time setup fee, a fixed monthly price, and a minimum three-month partnership — because real results take time to compound. We don't sell quick fixes. We build systems that grow with you.",
+          "Today we build AI chatbots, lead generation systems, and AI receptionists for Scandinavian B2C businesses — everything from automated booking to lead qualification running 24/7.",
+          "Our team is lean by choice. We'd rather build fewer systems that actually drive revenue than sell dashboards nobody opens. We only work with businesses where AI can deliver a measurable return, because focus is how you build trust.",
+        ],
+      },
+      cta: {
+        headline: "Ready for a conversation?",
+        button: "Book a free call →",
+      },
+    },
   },
 
   no: {
@@ -242,6 +285,7 @@ export const translations = {
       services: "Tjenester",
       pricing: "Priser",
       faq: "FAQ",
+      about: "Om oss",
       contact: "Kontakt",
       getStarted: "Kom i gang",
       bookCall: "Book samtale",
@@ -409,6 +453,7 @@ export const translations = {
           { label: "Tilpassede AI-integrasjoner", href: "#services" },
         ],
         Company: [
+          { label: "Om oss",       href: "/about" },
           { label: "Innvendinger", href: "/objections" },
           { label: "Kontakt",      href: "#contact" },
           { label: "Book samtale", href: "#booking" },
@@ -465,6 +510,47 @@ export const translations = {
       title: "Takk skal du ha! 🎉",
       subtitle: "Betalingen din var vellykket. Vi tar kontakt innen 4 timer.",
       backButton: "Tilbake til forsiden",
+    },
+    about: {
+      hero: {
+        tag: "Vår historie",
+        headline1: "To bestekamerater.",
+        headline2: "Én misjon.",
+        subtext: "Vi startet SmartcoreAI fordi vi så det samme problemet overalt: små og mellomstore bedrifter ble etterlatt i AI-revolusjonen.",
+      },
+      team: {
+        tag: "Teamet",
+        headline: "Menneskene bak SmartcoreAI",
+        members: [
+          {
+            name: "Aleksander Nordeide Bjørndal",
+            role: "Co-Founder & CEO",
+            bio: "20 år gammel entreprenør fra Bergen som har lyst å hjelpe bedrifter med AI. Bygde SmartcoreAI fra bunnen av med sin bestekamerat. Aleksanders filosofi er enkel: AI skal bare koste deg penger når den tjener deg penger.",
+            email: "aleksander@smartcoreai.no",
+          },
+          {
+            name: "Henrik Andreassen Bøe",
+            role: "Co-Founder & CEO",
+            bio: "20 år gammel entreprenør fra Bergen. Begynte å bygge AI-løsninger mens han studerte økonomi ved UiA. Grunnla SmartcoreAI med en enkel overbevisning: alle bedrifter fortjener AI som fungerer fra dag én — ingen tech-team nødvendig, ingen langsiktige kontrakter, bare resultater.",
+            email: "henrik@smartcoreai.no",
+          },
+        ],
+      },
+      story: {
+        tag: "Vår historie",
+        headline: "Slik startet det",
+        paragraphs: [
+          "SmartcoreAI ble grunnlagt i 2026 i Bergen, Norge av to bestekamerater som så det samme problemet overalt: små og mellomstore bedrifter ble etterlatt i AI-revolusjonen. De store selskapene hadde budsjettene. For alle andre var AI en luksus de ikke hadde råd til.",
+          "Vi bygde SmartcoreAI for å endre det. Ingen seks måneders implementeringsprosjekter. Ingen teknisk sjargong. Bare AI-systemer som kobles inn i bedriften din og begynner å jobbe — på dager, ikke måneder.",
+          "Modellen vår er bygget på forpliktelse: et engangs oppsettgebyr, en fast månedspris, og et minimum tre måneders samarbeid — fordi ekte resultater tar tid. Vi selger ikke raske løsninger. Vi bygger systemer som vokser med deg.",
+          "I dag bygger vi AI-chatboter, leadgenereringssystemer og AI-resepsjonister for skandinaviske B2C-bedrifter — alt fra automatisert booking til leadkvalifisering som kjører 24/7.",
+          "Teamet vårt er lite med vilje. Vi bygger heller færre systemer som faktisk driver inntekter, enn å selge dashboards ingen åpner. Vi jobber kun med bedrifter der AI kan levere målbar avkastning, fordi fokus er slik man bygger tillit.",
+        ],
+      },
+      cta: {
+        headline: "Klar for en samtale?",
+        button: "Book en gratis samtale →",
+      },
     },
   },
 } as const;
