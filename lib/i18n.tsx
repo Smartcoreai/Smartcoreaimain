@@ -278,7 +278,7 @@ export const translations = {
       monthNote: "måned · ingen langsiktig kontrakt",
       getStarted: "Kom i gang",
       liveDemo: "Live interaktiv demo",
-      priceCustom: "Pris kan diskuteres",
+      priceCustom: "Skreddersydd pris for hvert prosjekt",
       items: [
         {
           label: "AI Chatbot",
@@ -319,7 +319,7 @@ export const translations = {
       period: "måned",
       bottomNote: "Alle planer inkluderer onboarding-støtte · 14-dagers pengene-tilbake-garanti · ",
       customBundles: "Tilpassede pakker tilgjengelig",
-      priceCustom: "Pris kan diskuteres",
+      priceCustom: "Skreddersydd pris for hvert prosjekt",
       plans: [
         {
           desc: "Perfekt for servicebedrifter som ønsker å fange og kvalifisere leads 24/7.",
@@ -438,7 +438,7 @@ export const translations = {
       subtitle: "Start i dag. Avslutt når som helst.",
       popular: "Mest populær",
       period: "mnd",
-      priceCustom: "Pris kan diskuteres",
+      priceCustom: "Skreddersydd pris for hvert prosjekt",
       getStarted: "Kom i gang →",
       bookCall: "Book samtale →",
       bottomNote: "Alle planer inkluderer onboardingstøtte · 14-dagers pengene-tilbake-garanti",

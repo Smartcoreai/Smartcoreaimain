@@ -15,6 +15,7 @@ export default function Pricing() {
   const PLANS = PLAN_META.map((meta, i) => ({
     ...meta,
     ...t.pricing.plans[i],
+    name: t.services.items[i].label,  // use translated label so NO shows "AI Resepsjonist"
   }));
 
   return (
@@ -111,9 +112,9 @@ export default function Pricing() {
                 </div>
               </div>
 
-              {/* Price block — fixed min-height so features start at the same vertical position across all cards */}
+              {/* Price block — non-custom cards get minHeight so features align across cards */}
               {plan.priceCustom ? (
-                <div style={{ marginBottom: 28, minHeight: 120, display: "flex", flexDirection: "column", justifyContent: "flex-start" }}>
+                <div style={{ marginBottom: 28 }}>
                   <div style={{ fontFamily: "system-ui, -apple-system, sans-serif", fontSize: 22, fontWeight: 700, color: plan.color, lineHeight: 1.3 }}>
                     {t.pricing.priceCustom}
                   </div>
