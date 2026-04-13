@@ -121,7 +121,7 @@ export default function Pricing() {
               ) : (
                 <div style={{ marginBottom: 28 }}>
                   {/* Original (crossed out) */}
-                  <div style={{ fontSize: 13, color: "#4A4438", textDecoration: "line-through", marginBottom: 4, letterSpacing: "0.02em", whiteSpace: "nowrap" }}>
+                  <div style={{ fontSize: 13, color: "#4A4438", textDecoration: "line-through", marginBottom: 4, letterSpacing: "0.02em", whiteSpace: "nowrap", fontVariantNumeric: "tabular-nums" }}>
                     {formatPrice(plan.originalPrice, lang)}/{t.pricing.period}
                   </div>
                   {/* Live price — large gold, never wraps */}
@@ -132,6 +132,7 @@ export default function Pricing() {
                       fontWeight: 700,
                       lineHeight: 1,
                       whiteSpace: "nowrap",
+                      fontVariantNumeric: "tabular-nums",
                       background: `linear-gradient(135deg, ${plan.color} 0%, ${plan.accent} 60%, ${plan.color} 100%)`,
                       backgroundSize: "200% auto",
                       WebkitBackgroundClip: "text",

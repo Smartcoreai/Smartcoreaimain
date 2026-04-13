@@ -93,11 +93,11 @@ export default function PricingPage() {
                     </div>
                   ) : (
                     <>
-                      <div style={{ fontSize: 12, color: "#8A8070", textDecoration: "line-through", marginBottom: 2 }}>
+                      <div style={{ fontSize: 12, color: "#8A8070", textDecoration: "line-through", marginBottom: 2, fontVariantNumeric: "tabular-nums" }}>
                         {formatPrice(plan.originalPrice!, lang)}
                       </div>
                       <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 8 }}>
-                        <span style={{ fontFamily: "Syne, sans-serif", fontSize: 32, fontWeight: 800, color: "#F5F0E8", letterSpacing: "-0.03em" }}>
+                        <span style={{ fontFamily: "Syne, sans-serif", fontSize: 32, fontWeight: 800, color: "#F5F0E8", letterSpacing: "-0.03em", fontVariantNumeric: "tabular-nums" }}>
                           {formatPrice(plan.price!, lang)}
                         </span>
                         <span style={{ fontSize: 13, color: "#8A8070" }}>/{p.period}</span>

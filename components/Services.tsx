@@ -6,26 +6,28 @@ import { useLanguage, formatPrice, formatPriceWithPeriod } from "@/lib/i18n";
 /* ─── Chatbot Demo ─── */
 const CHATBOT_UI = {
   en: {
-    greeting:    "Hey! I'm Aria 👋 How can I help your business today?",
-    msg1:        "I need help booking appointments",
-    msg2:        "Perfect! I can collect their details and book them straight into your calendar. Want me to demo that?",
-    msg3:        "Yes please!",
-    msg4:        "Great! I've set up your booking flow. You'll get notified instantly for every new booking. ✅",
+    greeting:    "Hi! I'm Aria 👋 How can I help you today?",
+    msg1:        "Hi, what are your opening hours?",
+    msg2:        "Hi! We're open Monday–Friday 08:00–16:00, and Saturday 10:00–14:00. Would you like to book an appointment?",
+    msg3:        "Yes please, do you have availability on Thursday?",
+    msg4:        "Absolutely! I've booked you in for Thursday at 1:00 PM. You'll receive a confirmation by SMS ✅",
     name:        "Aria — AI Assistant",
     status:      "Online · replying instantly",
     placeholder: "Try typing something...",
     freeReply:   "Great question! Book a free discovery call and I'll show you exactly what's possible for your business. 🚀",
+    outcome:     "Result: Appointment booked ✅",
   },
   no: {
-    greeting:    "Hei! Jeg er Aria 👋 Hvordan kan jeg hjelpe bedriften din i dag?",
-    msg1:        "Jeg trenger hjelp med å booke avtaler",
-    msg2:        "Perfekt! Jeg kan samle inn detaljene deres og booke dem rett inn i kalenderen din. Vil du at jeg demonstrerer det?",
-    msg3:        "Ja takk!",
-    msg4:        "Supert! Jeg har satt opp bookingflyten din. Du blir varslet umiddelbart for hver ny booking. ✅",
+    greeting:    "Hei! Jeg er Aria 👋 Hvordan kan jeg hjelpe deg i dag?",
+    msg1:        "Hei, jeg lurer på åpningstidene deres?",
+    msg2:        "Hei! Vi har åpent mandag–fredag 08:00–16:00, og lørdag 10:00–14:00. Ønsker du å booke en time?",
+    msg3:        "Ja gjerne, har dere ledig på torsdag?",
+    msg4:        "Absolutt! Jeg har booket deg inn torsdag kl. 13:00. Du mottar en bekreftelse på SMS ✅",
     name:        "Aria — AI-assistent",
     status:      "Online · svarer umiddelbart",
     placeholder: "Prøv å skriv noe...",
     freeReply:   "Godt spørsmål! Book en gratis oppdagelsessamtale, så viser jeg deg nøyaktig hva som er mulig for din bedrift. 🚀",
+    outcome:     "Resultat: Time booket ✅",
   },
 };
 
@@ -123,13 +125,20 @@ function ChatbotDemo() {
           </div>
         )}
       </div>
-      <div style={{ padding: "10px 12px", borderTop: "1px solid rgba(212,175,55,0.08)", display: "flex", gap: 8 }}>
-        <input value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => e.key === "Enter" && handleSend()} placeholder={ui.placeholder}
-          style={{ flex: 1, background: "rgba(212,175,55,0.03)", border: "1px solid rgba(212,175,55,0.10)", borderRadius: 10, padding: "8px 12px", fontSize: 12, color: "#F5F0E8", outline: "none", fontFamily: "inherit" }} />
-        <button onClick={handleSend} style={{ padding: "8px 12px", background: "linear-gradient(135deg,#B8960C,#D4AF37)", border: "none", borderRadius: 10, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>
-          <Send size={14} color="#1A1A1A" />
-        </button>
-      </div>
+      {step >= CHAT_SCRIPT.length ? (
+        <div style={{ padding: "10px 16px", borderTop: "1px solid rgba(212,175,55,0.08)", display: "flex", alignItems: "center", gap: 8 }}>
+          <Check size={14} color="#4ade80" />
+          <span style={{ fontSize: 12, fontWeight: 600, color: "#4ade80" }}>{ui.outcome}</span>
+        </div>
+      ) : (
+        <div style={{ padding: "10px 12px", borderTop: "1px solid rgba(212,175,55,0.08)", display: "flex", gap: 8 }}>
+          <input value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => e.key === "Enter" && handleSend()} placeholder={ui.placeholder}
+            style={{ flex: 1, background: "rgba(212,175,55,0.03)", border: "1px solid rgba(212,175,55,0.10)", borderRadius: 10, padding: "8px 12px", fontSize: 12, color: "#F5F0E8", outline: "none", fontFamily: "inherit" }} />
+          <button onClick={handleSend} style={{ padding: "8px 12px", background: "linear-gradient(135deg,#B8960C,#D4AF37)", border: "none", borderRadius: 10, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <Send size={14} color="#1A1A1A" />
+          </button>
+        </div>
+      )}
     </div>
   );
 }
@@ -191,22 +200,22 @@ function LeadgenDemo() {
 
 /* ─── Voice Agent Demo ─── */
 const TRANSCRIPT = [
-  { role: "ai",   text: "Hi, this is Aria from SmartcoreAI — is now a good time?" },
-  { role: "lead", text: "Yes, I'm interested in the chatbot service" },
-  { role: "ai",   text: "Perfect! I'll book you in for a demo — does Thursday at 2PM work?" },
+  { role: "ai",   text: "Hello, you've reached Klinikk Sentrum — this is Aria. How can I help you?" },
+  { role: "lead", text: "I'd like to book an appointment with the dentist" },
+  { role: "ai",   text: "Of course! I've booked you in for Wednesday at 10:00 AM. You'll receive a confirmation by SMS ✅" },
 ];
 
 function VoiceAgentDemo() {
   const { lang } = useLanguage();
   const [visibleLines, setVisibleLines] = useState(0);
   const transcript = lang === "no" ? [
-    { role: "ai",   text: "Hei, dette er Aria fra SmartcoreAI — passer det nå?" },
-    { role: "lead", text: "Ja, jeg er interessert i chatbot-tjenesten" },
-    { role: "ai",   text: "Perfekt! Jeg booker deg inn til en demo — passer torsdag kl. 14?" },
+    { role: "ai",   text: "Hei, du har ringt til Klinikk Sentrum — dette er Aria. Hvordan kan jeg hjelpe deg?" },
+    { role: "lead", text: "Jeg vil bestille en time hos tannlegen" },
+    { role: "ai",   text: "Selvfølgelig! Jeg har booket deg inn onsdag kl. 10:00. Du mottar bekreftelse på SMS ✅" },
   ] : TRANSCRIPT;
   const ui = lang === "no"
-    ? { incoming: "Innkommende lead", answering: "AI svarer", outcome: "Resultat: Møte booket ✓" }
-    : { incoming: "Incoming lead", answering: "AI answering", outcome: "Outcome: Meeting booked ✓" };
+    ? { incoming: "Innkommende anrop fra", answering: "AI svarer", outcome: "Resultat: Time booket ✅" }
+    : { incoming: "Incoming call from", answering: "AI answering", outcome: "Result: Appointment booked ✅" };
 
   useEffect(() => {
     const delay = visibleLines >= TRANSCRIPT.length ? 3000 : visibleLines === 0 ? 700 : 1900;

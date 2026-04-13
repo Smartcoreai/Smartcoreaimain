@@ -5,7 +5,7 @@ import { useLanguage } from "@/lib/i18n";
 
 const BADGE_POSITIONS = [
   { x: "8%",  y: "35%", delay: "0s" },
-  { x: "78%", y: "25%", delay: "1.5s" },
+  { x: "80%", y: "25%", delay: "1.5s" },
   { x: "5%",  y: "68%", delay: "2s" },
 ];
 

@@ -47,7 +47,7 @@ export const translations = {
       monthNote: "month · no long-term contract",
       getStarted: "Get started",
       liveDemo: "Live interactive demo",
-      priceCustom: "Price can be discussed",
+      priceCustom: "Custom quote for every project",
       items: [
         {
           label: "AI Chatbot",
@@ -88,7 +88,7 @@ export const translations = {
       period: "month",
       bottomNote: "All plans include onboarding support · 14-day money-back guarantee · ",
       customBundles: "Custom bundles available",
-      priceCustom: "Price can be discussed",
+      priceCustom: "Custom quote for every project",
       plans: [
         {
           desc: "Perfect for service businesses wanting to capture & qualify leads 24/7.",
@@ -207,7 +207,7 @@ export const translations = {
       subtitle: "Start today. Cancel anytime.",
       popular: "Most Popular",
       period: "mo",
-      priceCustom: "Price can be discussed",
+      priceCustom: "Custom quote for every project",
       getStarted: "Get started →",
       bookCall: "Book a call →",
       bottomNote: "All plans include onboarding support · 14-day money-back guarantee",

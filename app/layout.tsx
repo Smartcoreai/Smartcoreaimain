@@ -6,6 +6,10 @@ import ScrollReset from "@/components/ScrollReset";
 export const metadata: Metadata = {
   title: "SmartcoreAI — AI-Powered Growth Systems for Modern Businesses",
   description: "AI chatbots, booking automation, CRM systems, and custom integrations. Built for businesses that move fast. Starting at $399/month.",
+  icons: {
+    icon: "/logo.png",
+    apple: "/logo.png",
+  },
   openGraph: {
     title: "SmartcoreAI — AI-Powered Growth Systems",
     description: "Chatbots, booking automation, CRM systems. Built for businesses that move fast.",
