@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ChatWidget from "@/components/ChatWidget";
@@ -168,31 +169,12 @@ export default function AboutPage() {
                         alignItems: "center",
                         justifyContent: "center",
                       }}>
-                        {/* Fallback initial (shows when image absent) */}
-                        <span style={{
-                          fontFamily: "Playfair Display, serif",
-                          fontSize: 54,
-                          fontWeight: 700,
-                          color: "rgba(212,175,55,0.28)",
-                          position: "absolute",
-                          userSelect: "none",
-                        }}>
-                          {member.initials}
-                        </span>
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
+                        <Image
                           src={member.image}
                           alt={member.name}
-                          style={{
-                            width: "100%",
-                            height: "100%",
-                            objectFit: "cover",
-                            position: "relative",
-                            zIndex: 1,
-                          }}
-                          onError={(e) => {
-                            (e.target as HTMLImageElement).style.display = "none";
-                          }}
+                          fill
+                          style={{ objectFit: "cover" }}
+                          sizes="148px"
                         />
                       </div>
                     </div>
