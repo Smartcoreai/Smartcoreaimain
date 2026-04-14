@@ -132,10 +132,10 @@ export default function AboutPage() {
 
             <div className="team-grid">
               {members.map((member, i) => (
-                <ScrollReveal key={member.name} delay={i * 160}>
+                <ScrollReveal key={member.name} delay={i * 160} style={{ height: "100%" }}>
                   <div
                     className="glass-card-hover"
-                    style={{ padding: "52px 44px", textAlign: "center" }}
+                    style={{ padding: "52px 44px", textAlign: "center", height: "100%", display: "flex", flexDirection: "column" }}
                   >
                     {/* Photo */}
                     <div className="relative w-48 h-48 mx-auto rounded-full overflow-hidden border-2 border-yellow-600" style={{ marginBottom: 32, boxShadow: "0 0 30px rgba(212,175,55,0.15)" }}>
@@ -185,6 +185,7 @@ export default function AboutPage() {
                       color: "#8A8070",
                       lineHeight: 1.8,
                       margin: "0 0 28px",
+                      flexGrow: 1,
                     }}>
                       {member.bio}
                     </p>
@@ -194,6 +195,7 @@ export default function AboutPage() {
                       href={`mailto:${member.email}`}
                       style={{
                         display: "inline-flex",
+                        marginTop: "auto",
                         alignItems: "center",
                         gap: 8,
                         fontSize: 13,
