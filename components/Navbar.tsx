@@ -68,7 +68,7 @@ export default function Navbar() {
           </nav>
 
           {/* Desktop CTA + Language toggle */}
-          <div className="nav-desktop" style={{ alignItems: "center", gap: 10 }}>
+          <div className="nav-desktop" style={{ alignItems: "center", gap: 10, paddingRight: 16 }}>
             <button onClick={toggleLang} style={{
               padding: "7px 12px", borderRadius: 8,
               background: "rgba(212,175,55,0.04)", border: "1px solid rgba(212,175,55,0.12)",
@@ -79,7 +79,7 @@ export default function Navbar() {
             onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = "#8A8070"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(212,175,55,0.12)"; }}
             >{lang === "en" ? "NO" : "EN"}</button>
             <a href="/#contact" className="btn-outline" style={{ padding: "9px 20px", fontSize: 13 }}>{t.nav.getStarted}</a>
-            <div style={{ position: "relative", display: "inline-flex", marginRight: 10 }}>
+            <div style={{ position: "relative", display: "inline-flex" }}>
               <div style={{ position: "absolute", inset: -5, borderRadius: 16, border: "1.5px solid rgba(212,175,55,0.45)", animation: "pulseRing 2s ease-out infinite", pointerEvents: "none" }} />
               <div style={{ position: "absolute", inset: -10, borderRadius: 20, border: "1.5px solid rgba(212,175,55,0.18)", animation: "pulseRing 2s ease-out 0.7s infinite", pointerEvents: "none" }} />
               <a href="/#booking" className="btn-primary" style={{ padding: "9px 20px", fontSize: 13, position: "relative", zIndex: 1 }}>{t.nav.bookCall}</a>
