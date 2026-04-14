@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ChatWidget from "@/components/ChatWidget";
@@ -164,17 +163,12 @@ export default function AboutPage() {
                         overflow: "hidden",
                         background: "rgba(212,175,55,0.07)",
                         boxShadow: "0 8px 40px rgba(0,0,0,0.4), inset 0 0 20px rgba(212,175,55,0.04)",
-                        position: "relative",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
                       }}>
-                        <Image
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
                           src={member.image}
                           alt={member.name}
-                          fill
-                          style={{ objectFit: "cover" }}
-                          sizes="148px"
+                          className="w-full h-full object-cover rounded-full"
                         />
                       </div>
                     </div>
