@@ -7,6 +7,9 @@
 /* ── Global zoom (outside @layer so it cannot be overridden by Tailwind) ── */
 html {
   zoom: 0.9;
+  background-color: #000000;
+  min-width: 100vw;
+  margin: 0;
 }
 
 @supports not (zoom: 0.9) {
@@ -25,11 +28,12 @@ html {
     -moz-osx-font-smoothing: grayscale;
   }
   body {
-    background: #1A1A1A;
+    background-color: #000000;
     color: #F5F0E8;
     font-family: 'Inter', system-ui, sans-serif;
     overflow-x: hidden;
-    max-width: 100vw;
+    min-width: 100vw;
+    margin: 0;
     position: relative;
   }
   ::selection {
