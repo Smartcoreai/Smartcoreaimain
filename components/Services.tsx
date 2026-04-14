@@ -360,7 +360,7 @@ function CustomAIDemo() {
 
 /* ─── Static service data (icons, colors, prices, demos) ─── */
 const SERVICE_META = [
-  { id: "chatbot",        icon: <MessageCircle size={20} />, color: "#D4AF37", eurPrice: 299,  originalPrice: 599,  priceCustom: false, demo: <ChatbotDemo /> },
+  { id: "chatbot",        icon: <MessageCircle size={20} />, color: "#D4AF37", eurPrice: 399,  originalPrice: 699,  priceCustom: false, demo: <ChatbotDemo /> },
   { id: "leadgen",        icon: <Calendar size={20} />,      color: "#F5D87E", eurPrice: 499,  originalPrice: 999,  priceCustom: false, demo: <LeadgenDemo /> },
   { id: "voice-agent",    icon: <Phone size={20} />,         color: "#C9A84C", eurPrice: 799,  originalPrice: 1599, priceCustom: false, demo: <VoiceAgentDemo /> },
   { id: "ai-integration", icon: <Cpu size={20} />,           color: "#D4AF37", eurPrice: 1500, originalPrice: null, priceCustom: true,  demo: <CustomAIDemo /> },

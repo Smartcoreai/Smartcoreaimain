@@ -3,7 +3,7 @@ import { Check, Star, Zap } from "lucide-react";
 import { useLanguage, formatPrice } from "@/lib/i18n";
 
 const PLAN_META = [
-  { name: "AI Chatbot",             price: 299,  originalPrice: 599,  color: "#D4AF37", accent: "#F5D87E", popular: false, icon: "💬" },
+  { name: "AI Chatbot",             price: 399,  originalPrice: 699,  color: "#D4AF37", accent: "#F5D87E", popular: false, icon: "💬" },
   { name: "Leadgen System",         price: 499,  originalPrice: 999,  color: "#F5D87E", accent: "#D4AF37", popular: false, icon: "🎯" },
   { name: "AI Receptionist",        price: 799,  originalPrice: 1599, color: "#D4AF37", accent: "#F5D87E", popular: true,  icon: "📞" },
   { name: "Custom AI Integrations", price: 1500, originalPrice: 2199, color: "#C9A84C", accent: "#D4AF37", popular: false, icon: "⚙️", priceCustom: true },

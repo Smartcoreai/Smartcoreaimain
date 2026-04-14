@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import { useLanguage, formatPrice } from "@/lib/i18n";
 
 const PLAN_META = [
-  { name: "AI Chatbot",             price: 299,  originalPrice: 599,  color: "#D4AF37", popular: false, priceCustom: false, href: "/#booking" },
+  { name: "AI Chatbot",             price: 399,  originalPrice: 699,  color: "#D4AF37", popular: false, priceCustom: false, href: "/#booking" },
   { name: "Leadgen System",         price: 499,  originalPrice: 999,  color: "#F5D87E", popular: true,  priceCustom: false, href: "/#booking" },
   { name: "AI Receptionist",        price: 799,  originalPrice: 1599, color: "#C9A84C", popular: false, priceCustom: false, href: "/#booking" },
   { name: "Custom AI Integrations", price: null, originalPrice: null, color: "#D4AF37", popular: false, priceCustom: true,  href: "/#booking" },
