@@ -137,40 +137,14 @@ export default function AboutPage() {
                     className="glass-card-hover"
                     style={{ padding: "52px 44px", textAlign: "center" }}
                   >
-                    {/* Photo ring */}
-                    <div style={{
-                      width: 148,
-                      height: 148,
-                      borderRadius: "50%",
-                      margin: "0 auto 32px",
-                      position: "relative",
-                      flexShrink: 0,
-                    }}>
-                      {/* Outer glow ring */}
-                      <div style={{
-                        position: "absolute",
-                        inset: -6,
-                        borderRadius: "50%",
-                        border: "1px solid rgba(212,175,55,0.2)",
-                        boxShadow: "0 0 30px rgba(212,175,55,0.08)",
-                      }} />
-                      {/* Gold border + image container */}
-                      <div style={{
-                        width: "100%",
-                        height: "100%",
-                        borderRadius: "50%",
-                        border: "2px solid rgba(212,175,55,0.45)",
-                        overflow: "hidden",
-                        background: "rgba(212,175,55,0.07)",
-                        boxShadow: "0 8px 40px rgba(0,0,0,0.4), inset 0 0 20px rgba(212,175,55,0.04)",
-                      }}>
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={member.image}
-                          alt={member.name}
-                          className="w-full h-full object-cover rounded-full"
-                        />
-                      </div>
+                    {/* Photo */}
+                    <div className="relative w-48 h-48 mx-auto rounded-full overflow-hidden border-2 border-yellow-600" style={{ marginBottom: 32, boxShadow: "0 0 30px rgba(212,175,55,0.15)" }}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={member.image}
+                        alt={member.name}
+                        style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                      />
                     </div>
 
                     {/* Name */}
