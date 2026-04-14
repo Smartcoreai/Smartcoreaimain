@@ -36,6 +36,13 @@ export default function ChatWidget() {
     return () => clearTimeout(timer);
   }, [open]);
 
+  // Allow any component to open the widget via a custom event
+  useEffect(() => {
+    const handler = () => { setOpen(true); setPulseCount(0); };
+    window.addEventListener("openAriaChat", handler);
+    return () => window.removeEventListener("openAriaChat", handler);
+  }, []);
+
   async function send(text?: string) {
     const msgText = (text || input).trim();
     if (!msgText || loading) return;

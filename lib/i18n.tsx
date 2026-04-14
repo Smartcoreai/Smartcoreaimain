@@ -23,6 +23,7 @@ export const translations = {
       subtext: "AI chatbots, booking automation, CRM systems — fully integrated, deployed in days. Not months.",
       ctaPrimary: "Book a free call",
       ctaSecondary: "See what we build",
+      ctaTryAria: "Try Aria →",
       stats: [
         { value: "🚀", label: "Built for growth" },
         { value: "⚡", label: "Ready in days, not months" },
@@ -126,7 +127,49 @@ export const translations = {
         { q: "I don't need AI yet.", a: "Your competitors are already using it. Every day you wait is revenue left on the table." },
         { q: "I can do this myself.", a: "You could. But it takes months to build and maintain. We deploy in days." },
         { q: "I'm not sure it'll work for my business.", a: "We've built systems for all kinds of businesses. Book a free call and we'll tell you honestly if it's a fit." },
-        { q: "I need to think about it.", a: "Totally fair. While you think, your competitors are automating. We're here when you're ready." },
+        { q: "I need to think about it.", a: "Of course. We'll send you a one-page summary of what we'd build for you, so you have something concrete to think about. No follow-up pressure." },
+      ],
+    },
+    faq: {
+      title: "Frequently Asked Questions",
+      subtitle: "Everything you need to know about how SmartcoreAI works.",
+      sections: [
+        {
+          q: "GDPR and data handling — where is data stored?",
+          a: "All data is processed and stored within the EU/EEA in compliance with GDPR. TODO: insert specific data center location and compliance certifications. Data is encrypted in transit and at rest. On cancellation, we export all your data to you and delete it from our systems within 30 days.",
+        },
+        {
+          q: "Who owns the data?",
+          a: "You do. All conversation logs, lead data, and customer information collected through your AI system belong entirely to you. SmartcoreAI does not sell, share, or use your customer data for any purpose other than delivering your service.",
+        },
+        {
+          q: "Which integrations do you support?",
+          a: "We support HubSpot, Pipedrive, Tripletex, Fiken, and custom API integrations with any platform that has a public API. TODO: confirm full integration list. If your CRM is not listed, contact us — most tools can be connected via webhook or Zapier.",
+        },
+        {
+          q: "Which languages does the chatbot support?",
+          a: "TODO: insert full list of supported languages. The chatbot is trained in the language(s) you specify during onboarding. Norwegian and English are fully supported out of the box.",
+        },
+        {
+          q: "What happens when I cancel?",
+          a: "All plans require a 3-month minimum partnership. After that, you can cancel with 30 days' notice. On cancellation you receive a full export of all your data (conversation logs, leads, reports). Your data is permanently deleted from our systems within 30 days of cancellation.",
+        },
+        {
+          q: "What is the uptime guarantee / SLA?",
+          a: "TODO: insert specific SLA numbers and response-time commitments. All paid plans include monitoring and incident response. Downtime is communicated proactively via email.",
+        },
+        {
+          q: "How does onboarding work? How fast can we go live?",
+          a: "After signing, we schedule an onboarding call within 48 hours. We collect your business details, train the AI on your content, and handle all technical setup. Most clients are live within 7 business days. You don't need to do anything technical.",
+        },
+        {
+          q: "What if the AI gives a wrong answer?",
+          a: "TODO: insert specific fallback process. The AI is trained specifically on your business content, which minimises errors. When it encounters a question outside its scope, it escalates to a human or asks the visitor to contact you directly. You can review all conversations in your dashboard.",
+        },
+        {
+          q: "3-month minimum and 14-day money-back — how do these work together?",
+          a: "The 14-day money-back guarantee means that if you are not satisfied within the first 14 days of going live, we refund you in full — no questions asked. After 14 days the 3-month minimum applies, after which you can cancel month-to-month with 30 days' notice.",
+        },
       ],
     },
     booking: {
@@ -303,6 +346,7 @@ export const translations = {
       subtext: "AI-chatboter, bookingautomatisering, CRM-systemer — fullt integrert, klart på dager. Ikke måneder.",
       ctaPrimary: "Book gratis samtale",
       ctaSecondary: "Se hva vi bygger",
+      ctaTryAria: "Prøv Aria →",
       stats: [
         { value: "🚀", label: "Bygget for vekst" },
         { value: "⚡", label: "Klar på dager, ikke måneder" },
@@ -406,7 +450,49 @@ export const translations = {
         { q: "Jeg trenger ikke AI ennå.", a: "Konkurrentene dine bruker det allerede. Hver dag du venter er tapt inntekt." },
         { q: "Jeg kan gjøre dette selv.", a: "Det kan du. Men det tar måneder å bygge og vedlikeholde. Vi deployer på dager." },
         { q: "Jeg er ikke sikker på at det fungerer for min bedrift.", a: "Vi har bygget systemer for alle slags bedrifter. Book en gratis samtale, så forteller vi deg ærlig om det passer." },
-        { q: "Jeg trenger å tenke meg om.", a: "Helt forståelig. Mens du tenker, automatiserer konkurrentene dine. Vi er her når du er klar." },
+        { q: "Jeg trenger å tenke meg om.", a: "Selvfølgelig. Vi sender deg en one-pager med nøyaktig hva vi ville bygget for deg, så du har noe konkret å vurdere. Ingen purring eller press." },
+      ],
+    },
+    faq: {
+      title: "Ofte stilte spørsmål",
+      subtitle: "Alt du trenger å vite om hvordan SmartcoreAI fungerer.",
+      sections: [
+        {
+          q: "GDPR og datahåndtering — hvor lagres dataene?",
+          a: "All data behandles og lagres innenfor EU/EØS i samsvar med GDPR. TODO: legg inn spesifikt datasenter og sertifiseringer. Data krypteres under overføring og lagring. Ved kansellering eksporterer vi alle dataene dine og sletter dem fra systemene våre innen 30 dager.",
+        },
+        {
+          q: "Hvem eier dataene?",
+          a: "Det gjør du. Alle samtalelogger, leads og kundeopplysninger samlet inn via AI-systemet ditt tilhører deg. SmartcoreAI selger ikke, deler ikke, eller bruker kundedataene dine til noe annet enn å levere tjenesten din.",
+        },
+        {
+          q: "Hvilke integrasjoner støtter dere?",
+          a: "Vi støtter HubSpot, Pipedrive, Tripletex, Fiken og skreddersydde API-integrasjoner med alle plattformer som har et åpent API. TODO: bekreft full integrasjonsliste. Hvis CRM-en din ikke er listet opp, ta kontakt — de fleste verktøy kan kobles til via webhook eller Zapier.",
+        },
+        {
+          q: "Hvilke språk støtter chatboten?",
+          a: "TODO: legg inn full liste over støttede språk. Chatboten trenes på språket/språkene du spesifiserer under onboarding. Norsk og engelsk støttes fullt ut.",
+        },
+        {
+          q: "Hva skjer når jeg avslutter?",
+          a: "Alle planer krever et minimum 3-måneders partnerskap. Etter det kan du avslutte med 30 dagers varsel. Ved kansellering mottar du en fullstendig eksport av alle dine data (samtalelogger, leads, rapporter). Dataene dine slettes permanent fra systemene våre innen 30 dager etter kansellering.",
+        },
+        {
+          q: "Hva er oppetidsgarantien / SLA?",
+          a: "TODO: legg inn spesifikke SLA-tall og responstidsforpliktelser. Alle betalte planer inkluderer overvåking og hendelseshåndtering. Nedetid kommuniseres proaktivt via e-post.",
+        },
+        {
+          q: "Hvordan fungerer onboarding? Hvor raskt kan vi gå live?",
+          a: "Etter signering setter vi opp et onboarding-møte innen 48 timer. Vi samler inn informasjon om bedriften din, trener AI-en på innholdet ditt og håndterer all teknisk oppsett. De fleste kunder er live innen 7 virkedager. Du trenger ikke gjøre noe teknisk selv.",
+        },
+        {
+          q: "Hva skjer hvis AI-en svarer feil?",
+          a: "TODO: legg inn spesifikk fallback-prosess. AI-en trenes spesifikt på innholdet fra din bedrift, noe som minimerer feil. Når den møter et spørsmål utenfor sitt område, eskalerer den til et menneske eller ber besøkende ta kontakt direkte. Du kan se alle samtaler i dashbordet ditt.",
+        },
+        {
+          q: "3-måneders minimum og 14-dagers pengene-tilbake — hvordan henger disse sammen?",
+          a: "14-dagers pengene-tilbake-garantien betyr at hvis du ikke er fornøyd innen de første 14 dagene etter go-live, refunderer vi deg fullt ut — uten spørsmål. Etter 14 dager gjelder 3-månedersminimum, etter det kan du avslutte månedlig med 30 dagers varsel.",
+        },
       ],
     },
     booking: {
@@ -584,16 +670,32 @@ const LanguageContext = createContext<LanguageContextType>({
 });
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState<Lang>("en");
+  const [lang, setLangState] = useState<Lang>("no");
 
   useEffect(() => {
+    // 1. Respect explicit user choice persisted in localStorage
     const saved = localStorage.getItem("lang") as Lang | null;
-    if (saved === "en" || saved === "no") setLangState(saved);
+    if (saved === "en" || saved === "no") {
+      setLangState(saved);
+      return;
+    }
+    // 2. Fall back to cookie set by middleware from Accept-Language header
+    const cookieLang = document.cookie
+      .split(";")
+      .map((c) => c.trim())
+      .find((c) => c.startsWith("defaultLang="))
+      ?.split("=")[1] as Lang | undefined;
+    if (cookieLang === "en" || cookieLang === "no") {
+      setLangState(cookieLang);
+    }
+    // 3. No signal → stays "no" (Norwegian default)
   }, []);
 
   const setLang = (l: Lang) => {
     setLangState(l);
     localStorage.setItem("lang", l);
+    // Persist explicit choice in cookie so middleware sees it on next request
+    document.cookie = `lang=${l};path=/;max-age=${60 * 60 * 24 * 365};samesite=lax`;
   };
 
   return (

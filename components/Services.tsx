@@ -1,144 +1,55 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import { MessageCircle, Calendar, Phone, Cpu, Send, ChevronRight, Check, Bot } from "lucide-react";
+import { MessageCircle, Calendar, Phone, Cpu, ChevronRight, Check, Bot, ArrowRight } from "lucide-react";
 import { useLanguage, formatPrice, formatPriceWithPeriod } from "@/lib/i18n";
 
-/* ─── Chatbot Demo ─── */
-const CHATBOT_UI = {
-  en: {
-    greeting:    "Hi! I'm Aria 👋 How can I help you today?",
-    msg1:        "Hi, what are your opening hours?",
-    msg2:        "Hi! We're open Monday–Friday 08:00–16:00, and Saturday 10:00–14:00. Would you like to book an appointment?",
-    msg3:        "Yes please, do you have availability on Thursday?",
-    msg4:        "Absolutely! I've booked you in for Thursday at 1:00 PM. You'll receive a confirmation by SMS ✅",
-    name:        "Aria — AI Assistant",
-    status:      "Online · replying instantly",
-    placeholder: "Try typing something...",
-    freeReply:   "Great question! Book a free discovery call and I'll show you exactly what's possible for your business. 🚀",
-    outcome:     "Result: Appointment booked ✅",
-  },
-  no: {
-    greeting:    "Hei! Jeg er Aria 👋 Hvordan kan jeg hjelpe deg i dag?",
-    msg1:        "Hei, jeg lurer på åpningstidene deres?",
-    msg2:        "Hei! Vi har åpent mandag–fredag 08:00–16:00, og lørdag 10:00–14:00. Ønsker du å booke en time?",
-    msg3:        "Ja gjerne, har dere ledig på torsdag?",
-    msg4:        "Absolutt! Jeg har booket deg inn torsdag kl. 13:00. Du mottar en bekreftelse på SMS ✅",
-    name:        "Aria — AI-assistent",
-    status:      "Online · svarer umiddelbart",
-    placeholder: "Prøv å skriv noe...",
-    freeReply:   "Godt spørsmål! Book en gratis oppdagelsessamtale, så viser jeg deg nøyaktig hva som er mulig for din bedrift. 🚀",
-    outcome:     "Resultat: Time booket ✅",
-  },
-};
-
-function ChatbotDemo() {
+/* ─── Aria live teaser (replaces scripted chat demo) ─── */
+function AriaChatTeaser() {
   const { lang } = useLanguage();
-  const ui = CHATBOT_UI[lang];
-  const CHAT_SCRIPT = [
-    { role: "bot",  text: ui.greeting },
-    { role: "user", text: ui.msg1 },
-    { role: "bot",  text: ui.msg2 },
-    { role: "user", text: ui.msg3 },
-    { role: "bot",  text: ui.msg4 },
-  ];
-  const [messages, setMessages] = useState<typeof CHAT_SCRIPT>([]);
-  const [step, setStep] = useState(0);
-  const [typing, setTyping] = useState(false);
-  const [input, setInput] = useState("");
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    setMessages([]);
-    setStep(0);
-    setTyping(false);
-  }, [lang]);
-
-  const handleSend = () => {
-    if (!input.trim()) return;
-    const userMsg = { role: "user" as const, text: input.trim() };
-    setMessages(prev => [...prev, userMsg]);
-    setInput("");
-    setTyping(true);
-    setTimeout(() => {
-      setTyping(false);
-      setMessages(prev => [...prev, { role: "bot" as const, text: ui.freeReply }]);
-    }, 1200);
-  };
-
-  useEffect(() => {
-    if (step >= CHAT_SCRIPT.length) return;
-    const msg = CHAT_SCRIPT[step];
-    const delay = step === 0 ? 600 : msg.role === "bot" ? 1000 : 500;
-    if (msg.role === "bot") setTyping(true);
-    const t = setTimeout(() => {
-      setTyping(false);
-      setMessages((prev) => [...prev, msg]);
-      setStep((s) => s + 1);
-    }, delay);
-    return () => clearTimeout(t);
-  }, [step]);
-
-  useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-    }
-  }, [messages, typing]);
-
+  const isNo = lang === "no";
   return (
     <div style={{ background: "#1A1A1A", border: "1px solid rgba(212,175,55,0.12)", borderRadius: 16, overflow: "hidden", height: 340, display: "flex", flexDirection: "column" }}>
+      {/* Header */}
       <div style={{ padding: "12px 16px", display: "flex", alignItems: "center", gap: 10, background: "linear-gradient(135deg, #1a1408, #2a1f08)" }}>
-        <div style={{ width: 32, height: 32, borderRadius: "50%", background: "rgba(255,255,255,0.2)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-          <Bot size={16} color="white" />
+        <div style={{ width: 32, height: 32, borderRadius: "50%", background: "rgba(212,175,55,0.2)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <Bot size={16} color="#D4AF37" />
         </div>
         <div>
-          <div style={{ fontSize: 13, fontWeight: 600, color: "white" }}>{ui.name}</div>
+          <div style={{ fontSize: 13, fontWeight: 600, color: "#F5F0E8" }}>{isNo ? "Aria — AI-assistent" : "Aria — AI Assistant"}</div>
           <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
             <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#4ade80" }} />
-            <span style={{ fontSize: 11, color: "rgba(255,255,255,0.7)" }}>{ui.status}</span>
+            <span style={{ fontSize: 11, color: "rgba(255,255,255,0.6)" }}>{isNo ? "Online · svarer umiddelbart" : "Online · replying instantly"}</span>
           </div>
         </div>
       </div>
-      <div ref={scrollRef} style={{ flex: 1, overflowY: "auto", padding: "16px 12px", display: "flex", flexDirection: "column", gap: 10 }}>
-        {messages.map((m, i) => (
-          <div key={i} style={{ display: "flex", justifyContent: m.role === "user" ? "flex-end" : "flex-start", gap: 8, alignItems: "flex-end" }}>
-            {m.role === "bot" && (
-              <div style={{ width: 24, height: 24, borderRadius: "50%", background: "rgba(212,175,55,0.15)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                <Bot size={12} color="#D4AF37" />
-              </div>
-            )}
-            <div style={{
-              padding: "8px 14px", borderRadius: m.role === "user" ? "18px 18px 4px 18px" : "18px 18px 18px 4px",
-              background: m.role === "user" ? "linear-gradient(135deg,#B8960C,#D4AF37)" : "rgba(10,15,30,0.9)",
-              border: m.role === "bot" ? "1px solid rgba(212,175,55,0.12)" : "none",
-              fontSize: 13, color: "#F5F0E8", maxWidth: "75%", lineHeight: 1.5,
-            }}>{m.text}</div>
+      {/* Body */}
+      <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 20, padding: "24px 20px", textAlign: "center" }}>
+        <div style={{ width: 56, height: 56, borderRadius: "50%", background: "rgba(212,175,55,0.10)", border: "1px solid rgba(212,175,55,0.25)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <Bot size={26} color="#D4AF37" />
+        </div>
+        <div>
+          <div style={{ fontSize: 15, fontWeight: 600, color: "#F5F0E8", marginBottom: 8 }}>
+            {isNo ? "Prøv Aria live" : "Try Aria live"}
           </div>
-        ))}
-        {typing && (
-          <div style={{ display: "flex", alignItems: "flex-end", gap: 8 }}>
-            <div style={{ width: 24, height: 24, borderRadius: "50%", background: "rgba(212,175,55,0.15)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <Bot size={12} color="#D4AF37" />
-            </div>
-            <div style={{ padding: "10px 14px", borderRadius: "18px 18px 18px 4px", background: "rgba(10,15,30,0.9)", border: "1px solid rgba(212,175,55,0.12)", display: "flex", gap: 4 }}>
-              {[0,1,2].map(i => <div key={i} style={{ width: 5, height: 5, borderRadius: "50%", background: "#D4AF37", animation: `blink 1.2s ${i*0.2}s step-end infinite` }} />)}
-            </div>
+          <div style={{ fontSize: 13, color: "#8A8070", lineHeight: 1.6 }}>
+            {isNo
+              ? "Aria er vår ekte AI-assistent. Still henne et spørsmål og se selv hvordan den fungerer."
+              : "Aria is our real AI assistant. Ask her a question and see exactly how it works."}
           </div>
-        )}
+        </div>
+        <button
+          onClick={() => window.dispatchEvent(new CustomEvent("openAriaChat"))}
+          style={{
+            display: "inline-flex", alignItems: "center", gap: 8,
+            padding: "11px 24px", borderRadius: 12,
+            background: "linear-gradient(135deg,#D4AF37,#B8960C)",
+            color: "#0E0B04", fontWeight: 700, fontSize: 13,
+            border: "none", cursor: "pointer", fontFamily: "inherit",
+          }}
+        >
+          {isNo ? "Start chat med Aria" : "Chat with Aria"} <ArrowRight size={14} />
+        </button>
       </div>
-      {step >= CHAT_SCRIPT.length ? (
-        <div style={{ padding: "10px 16px", borderTop: "1px solid rgba(212,175,55,0.08)", display: "flex", alignItems: "center", gap: 8 }}>
-          <Check size={14} color="#4ade80" />
-          <span style={{ fontSize: 12, fontWeight: 600, color: "#4ade80" }}>{ui.outcome}</span>
-        </div>
-      ) : (
-        <div style={{ padding: "10px 12px", borderTop: "1px solid rgba(212,175,55,0.08)", display: "flex", gap: 8 }}>
-          <input value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => e.key === "Enter" && handleSend()} placeholder={ui.placeholder}
-            style={{ flex: 1, background: "rgba(212,175,55,0.03)", border: "1px solid rgba(212,175,55,0.10)", borderRadius: 10, padding: "8px 12px", fontSize: 12, color: "#F5F0E8", outline: "none", fontFamily: "inherit" }} />
-          <button onClick={handleSend} style={{ padding: "8px 12px", background: "linear-gradient(135deg,#B8960C,#D4AF37)", border: "none", borderRadius: 10, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <Send size={14} color="#1A1A1A" />
-          </button>
-        </div>
-      )}
     </div>
   );
 }
@@ -360,7 +271,7 @@ function CustomAIDemo() {
 
 /* ─── Static service data (icons, colors, prices, demos) ─── */
 const SERVICE_META = [
-  { id: "chatbot",        icon: <MessageCircle size={20} />, color: "#D4AF37", eurPrice: 399,  originalPrice: 699,  priceCustom: false, demo: <ChatbotDemo /> },
+  { id: "chatbot",        icon: <MessageCircle size={20} />, color: "#D4AF37", eurPrice: 399,  originalPrice: 699,  priceCustom: false, demo: <AriaChatTeaser /> },
   { id: "leadgen",        icon: <Calendar size={20} />,      color: "#F5D87E", eurPrice: 499,  originalPrice: 999,  priceCustom: false, demo: <LeadgenDemo /> },
   { id: "voice-agent",    icon: <Phone size={20} />,         color: "#C9A84C", eurPrice: 799,  originalPrice: 1599, priceCustom: false, demo: <VoiceAgentDemo /> },
   { id: "ai-integration", icon: <Cpu size={20} />,           color: "#D4AF37", eurPrice: 1500, originalPrice: null, priceCustom: true,  demo: <CustomAIDemo /> },

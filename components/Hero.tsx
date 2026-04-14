@@ -259,6 +259,24 @@ export default function Hero() {
           <a href="#services" className="btn-outline" style={{ fontSize: 15, padding: "14px 28px" }}>
             {t.hero.ctaSecondary}
           </a>
+          <button
+            onClick={() => window.dispatchEvent(new CustomEvent("openAriaChat"))}
+            style={{
+              fontSize: 15, padding: "14px 28px",
+              background: "rgba(212,175,55,0.08)",
+              border: "1px solid rgba(212,175,55,0.30)",
+              borderRadius: 12,
+              color: "#D4AF37",
+              cursor: "pointer",
+              fontFamily: "inherit",
+              fontWeight: 600,
+              transition: "all 0.2s ease",
+            }}
+            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "rgba(212,175,55,0.15)"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(212,175,55,0.55)"; }}
+            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "rgba(212,175,55,0.08)"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(212,175,55,0.30)"; }}
+          >
+            {t.hero.ctaTryAria}
+          </button>
         </div>
 
         {/* Stats row */}
