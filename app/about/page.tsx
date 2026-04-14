@@ -6,6 +6,7 @@ import ChatWidget from "@/components/ChatWidget";
 import ScrollReveal from "@/components/ScrollReveal";
 import { useLanguage } from "@/lib/i18n";
 import { Mail, MapPin } from "lucide-react";
+import Script from "next/script";
 
 const TEAM_META = [
   { image: "/team/aleksander.png", initials: "A" },
@@ -293,7 +294,7 @@ export default function AboutPage() {
 
         <div className="divider" />
 
-        {/* ── CTA ──────────────────────────────────────────────────────────── */}
+        {/* ── CTA / Calendly ───────────────────────────────────────────────── */}
         <section style={{ padding: "80px 24px 96px" }}>
           <div className="wrap">
             <ScrollReveal>
@@ -303,7 +304,7 @@ export default function AboutPage() {
                 background: "rgba(212,175,55,0.04)",
                 border: "1px solid rgba(212,175,55,0.18)",
                 borderRadius: 24,
-                padding: "72px 40px",
+                padding: "64px 40px 48px",
                 textAlign: "center",
               }}>
                 {/* Glow */}
@@ -312,41 +313,17 @@ export default function AboutPage() {
                   background: "radial-gradient(ellipse 700px 350px at 50% 50%, rgba(212,175,55,0.07) 0%, transparent 70%)",
                 }} />
                 {/* Corner ornaments */}
-                <div style={{
-                  position: "absolute", top: 24, left: 24,
-                  width: 40, height: 40,
-                  borderTop: "1px solid rgba(212,175,55,0.3)",
-                  borderLeft: "1px solid rgba(212,175,55,0.3)",
-                  borderRadius: "4px 0 0 0",
-                }} />
-                <div style={{
-                  position: "absolute", top: 24, right: 24,
-                  width: 40, height: 40,
-                  borderTop: "1px solid rgba(212,175,55,0.3)",
-                  borderRight: "1px solid rgba(212,175,55,0.3)",
-                  borderRadius: "0 4px 0 0",
-                }} />
-                <div style={{
-                  position: "absolute", bottom: 24, left: 24,
-                  width: 40, height: 40,
-                  borderBottom: "1px solid rgba(212,175,55,0.3)",
-                  borderLeft: "1px solid rgba(212,175,55,0.3)",
-                  borderRadius: "0 0 0 4px",
-                }} />
-                <div style={{
-                  position: "absolute", bottom: 24, right: 24,
-                  width: 40, height: 40,
-                  borderBottom: "1px solid rgba(212,175,55,0.3)",
-                  borderRight: "1px solid rgba(212,175,55,0.3)",
-                  borderRadius: "0 0 4px 0",
-                }} />
+                <div style={{ position: "absolute", top: 24, left: 24, width: 40, height: 40, borderTop: "1px solid rgba(212,175,55,0.3)", borderLeft: "1px solid rgba(212,175,55,0.3)", borderRadius: "4px 0 0 0" }} />
+                <div style={{ position: "absolute", top: 24, right: 24, width: 40, height: 40, borderTop: "1px solid rgba(212,175,55,0.3)", borderRight: "1px solid rgba(212,175,55,0.3)", borderRadius: "0 4px 0 0" }} />
+                <div style={{ position: "absolute", bottom: 24, left: 24, width: 40, height: 40, borderBottom: "1px solid rgba(212,175,55,0.3)", borderLeft: "1px solid rgba(212,175,55,0.3)", borderRadius: "0 0 0 4px" }} />
+                <div style={{ position: "absolute", bottom: 24, right: 24, width: 40, height: 40, borderBottom: "1px solid rgba(212,175,55,0.3)", borderRight: "1px solid rgba(212,175,55,0.3)", borderRadius: "0 0 4px 0" }} />
 
                 <h2 style={{
                   fontFamily: "Playfair Display, Georgia, serif",
                   fontSize: "clamp(28px, 5vw, 52px)",
                   fontWeight: 700,
                   color: "#F5F0E8",
-                  margin: "0 0 36px",
+                  margin: "0 0 48px",
                   letterSpacing: "-0.025em",
                   position: "relative",
                   zIndex: 1,
@@ -354,28 +331,26 @@ export default function AboutPage() {
                   {a.cta.headline}
                 </h2>
 
-                <div style={{ position: "relative", zIndex: 1, display: "inline-flex" }}>
-                  {/* Pulse rings around CTA button */}
-                  <div style={{
-                    position: "absolute", inset: -6, borderRadius: 18,
-                    border: "1.5px solid rgba(212,175,55,0.4)",
-                    animation: "pulseRing 2s ease-out infinite",
-                    pointerEvents: "none",
-                  }} />
-                  <div style={{
-                    position: "absolute", inset: -12, borderRadius: 22,
-                    border: "1.5px solid rgba(212,175,55,0.18)",
-                    animation: "pulseRing 2s ease-out 0.7s infinite",
-                    pointerEvents: "none",
-                  }} />
-                  <a href="/#booking" className="btn-primary" style={{ padding: "14px 36px", fontSize: 15 }}>
-                    {a.cta.button}
-                  </a>
-                </div>
+                {/* Calendly inline widget */}
+                <div
+                  className="calendly-inline-widget"
+                  data-url="https://calendly.com/smartcoreaimeeting/30min"
+                  style={{
+                    minWidth: 320,
+                    height: 700,
+                    position: "relative",
+                    zIndex: 1,
+                    borderRadius: 16,
+                    overflow: "hidden",
+                  }}
+                />
               </div>
             </ScrollReveal>
           </div>
         </section>
+
+        <Script src="https://assets.calendly.com/assets/external/widget.js" strategy="lazyOnload" />
+        <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
       </main>
 
       <Footer />

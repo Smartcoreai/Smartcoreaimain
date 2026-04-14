@@ -13,7 +13,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <a href="/" style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", marginBottom: 16 }}>
-              <img src="/logo.png" alt="SmartcoreAI logo" style={{ height: 40, width: "auto", objectFit: "contain" }} />
+              <img src="/logo-transparent.png" alt="SmartcoreAI logo" style={{ height: 40, width: "auto", objectFit: "contain" }} />
               <span style={{ fontFamily: "Syne, system-ui, sans-serif", fontWeight: 700, fontSize: 18, color: "#F5F0E8", letterSpacing: "-0.02em" }}>
                 Smartcore<span style={{ color: "#D4AF37" }}>AI</span>
               </span>
