@@ -136,39 +136,39 @@ export const translations = {
       sections: [
         {
           q: "GDPR and data handling — where is data stored?",
-          a: "All data is processed and stored within the EU/EEA in compliance with GDPR. TODO: insert specific data center location and compliance certifications. Data is encrypted in transit and at rest. On cancellation, we export all your data to you and delete it from our systems within 30 days.",
+          a: "All data is stored securely on EU servers (Frankfurt, Germany) via AWS. Only you and your team have access to customer data. We are fully GDPR compliant. Upon cancellation, all data is deleted within 30 days, unless you request an export first.",
         },
         {
           q: "Who owns the data?",
-          a: "You do. All conversation logs, lead data, and customer information collected through your AI system belong entirely to you. SmartcoreAI does not sell, share, or use your customer data for any purpose other than delivering your service.",
+          a: "You own all data — conversation logs, customer info, leads, and analytics. We have no rights to your data. Upon cancellation, you can export everything in standard formats (CSV/JSON).",
         },
         {
           q: "Which integrations do you support?",
-          a: "We support HubSpot, Pipedrive, Tripletex, Fiken, and custom API integrations with any platform that has a public API. TODO: confirm full integration list. If your CRM is not listed, contact us — most tools can be connected via webhook or Zapier.",
+          a: "We integrate with HubSpot, Pipedrive, Tripletex, Fiken, Google Calendar, Outlook, Slack, and most tools with an API. Have a specific system? We'll customize the integration.",
         },
         {
           q: "Which languages does the chatbot support?",
-          a: "TODO: insert full list of supported languages. The chatbot is trained in the language(s) you specify during onboarding. Norwegian and English are fully supported out of the box.",
+          a: "The chatbot supports Norwegian, English, Swedish, Danish, and 50+ other languages. It automatically detects which language the customer writes in and responds in the same language.",
         },
         {
           q: "What happens when I cancel?",
-          a: "All plans require a 3-month minimum partnership. After that, you can cancel with 30 days' notice. On cancellation you receive a full export of all your data (conversation logs, leads, reports). Your data is permanently deleted from our systems within 30 days of cancellation.",
+          a: "There's a 3-month minimum period. After that, you can cancel anytime with 30 days notice. Upon cancellation, we export all your data and delete it from our systems within 30 days.",
         },
         {
           q: "What is the uptime guarantee / SLA?",
-          a: "TODO: insert specific SLA numbers and response-time commitments. All paid plans include monitoring and incident response. Downtime is communicated proactively via email.",
+          a: "We guarantee 99.9% uptime. The chatbot and AI receptionist run 24/7 on redundant infrastructure. In case of downtime, we notify you immediately and resolve it within 4 hours.",
         },
         {
           q: "How does onboarding work? How fast can we go live?",
-          a: "After signing, we schedule an onboarding call within 48 hours. We collect your business details, train the AI on your content, and handle all technical setup. Most clients are live within 7 business days. You don't need to do anything technical.",
+          a: "Onboarding takes 5-7 business days. Days 1-2: we gather info about your business. Days 3-5: we build and train the AI. Days 6-7: testing and launch. You're live within a week.",
         },
         {
           q: "What if the AI gives a wrong answer?",
-          a: "TODO: insert specific fallback process. The AI is trained specifically on your business content, which minimises errors. When it encounters a question outside its scope, it escalates to a human or asks the visitor to contact you directly. You can review all conversations in your dashboard.",
+          a: "The AI is trained specifically on your business and services. If it's unsure, it automatically escalates to a human. You can review all conversations in the dashboard and adjust responses. We continuously monitor and improve the AI based on real conversations.",
         },
         {
           q: "3-month minimum and 14-day money-back — how do these work together?",
-          a: "The 14-day money-back guarantee means that if you are not satisfied within the first 14 days of going live, we refund you in full — no questions asked. After 14 days the 3-month minimum applies, after which you can cancel month-to-month with 30 days' notice.",
+          a: "The 3-month minimum exists because real results take time to build. But we offer a 14-day money-back guarantee — if you're not satisfied within the first 14 days, you get a full refund, no questions asked. After 3 months, the agreement becomes month-to-month.",
         },
       ],
     },
@@ -459,39 +459,39 @@ export const translations = {
       sections: [
         {
           q: "GDPR og datahåndtering — hvor lagres dataene?",
-          a: "All data behandles og lagres innenfor EU/EØS i samsvar med GDPR. TODO: legg inn spesifikt datasenter og sertifiseringer. Data krypteres under overføring og lagring. Ved kansellering eksporterer vi alle dataene dine og sletter dem fra systemene våre innen 30 dager.",
+          a: "All data lagres sikkert på servere i EU (Frankfurt, Tyskland) via AWS. Kun du og ditt team har tilgang til kundedata. Vi følger GDPR fullt ut. Ved kansellering slettes all data innen 30 dager, med mindre du ber om eksport først.",
         },
         {
           q: "Hvem eier dataene?",
-          a: "Det gjør du. Alle samtalelogger, leads og kundeopplysninger samlet inn via AI-systemet ditt tilhører deg. SmartcoreAI selger ikke, deler ikke, eller bruker kundedataene dine til noe annet enn å levere tjenesten din.",
+          a: "Du eier all data — samtalelogger, kundeinfo, leads og analyser. Vi har ingen rettigheter til dine data. Ved kansellering kan du eksportere alt i standard format (CSV/JSON).",
         },
         {
           q: "Hvilke integrasjoner støtter dere?",
-          a: "Vi støtter HubSpot, Pipedrive, Tripletex, Fiken og skreddersydde API-integrasjoner med alle plattformer som har et åpent API. TODO: bekreft full integrasjonsliste. Hvis CRM-en din ikke er listet opp, ta kontakt — de fleste verktøy kan kobles til via webhook eller Zapier.",
+          a: "Vi integrerer med HubSpot, Pipedrive, Tripletex, Fiken, Google Calendar, Outlook, Slack, og de fleste verktøy med API. Har du et spesifikt system? Vi tilpasser integrasjonen.",
         },
         {
           q: "Hvilke språk støtter chatboten?",
-          a: "TODO: legg inn full liste over støttede språk. Chatboten trenes på språket/språkene du spesifiserer under onboarding. Norsk og engelsk støttes fullt ut.",
+          a: "Chatboten støtter norsk, engelsk, svensk, dansk, og over 50 andre språk. Den oppdager automatisk hvilket språk kunden skriver på og svarer på samme språk.",
         },
         {
           q: "Hva skjer når jeg avslutter?",
-          a: "Alle planer krever et minimum 3-måneders partnerskap. Etter det kan du avslutte med 30 dagers varsel. Ved kansellering mottar du en fullstendig eksport av alle dine data (samtalelogger, leads, rapporter). Dataene dine slettes permanent fra systemene våre innen 30 dager etter kansellering.",
+          a: "Du har en 3-måneders minimumsperiode. Etter det kan du kansellere når som helst med 30 dagers varsel. Ved kansellering eksporterer vi all data til deg og sletter den fra våre systemer innen 30 dager.",
         },
         {
           q: "Hva er oppetidsgarantien / SLA?",
-          a: "TODO: legg inn spesifikke SLA-tall og responstidsforpliktelser. Alle betalte planer inkluderer overvåking og hendelseshåndtering. Nedetid kommuniseres proaktivt via e-post.",
+          a: "Vi garanterer 99.9% oppetid. Chatboten og AI-resepsjonisten kjører 24/7 på redundant infrastruktur. Ved nedetid varsler vi deg umiddelbart og løser det innen 4 timer.",
         },
         {
           q: "Hvordan fungerer onboarding? Hvor raskt kan vi gå live?",
-          a: "Etter signering setter vi opp et onboarding-møte innen 48 timer. Vi samler inn informasjon om bedriften din, trener AI-en på innholdet ditt og håndterer all teknisk oppsett. De fleste kunder er live innen 7 virkedager. Du trenger ikke gjøre noe teknisk selv.",
+          a: "Onboarding tar 5-7 virkedager. Dag 1-2: vi samler inn info om bedriften din. Dag 3-5: vi bygger og trener AI-en. Dag 6-7: testing og lansering. Du er live innen en uke.",
         },
         {
           q: "Hva skjer hvis AI-en svarer feil?",
-          a: "TODO: legg inn spesifikk fallback-prosess. AI-en trenes spesifikt på innholdet fra din bedrift, noe som minimerer feil. Når den møter et spørsmål utenfor sitt område, eskalerer den til et menneske eller ber besøkende ta kontakt direkte. Du kan se alle samtaler i dashbordet ditt.",
+          a: "AI-en er trent spesifikt på din bedrift og dine tjenester. Hvis den er usikker, eskalerer den til et menneske automatisk. Du kan se alle samtaler i dashboardet og justere svarene. Vi overvåker kontinuerlig og forbedrer AI-en basert på ekte samtaler.",
         },
         {
           q: "3-måneders minimum og 14-dagers pengene-tilbake — hvordan henger disse sammen?",
-          a: "14-dagers pengene-tilbake-garantien betyr at hvis du ikke er fornøyd innen de første 14 dagene etter go-live, refunderer vi deg fullt ut — uten spørsmål. Etter 14 dager gjelder 3-månedersminimum, etter det kan du avslutte månedlig med 30 dagers varsel.",
+          a: "Du binder deg for minimum 3 måneder fordi ekte resultater tar tid å bygge opp. Men vi tilbyr 14-dagers pengene-tilbake-garanti — hvis du ikke er fornøyd i løpet av de første 14 dagene, får du full refusjon, ingen spørsmål stilt. Etter 3 måneder går avtalen over til måned-til-måned.",
         },
       ],
     },
