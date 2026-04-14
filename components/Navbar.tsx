@@ -27,15 +27,13 @@ export default function Navbar() {
 
   return (
     <header
+      className="bg-black"
       style={{
         position: "sticky",
         top: 0,
         width: "100%",
         zIndex: 200,
-        transition: "all 0.4s ease",
-        background: "#000000",
-        backdropFilter: "none",
-        borderBottom: scrolled ? "1px solid rgba(212,175,55,0.10)" : "1px solid transparent",
+        backgroundColor: "#000000",
       }}
     >
       <div className="wrap" style={{ padding: "0 32px" }}>
@@ -99,12 +97,14 @@ export default function Navbar() {
 
       {/* Mobile dropdown menu */}
       {mobileOpen && (
-        <div style={{
-          background: "#000000",
-          borderTop: "1px solid rgba(212,175,55,0.08)",
-          padding: "20px 24px 28px",
-          backdropFilter: "blur(20px)",
-        }}>
+        <div
+          className="bg-black"
+          style={{
+            backgroundColor: "#000000",
+            borderTop: "1px solid rgba(212,175,55,0.08)",
+            padding: "20px 24px 28px",
+          }}
+        >
           <nav style={{ display: "flex", flexDirection: "column", gap: 4 }}>
             {NAV_LINKS.map((l) => (
               <a key={l.href} href={l.href} onClick={() => setMobileOpen(false)} style={{
