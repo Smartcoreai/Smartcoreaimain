@@ -33,8 +33,8 @@ export default function Navbar() {
         width: "100%",
         zIndex: 200,
         transition: "all 0.4s ease",
-        background: scrolled ? "rgba(8,8,8,0.88)" : "transparent",
-        backdropFilter: scrolled ? "blur(20px)" : "none",
+        background: "#000000",
+        backdropFilter: "none",
         borderBottom: scrolled ? "1px solid rgba(212,175,55,0.10)" : "1px solid transparent",
       }}
     >
@@ -100,7 +100,7 @@ export default function Navbar() {
       {/* Mobile dropdown menu */}
       {mobileOpen && (
         <div style={{
-          background: "rgba(8,8,8,0.97)",
+          background: "#000000",
           borderTop: "1px solid rgba(212,175,55,0.08)",
           padding: "20px 24px 28px",
           backdropFilter: "blur(20px)",
