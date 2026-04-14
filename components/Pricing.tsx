@@ -118,6 +118,9 @@ export default function Pricing() {
                   <div style={{ fontFamily: "system-ui, -apple-system, sans-serif", fontSize: 22, fontWeight: 700, color: plan.color, lineHeight: 1.3 }}>
                     {t.pricing.priceCustom}
                   </div>
+                  <div style={{ fontSize: 11, color: "#5A5248", marginTop: 8 }}>
+                    {t.pricing.setupFeeCustom}
+                  </div>
                 </div>
               ) : (
                 <div style={{ marginBottom: 28, minHeight: 120, display: "flex", flexDirection: "column", justifyContent: "flex-start" }}>
@@ -147,7 +150,11 @@ export default function Pricing() {
                   {/* Founding label */}
                   <div style={{ display: "inline-flex", alignItems: "center", gap: 5, marginTop: 10, padding: "3px 10px", borderRadius: 999, background: `${plan.color}14`, border: `1px solid ${plan.color}28` }}>
                     <Zap size={10} color={plan.color} />
-                    <span style={{ fontSize: 10, fontWeight: 700, color: plan.color, letterSpacing: "0.06em", textTransform: "uppercase" }}>Founding price</span>
+                    <span style={{ fontSize: 10, fontWeight: 700, color: plan.color, letterSpacing: "0.06em", textTransform: "uppercase" }}>{t.pricing.foundingPrice}</span>
+                  </div>
+                  {/* Setup fee */}
+                  <div style={{ fontSize: 11, color: "#5A5248", marginTop: 8 }}>
+                    {t.pricing.setupFee}
                   </div>
                 </div>
               )}

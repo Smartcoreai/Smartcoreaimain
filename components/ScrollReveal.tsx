@@ -15,19 +15,33 @@ export default function ScrollReveal({ children, delay = 0, className = "", styl
     const el = ref.current;
     if (!el) return;
 
+    // Respect reduced-motion preference — show immediately
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      el.classList.add("visible");
+      return;
+    }
+
+    // Safety timeout: always reveal after 500 ms in case observer never fires
+    // (fast scroll-to-anchor, End key, programmatic scrollIntoView)
+    const fallback = setTimeout(() => {
+      el.style.transitionDelay = `${delay}ms`;
+      el.classList.add("visible");
+    }, 500);
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
+          clearTimeout(fallback);
           el.style.transitionDelay = `${delay}ms`;
           el.classList.add("visible");
           observer.unobserve(el);
         }
       },
-      { threshold: 0.12 }
+      { threshold: 0, rootMargin: "0px 0px -10% 0px" }
     );
 
     observer.observe(el);
-    return () => observer.disconnect();
+    return () => { observer.disconnect(); clearTimeout(fallback); };
   }, [delay]);
 
   return (

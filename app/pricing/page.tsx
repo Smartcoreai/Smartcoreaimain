@@ -1,5 +1,5 @@
 "use client";
-import { Check, Star } from "lucide-react";
+import { Check, Star, Zap } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useLanguage, formatPrice } from "@/lib/i18n";
@@ -90,18 +90,26 @@ export default function PricingPage() {
                   {plan.priceCustom ? (
                     <div style={{ marginBottom: 8 }}>
                       <span style={{ fontFamily: "Syne, sans-serif", fontSize: 18, fontWeight: 700, color: plan.color }}>{p.priceCustom}</span>
+                      <div style={{ fontSize: 11, color: "#5A5248", marginTop: 6 }}>{p.setupFeeCustom}</div>
                     </div>
                   ) : (
                     <>
                       <div style={{ fontSize: 12, color: "#8A8070", textDecoration: "line-through", marginBottom: 2, fontVariantNumeric: "tabular-nums" }}>
                         {formatPrice(plan.originalPrice!, lang)}
                       </div>
-                      <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 8 }}>
+                      <div style={{ display: "flex", alignItems: "baseline", gap: 4, marginBottom: 6 }}>
                         <span style={{ fontFamily: "Syne, sans-serif", fontSize: 32, fontWeight: 800, color: "#F5F0E8", letterSpacing: "-0.03em", fontVariantNumeric: "tabular-nums" }}>
                           {formatPrice(plan.price!, lang)}
                         </span>
                         <span style={{ fontSize: 13, color: "#8A8070" }}>/{p.period}</span>
                       </div>
+                      {/* Founding price badge */}
+                      <div style={{ display: "inline-flex", alignItems: "center", gap: 5, marginBottom: 4, padding: "3px 10px", borderRadius: 999, background: `${plan.color}14`, border: `1px solid ${plan.color}28` }}>
+                        <Zap size={10} color={plan.color} />
+                        <span style={{ fontSize: 10, fontWeight: 700, color: plan.color, letterSpacing: "0.06em", textTransform: "uppercase" }}>{p.foundingPrice}</span>
+                      </div>
+                      {/* Setup fee */}
+                      <div style={{ fontSize: 11, color: "#5A5248", marginTop: 4, marginBottom: 4 }}>{p.setupFee}</div>
                     </>
                   )}
                   <p style={{ fontSize: 13, color: "#8A8070", lineHeight: 1.6, margin: 0 }}>{plan.desc}</p>
