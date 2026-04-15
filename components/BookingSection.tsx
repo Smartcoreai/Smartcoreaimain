@@ -91,7 +91,7 @@ export default function BookingSection() {
                   el.style.animation = `${anim} 4s ease-in-out ${i * 0.9}s infinite`;
                 }}
               >
-                {i === 1 && (
+                {i === 0 && (
                   <div style={{
                     position: "absolute", top: -12, left: "50%", transform: "translateX(-50%)",
                     padding: "4px 16px", borderRadius: 999,

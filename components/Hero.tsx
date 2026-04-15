@@ -179,43 +179,59 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Headline — typewriter */}
+        {/* Headline — typewriter, two locked lines */}
         <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-[80px]" style={{
           fontFamily: "'Playfair Display', Georgia, serif",
           fontWeight: 700,
           lineHeight: 1.1,
           letterSpacing: "-0.01em",
-          color: "#F5F0E8",
           maxWidth: "min(900px, 100%)",
           margin: "0 auto 24px",
           animation: "slideUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.1s both",
           overflowWrap: "break-word",
           wordBreak: "break-word",
-          minHeight: "2.2em",
           textShadow: "0 2px 40px rgba(0,0,0,0.6)",
         }}>
-          {fullText.slice(0, Math.min(typed, splitAt))}
-          {typed > splitAt && (
-            <span style={{
-              background: "linear-gradient(135deg, #D4AF37 0%, #F5D87E 60%, #D4AF37 100%)",
-              backgroundSize: "200% auto",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-              animation: "shimmer 3s linear infinite",
-            }}>
-              {fullText.slice(splitAt, typed)}
-            </span>
-          )}
+          {/* Line 1 — white */}
+          <span style={{ display: "block", color: "#F5F0E8" }}>
+            {fullText.slice(0, Math.min(typed, splitAt - 1))}
+            {typed <= splitAt - 1 && (
+              <span style={{
+                display: "inline-block",
+                width: "3px",
+                height: "0.85em",
+                background: "#D4AF37",
+                marginLeft: "3px",
+                verticalAlign: "middle",
+                animation: "blink 1s step-end infinite",
+              }} />
+            )}
+          </span>
+          {/* Line 2 — gold gradient, always reserves height */}
           <span style={{
-            display: "inline-block",
-            width: "3px",
-            height: "0.85em",
-            background: "#D4AF37",
-            marginLeft: "3px",
-            verticalAlign: "middle",
-            animation: "blink 1s step-end infinite",
-          }} />
+            display: "block",
+            minHeight: "1.15em",
+            background: "linear-gradient(135deg, #D4AF37 0%, #F5D87E 60%, #D4AF37 100%)",
+            backgroundSize: "200% auto",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+            animation: "shimmer 3s linear infinite",
+          }}>
+            {typed > splitAt - 1 ? fullText.slice(splitAt, typed) : "\u00A0"}
+            {typed > splitAt - 1 && (
+              <span style={{
+                display: "inline-block",
+                width: "3px",
+                height: "0.85em",
+                background: "#D4AF37",
+                WebkitTextFillColor: "#D4AF37",
+                marginLeft: "3px",
+                verticalAlign: "middle",
+                animation: "blink 1s step-end infinite",
+              }} />
+            )}
+          </span>
         </h1>
 
         {/* Subtext */}

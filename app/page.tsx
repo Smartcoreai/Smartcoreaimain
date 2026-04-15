@@ -11,6 +11,7 @@ import BookingSection from "@/components/BookingSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import ChatWidget from "@/components/ChatWidget";
+import StickyBookingBar from "@/components/StickyBookingBar";
 import ScrollReveal from "@/components/ScrollReveal";
 
 export default function HomePage() {
@@ -28,10 +29,10 @@ export default function HomePage() {
           <Services />
         </ScrollReveal>
         <ScrollReveal delay={0}>
-          <Pricing />
+          <Objections />
         </ScrollReveal>
         <ScrollReveal delay={0}>
-          <Objections />
+          <Pricing />
         </ScrollReveal>
         <ScrollReveal delay={0}>
           <BookingSection />
@@ -42,6 +43,7 @@ export default function HomePage() {
       </main>
       <Footer />
       <ChatWidget />
+      <StickyBookingBar />
     </>
   );
 }
