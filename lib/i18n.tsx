@@ -18,11 +18,9 @@ export const translations = {
     },
     hero: {
       tag: "AI-powered growth systems",
-      headline1: "We build AI chatbots and booking systems for service businesses —",
-      headline2: "live in 7 days, or you don't pay.",
-      // ⚠ TODO: Confirm subtext metric with client before launch
-      subtext: "Clients book 30–60% more leads in the first 30 days.",
-      trustLine: "14-day free trial · 14-day money-back guarantee",
+      headline1: "Your business,",
+      headline2: "runs itself.",
+      subtext: "AI chatbots, booking automation, CRM systems — fully integrated, deployed in days. Not months.",
       ctaPrimary: "Book a free call",
       ctaSecondary: "See what we build",
       ctaTryAria: "Try Aria →",
@@ -364,11 +362,9 @@ export const translations = {
     },
     hero: {
       tag: "AI-drevne vekstsystemer",
-      headline1: "Vi bygger AI-chatboter og bookingsystemer for servicebedrifter —",
-      headline2: "live på 7 dager, ellers betaler du ikke.",
-      // ⚠ TODO: Bekreft undertekst-tall med klient før lansering
-      subtext: "Kunder booker 30–60% flere leads de første 30 dagene.",
-      trustLine: "14 dagers gratis prøveperiode · 14 dagers pengene-tilbake-garanti",
+      headline1: "Din bedrift,",
+      headline2: "driver seg selv.",
+      subtext: "AI-chatboter, bookingautomatisering, CRM-systemer — fullt integrert, klart på dager. Ikke måneder.",
       ctaPrimary: "Book gratis samtale",
       ctaSecondary: "Se hva vi bygger",
       ctaTryAria: "Prøv Aria →",

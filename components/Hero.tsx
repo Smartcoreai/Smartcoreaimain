@@ -233,12 +233,9 @@ export default function Hero() {
           {t.hero.subtext}
         </p>
 
-        {/* Single primary CTA */}
-        <div style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: 16,
+        {/* CTAs */}
+        <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center" style={{
+          gap: 14,
           marginBottom: 80,
           animation: "slideUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.3s both",
         }}>
@@ -255,20 +252,13 @@ export default function Hero() {
               animation: "pulseRing 2s ease-out 0.6s infinite",
               pointerEvents: "none",
             }} />
-            <a href="#booking" className="btn-primary" style={{ fontSize: 15, padding: "14px 32px", position: "relative", zIndex: 1 }}>
+            <a href="#booking" className="btn-primary" style={{ fontSize: 15, padding: "14px 28px", position: "relative", zIndex: 1 }}>
               {t.hero.ctaPrimary} <ArrowRight size={16} />
             </a>
           </div>
-          {/* Trust line */}
-          <p style={{
-            fontSize: 13,
-            color: "rgba(212,175,55,0.65)",
-            margin: 0,
-            fontWeight: 500,
-            letterSpacing: "0.01em",
-          }}>
-            {t.hero.trustLine}
-          </p>
+          <a href="#services" className="btn-outline" style={{ fontSize: 15, padding: "14px 28px" }}>
+            {t.hero.ctaSecondary}
+          </a>
         </div>
 
         {/* Stats row */}
