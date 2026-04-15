@@ -18,9 +18,11 @@ export const translations = {
     },
     hero: {
       tag: "AI-powered growth systems",
-      headline1: "Your business,",
-      headline2: "running itself.",
-      subtext: "AI chatbots, booking automation, CRM systems — fully integrated, deployed in days. Not months.",
+      headline1: "We build AI chatbots and booking systems for service businesses —",
+      headline2: "live in 7 days, or you don't pay.",
+      // ⚠ TODO: Confirm subtext metric with client before launch
+      subtext: "Clients book 30–60% more leads in the first 30 days.",
+      trustLine: "14-day free trial · 14-day money-back guarantee",
       ctaPrimary: "Book a free call",
       ctaSecondary: "See what we build",
       ctaTryAria: "Try Aria →",
@@ -41,6 +43,27 @@ export const translations = {
       "Custom Integrations", "24/7 Support", "Revenue Growth", "AI Workflows",
       "Instant Setup", "Smart Automation", "Real-time Analytics", "Client Portal",
     ],
+    howItWorks: {
+      tag: "Process",
+      headline: "How it works",
+      steps: [
+        {
+          num: "01",
+          title: "Discovery call",
+          desc: "We spend 30 minutes understanding your business, your customers, and where AI can make the biggest difference.",
+        },
+        {
+          num: "02",
+          title: "We build and train your AI in 7 days",
+          desc: "Our team builds, trains, and tests your custom AI system. You review a live demo before we go live.",
+        },
+        {
+          num: "03",
+          title: "You launch and we iterate",
+          desc: "Go live with a 14-day free trial. If you're not satisfied, you get a full refund — no questions asked.",
+        },
+      ],
+    },
     services: {
       tag: "What we build",
       headline1: "Tools that",
@@ -341,9 +364,11 @@ export const translations = {
     },
     hero: {
       tag: "AI-drevne vekstsystemer",
-      headline1: "Din bedrift,",
-      headline2: "driver seg selv.",
-      subtext: "AI-chatboter, bookingautomatisering, CRM-systemer — fullt integrert, klart på dager. Ikke måneder.",
+      headline1: "Vi bygger AI-chatboter og bookingsystemer for servicebedrifter —",
+      headline2: "live på 7 dager, ellers betaler du ikke.",
+      // ⚠ TODO: Bekreft undertekst-tall med klient før lansering
+      subtext: "Kunder booker 30–60% flere leads de første 30 dagene.",
+      trustLine: "14 dagers gratis prøveperiode · 14 dagers pengene-tilbake-garanti",
       ctaPrimary: "Book gratis samtale",
       ctaSecondary: "Se hva vi bygger",
       ctaTryAria: "Prøv Aria →",
@@ -364,6 +389,27 @@ export const translations = {
       "Tilpassede integrasjoner", "24/7 support", "Inntektsvekst", "AI-arbeidsflyter",
       "Rask oppsett", "Smart automatisering", "Sanntidsanalyse", "Kundeportal",
     ],
+    howItWorks: {
+      tag: "Prosessen",
+      headline: "Slik fungerer det",
+      steps: [
+        {
+          num: "01",
+          title: "Uforpliktende samtale",
+          desc: "Vi bruker 30 minutter på å forstå bedriften din, kundene dine og hvor AI kan gjøre størst forskjell.",
+        },
+        {
+          num: "02",
+          title: "Vi bygger og trener AI-en din på 7 dager",
+          desc: "Teamet vårt bygger, trener og tester ditt skreddersydde AI-system. Du får en live forhåndsvisning før lansering.",
+        },
+        {
+          num: "03",
+          title: "Du lanserer og vi forbedrer",
+          desc: "Gå live med 14 dagers gratis prøveperiode. Ikke fornøyd? Full refusjon — ingen spørsmål stilt.",
+        },
+      ],
+    },
     services: {
       tag: "Hva vi bygger",
       headline1: "Verktøy som",

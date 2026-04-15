@@ -1,7 +1,8 @@
 // updated
 import Navbar from "@/components/Navbar";
-import FoundingBanner from "@/components/FoundingBanner";
 import Hero from "@/components/Hero";
+import SocialProof from "@/components/SocialProof";
+import HowItWorks from "@/components/HowItWorks";
 import Ticker from "@/components/Ticker";
 import Services from "@/components/Services";
 import Pricing from "@/components/Pricing";
@@ -15,10 +16,11 @@ import ScrollReveal from "@/components/ScrollReveal";
 export default function HomePage() {
   return (
     <>
-      <FoundingBanner />
       <Navbar />
       <main>
         <Hero />
+        <SocialProof />
+        <HowItWorks />
         <ScrollReveal delay={0}>
           <Ticker />
         </ScrollReveal>
