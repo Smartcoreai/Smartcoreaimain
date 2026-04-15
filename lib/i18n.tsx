@@ -431,9 +431,16 @@ export const translations = {
           "Our team is lean by choice. We'd rather build fewer systems that actually drive revenue than sell dashboards nobody opens. We only work with businesses where AI can deliver a measurable return, because focus is how you build trust.",
         ],
       },
+      values: [
+        { title: "Focus over everything", desc: "We work with a small number of clients at a time so every business gets our full attention." },
+        { title: "Results, not dashboards", desc: "We measure our work by revenue generated, not vanity metrics. No fluff, no fillers." },
+        { title: "Small team, by design", desc: "We stay lean on purpose. Fewer clients means deeper work and better systems." },
+      ],
       cta: {
         headline: "Ready for a conversation?",
+        subtitle: "Let's find out if AI can add measurable value to your business — no pitch, no pressure.",
         button: "Book a free call →",
+        trustLine: "No commitment · 14-day money-back guarantee · Response within 4 hours",
       },
     },
   },
@@ -863,9 +870,16 @@ export const translations = {
           "Teamet vårt er lite med vilje. Vi bygger heller færre systemer som faktisk driver inntekter, enn å selge dashboards ingen åpner. Vi jobber kun med bedrifter der AI kan levere målbar avkastning, fordi fokus er slik man bygger tillit.",
         ],
       },
+      values: [
+        { title: "Fokus over alt", desc: "Vi jobber med et begrenset antall kunder om gangen, slik at alle bedrifter får vår fulle oppmerksomhet." },
+        { title: "Resultater, ikke dashboards", desc: "Vi måler arbeidet vårt i inntekter generert, ikke tomme tall. Ingen fyll, ingen dikkedarer." },
+        { title: "Lite team, med vilje", desc: "Vi holder oss slanke med vilje. Færre kunder betyr dypere arbeid og bedre systemer." },
+      ],
       cta: {
         headline: "Klar for en samtale?",
+        subtitle: "La oss finne ut om AI kan tilføre målbar verdi til din bedrift — ingen salgspress.",
         button: "Book en gratis samtale →",
+        trustLine: "Ingen bindingstid · 14 dagers pengene-tilbake-garanti · Svar innen 4 timer",
       },
     },
   },

@@ -5,13 +5,14 @@ import Footer from "@/components/Footer";
 import ChatWidget from "@/components/ChatWidget";
 import ScrollReveal from "@/components/ScrollReveal";
 import { useLanguage } from "@/lib/i18n";
-import { Mail, MapPin } from "lucide-react";
-import Script from "next/script";
+import { Mail, MapPin, Target, BarChart2, Users, ArrowRight } from "lucide-react";
 
 const TEAM_META = [
-  { image: "/team/aleksander.png", initials: "A" },
-  { image: "/team/henrik.png",     initials: "H" },
+  { image: "/team/aleksander.png" },
+  { image: "/team/henrik.png" },
 ];
+
+const VALUE_ICONS = [Target, BarChart2, Users];
 
 export default function AboutPage() {
   const { t } = useLanguage();
@@ -25,121 +26,119 @@ export default function AboutPage() {
     <>
       <Navbar />
 
-      <main style={{ background: "#0a0a0a" }}>
+      <main style={{ background: "#ffffff" }}>
 
-        {/* ── Hero ─────────────────────────────────────────────────────────── */}
-        <section
-          style={{
-            position: "relative",
-            overflow: "hidden",
-            padding: "140px 24px 100px",
-          }}
-        >
-          {/* Radial gold glow */}
-          <div style={{
-            position: "absolute", inset: 0, pointerEvents: "none",
-            background: "radial-gradient(ellipse 900px 500px at 50% -60px, rgba(212,175,55,0.11) 0%, transparent 70%)",
-          }} />
-          {/* Subtle grid */}
-          <div className="bg-grid" style={{ position: "absolute", inset: 0, opacity: 0.4 }} />
-
-          {/* Decorative thin gold lines */}
-          <div style={{
-            position: "absolute", left: "50%", top: 0, transform: "translateX(-50%)",
-            width: 1, height: 80, background: "linear-gradient(180deg, transparent, rgba(212,175,55,0.5))",
-          }} />
-
-          <div style={{ position: "relative", zIndex: 1, textAlign: "center", maxWidth: 780, margin: "0 auto" }}>
+        {/* ── 1. Hero ──────────────────────────────────────────────────────── */}
+        <section style={{ background: "#ffffff", padding: "140px 24px 96px", textAlign: "center" }}>
+          <div style={{ maxWidth: 760, margin: "0 auto" }}>
             <ScrollReveal>
-              <span className="tag">{a.hero.tag}</span>
+              <div style={{
+                fontSize: 13, fontWeight: 600,
+                letterSpacing: "0.06em", textTransform: "uppercase",
+                color: "#b8902e", marginBottom: 20,
+              }}>
+                {a.hero.tag}
+              </div>
             </ScrollReveal>
 
             <ScrollReveal delay={100}>
               <h1 style={{
-                fontFamily: "Playfair Display, Georgia, serif",
-                fontWeight: 700,
-                fontSize: "clamp(52px, 9vw, 96px)",
-                lineHeight: 1.06,
-                color: "#F5F0E8",
-                margin: "28px 0 0",
-                letterSpacing: "-0.03em",
+                fontFamily: "'Playfair Display', Georgia, serif",
+                fontSize: "clamp(44px, 7vw, 80px)",
+                fontWeight: 700, lineHeight: 1.1,
+                color: "#1a1a2e",
+                margin: "0 0 24px",
+                letterSpacing: "-0.02em",
               }}>
                 {a.hero.headline1}
                 <br />
-                <span className="text-gradient">{a.hero.headline2}</span>
+                <span style={{ fontStyle: "italic", color: "#b8902e" }}>{a.hero.headline2}</span>
               </h1>
             </ScrollReveal>
 
             <ScrollReveal delay={200}>
               <p style={{
-                fontSize: "clamp(16px, 2.2vw, 20px)",
-                color: "#8A8070",
-                lineHeight: 1.75,
-                maxWidth: 600,
-                margin: "28px auto 0",
+                fontSize: 18, color: "#5a5a6e", lineHeight: 1.75,
+                maxWidth: 600, margin: "0 auto 32px",
               }}>
                 {a.hero.subtext}
               </p>
             </ScrollReveal>
 
-            {/* Location tag */}
             <ScrollReveal delay={300}>
               <div style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 6,
-                marginTop: 32,
-                padding: "6px 14px",
-                borderRadius: 999,
-                background: "rgba(212,175,55,0.05)",
-                border: "1px solid rgba(212,175,55,0.15)",
-                fontSize: 12,
-                color: "#8A8070",
-                letterSpacing: "0.05em",
+                display: "inline-flex", alignItems: "center", gap: 6,
+                padding: "8px 16px", borderRadius: 999,
+                background: "#fafaf8", border: "1px solid #e8e6dc",
+                fontSize: 13, color: "#5a5a6e", fontWeight: 500,
               }}>
-                <MapPin size={12} style={{ color: "#D4AF37" }} />
-                Bergen, Norway · Founded 2026
+                <MapPin size={13} style={{ color: "#b8902e" }} />
+                Bergen, Norway · Grunnlagt 2026
               </div>
             </ScrollReveal>
           </div>
-
-          {/* Bottom decorative line */}
-          <div style={{
-            position: "absolute", left: "50%", bottom: 0, transform: "translateX(-50%)",
-            width: 1, height: 60, background: "linear-gradient(180deg, rgba(212,175,55,0.4), transparent)",
-          }} />
         </section>
 
-        <div className="divider" />
+        {/* ── 2. Gold divider ──────────────────────────────────────────────── */}
+        <div style={{ display: "flex", justifyContent: "center", padding: "0 0 0" }}>
+          <div style={{
+            width: 48, height: 2,
+            background: "linear-gradient(90deg, #b8902e, #f5d87e, #b8902e)",
+            borderRadius: 2,
+          }} />
+        </div>
 
-        {/* ── Team ─────────────────────────────────────────────────────────── */}
-        <section style={{ padding: "96px 24px" }}>
+        {/* ── 3. Team ──────────────────────────────────────────────────────── */}
+        <section style={{ background: "#ffffff", padding: "96px 24px" }}>
           <div className="wrap">
             <ScrollReveal>
               <div style={{ textAlign: "center", marginBottom: 64 }}>
-                <span className="tag">{a.team.tag}</span>
+                <div style={{
+                  fontSize: 13, fontWeight: 600,
+                  letterSpacing: "0.06em", textTransform: "uppercase",
+                  color: "#b8902e", marginBottom: 16,
+                }}>
+                  {a.team.tag}
+                </div>
                 <h2 style={{
-                  fontFamily: "Syne, sans-serif",
+                  fontFamily: "'Playfair Display', Georgia, serif",
                   fontSize: "clamp(28px, 4vw, 46px)",
-                  fontWeight: 700,
-                  color: "#F5F0E8",
-                  margin: "16px 0 0",
-                  letterSpacing: "-0.025em",
+                  fontWeight: 700, color: "#1a1a2e",
+                  margin: 0, letterSpacing: "-0.02em",
                 }}>
                   {a.team.headline}
                 </h2>
               </div>
             </ScrollReveal>
 
-            <div className="team-grid">
+            <div className="about-team-grid">
               {members.map((member, i) => (
-                <ScrollReveal key={member.name} delay={i * 160} style={{ height: "100%" }}>
+                <ScrollReveal key={member.name} delay={i * 80} style={{ height: "100%" }}>
                   <div
-                    className="glass-card-hover"
-                    style={{ padding: "52px 44px", textAlign: "center", height: "100%", display: "flex", flexDirection: "column" }}
+                    style={{
+                      background: "#ffffff", border: "1px solid #e8e6dc",
+                      borderRadius: 24, padding: "48px 36px",
+                      textAlign: "center", height: "100%",
+                      display: "flex", flexDirection: "column",
+                      transition: "border-color 0.2s ease, box-shadow 0.2s ease",
+                    }}
+                    onMouseEnter={e => {
+                      const el = e.currentTarget as HTMLElement;
+                      el.style.borderColor = "#f5ebd0";
+                      el.style.boxShadow = "0 8px 40px rgba(184,144,46,0.10)";
+                    }}
+                    onMouseLeave={e => {
+                      const el = e.currentTarget as HTMLElement;
+                      el.style.borderColor = "#e8e6dc";
+                      el.style.boxShadow = "none";
+                    }}
                   >
                     {/* Photo */}
-                    <div className="relative w-48 h-48 mx-auto rounded-full overflow-hidden border-2 border-yellow-600" style={{ marginBottom: 32, boxShadow: "0 0 30px rgba(212,175,55,0.15)" }}>
+                    <div style={{
+                      width: 160, height: 160, borderRadius: "50%",
+                      overflow: "hidden", margin: "0 auto 28px",
+                      border: "3px solid #f5ebd0", flexShrink: 0,
+                    }}>
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={member.image}
@@ -150,43 +149,33 @@ export default function AboutPage() {
 
                     {/* Name */}
                     <h3 style={{
-                      fontFamily: "Syne, sans-serif",
-                      fontSize: 22,
-                      fontWeight: 700,
-                      color: "#F5F0E8",
-                      margin: "0 0 6px",
-                      letterSpacing: "-0.015em",
+                      fontFamily: "'Playfair Display', Georgia, serif",
+                      fontSize: 22, fontWeight: 700, color: "#1a1a2e",
+                      margin: "0 0 6px", letterSpacing: "-0.01em",
                     }}>
                       {member.name}
                     </h3>
 
                     {/* Role */}
                     <div style={{
-                      fontSize: 11,
-                      fontWeight: 700,
-                      color: "#D4AF37",
-                      letterSpacing: "0.1em",
-                      textTransform: "uppercase",
-                      marginBottom: 24,
+                      fontSize: 13, fontWeight: 700, color: "#b8902e",
+                      letterSpacing: "0.06em", textTransform: "uppercase",
+                      marginBottom: 20,
                     }}>
                       {member.role}
                     </div>
 
-                    {/* Gold divider */}
+                    {/* Divider */}
                     <div style={{
-                      width: 36,
-                      height: 1,
-                      background: "linear-gradient(90deg, transparent, rgba(212,175,55,0.5), transparent)",
-                      margin: "0 auto 24px",
+                      width: 36, height: 1,
+                      background: "#f5ebd0",
+                      margin: "0 auto 20px",
                     }} />
 
                     {/* Bio */}
                     <p style={{
-                      fontSize: 15,
-                      color: "#8A8070",
-                      lineHeight: 1.8,
-                      margin: "0 0 28px",
-                      flexGrow: 1,
+                      fontSize: 15, color: "#5a5a6e", lineHeight: 1.8,
+                      margin: 0, flexGrow: 1,
                     }}>
                       {member.bio}
                     </p>
@@ -195,31 +184,24 @@ export default function AboutPage() {
                     <a
                       href={`mailto:${member.email}`}
                       style={{
-                        display: "inline-flex",
-                        marginTop: "auto",
-                        alignItems: "center",
-                        gap: 8,
-                        fontSize: 13,
-                        color: "#D4AF37",
-                        textDecoration: "none",
-                        padding: "8px 18px",
-                        borderRadius: 10,
-                        border: "1px solid rgba(212,175,55,0.2)",
-                        background: "rgba(212,175,55,0.04)",
-                        transition: "all 0.2s ease",
-                        fontFamily: "inherit",
+                        display: "inline-flex", alignItems: "center", gap: 8,
+                        marginTop: 28, fontSize: 13, color: "#1a1a2e",
+                        textDecoration: "none", padding: "9px 18px",
+                        borderRadius: 10, border: "1px solid #e8e6dc",
+                        background: "#fafaf8", transition: "all 0.2s ease",
+                        fontFamily: "inherit", fontWeight: 500,
                       }}
-                      onMouseEnter={(e) => {
+                      onMouseEnter={e => {
                         const el = e.currentTarget as HTMLElement;
-                        el.style.borderColor = "rgba(212,175,55,0.5)";
-                        el.style.background = "rgba(212,175,55,0.1)";
-                        el.style.transform = "translateY(-1px)";
+                        el.style.borderColor = "#f5ebd0";
+                        el.style.background = "#fdf9ed";
+                        el.style.color = "#b8902e";
                       }}
-                      onMouseLeave={(e) => {
+                      onMouseLeave={e => {
                         const el = e.currentTarget as HTMLElement;
-                        el.style.borderColor = "rgba(212,175,55,0.2)";
-                        el.style.background = "rgba(212,175,55,0.04)";
-                        el.style.transform = "translateY(0)";
+                        el.style.borderColor = "#e8e6dc";
+                        el.style.background = "#fafaf8";
+                        el.style.color = "#1a1a2e";
                       }}
                     >
                       <Mail size={13} />
@@ -232,140 +214,171 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <div className="divider" />
-
-        {/* ── Story ────────────────────────────────────────────────────────── */}
-        <section style={{ padding: "96px 24px" }}>
-          <div className="wrap-narrow">
+        {/* ── 4+5. Story + Values ───────────────────────────────────────────── */}
+        <section style={{ background: "#f7f6f1", padding: "96px 24px" }}>
+          {/* Story text */}
+          <div style={{ maxWidth: 760, margin: "0 auto" }}>
             <ScrollReveal>
-              <span className="tag">{a.story.tag}</span>
-              <h2 style={{
-                fontFamily: "Syne, sans-serif",
-                fontSize: "clamp(28px, 4vw, 46px)",
-                fontWeight: 700,
-                color: "#F5F0E8",
-                margin: "16px 0 56px",
-                letterSpacing: "-0.025em",
-              }}>
-                {a.story.headline}
-              </h2>
+              <div style={{ marginBottom: 48 }}>
+                <div style={{
+                  fontSize: 13, fontWeight: 600,
+                  letterSpacing: "0.06em", textTransform: "uppercase",
+                  color: "#b8902e", marginBottom: 16,
+                }}>
+                  {a.story.tag}
+                </div>
+                <h2 style={{
+                  fontFamily: "'Playfair Display', Georgia, serif",
+                  fontSize: "clamp(28px, 4vw, 46px)",
+                  fontWeight: 700, color: "#1a1a2e",
+                  margin: 0, letterSpacing: "-0.02em",
+                }}>
+                  {a.story.headline}
+                </h2>
+              </div>
             </ScrollReveal>
 
-            {/* Article-style text with left gold rule */}
-            <div style={{
-              borderLeft: "2px solid rgba(212,175,55,0.18)",
-              paddingLeft: 40,
-              display: "flex",
-              flexDirection: "column",
-              gap: 28,
-            }}>
-              {(a.story.paragraphs as readonly string[]).map((para, i) => (
-                <ScrollReveal key={i} delay={i * 70}>
-                  <p style={{
-                    fontSize: i === 0 ? 18 : 16,
-                    color: i === 0 ? "#C4BAA8" : "#7A7060",
-                    lineHeight: 1.9,
-                    margin: 0,
-                    fontWeight: 400,
-                    fontFamily: "Georgia, serif",
-                    fontStyle: i === 0 ? "italic" : "normal",
-                  }}>
-                    {i === 0 && (
-                      <span style={{
-                        float: "left",
-                        fontFamily: "Playfair Display, serif",
-                        fontSize: "4em",
-                        lineHeight: 0.75,
-                        paddingRight: "0.1em",
-                        paddingTop: "0.12em",
-                        color: "#D4AF37",
-                        fontStyle: "normal",
+            {(a.story.paragraphs as readonly string[]).map((para, i) => (
+              <ScrollReveal key={i} delay={i * 60}>
+                <p style={{
+                  fontSize: i === 0 ? 17 : 15,
+                  color: i === 0 ? "#1a1a2e" : "#5a5a6e",
+                  lineHeight: 1.85, marginBottom: 20,
+                  fontFamily: "Georgia, serif",
+                }}>
+                  {i === 0 && (
+                    <span style={{
+                      float: "left",
+                      fontFamily: "'Playfair Display', Georgia, serif",
+                      fontSize: "4.2em", lineHeight: 0.75,
+                      paddingRight: "0.09em", paddingTop: "0.1em",
+                      color: "#b8902e", fontStyle: "normal",
+                    }}>
+                      {para[0]}
+                    </span>
+                  )}
+                  {i === 0 ? para.slice(1) : para}
+                </p>
+              </ScrollReveal>
+            ))}
+          </div>
+
+          {/* Values grid */}
+          <div className="wrap" style={{ marginTop: 64 }}>
+            <div className="about-values-grid">
+              {(a.values as readonly { title: string; desc: string }[]).map((val, i) => {
+                const Icon = VALUE_ICONS[i];
+                return (
+                  <ScrollReveal key={i} delay={i * 80}>
+                    <div
+                      style={{
+                        background: "#ffffff", border: "1px solid #e8e6dc",
+                        borderRadius: 16, padding: "28px 24px",
+                        transition: "border-color 0.2s ease, box-shadow 0.2s ease",
+                      }}
+                      onMouseEnter={e => {
+                        const el = e.currentTarget as HTMLElement;
+                        el.style.borderColor = "#f5ebd0";
+                        el.style.boxShadow = "0 4px 20px rgba(184,144,46,0.08)";
+                      }}
+                      onMouseLeave={e => {
+                        const el = e.currentTarget as HTMLElement;
+                        el.style.borderColor = "#e8e6dc";
+                        el.style.boxShadow = "none";
+                      }}
+                    >
+                      <div style={{
+                        width: 44, height: 44, borderRadius: 12,
+                        background: "#fdf9ed", border: "1px solid #f5ebd0",
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                        color: "#b8902e", marginBottom: 16, flexShrink: 0,
                       }}>
-                        {para[0]}
-                      </span>
-                    )}
-                    {i === 0 ? para.slice(1) : para}
-                  </p>
-                </ScrollReveal>
-              ))}
+                        <Icon size={20} />
+                      </div>
+                      <h3 style={{
+                        fontSize: 16, fontWeight: 600, color: "#1a1a2e",
+                        margin: "0 0 8px", letterSpacing: "-0.01em",
+                      }}>
+                        {val.title}
+                      </h3>
+                      <p style={{ fontSize: 14, color: "#5a5a6e", lineHeight: 1.7, margin: 0 }}>
+                        {val.desc}
+                      </p>
+                    </div>
+                  </ScrollReveal>
+                );
+              })}
             </div>
           </div>
         </section>
 
-        <div className="divider" />
-
-        {/* ── CTA / Calendly ───────────────────────────────────────────────── */}
-        <section style={{ padding: "80px 24px 96px" }}>
-          <div className="wrap">
+        {/* ── 6. CTA ───────────────────────────────────────────────────────── */}
+        <section style={{ background: "#ffffff", padding: "96px 24px", textAlign: "center" }}>
+          <div style={{ maxWidth: 640, margin: "0 auto" }}>
             <ScrollReveal>
-              <div style={{
-                position: "relative",
-                overflow: "hidden",
-                background: "rgba(212,175,55,0.04)",
-                border: "1px solid rgba(212,175,55,0.18)",
-                borderRadius: 24,
-                padding: "64px 40px 48px",
-                textAlign: "center",
+              <h2 style={{
+                fontFamily: "'Playfair Display', Georgia, serif",
+                fontSize: "clamp(32px, 4.5vw, 52px)",
+                fontWeight: 700, color: "#1a1a2e",
+                margin: "0 0 20px", letterSpacing: "-0.02em",
               }}>
-                {/* Glow */}
-                <div style={{
-                  position: "absolute", inset: 0, pointerEvents: "none",
-                  background: "radial-gradient(ellipse 700px 350px at 50% 50%, rgba(212,175,55,0.07) 0%, transparent 70%)",
-                }} />
-                {/* Corner ornaments */}
-                <div style={{ position: "absolute", top: 24, left: 24, width: 40, height: 40, borderTop: "1px solid rgba(212,175,55,0.3)", borderLeft: "1px solid rgba(212,175,55,0.3)", borderRadius: "4px 0 0 0" }} />
-                <div style={{ position: "absolute", top: 24, right: 24, width: 40, height: 40, borderTop: "1px solid rgba(212,175,55,0.3)", borderRight: "1px solid rgba(212,175,55,0.3)", borderRadius: "0 4px 0 0" }} />
-                <div style={{ position: "absolute", bottom: 24, left: 24, width: 40, height: 40, borderBottom: "1px solid rgba(212,175,55,0.3)", borderLeft: "1px solid rgba(212,175,55,0.3)", borderRadius: "0 0 0 4px" }} />
-                <div style={{ position: "absolute", bottom: 24, right: 24, width: 40, height: 40, borderBottom: "1px solid rgba(212,175,55,0.3)", borderRight: "1px solid rgba(212,175,55,0.3)", borderRadius: "0 0 4px 0" }} />
+                {a.cta.headline}
+              </h2>
+            </ScrollReveal>
 
-                <h2 style={{
-                  fontFamily: "Playfair Display, Georgia, serif",
-                  fontSize: "clamp(28px, 5vw, 52px)",
-                  fontWeight: 700,
-                  color: "#F5F0E8",
-                  margin: "0 0 48px",
-                  letterSpacing: "-0.025em",
-                  position: "relative",
-                  zIndex: 1,
-                }}>
-                  {a.cta.headline}
-                </h2>
+            <ScrollReveal delay={100}>
+              <p style={{ fontSize: 17, color: "#5a5a6e", lineHeight: 1.7, margin: "0 0 36px" }}>
+                {a.cta.subtitle}
+              </p>
+            </ScrollReveal>
 
-                {/* Calendly inline widget */}
-                <div
-                  className="calendly-inline-widget"
-                  data-url="https://calendly.com/smartcoreaimeeting/30min"
-                  style={{
-                    minWidth: 320,
-                    height: 700,
-                    position: "relative",
-                    zIndex: 1,
-                    borderRadius: 16,
-                    overflow: "hidden",
-                  }}
-                />
-              </div>
+            <ScrollReveal delay={200}>
+              <a href="#booking" className="btn-primary" style={{ fontSize: 16, padding: "16px 32px" }}>
+                {a.cta.button} <ArrowRight size={16} />
+              </a>
+            </ScrollReveal>
+
+            <ScrollReveal delay={300}>
+              <p style={{ fontSize: 13, color: "#8a8a98", marginTop: 20 }}>
+                {a.cta.trustLine}
+              </p>
             </ScrollReveal>
           </div>
         </section>
 
-        <Script src="https://assets.calendly.com/assets/external/widget.js" strategy="lazyOnload" />
-        <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
       </main>
 
       <Footer />
       <ChatWidget />
 
       <style>{`
-        .team-grid {
+        .about-team-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
+          gap: 40px;
+          max-width: 960px;
+          margin: 0 auto;
+          align-items: stretch;
+        }
+        .about-team-grid > .reveal {
+          display: flex;
+          flex-direction: column;
+        }
+        .about-values-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
           gap: 24px;
           max-width: 960px;
           margin: 0 auto;
         }
         @media (max-width: 768px) {
-          .team-grid { grid-template-columns: 1fr; }
+          .about-team-grid {
+            grid-template-columns: 1fr !important;
+            gap: 24px !important;
+          }
+          .about-values-grid {
+            grid-template-columns: 1fr !important;
+          }
         }
       `}</style>
     </>
