@@ -108,9 +108,16 @@ export default function HowItWorks() {
         .hiw-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
+          grid-auto-rows: 1fr;
+          align-items: stretch;
           gap: 24px;
           max-width: 960px;
           margin: 0 auto;
+        }
+        .hiw-grid > .reveal {
+          height: 100%;
+          display: flex;
+          flex-direction: column;
         }
         .hiw-step {
           padding: 36px 28px;
