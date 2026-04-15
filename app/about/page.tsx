@@ -5,7 +5,8 @@ import Footer from "@/components/Footer";
 import ChatWidget from "@/components/ChatWidget";
 import ScrollReveal from "@/components/ScrollReveal";
 import { useLanguage } from "@/lib/i18n";
-import { Mail, MapPin, Target, BarChart2, Users, ArrowRight } from "lucide-react";
+import { Mail, MapPin, Target, BarChart2, Users } from "lucide-react";
+import Script from "next/script";
 
 const TEAM_META = [
   { image: "/team/aleksander.png" },
@@ -332,23 +333,26 @@ export default function AboutPage() {
               </p>
             </ScrollReveal>
 
-            <ScrollReveal delay={200}>
-              <a href="#booking" className="btn-primary" style={{ fontSize: 16, padding: "16px 32px" }}>
-                {a.cta.button} <ArrowRight size={16} />
-              </a>
-            </ScrollReveal>
+            <div style={{ maxWidth: "700px", margin: "0 auto" }}>
+              <div
+                className="calendly-inline-widget"
+                data-url="https://calendly.com/smartcoreaimeeting/30min"
+                style={{ minWidth: "320px", height: "700px", width: "100%" }}
+              />
+            </div>
 
-            <ScrollReveal delay={300}>
-              <p style={{ fontSize: 13, color: "#8a8a98", marginTop: 20 }}>
-                {a.cta.trustLine}
-              </p>
-            </ScrollReveal>
+            <p style={{ fontSize: 13, color: "#8a8a98", marginTop: 20 }}>
+              {a.cta.trustLine}
+            </p>
           </div>
         </section>
 
       </main>
 
       <Footer />
+
+      <Script src="https://assets.calendly.com/assets/external/widget.css" strategy="lazyOnload" />
+      <Script src="https://assets.calendly.com/assets/external/widget.js" strategy="lazyOnload" />
       <ChatWidget />
 
       <style>{`
