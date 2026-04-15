@@ -60,6 +60,54 @@ export const translations = {
         },
       ],
     },
+    solution: {
+      eyebrow: "THE SOLUTION",
+      headline: "Three systems. One platform. Zero friction.",
+      modules: [
+        {
+          label: "AI Receptionist",
+          desc: "Answers calls, books appointments and qualifies leads — around the clock. Like a receptionist who never gets sick, never takes holiday, and is always professional.",
+          features: ["Responds within 2 seconds", "Books directly into the calendar", "Sends SMS confirmation", "Transfers to you when needed"],
+        },
+        {
+          label: "AI Chatbot",
+          desc: "Captures leads from your website 24/7. Answers questions, qualifies inquiries and books meetings — without you lifting a finger.",
+          features: ["Tailored to your business", "Multi-channel (web, Instagram, SMS)", "CRM integration", "Unlimited conversations"],
+        },
+        {
+          label: "Lead Follow-up",
+          desc: "Automatic follow-up of leads who didn't book the first time. SMS, email and chat — until they book or say no.",
+          features: ["Automatic for 7 days", "Personal and natural tone", "Synced with CRM", "51,000 leads handled"],
+        },
+      ],
+    },
+    process: {
+      eyebrow: "THE PROCESS",
+      headline: "From conversation to live AI — in 7 days",
+      steps: [
+        { num: "01", title: "Connect", desc: "Share access to calendar and CRM. 10 minutes." },
+        { num: "02", title: "Train the AI", desc: "We train the AI on your business, your services and your tone." },
+        { num: "03", title: "Automate", desc: "The system goes live. Calls, chat and leads are handled automatically." },
+        { num: "04", title: "Improve", desc: "We analyse data and continuously improve the system." },
+      ],
+    },
+    midCta: {
+      headline: "How much time do you spend on calls, booking and follow-ups today?",
+      subtitle: "Most clinics spend 15+ hours a week. We can cut it to under 2.",
+      savingValue: "47",
+      savingLabel: "hours saved per month",
+      bookingValue: "kr 51 000",
+      bookingLabel: "in extra bookings",
+      cta: "See what you can save →",
+    },
+    testimonial: {
+      eyebrow: "RESULTS",
+      quote: "TODO: insert real client quote",
+      name: "TODO: insert client name",
+      role: "TODO: insert role / business",
+      stat: "TODO: insert headline metric",
+      statLabel: "TODO: insert stat description",
+    },
     ticker: [
       "AI Chatbot", "Booking Automation", "CRM System", "Lead Capture",
       "Custom Integrations", "24/7 Support", "Revenue Growth", "AI Workflows",
@@ -427,6 +475,54 @@ export const translations = {
           desc: "66% av klinikker har ikke et system for å følge opp leads automatisk.",
         },
       ],
+    },
+    solution: {
+      eyebrow: "LØSNINGEN",
+      headline: "Tre systemer. Én plattform. Null friksjon.",
+      modules: [
+        {
+          label: "AI-resepsjonist",
+          desc: "Svarer på samtaler, booker timer og kvalifiserer leads — døgnet rundt. Som en resepsjonist som aldri er syk, aldri tar ferie, og alltid er blid.",
+          features: ["Svarer innen 2 sekunder", "Booker direkte i kalenderen", "Sender bekreftelse på SMS", "Overfører til deg ved behov"],
+        },
+        {
+          label: "AI-chatbot",
+          desc: "Fanger leads fra nettsiden din 24/7. Svarer på spørsmål, kvalifiserer henvendelser og booker møter — uten at du løfter en finger.",
+          features: ["Tilpasset din bedrift", "Flerkanal (web, Instagram, SMS)", "CRM-integrasjon", "Ubegrenset samtaler"],
+        },
+        {
+          label: "Lead-oppfølging",
+          desc: "Automatisk oppfølging av leads som ikke booket første gang. SMS, e-post og chat — til de booker eller sier nei.",
+          features: ["Automatisk i 7 dager", "Personlig og naturlig tone", "Synkronisert med CRM", "51 000 leads håndtert"],
+        },
+      ],
+    },
+    process: {
+      eyebrow: "PROSESSEN",
+      headline: "Fra samtale til live AI — på 7 dager",
+      steps: [
+        { num: "01", title: "Koble til", desc: "Del tilgang til kalender og CRM. 10 minutter." },
+        { num: "02", title: "Tren AI-en", desc: "Vi trener AI-en på din bedrift, dine tjenester og din tone." },
+        { num: "03", title: "Automatiser", desc: "Systemet går live. Telefoner, chat og leads håndteres automatisk." },
+        { num: "04", title: "Forbedre", desc: "Vi analyserer data og forbedrer systemet kontinuerlig." },
+      ],
+    },
+    midCta: {
+      headline: "Hvor mye tid bruker du på telefoner, booking og oppfølging i dag?",
+      subtitle: "De fleste klinikker bruker 15+ timer i uken. Vi kan kutte det til under 2.",
+      savingValue: "47",
+      savingLabel: "timer spart per måned",
+      bookingValue: "kr 51 000",
+      bookingLabel: "i ekstra bookinger",
+      cta: "Se hva du kan spare →",
+    },
+    testimonial: {
+      eyebrow: "RESULTATER",
+      quote: "TODO: sett inn ekte kundesitat",
+      name: "TODO: sett inn klientnavn",
+      role: "TODO: sett inn rolle / bedrift",
+      stat: "TODO: nøkkelmetrikk",
+      statLabel: "TODO: beskrivelse av statistikk",
     },
     ticker: [
       "AI-chatbot", "Bookingautomatisering", "CRM-system", "Leadfangst",

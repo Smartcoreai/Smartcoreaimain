@@ -1,8 +1,12 @@
 // updated
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import ProblemSection from "@/components/ProblemSection";
+import SolutionSection from "@/components/SolutionSection";
+import ProcessSection from "@/components/ProcessSection";
+import MidCTA from "@/components/MidCTA";
+import TestimonialSection from "@/components/TestimonialSection";
 import SocialProof from "@/components/SocialProof";
-import HowItWorks from "@/components/HowItWorks";
 import Ticker from "@/components/Ticker";
 import Services from "@/components/Services";
 import Pricing from "@/components/Pricing";
@@ -12,7 +16,6 @@ import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import ChatWidget from "@/components/ChatWidget";
 import StickyBookingBar from "@/components/StickyBookingBar";
-import ProblemSection from "@/components/ProblemSection";
 import ScrollReveal from "@/components/ScrollReveal";
 
 export default function HomePage() {
@@ -22,8 +25,11 @@ export default function HomePage() {
       <main>
         <Hero />
         <ProblemSection />
+        <SolutionSection />
+        <ProcessSection />
+        <MidCTA />
+        <TestimonialSection />
         <SocialProof />
-        <HowItWorks />
         <ScrollReveal delay={0}>
           <Ticker />
         </ScrollReveal>
