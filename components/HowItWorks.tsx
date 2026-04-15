@@ -34,7 +34,7 @@ export default function HowItWorks() {
           {s.steps.map((step, i) => {
             const Icon = STEP_ICONS[i];
             return (
-              <ScrollReveal key={i} delay={i * 120}>
+              <ScrollReveal key={i} delay={i * 120} style={{ height: "100%" }}>
                 <div className="hiw-step">
                   {/* Icon circle */}
                   <div style={{
@@ -93,6 +93,7 @@ export default function HowItWorks() {
                     lineHeight: 1.75,
                     margin: 0,
                     textAlign: "center",
+                    flexGrow: 1,
                   }}>
                     {step.desc}
                   </p>
@@ -117,6 +118,9 @@ export default function HowItWorks() {
           border: 1px solid rgba(212,175,55,0.08);
           border-radius: 20px;
           transition: border-color 0.25s, background 0.25s;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
         }
         .hiw-step:hover {
           border-color: rgba(212,175,55,0.22);
