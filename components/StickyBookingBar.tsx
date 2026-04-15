@@ -61,7 +61,7 @@ export default function StickyBookingBar() {
       }} />
 
       {/* CTA button */}
-      <a href="#booking" className="btn-primary" style={{ fontSize: 13, padding: "10px 20px" }}>
+      <a href="#booking" className="btn-gold" style={{ fontSize: 13, padding: "10px 20px" }}>
         {t.hero.ctaPrimary} <ArrowRight size={14} />
       </a>
     </div>

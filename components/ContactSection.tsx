@@ -146,7 +146,7 @@ export default function ContactSection() {
                   <label style={{ display: "block", fontSize: 12, fontWeight: 500, color: "#8A8070", marginBottom: 6 }}>{t.contact.labels.message}</label>
                   <textarea className="input-dark" rows={4} value={form.message} onChange={e => setForm({ ...form, message: e.target.value })} placeholder={t.contact.placeholders.message} required style={{ resize: "none" }} />
                 </div>
-                <button type="submit" disabled={loading} className="btn-primary" style={{ width: "100%", padding: "14px", opacity: loading ? 0.7 : 1 }}>
+                <button type="submit" disabled={loading} className="btn-gold" style={{ width: "100%", padding: "14px", opacity: loading ? 0.7 : 1 }}>
                   {loading ? (
                     <span style={{ display: "flex", alignItems: "center", gap: 8 }}>
                       <div style={{ width: 16, height: 16, border: "2px solid rgba(255,255,255,0.3)", borderTop: "2px solid white", borderRadius: "50%", animation: "spin 0.8s linear infinite" }} />

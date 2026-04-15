@@ -373,7 +373,7 @@ export default function Services() {
                 <div style={{ fontFamily: "Syne, system-ui, sans-serif", fontSize: 22, fontWeight: 800, color: "#F5F0E8", fontVariantNumeric: "tabular-nums" }}>{svc.price}</div>
                 <div style={{ fontSize: 11, color: "#8A8070" }}>{t.services.monthNote}</div>
               </div>
-              <a href="/#booking" className="btn-primary services-cta" style={{ marginLeft: "auto" }}>
+              <a href="/#booking" className="btn-gold services-cta" style={{ marginLeft: "auto" }}>
                 {t.services.getStarted} <ChevronRight size={16} />
               </a>
             </div>

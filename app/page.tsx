@@ -6,6 +6,8 @@ import SolutionSection from "@/components/SolutionSection";
 import ProcessSection from "@/components/ProcessSection";
 import MidCTA from "@/components/MidCTA";
 import TestimonialSection from "@/components/TestimonialSection";
+import TrustSection from "@/components/TrustSection";
+import FinalCTA from "@/components/FinalCTA";
 import SocialProof from "@/components/SocialProof";
 import Ticker from "@/components/Ticker";
 import Services from "@/components/Services";
@@ -29,6 +31,8 @@ export default function HomePage() {
         <ProcessSection />
         <MidCTA />
         <TestimonialSection />
+        <TrustSection />
+        <FinalCTA />
         <SocialProof />
         <ScrollReveal delay={0}>
           <Ticker />

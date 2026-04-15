@@ -14,7 +14,7 @@ export const translations = {
       about: "About",
       contact: "Contact",
       getStarted: "Get started",
-      bookCall: "Book a call",
+      bookCall: "Book a free call",
     },
     hero: {
       tag: "AI-powered growth systems",
@@ -22,7 +22,7 @@ export const translations = {
       headline2: "runs itself.",
       subtext: "AI chatbots, booking automation, CRM systems — fully integrated, deployed in days. Not months.",
       ctaPrimary: "Book a free call",
-      ctaSecondary: "See what we build",
+      ctaSecondary: "See how it works",
       ctaTryAria: "Try Aria →",
       stats: [
         { value: "🚀", label: "Built for growth" },
@@ -108,6 +108,22 @@ export const translations = {
       stat: "TODO: insert headline metric",
       statLabel: "TODO: insert stat description",
     },
+    trust: {
+      eyebrow: "SECURITY AND TRUST",
+      headline: "Built for Norwegian businesses. Owned by you.",
+      cards: [
+        { title: "GDPR-compliant", desc: "All data is processed in accordance with GDPR. Stored in the EU." },
+        { title: "Encrypted storage", desc: "End-to-end encryption. Your data is safe." },
+        { title: "Norwegian org. no.", desc: "SmartcoreAI is a Norwegian registered company." },
+        { title: "You own the data", desc: "All customer data belongs to you. Export at any time." },
+      ],
+    },
+    finalCta: {
+      headline: "Ready to let AI do the work?",
+      subtitle: "Book a no-obligation call. We'll show you exactly what we can build for your business — and you decide if it's worth it.",
+      cta: "Book a free call →",
+      trustLine: "No lock-in · 14-day money-back guarantee · Response within 4 hours",
+    },
     ticker: [
       "AI Chatbot", "Booking Automation", "CRM System", "Lead Capture",
       "Custom Integrations", "24/7 Support", "Revenue Growth", "AI Workflows",
@@ -140,7 +156,7 @@ export const translations = {
       headline2: "pay for themselves",
       subtext: "Each product is built to generate revenue, not just look good. Try the live demos below.",
       monthNote: "month · 3-month minimum",
-      getStarted: "Get started",
+      getStarted: "Book a free call",
       liveDemo: "Live interactive demo",
       priceCustom: "Custom quote for every project",
       items: [
@@ -191,17 +207,17 @@ export const translations = {
         {
           desc: "Perfect for service businesses wanting to capture & qualify leads 24/7.",
           features: ["Custom-trained AI assistant", "Unlimited conversations", "Lead capture & qualification", "CRM / email integration", "Booking link integration", "Monthly performance report"],
-          cta: "Get started",
+          cta: "Book a free call",
         },
         {
           desc: "Turn website visitors into booked meetings — fully automated lead generation.",
           features: ["AI lead capture forms", "Instant lead qualification", "Auto-routing to sales pipeline", "CRM integration", "Email & SMS follow-up", "Monthly performance report"],
-          cta: "Get started",
+          cta: "Book a free call",
         },
         {
           desc: "AI receptionist that answers, qualifies and follows up with leads — around the clock.",
           features: ["AI-powered reception", "Lead qualification by phone", "Auto follow-up", "CRM integration", "Call recording & transcripts", "24/7 availability"],
-          cta: "Get started",
+          cta: "Book a free call",
         },
         {
           desc: "We design a fully custom AI layer that plugs into every part of your business.",
@@ -278,7 +294,7 @@ export const translations = {
         { label: "Product Demo",      duration: "30 min", desc: "See your system in action" },
         { label: "Strategy Session",  duration: "45 min", desc: "Full roadmap for your business" },
       ],
-      bookNow: "Book now →",
+      bookNow: "Book a free call",
       popular: "Most Popular",
     },
     contact: {
@@ -352,8 +368,8 @@ export const translations = {
       setupFee: "kr 10,000 one-time setup",
       setupFeeCustom: "Setup fee by agreement",
       priceCustom: "Custom quote for every project",
-      getStarted: "Get started →",
-      bookCall: "Book a call →",
+      getStarted: "Book a free call →",
+      bookCall: "Book a free call →",
       bottomNote: "All plans include onboarding support · 14-day money-back guarantee",
       plans: [
         {
@@ -430,7 +446,7 @@ export const translations = {
       about: "Om oss",
       contact: "Kontakt",
       getStarted: "Kom i gang",
-      bookCall: "Book samtale",
+      bookCall: "Book en gratis samtale",
     },
     hero: {
       tag: "AI-drevne vekstsystemer",
@@ -438,7 +454,7 @@ export const translations = {
       headline2: "driver seg selv.",
       subtext: "AI-chatboter, bookingautomatisering, CRM-systemer — fullt integrert, klart på dager. Ikke måneder.",
       ctaPrimary: "Book gratis samtale",
-      ctaSecondary: "Se hva vi bygger",
+      ctaSecondary: "Se hvordan det fungerer",
       ctaTryAria: "Prøv Aria →",
       stats: [
         { value: "🚀", label: "Bygget for vekst" },
@@ -524,6 +540,22 @@ export const translations = {
       stat: "TODO: nøkkelmetrikk",
       statLabel: "TODO: beskrivelse av statistikk",
     },
+    trust: {
+      eyebrow: "SIKKERHET OG TILLIT",
+      headline: "Bygget for norske bedrifter. Eid av deg.",
+      cards: [
+        { title: "GDPR-kompatibel", desc: "All data behandles i henhold til GDPR. Lagret i EU." },
+        { title: "Kryptert lagring", desc: "Ende-til-ende-kryptering. Dine data er trygge." },
+        { title: "Norsk org.nr.", desc: "SmartcoreAI er et norskregistrert selskap." },
+        { title: "Du eier dataene", desc: "All kundedata tilhører deg. Eksportér når som helst." },
+      ],
+    },
+    finalCta: {
+      headline: "Klar til å la AI gjøre jobben?",
+      subtitle: "Book en uforpliktende samtale. Vi viser deg nøyaktig hva vi kan bygge for din bedrift — og du bestemmer om det er verdt det.",
+      cta: "Book en gratis samtale →",
+      trustLine: "Ingen bindingstid · 14 dagers pengene-tilbake-garanti · Svar innen 4 timer",
+    },
     ticker: [
       "AI-chatbot", "Bookingautomatisering", "CRM-system", "Leadfangst",
       "Tilpassede integrasjoner", "24/7 support", "Inntektsvekst", "AI-arbeidsflyter",
@@ -556,7 +588,7 @@ export const translations = {
       headline2: "betaler seg selv",
       subtext: "Hvert produkt er bygget for å generere inntekter, ikke bare se bra ut. Prøv de live demoene nedenfor.",
       monthNote: "måned · 3 måneders minimum",
-      getStarted: "Kom i gang",
+      getStarted: "Book en gratis samtale",
       liveDemo: "Live interaktiv demo",
       priceCustom: "Skreddersydd pris for hvert prosjekt",
       items: [
@@ -607,17 +639,17 @@ export const translations = {
         {
           desc: "Perfekt for servicebedrifter som ønsker å fange og kvalifisere leads 24/7.",
           features: ["Tilpasset AI-assistent", "Ubegrenset antall samtaler", "Leadfangst og -kvalifisering", "CRM/e-postintegrasjon", "Bookinglenke-integrasjon", "Månedlig ytelsesrapport"],
-          cta: "Kom i gang",
+          cta: "Book en gratis samtale",
         },
         {
           desc: "Gjør nettstedsbesøkende til bookede møter — helt automatisk leadgenerering.",
           features: ["AI-leadfangstskjemaer", "Øyeblikkelig leadkvalifisering", "Auto-ruting til salgspipeline", "CRM-integrasjon", "E-post og SMS-oppfølging", "Månedlig ytelsesrapport"],
-          cta: "Kom i gang",
+          cta: "Book en gratis samtale",
         },
         {
           desc: "AI-resepsjonist som svarer, kvalifiserer og følger opp leads — døgnet rundt.",
           features: ["AI-drevet telefonsvar", "Leadkvalifisering per telefon", "Automatisk oppfølging", "CRM-integrasjon", "Samtaleopptak og transkripsjoner", "Tilgjengelighet 24/7"],
-          cta: "Kom i gang",
+          cta: "Book en gratis samtale",
         },
         {
           desc: "Vi designer et fullt tilpasset AI-lag som kobles inn i alle deler av virksomheten din.",
@@ -694,7 +726,7 @@ export const translations = {
         { label: "Produktdemo",        duration: "30 min", desc: "Se systemet ditt i aksjon" },
         { label: "Strategiøkt",        duration: "45 min", desc: "Full veikart for din bedrift" },
       ],
-      bookNow: "Book nå →",
+      bookNow: "Book en gratis samtale",
       popular: "Mest populær",
     },
     contact: {
@@ -768,8 +800,8 @@ export const translations = {
       setupFee: "kr 10 000 engangsoppsett",
       setupFeeCustom: "Oppsettgebyr avtales",
       priceCustom: "Skreddersydd pris for hvert prosjekt",
-      getStarted: "Kom i gang →",
-      bookCall: "Book samtale →",
+      getStarted: "Book en gratis samtale →",
+      bookCall: "Book en gratis samtale →",
       bottomNote: "Alle planer inkluderer onboardingstøtte · 14-dagers pengene-tilbake-garanti",
       plans: [
         {
