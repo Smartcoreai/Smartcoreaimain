@@ -35,6 +35,30 @@ export const translations = {
         { icon: "📅", text: "Booking confirmed", sub: "Tue 2:00 PM" },
         { icon: "🤖", text: "AI responding",     sub: "24/7 active" },
       ],
+      headlineNew: "Your clinic's new receptionist works 24/7 — and never needs time off.",
+      subNew: "SmartcoreAI builds AI receptionists, chatbots and follow-up systems for service businesses. Live in 7 days.",
+      trustLine: "14-day free trial · No lock-in · Money-back guarantee",
+    },
+    problem: {
+      eyebrow: "THE PROBLEM",
+      headline: "Service businesses lose customers every day — without knowing it",
+      cards: [
+        {
+          title: "Calls you can't answer",
+          stat: "47%",
+          desc: "47% of incoming calls to clinics go unanswered. Each one is a potential booking.",
+        },
+        {
+          title: "Slow replies cost bookings",
+          stat: "31%",
+          desc: "31% of leads book with a competitor if they don't get a reply within 5 minutes.",
+        },
+        {
+          title: "Inquiries lost in the inbox",
+          stat: "66%",
+          desc: "66% of clinics have no system to automatically follow up on leads.",
+        },
+      ],
     },
     ticker: [
       "AI Chatbot", "Booking Automation", "CRM System", "Lead Capture",
@@ -378,6 +402,30 @@ export const translations = {
         { icon: "💬", text: "Lead fanget",        sub: "via AI-chat" },
         { icon: "📅", text: "Booking bekreftet",  sub: "Tir 14:00" },
         { icon: "🤖", text: "AI svarer",          sub: "24/7 aktiv" },
+      ],
+      headlineNew: "Klinikkens nye resepsjonist jobber 24/7 — og trenger aldri fri.",
+      subNew: "SmartcoreAI bygger AI-resepsjonister, chatboter og oppfølgingssystemer for norske servicebedrifter. Live på 7 dager.",
+      trustLine: "14 dagers gratis prøveperiode · Ingen bindingstid · Pengene tilbake-garanti",
+    },
+    problem: {
+      eyebrow: "PROBLEMET",
+      headline: "Servicebedrifter taper kunder hver dag — uten å vite det",
+      cards: [
+        {
+          title: "Telefoner du ikke rekker",
+          stat: "47%",
+          desc: "47% av innkommende anrop til klinikker blir aldri besvart. Hver av dem er en potensiell booking.",
+        },
+        {
+          title: "Sene svar koster bookinger",
+          stat: "31%",
+          desc: "31% av leads booker hos konkurrenten hvis de ikke får svar innen 5 minutter.",
+        },
+        {
+          title: "Henvendelser som forsvinner i innboksen",
+          stat: "66%",
+          desc: "66% av klinikker har ikke et system for å følge opp leads automatisk.",
+        },
       ],
     },
     ticker: [

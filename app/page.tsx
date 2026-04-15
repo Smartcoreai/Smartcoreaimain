@@ -12,6 +12,7 @@ import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import ChatWidget from "@/components/ChatWidget";
 import StickyBookingBar from "@/components/StickyBookingBar";
+import ProblemSection from "@/components/ProblemSection";
 import ScrollReveal from "@/components/ScrollReveal";
 
 export default function HomePage() {
@@ -20,6 +21,7 @@ export default function HomePage() {
       <Navbar />
       <main>
         <Hero />
+        <ProblemSection />
         <SocialProof />
         <HowItWorks />
         <ScrollReveal delay={0}>

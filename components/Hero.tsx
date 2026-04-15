@@ -1,312 +1,380 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useLanguage } from "@/lib/i18n";
 
-const BADGE_POSITIONS = [
-  { x: "8%",  y: "35%", delay: "0s" },
-  { x: "80%", y: "25%", delay: "1.5s" },
-  { x: "5%",  y: "68%", delay: "2s" },
+// ── Chat messages (hardcoded Norwegian — dental clinic demo) ──────────────────
+const CHAT_MSGS = [
+  { from: "user",  time: "21:34", text: "Hei, har dere ledig time for tannrens i denne uken?" },
+  { from: "aria",  time: "21:34", text: "Hei Anders! Vi har ledig torsdag kl 14:00 eller fredag kl 10:30. Hvilken passer best?" },
+  { from: "user",  time: "21:35", text: "Torsdag kl 14 fungerer fint, takk!" },
+  { from: "aria",  time: "21:35", text: "Perfekt — jeg har booket deg inn. Du får en SMS-bekreftelse nå. Vi ses torsdag! 🎉" },
 ];
 
-export default function Hero() {
-  const { t } = useLanguage();
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+// ── Phase system ──────────────────────────────────────────────────────────────
+// 0  → 1   initial pause             600ms
+// 1  → 2   after user msg 1          900ms
+// 2  → 3   aria typing indicator    1300ms
+// 3  → 4   after aria msg 1          900ms
+// 4  → 5   after user msg 2          900ms
+// 5  → 6   aria typing indicator    1300ms
+// 6  → 7   after aria msg 2          700ms
+// 7  → 8   booking card visible     4000ms
+// 8          fade-out → reset
+const DURATIONS = [600, 900, 1300, 900, 900, 1300, 700, 4000];
 
-  // ── Typewriter ──────────────────────────────────────────────────────────────
-  const fullText = t.hero.headline1 + " " + t.hero.headline2;
-  const splitAt = t.hero.headline1.length + 1; // after "headline1 "
-  const [typed, setTyped] = useState(0);
-
-  useEffect(() => {
-    setTyped(0); // reset when language changes
-  }, [fullText]);
-
-  useEffect(() => {
-    const delay = typed < fullText.length ? 80 : 3000;
-    const id = setTimeout(
-      () => setTyped((c) => (c < fullText.length ? c + 1 : 0)),
-      delay
-    );
-    return () => clearTimeout(id);
-  }, [typed, fullText.length]);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    let animId: number;
-    const particles: Array<{ x: number; y: number; vx: number; vy: number; size: number; opacity: number; maxOpacity: number; life: number; color: string }> = [];
-
-    const resize = () => {
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
-    };
-    resize();
-    window.addEventListener("resize", resize);
-
-    // Gold and warm-navy dust
-    const colors = ["rgba(212,175,55", "rgba(245,216,126", "rgba(184,150,12", "rgba(10,15,30"];
-
-    const spawnParticle = () => ({
-      x: Math.random() * canvas.width,
-      y: canvas.height + Math.random() * 40,
-      vx: (Math.random() - 0.5) * 0.3,
-      vy: -(Math.random() * 0.5 + 0.2),
-      size: Math.random() * 2 + 0.5,
-      life: Math.random(),
-      maxOpacity: Math.random() * 0.4 + 0.1,
-      opacity: 0,
-      color: colors[Math.floor(Math.random() * colors.length)],
-    });
-
-    for (let i = 0; i < 60; i++) {
-      const p = spawnParticle();
-      p.y = Math.random() * canvas.height;
-      particles.push(p);
-    }
-
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      particles.forEach((p) => {
-        p.life += 0.0018;
-        p.opacity = p.maxOpacity * Math.sin(Math.PI * Math.min(p.life, 1));
-        p.x += p.vx;
-        p.y += p.vy;
-
-        if (p.life >= 1 || p.y < -10) {
-          Object.assign(p, spawnParticle());
-        }
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `${p.color},${p.opacity})`;
-        ctx.fill();
-      });
-
-      animId = requestAnimationFrame(draw);
-    };
-    draw();
-    return () => { cancelAnimationFrame(animId); window.removeEventListener("resize", resize); };
-  }, []);
-
+// ── Sub-components ────────────────────────────────────────────────────────────
+function TypingDots() {
   return (
-    <section style={{
-      position: "relative",
-      minHeight: "100vh",
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center",
-      overflow: "hidden",
-      background: "#0A0806",
-    }}>
-      {/* Bergen city photo background */}
-      <div style={{
-        position: "absolute", inset: 0, zIndex: 0,
-        backgroundImage: "url('/hero-bg.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center 40%",
-        backgroundRepeat: "no-repeat",
-      }} />
-
-      {/* Dark overlay — keeps text readable over the photo */}
-      <div style={{
-        position: "absolute", inset: 0, zIndex: 1,
-        background: "linear-gradient(180deg, rgba(8,6,4,0.72) 0%, rgba(8,6,4,0.55) 45%, rgba(8,6,4,0.80) 100%)",
-      }} />
-
-      {/* Gold radial glow on top of overlay */}
-      <div style={{
-        position: "absolute", inset: 0, zIndex: 2,
-        background: "radial-gradient(ellipse at 50% 0%, rgba(212,175,55,0.10) 0%, transparent 55%)",
-        pointerEvents: "none",
-      }} />
-
-      {/* Canvas particles */}
-      <canvas ref={canvasRef} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", zIndex: 3 }} />
-
-      {/* Hairline top border */}
-      <div style={{
-        position: "absolute", top: 0, left: 0, right: 0, height: 1,
-        background: "linear-gradient(90deg, transparent 0%, rgba(212,175,55,0.4) 30%, rgba(245,216,126,0.6) 50%, rgba(212,175,55,0.4) 70%, transparent 100%)",
-        zIndex: 10,
-      }} />
-
-      {/* Floating badges — desktop only */}
-      {t.hero.floatingBadges.map((b, i) => (
-        <div key={i} className="hidden lg:flex" style={{
-          position: "absolute",
-          left: BADGE_POSITIONS[i].x,
-          top: BADGE_POSITIONS[i].y,
-          zIndex: 10,
-          animation: `float 6s ease-in-out ${BADGE_POSITIONS[i].delay} infinite`,
-        }}>
-          <div style={{
-            display: "flex", alignItems: "center", gap: 10,
-            background: "rgba(10,15,30,0.9)",
-            border: "1px solid rgba(212,175,55,0.18)",
-            backdropFilter: "blur(12px)",
-            borderRadius: 14,
-            padding: "10px 14px",
-            boxShadow: "0 8px 32px rgba(0,0,0,0.5)",
-            whiteSpace: "nowrap",
-          }}>
-            <span style={{ fontSize: 20 }}>{b.icon}</span>
-            <div>
-              <div style={{ fontSize: 12, fontWeight: 600, color: "#F5F0E8" }}>{b.text}</div>
-              <div style={{ fontSize: 11, color: "#8A8070" }}>{b.sub}</div>
-            </div>
-            <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#D4AF37", boxShadow: "0 0 7px #D4AF37", marginLeft: 4 }} />
-          </div>
-        </div>
+    <div style={{ display: "flex", gap: 4, alignItems: "center", padding: "10px 14px" }}>
+      {[0, 1, 2].map((i) => (
+        <span
+          key={i}
+          style={{
+            display: "inline-block",
+            width: 6, height: 6, borderRadius: "50%",
+            background: "#b8902e", opacity: 0.5,
+            animation: `typingBounce 1.2s ease-in-out ${i * 0.2}s infinite`,
+          }}
+        />
       ))}
+    </div>
+  );
+}
 
-      {/* Main content */}
-      <div className="wrap" style={{
-        position: "relative", zIndex: 10,
-        padding: "140px 24px 80px",
-        textAlign: "center",
+function ChatBubble({ msg, visible }: { msg: typeof CHAT_MSGS[0]; visible: boolean }) {
+  const isUser = msg.from === "user";
+  return (
+    <div style={{
+      alignSelf: isUser ? "flex-end" : "flex-start",
+      maxWidth: "86%",
+      opacity: visible ? 1 : 0,
+      transform: visible ? "translateY(0)" : "translateY(8px)",
+      transition: "opacity 0.35s cubic-bezier(0.22,1,0.36,1), transform 0.35s cubic-bezier(0.22,1,0.36,1)",
+    }}>
+      <div style={{
+        padding: "9px 12px",
+        borderRadius: isUser ? "14px 4px 14px 14px" : "4px 14px 14px 14px",
+        background: isUser ? "#1a1a2e" : "#ffffff",
+        color: isUser ? "#ffffff" : "#1a1a2e",
+        fontSize: 12,
+        lineHeight: 1.5,
+        boxShadow: "0 1px 4px rgba(0,0,0,0.07)",
       }}>
-        {/* Badge */}
-        <div style={{ display: "flex", justifyContent: "center", marginBottom: 28 }}>
-          <div className="tag" style={{ animation: "fadeIn 0.6s ease forwards" }}>
-            <Sparkles size={12} />
-            {t.hero.tag}
+        {!isUser && (
+          <div style={{ fontSize: 9.5, fontWeight: 700, color: "#b8902e", marginBottom: 3, letterSpacing: "0.02em" }}>
+            Aria ✨
           </div>
+        )}
+        {msg.text}
+      </div>
+      <div style={{
+        fontSize: 9.5, color: "#8a8a98", marginTop: 2,
+        textAlign: isUser ? "right" : "left",
+        paddingLeft: 2, paddingRight: 2,
+      }}>
+        {msg.time}
+      </div>
+    </div>
+  );
+}
+
+function BookingCard({ visible }: { visible: boolean }) {
+  return (
+    <div style={{
+      background: "#ffffff",
+      border: "1px solid #e8e6dc",
+      borderRadius: 12,
+      padding: "10px 12px",
+      opacity: visible ? 1 : 0,
+      transform: visible ? "translateY(0) scale(1)" : "translateY(10px) scale(0.97)",
+      transition: "opacity 0.4s cubic-bezier(0.22,1,0.36,1), transform 0.4s cubic-bezier(0.22,1,0.36,1)",
+    }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
+        <div style={{
+          width: 26, height: 26, borderRadius: "50%",
+          background: "rgba(45,122,79,0.1)",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          flexShrink: 0, fontSize: 13,
+        }}>
+          ✓
         </div>
-
-        {/* Headline — typewriter, two locked lines */}
-        <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-[80px]" style={{
-          fontFamily: "'Playfair Display', Georgia, serif",
-          fontWeight: 700,
-          lineHeight: 1.1,
-          letterSpacing: "-0.01em",
-          maxWidth: "min(900px, 100%)",
-          margin: "0 auto 24px",
-          animation: "slideUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.1s both",
-          overflowWrap: "break-word",
-          wordBreak: "break-word",
-          textShadow: "0 2px 40px rgba(0,0,0,0.6)",
-        }}>
-          {/* Line 1 — white */}
-          <span style={{ display: "block", color: "#F5F0E8" }}>
-            {fullText.slice(0, Math.min(typed, splitAt - 1))}
-            {typed <= splitAt - 1 && (
-              <span style={{
-                display: "inline-block",
-                width: "3px",
-                height: "0.85em",
-                background: "#D4AF37",
-                marginLeft: "3px",
-                verticalAlign: "middle",
-                animation: "blink 1s step-end infinite",
-              }} />
-            )}
-          </span>
-          {/* Line 2 — gold gradient, always reserves height */}
-          <span style={{
-            display: "block",
-            minHeight: "1.15em",
-            background: "linear-gradient(135deg, #D4AF37 0%, #F5D87E 60%, #D4AF37 100%)",
-            backgroundSize: "200% auto",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-            animation: "shimmer 3s linear infinite",
-          }}>
-            {typed > splitAt - 1 ? fullText.slice(splitAt, typed) : "\u00A0"}
-            {typed > splitAt - 1 && (
-              <span style={{
-                display: "inline-block",
-                width: "3px",
-                height: "0.85em",
-                background: "#D4AF37",
-                WebkitTextFillColor: "#D4AF37",
-                marginLeft: "3px",
-                verticalAlign: "middle",
-                animation: "blink 1s step-end infinite",
-              }} />
-            )}
-          </span>
-        </h1>
-
-        {/* Subtext */}
-        <p style={{
-          fontSize: 16,
-          color: "#C8BFB0",
-          maxWidth: "min(560px, 100%)",
-          width: "100%",
-          margin: "0 auto 48px",
-          lineHeight: 1.7,
-          fontWeight: 400,
-          animation: "slideUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.2s both",
-          overflowWrap: "break-word",
-        }}>
-          {t.hero.subtext}
-        </p>
-
-        {/* CTAs */}
-        <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center" style={{
-          gap: 14,
-          marginBottom: 80,
-          animation: "slideUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.3s both",
-        }}>
-          <div style={{ position: "relative", display: "inline-flex" }}>
-            <div style={{
-              position: "absolute", inset: -6, borderRadius: 18,
-              border: "2px solid rgba(212,175,55,0.5)",
-              animation: "pulseRing 2s ease-out infinite",
-              pointerEvents: "none",
-            }} />
-            <div style={{
-              position: "absolute", inset: -12, borderRadius: 22,
-              border: "2px solid rgba(212,175,55,0.22)",
-              animation: "pulseRing 2s ease-out 0.6s infinite",
-              pointerEvents: "none",
-            }} />
-            <a href="#booking" className="btn-primary" style={{ fontSize: 15, padding: "14px 28px", position: "relative", zIndex: 1 }}>
-              {t.hero.ctaPrimary} <ArrowRight size={16} />
-            </a>
-          </div>
-          <a href="#services" className="btn-outline" style={{ fontSize: 15, padding: "14px 28px" }}>
-            {t.hero.ctaSecondary}
-          </a>
-        </div>
-
-        {/* Stats row */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 hero-stats" style={{
-          maxWidth: 700,
-          margin: "0 auto",
-          background: "rgba(212,175,55,0.02)",
-          border: "1px solid rgba(212,175,55,0.08)",
-          borderRadius: 18,
-          overflow: "hidden",
-          animation: "slideUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.4s both",
-        }}>
-          {t.hero.stats.map((s) => (
-            <div key={s.label} className="hero-stat-cell" style={{
-              padding: "20px 16px",
-              textAlign: "center",
-            }}>
-              <div style={{
-                fontFamily: "Syne, system-ui, sans-serif",
-                fontSize: 28,
-                fontWeight: 800,
-                background: "linear-gradient(135deg, #D4AF37, #F5D87E)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-                lineHeight: 1.1,
-              }}>{s.value}</div>
-              <div style={{ fontSize: 12, color: "#8A8070", marginTop: 4, fontWeight: 500 }}>{s.label}</div>
-            </div>
-          ))}
+        <div>
+          <div style={{ fontSize: 11, fontWeight: 700, color: "#2d7a4f" }}>Booking bekreftet</div>
+          <div style={{ fontSize: 10, color: "#5a5a6e" }}>Torsdag kl 14:00 · Tannrens</div>
         </div>
       </div>
+      <div style={{
+        fontSize: 10, color: "#8a8a98",
+        borderTop: "1px solid #f0eee5",
+        paddingTop: 6,
+      }}>
+        SMS-bekreftelse sendt til Anders ✓
+      </div>
+    </div>
+  );
+}
+
+function PhoneMockup() {
+  const [phase, setPhase] = useState(0);
+  const [fading, setFading] = useState(false);
+
+  useEffect(() => {
+    if (phase >= DURATIONS.length) {
+      setFading(true);
+      const id = setTimeout(() => {
+        setPhase(0);
+        setFading(false);
+      }, 850);
+      return () => clearTimeout(id);
+    }
+    const id = setTimeout(() => setPhase((p) => p + 1), DURATIONS[phase]);
+    return () => clearTimeout(id);
+  }, [phase]);
+
+  return (
+    <div style={{
+      opacity: fading ? 0 : 1,
+      transition: "opacity 0.85s ease",
+      width: "100%",
+      maxWidth: 278,
+      margin: "0 auto",
+      filter: "drop-shadow(0 28px 56px rgba(26,26,46,0.16)) drop-shadow(0 8px 16px rgba(0,0,0,0.08))",
+    }}>
+      {/* Phone shell */}
+      <div style={{
+        background: "#0f0f1a",
+        borderRadius: 40,
+        padding: "10px 10px 16px",
+        border: "1px solid rgba(255,255,255,0.06)",
+      }}>
+        {/* Status bar */}
+        <div style={{
+          display: "flex", alignItems: "center", justifyContent: "space-between",
+          padding: "6px 20px 8px",
+        }}>
+          <span style={{ fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.65)" }}>21:34</span>
+          <div style={{
+            width: 56, height: 9,
+            background: "#0f0f1a",
+            borderRadius: 5,
+            border: "1px solid rgba(255,255,255,0.08)",
+          }} />
+          <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+            <div style={{
+              width: 13, height: 7, borderRadius: 2,
+              border: "1.5px solid rgba(255,255,255,0.45)",
+              position: "relative",
+            }}>
+              <div style={{
+                position: "absolute", top: 1, left: 1,
+                width: "60%", height: "calc(100% - 2px)",
+                background: "#4ade80", borderRadius: 1,
+              }} />
+            </div>
+          </div>
+        </div>
+
+        {/* Chat window */}
+        <div style={{ background: "#f7f6f1", borderRadius: 28, overflow: "hidden" }}>
+          {/* Chat header */}
+          <div style={{
+            background: "#1a1a2e",
+            padding: "11px 14px",
+            display: "flex", alignItems: "center", gap: 10,
+          }}>
+            <div style={{
+              width: 34, height: 34, borderRadius: "50%",
+              background: "linear-gradient(135deg, #b8902e, #d4af37)",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              fontSize: 14, fontWeight: 800, color: "#fff", flexShrink: 0,
+            }}>
+              A
+            </div>
+            <div>
+              <div style={{ fontSize: 12, fontWeight: 700, color: "#ffffff" }}>Aria — AI Resepsjonist</div>
+              <div style={{ display: "flex", alignItems: "center", gap: 4, marginTop: 2 }}>
+                <div style={{ width: 5, height: 5, borderRadius: "50%", background: "#4ade80", boxShadow: "0 0 4px #4ade80" }} />
+                <span style={{ fontSize: 9.5, color: "#4ade80", fontWeight: 600 }}>Online</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Messages */}
+          <div style={{
+            padding: "12px 10px",
+            display: "flex",
+            flexDirection: "column",
+            gap: 7,
+            minHeight: 270,
+          }}>
+            <ChatBubble msg={CHAT_MSGS[0]} visible={phase >= 1} />
+
+            {/* Aria typing 1 */}
+            <div style={{
+              alignSelf: "flex-start",
+              background: "#ffffff",
+              borderRadius: "4px 14px 14px 14px",
+              boxShadow: "0 1px 4px rgba(0,0,0,0.07)",
+              maxHeight: phase === 2 ? 40 : 0,
+              opacity: phase === 2 ? 1 : 0,
+              overflow: "hidden",
+              transition: "max-height 0.25s ease, opacity 0.25s ease",
+            }}>
+              <TypingDots />
+            </div>
+
+            <ChatBubble msg={CHAT_MSGS[1]} visible={phase >= 3} />
+            <ChatBubble msg={CHAT_MSGS[2]} visible={phase >= 4} />
+
+            {/* Aria typing 2 */}
+            <div style={{
+              alignSelf: "flex-start",
+              background: "#ffffff",
+              borderRadius: "4px 14px 14px 14px",
+              boxShadow: "0 1px 4px rgba(0,0,0,0.07)",
+              maxHeight: phase === 5 ? 40 : 0,
+              opacity: phase === 5 ? 1 : 0,
+              overflow: "hidden",
+              transition: "max-height 0.25s ease, opacity 0.25s ease",
+            }}>
+              <TypingDots />
+            </div>
+
+            <ChatBubble msg={CHAT_MSGS[3]} visible={phase >= 6} />
+            <BookingCard visible={phase >= 7} />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── Main Hero ─────────────────────────────────────────────────────────────────
+export default function Hero() {
+  const { t } = useLanguage();
+
+  return (
+    <section style={{ background: "#ffffff", padding: "72px 24px 96px", overflow: "hidden" }}>
+      <div className="wrap">
+        <div className="hero-grid" style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: "56px 80px",
+          alignItems: "center",
+          maxWidth: 1080,
+          margin: "0 auto",
+        }}>
+          {/* ── Left: text ── */}
+          <div>
+            {/* Eyebrow */}
+            <div style={{
+              fontSize: 13, fontWeight: 600,
+              letterSpacing: "0.06em",
+              textTransform: "uppercase",
+              color: "#b8902e",
+              marginBottom: 20,
+            }}>
+              {t.hero.tag}
+            </div>
+
+            {/* H1 */}
+            <h1 style={{
+              fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif",
+              fontSize: "clamp(34px, 4.2vw, 54px)",
+              fontWeight: 600,
+              lineHeight: 1.09,
+              letterSpacing: "-0.02em",
+              color: "#1a1a2e",
+              margin: "0 0 22px",
+            }}>
+              {t.hero.headlineNew}
+            </h1>
+
+            {/* Sub */}
+            <p style={{
+              fontSize: 17,
+              color: "#5a5a6e",
+              lineHeight: 1.65,
+              margin: "0 0 36px",
+              maxWidth: 470,
+            }}>
+              {t.hero.subNew}
+            </p>
+
+            {/* CTAs */}
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginBottom: 22 }}>
+              <a
+                href="#booking"
+                style={{
+                  display: "inline-flex", alignItems: "center", gap: 7,
+                  padding: "14px 26px", borderRadius: 11,
+                  background: "#1a1a2e", color: "#ffffff",
+                  fontSize: 15, fontWeight: 600, textDecoration: "none",
+                  boxShadow: "0 4px 16px rgba(26,26,46,0.18)",
+                  transition: "background 0.2s, transform 0.2s",
+                }}
+                onMouseEnter={e => {
+                  const el = e.currentTarget as HTMLElement;
+                  el.style.background = "#2d2d4e";
+                  el.style.transform = "translateY(-1px)";
+                }}
+                onMouseLeave={e => {
+                  const el = e.currentTarget as HTMLElement;
+                  el.style.background = "#1a1a2e";
+                  el.style.transform = "translateY(0)";
+                }}
+              >
+                {t.hero.ctaPrimary} <ArrowRight size={16} />
+              </a>
+
+              <a
+                href="#services"
+                style={{
+                  display: "inline-flex", alignItems: "center", gap: 7,
+                  padding: "14px 26px", borderRadius: 11,
+                  background: "transparent", color: "#1a1a2e",
+                  border: "1.5px solid #e8e6dc",
+                  fontSize: 15, fontWeight: 600, textDecoration: "none",
+                  transition: "border-color 0.2s, color 0.2s",
+                }}
+                onMouseEnter={e => {
+                  const el = e.currentTarget as HTMLElement;
+                  el.style.borderColor = "#b8902e";
+                  el.style.color = "#b8902e";
+                }}
+                onMouseLeave={e => {
+                  const el = e.currentTarget as HTMLElement;
+                  el.style.borderColor = "#e8e6dc";
+                  el.style.color = "#1a1a2e";
+                }}
+              >
+                {t.hero.ctaSecondary}
+              </a>
+            </div>
+
+            {/* Trust line */}
+            <p style={{
+              fontSize: 13, color: "#8a8a98",
+              margin: 0, lineHeight: 1.5,
+            }}>
+              {t.hero.trustLine}
+            </p>
+          </div>
+
+          {/* ── Right: phone mockup ── */}
+          <div className="hero-phone" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <PhoneMockup />
+          </div>
+        </div>
+      </div>
+
+      <style>{`
+        @media (max-width: 900px) {
+          .hero-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
+          .hero-phone { display: none !important; }
+        }
+      `}</style>
     </section>
   );
 }
