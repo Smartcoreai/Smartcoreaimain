@@ -6,10 +6,6 @@ import ChatWidget from "@/components/ChatWidget";
 import ScrollReveal from "@/components/ScrollReveal";
 import { useLanguage } from "@/lib/i18n";
 
-// ── Config ─────────────────────────────────────────────────────────────────────
-// Change FOUNDING_SPOTS to update the number in the urgency bar
-const FOUNDING_SPOTS = 5;
-
 // Display order: Chatbot (i18n plans[0]), Receptionist (i18n plans[2]), Leadgen (i18n plans[1])
 const PLAN_DATA = [
   { planIdx: 0, price: 4_710,  originalPrice: 8_240,  featured: false, Icon: MessageSquare },
@@ -35,22 +31,6 @@ export default function PricingPage() {
 
   return (
     <>
-      {/* ── Urgency bar ───────────────────────────────────────────────────── */}
-      <div className="pricing-urgency-bar">
-        <div className="pricing-urgency-shimmer" />
-        <div style={{
-          position: "relative", zIndex: 1,
-          display: "flex", alignItems: "center", justifyContent: "center", gap: 10,
-        }}>
-          <div className="pricing-urgency-dot" />
-          <span style={{ fontSize: 13, fontWeight: 500, color: "#e8d9a8", letterSpacing: "0.01em" }}>
-            {p.urgencyBarPrefix}
-            <strong style={{ color: "#f5d87e", fontWeight: 700 }}>{FOUNDING_SPOTS}</strong>
-            {p.urgencyBarSuffix}
-          </span>
-        </div>
-      </div>
-
       <Navbar />
 
       <main style={{ background: "#ffffff" }}>
@@ -544,45 +524,6 @@ export default function PricingPage() {
       <ChatWidget />
 
       <style>{`
-        /* ── Urgency bar ── */
-        .pricing-urgency-bar {
-          position: relative;
-          overflow: hidden;
-          background: linear-gradient(90deg, #1a1a2e, #2a2a4a, #1a1a2e);
-          border-bottom: 1px solid rgba(184,144,46,0.4);
-          padding: 10px 24px;
-          text-align: center;
-        }
-        .pricing-urgency-shimmer {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(
-            90deg,
-            transparent 0%,
-            rgba(245,216,126,0.13) 50%,
-            transparent 100%
-          );
-          background-size: 200% 100%;
-          animation: urgencyShimmer 4s ease-in-out infinite;
-        }
-        @keyframes urgencyShimmer {
-          0%   { background-position: -200% 0; }
-          100% { background-position: 200% 0; }
-        }
-        .pricing-urgency-dot {
-          width: 8px; height: 8px;
-          border-radius: 50%;
-          background: #b8902e;
-          box-shadow: 0 0 0 0 rgba(184,144,46,0.6);
-          animation: urgencyPulse 2s ease-in-out infinite;
-          flex-shrink: 0;
-        }
-        @keyframes urgencyPulse {
-          0%   { box-shadow: 0 0 0 0   rgba(184,144,46,0.6); }
-          70%  { box-shadow: 0 0 0 8px rgba(184,144,46,0);   }
-          100% { box-shadow: 0 0 0 0   rgba(184,144,46,0);   }
-        }
-
         /* ── Hero eyebrow with lines ── */
         .pricing-eyebrow {
           display: inline-flex;
@@ -664,10 +605,6 @@ export default function PricingPage() {
           }
         }
 
-        @media (prefers-reduced-motion: reduce) {
-          .pricing-urgency-shimmer { animation: none; }
-          .pricing-urgency-dot     { animation: none; }
-        }
       `}</style>
     </>
   );
