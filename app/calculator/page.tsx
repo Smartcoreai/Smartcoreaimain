@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { ArrowRight, TrendingUp, Clock, Calendar, DollarSign } from "lucide-react";
+import { TrendingUp, Clock, Calendar, DollarSign } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ChatWidget from "@/components/ChatWidget";
@@ -295,7 +295,7 @@ export default function CalculatorPage() {
                     el.style.transform = "translateY(0)";
                   }}
                 >
-                  {c.cta} <ArrowRight size={16} />
+                  {c.cta}
                 </a>
 
                 <p style={{ textAlign: "center", fontSize: 12, color: "#8a8a98", margin: 0 }}>

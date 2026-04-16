@@ -1,5 +1,4 @@
 "use client";
-import { ArrowRight } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
 import ScrollReveal from "@/components/ScrollReveal";
 import { useLanguage } from "@/lib/i18n";
@@ -87,7 +86,7 @@ export default function MidCTA() {
                   el.style.transform = "translateY(0)";
                 }}
               >
-                {s.cta} <ArrowRight size={16} />
+                {s.cta}
               </a>
             </div>
           </ScrollReveal>
