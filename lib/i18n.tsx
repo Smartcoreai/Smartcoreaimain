@@ -381,6 +381,35 @@ export const translations = {
       foundingBadge: "Founding price",
       planNames: ["AI Chatbot", "AI Receptionist", "Leadgen System"],
       planTaglines: ["Your always-on chat agent", "Your AI front desk", "Your lead-generation engine"],
+      guarantee: {
+        items: [
+          { title: "14-day trial", desc: "Try the full system for free with no commitment" },
+          { title: "Money-back guarantee", desc: "Not satisfied within 14 days? Full refund, no questions asked" },
+          { title: "Live in 7 days", desc: "From signing to production — or you don't pay" },
+          { title: "GDPR compliant", desc: "All data stored securely in the EU. You own your data" },
+        ],
+      },
+      compare: {
+        eyebrow: "COMPARISON",
+        headline: "With SmartcoreAI vs. without",
+        subtitle: "Real differences for your business — no buzzwords.",
+        colArea: "Area",
+        colWithout: "Without AI",
+        colWith: "With SmartcoreAI",
+        rows: [
+          { area: "Availability",         without: "Business hours",           with: "24/7 without stopping"     },
+          { area: "Lead response time",   without: "Hours — days",             with: "Under 2 seconds"           },
+          { area: "After-hours bookings", without: "Lost",                     with: "Captured automatically"    },
+          { area: "Lead follow-up",       without: "Manual, often forgotten",  with: "Automatic for 7 days"      },
+          { area: "Setup time",           without: "Months of development",    with: "Live in 7 days"            },
+          { area: "Cost per lead",        without: "High and unpredictable",   with: "Fixed monthly price"       },
+        ],
+      },
+      faqTeaser: {
+        headline: "Questions?",
+        desc: "We've compiled the most common questions about setup, data, follow-up and more.",
+        cta: "See frequently asked questions →",
+      },
       plans: [
         {
           desc: "A custom-trained AI assistant that handles leads, FAQs, bookings and follow-ups — 24/7.",
@@ -830,6 +859,35 @@ export const translations = {
       foundingBadge: "Grunnleggerplasser",
       planNames: ["AI Chatbot", "AI Resepsjonist", "Leadgen System"],
       planTaglines: ["Din 24/7 chatassistent", "Din alltid-på-jobb resepsjonist", "Din automatiske leadmaskin"],
+      guarantee: {
+        items: [
+          { title: "14 dagers prøveperiode",    desc: "Prøv hele systemet helt gratis uten forpliktelser" },
+          { title: "Pengene tilbake-garanti",   desc: "Ikke fornøyd innen 14 dager? Full refusjon, ingen spørsmål" },
+          { title: "Live på 7 dager",           desc: "Fra signering til produksjon — eller du betaler ikke" },
+          { title: "GDPR-kompatibel",           desc: "All data lagres sikkert i EU. Du eier dataene" },
+        ],
+      },
+      compare: {
+        eyebrow: "SAMMENLIGNING",
+        headline: "Med SmartcoreAI vs. uten",
+        subtitle: "Ekte forskjeller for din bedrift — ikke floskler.",
+        colArea: "Område",
+        colWithout: "Uten AI",
+        colWith: "Med SmartcoreAI",
+        rows: [
+          { area: "Tilgjengelighet",                 without: "Åpningstider",            with: "24/7 uten stopp"           },
+          { area: "Responstid på leads",             without: "Timer — dager",           with: "Under 2 sekunder"          },
+          { area: "Bookinger utenom arbeidstid",     without: "Går tapt",                with: "Fanges automatisk"         },
+          { area: "Oppfølging av leads",             without: "Manuelt, ofte glemt",     with: "Automatisk i 7 dager"      },
+          { area: "Oppsett",                         without: "Måneder av utvikling",    with: "Live på 7 dager"           },
+          { area: "Kostnad per lead",                without: "Høy og uforutsigbar",     with: "Fast månedspris"           },
+        ],
+      },
+      faqTeaser: {
+        headline: "Spørsmål?",
+        desc: "Vi har samlet de vanligste spørsmålene om oppsett, data, oppfølging og mer.",
+        cta: "Se ofte stilte spørsmål →",
+      },
       plans: [
         {
           desc: "En skreddersydd AI-assistent som håndterer leads, spørsmål, bookinger og oppfølging — 24/7.",

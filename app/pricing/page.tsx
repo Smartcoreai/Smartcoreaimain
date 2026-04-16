@@ -1,5 +1,5 @@
 "use client";
-import { Check, Star, MessageSquare, Phone, Zap, ArrowRight } from "lucide-react";
+import { Check, Star, MessageSquare, Phone, Zap, ArrowRight, Shield, DollarSign, Clock, Lock } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ChatWidget from "@/components/ChatWidget";
@@ -360,6 +360,181 @@ export default function PricingPage() {
           </div>
         </section>
 
+        {/* ── 4. Guarantee bar ─────────────────────────────────────────────── */}
+        <section style={{ background: "#ffffff", padding: "64px 24px" }}>
+          <div className="wrap">
+            <ScrollReveal>
+              <div style={{
+                background: "#f7f6f1",
+                border: "1px solid #e8e6dc",
+                borderRadius: 24,
+                padding: "40px 40px",
+              }}>
+                <div className="pricing-guarantee-grid">
+                  {(p.guarantee as { items: readonly { title: string; desc: string }[] }).items.map((item, i) => {
+                    const Icon = [Shield, DollarSign, Clock, Lock][i];
+                    return (
+                      <div key={i} style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+                        <div style={{
+                          width: 40, height: 40, borderRadius: 12,
+                          background: "#ffffff",
+                          border: "1px solid #e8e6dc",
+                          display: "flex", alignItems: "center", justifyContent: "center",
+                          color: "#b8902e", flexShrink: 0,
+                        }}>
+                          <Icon size={18} />
+                        </div>
+                        <div>
+                          <div style={{ fontSize: 14, fontWeight: 600, color: "#1a1a2e", marginBottom: 4 }}>
+                            {item.title}
+                          </div>
+                          <div style={{ fontSize: 13, color: "#5a5a6e", lineHeight: 1.6 }}>
+                            {item.desc}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
+        </section>
+
+        {/* ── 5. Compare section ───────────────────────────────────────────── */}
+        <section style={{ background: "#f7f6f1", padding: "96px 24px" }}>
+          <div className="wrap">
+            <ScrollReveal>
+              <div style={{ textAlign: "center", marginBottom: 56 }}>
+                <div style={{
+                  fontSize: 13, fontWeight: 700,
+                  letterSpacing: "0.08em", textTransform: "uppercase",
+                  color: "#b8902e", marginBottom: 16,
+                }}>
+                  {(p.compare as { eyebrow: string }).eyebrow}
+                </div>
+                <h2 style={{
+                  fontFamily: "'Playfair Display', Georgia, serif",
+                  fontSize: "clamp(28px, 3.8vw, 42px)",
+                  fontWeight: 700, color: "#1a1a2e",
+                  margin: "0 0 14px", letterSpacing: "-0.02em",
+                }}>
+                  {(p.compare as { headline: string }).headline}
+                </h2>
+                <p style={{ fontSize: 16, color: "#5a5a6e", margin: 0 }}>
+                  {(p.compare as { subtitle: string }).subtitle}
+                </p>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal delay={100}>
+              <div style={{
+                maxWidth: 860, margin: "0 auto",
+                border: "1px solid #e8e6dc",
+                borderRadius: 24, overflow: "hidden",
+              }}>
+                {/* Header row */}
+                <div className="compare-row compare-row--header">
+                  <div className="compare-cell compare-cell--area" style={{ fontWeight: 700, fontSize: 13, color: "#8a8a98", textTransform: "uppercase", letterSpacing: "0.06em" }}>
+                    {(p.compare as { colArea: string }).colArea}
+                  </div>
+                  <div className="compare-cell compare-cell--without" style={{ fontWeight: 700, fontSize: 13, color: "#8a8a98", textTransform: "uppercase", letterSpacing: "0.06em" }}>
+                    {(p.compare as { colWithout: string }).colWithout}
+                  </div>
+                  <div className="compare-cell compare-cell--with" style={{
+                    background: "#1a1a2e",
+                    fontWeight: 700, fontSize: 13,
+                    color: "#b8902e", textTransform: "uppercase", letterSpacing: "0.06em",
+                  }}>
+                    {(p.compare as { colWith: string }).colWith}
+                  </div>
+                </div>
+
+                {/* Data rows */}
+                {(p.compare as { rows: readonly { area: string; without: string; with: string }[] }).rows.map((row, i) => (
+                  <div
+                    key={i}
+                    className="compare-row"
+                    style={{ background: i % 2 === 0 ? "#ffffff" : "#fafaf8" }}
+                  >
+                    <div className="compare-cell compare-cell--area" style={{ fontSize: 14, fontWeight: 500, color: "#1a1a2e" }}>
+                      {row.area}
+                    </div>
+                    <div className="compare-cell compare-cell--without" style={{ fontSize: 14, color: "#8a8a98" }}>
+                      {row.without}
+                    </div>
+                    <div className="compare-cell compare-cell--with" style={{
+                      background: i % 2 === 0 ? "rgba(184,144,46,0.03)" : "rgba(184,144,46,0.05)",
+                      fontSize: 14, fontWeight: 500, color: "#1a1a2e",
+                    }}>
+                      <span style={{
+                        display: "inline-flex", alignItems: "center", gap: 8,
+                      }}>
+                        <span style={{
+                          width: 18, height: 18, borderRadius: "50%",
+                          background: "rgba(184,144,46,0.15)",
+                          display: "inline-flex", alignItems: "center", justifyContent: "center",
+                          flexShrink: 0,
+                        }}>
+                          <Check size={10} color="#b8902e" />
+                        </span>
+                        {row.with}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </ScrollReveal>
+          </div>
+        </section>
+
+        {/* ── 6. FAQ teaser ────────────────────────────────────────────────── */}
+        <section style={{ background: "#ffffff", padding: "96px 24px", textAlign: "center" }}>
+          <div style={{ maxWidth: 560, margin: "0 auto" }}>
+            <ScrollReveal>
+              <h2 style={{
+                fontFamily: "'Playfair Display', Georgia, serif",
+                fontSize: "clamp(28px, 3.8vw, 38px)",
+                fontWeight: 700, color: "#1a1a2e",
+                margin: "0 0 16px", letterSpacing: "-0.02em",
+              }}>
+                {(p.faqTeaser as { headline: string }).headline}
+              </h2>
+            </ScrollReveal>
+            <ScrollReveal delay={100}>
+              <p style={{ fontSize: 16, color: "#5a5a6e", lineHeight: 1.7, margin: "0 0 32px" }}>
+                {(p.faqTeaser as { desc: string }).desc}
+              </p>
+            </ScrollReveal>
+            <ScrollReveal delay={200}>
+              <a
+                href="/faq"
+                style={{
+                  display: "inline-flex", alignItems: "center", gap: 8,
+                  padding: "13px 28px", borderRadius: 12,
+                  fontSize: 14, fontWeight: 600, color: "#b8902e",
+                  background: "transparent",
+                  border: "1px solid #b8902e",
+                  textDecoration: "none",
+                  transition: "all 0.2s ease",
+                }}
+                onMouseEnter={e => {
+                  const el = e.currentTarget as HTMLElement;
+                  el.style.background = "#b8902e";
+                  el.style.color = "#ffffff";
+                }}
+                onMouseLeave={e => {
+                  const el = e.currentTarget as HTMLElement;
+                  el.style.background = "transparent";
+                  el.style.color = "#b8902e";
+                }}
+              >
+                {(p.faqTeaser as { cta: string }).cta}
+              </a>
+            </ScrollReveal>
+          </div>
+        </section>
+
       </main>
 
       <Footer />
@@ -450,6 +625,46 @@ export default function PricingPage() {
           }
           .pricing-card--featured {
             transform: scale(1) !important;
+          }
+        }
+
+        /* ── Guarantee grid ── */
+        .pricing-guarantee-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 32px;
+        }
+
+        /* ── Compare table ── */
+        .compare-row {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+        }
+        .compare-row--header {
+          background: #f7f6f1;
+        }
+        .compare-cell {
+          padding: 16px 20px;
+          border-bottom: 1px solid #e8e6dc;
+        }
+        .compare-cell--with {
+          border-left: 2px solid rgba(184,144,46,0.35);
+        }
+        .compare-row:last-child .compare-cell {
+          border-bottom: none;
+        }
+
+        @media (max-width: 768px) {
+          .pricing-guarantee-grid {
+            grid-template-columns: 1fr !important;
+            gap: 24px !important;
+          }
+          .compare-cell {
+            padding: 12px 14px;
+            font-size: 13px !important;
+          }
+          .compare-row--header .compare-cell {
+            font-size: 11px !important;
           }
         }
 
