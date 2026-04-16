@@ -455,7 +455,7 @@ export const translations = {
           {
             name: "Aleksander Nordeide Bjørndal",
             role: "CO-FOUNDER & CTO",
-            bio: "Studied Economics at UiA while building AI solutions on the side. Made it his full-time job after realizing most businesses didn't need more tech — they needed systems that worked from day one. Runs the technical side: building, integrations, AI training.",
+            bio: "Self-taught developer from Bergen with a passion for building AI systems that actually work. Co-founded SmartcoreAI with Henrik because he was tired of seeing businesses pay for technology that never delivered. Runs the technical side: building, integrations, AI training.",
             email: "aleksander@smartcoreai.no",
             linkedin: "https://www.linkedin.com/in/aleksander-bj%C3%B8rndal/",
           },
@@ -955,7 +955,7 @@ export const translations = {
           {
             name: "Aleksander Nordeide Bjørndal",
             role: "MEDGRÜNDER & CTO",
-            bio: "Studerte økonomi ved UiA mens han bygde AI-løsninger på siden. Gjorde det til jobben sin etter å ha innsett at de fleste bedrifter ikke trengte mer tech — de trengte systemer som fungerte fra dag én. Driver det tekniske: bygging, integrasjoner, AI-trening.",
+            bio: "Selvlært utvikler fra Bergen med en lidenskap for å bygge AI-systemer som faktisk fungerer. Grunnla SmartcoreAI sammen med Henrik fordi han var lei av å se bedrifter betale for teknologi som aldri leverte. Driver det tekniske: bygging, integrasjoner, AI-trening.",
             email: "aleksander@smartcoreai.no",
             linkedin: "https://www.linkedin.com/in/aleksander-bj%C3%B8rndal/",
           },
