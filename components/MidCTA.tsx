@@ -67,7 +67,7 @@ export default function MidCTA() {
                 {s.subtitle}
               </p>
               <a
-                href="#booking"
+                href="/calculator"
                 style={{
                   display: "inline-flex", alignItems: "center", gap: 8,
                   padding: "14px 28px", borderRadius: 11,
