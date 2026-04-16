@@ -311,10 +311,6 @@ html {
   from { background-position: -200% 0; }
   to   { background-position: 200% 0; }
 }
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-16px); }
-}
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50%       { opacity: 0; }

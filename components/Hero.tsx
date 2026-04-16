@@ -134,14 +134,12 @@ function PhoneMockup() {
 
   return (
     <div style={{
-      opacity: fading ? 0 : 1,
-      transition: "opacity 0.85s ease",
       width: "100%",
       maxWidth: 278,
       margin: "0 auto",
       filter: "drop-shadow(0 28px 56px rgba(26,26,46,0.16)) drop-shadow(0 8px 16px rgba(0,0,0,0.08))",
     }}>
-      {/* Phone shell */}
+      {/* Phone shell — always stationary */}
       <div style={{
         background: "#0f0f1a",
         borderRadius: 40,
@@ -175,8 +173,12 @@ function PhoneMockup() {
           </div>
         </div>
 
-        {/* Chat window */}
-        <div style={{ background: "#f7f6f1", borderRadius: 28, overflow: "hidden" }}>
+        {/* Chat window — fades between cycles, shell stays visible */}
+        <div style={{
+          background: "#f7f6f1", borderRadius: 28, overflow: "hidden",
+          opacity: fading ? 0 : 1,
+          transition: "opacity 0.85s ease",
+        }}>
           {/* Chat header */}
           <div style={{
             background: "#1a1a2e",
