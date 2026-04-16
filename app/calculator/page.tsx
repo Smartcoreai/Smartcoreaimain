@@ -19,15 +19,19 @@ export default function CalculatorPage() {
   const { t } = useLanguage();
   const c = t.calculator;
 
-  const [callsPerWeek,  setCallsPerWeek]  = useState(50);
+  const [callsPerWeek,  setCallsPerWeek]  = useState<string>("50");
   const [missedPct,     setMissedPct]     = useState(30);
-  const [customerValue, setCustomerValue] = useState(2000);
-  const [hoursPerWeek,  setHoursPerWeek]  = useState(15);
+  const [customerValue, setCustomerValue] = useState<string>("2000");
+  const [hoursPerWeek,  setHoursPerWeek]  = useState<string>("15");
 
-  // ── Calculations ────────────────────────────────────────────────────────────
-  const lostBookingsPerMonth  = callsPerWeek * (missedPct / 100) * 4;
-  const extraRevenuePerMonth  = lostBookingsPerMonth * customerValue * 0.3;
-  const hoursSavedPerMonth    = hoursPerWeek * 4 * 0.85;
+  // ── Calculations (parse to number only here) ─────────────────────────────────
+  const calls   = Math.max(0, parseFloat(callsPerWeek)  || 0);
+  const custVal = Math.max(0, parseFloat(customerValue) || 0);
+  const hours   = Math.max(0, parseFloat(hoursPerWeek)  || 0);
+
+  const lostBookingsPerMonth  = calls * (missedPct / 100) * 4;
+  const extraRevenuePerMonth  = lostBookingsPerMonth * custVal * 0.3;
+  const hoursSavedPerMonth    = hours * 4 * 0.85;
   const annualSavings         = (extraRevenuePerMonth + hoursSavedPerMonth * 500) * 12;
 
   const RESULT_ITEMS = [
@@ -96,7 +100,9 @@ export default function CalculatorPage() {
                         type="number"
                         min={0}
                         value={callsPerWeek}
-                        onChange={e => setCallsPerWeek(Math.max(0, Number(e.target.value)))}
+                        onChange={e => setCallsPerWeek(e.target.value)}
+                        onFocus={e => e.target.select()}
+                        onBlur={e => { if (e.target.value === "" || e.target.value === "0") setCallsPerWeek("50"); }}
                         className="calc-input"
                         style={inputStyle}
                       />
@@ -137,7 +143,9 @@ export default function CalculatorPage() {
                         type="number"
                         min={0}
                         value={customerValue}
-                        onChange={e => setCustomerValue(Math.max(0, Number(e.target.value)))}
+                        onChange={e => setCustomerValue(e.target.value)}
+                        onFocus={e => e.target.select()}
+                        onBlur={e => { if (e.target.value === "" || e.target.value === "0") setCustomerValue("2000"); }}
                         className="calc-input"
                         style={{ ...inputStyle, paddingLeft: 36 }}
                       />
@@ -152,7 +160,9 @@ export default function CalculatorPage() {
                         type="number"
                         min={0}
                         value={hoursPerWeek}
-                        onChange={e => setHoursPerWeek(Math.max(0, Number(e.target.value)))}
+                        onChange={e => setHoursPerWeek(e.target.value)}
+                        onFocus={e => e.target.select()}
+                        onBlur={e => { if (e.target.value === "" || e.target.value === "0") setHoursPerWeek("15"); }}
                         className="calc-input"
                         style={inputStyle}
                       />
@@ -258,7 +268,9 @@ export default function CalculatorPage() {
 
                 {/* CTA */}
                 <a
-                  href="/about#booking"
+                  href="https://calendly.com/smartcoreaimeeting/new-meeting"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   style={{
                     display: "flex", alignItems: "center", justifyContent: "center",
                     gap: 8, padding: "16px 24px", borderRadius: 12,
