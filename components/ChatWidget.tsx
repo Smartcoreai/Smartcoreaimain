@@ -91,9 +91,11 @@ export default function ChatWidget() {
       >
         <MessageCircle size={24} color="#D4AF37" />
         <div style={{
-          position: "absolute", top: -1, right: -1,
-          width: 14, height: 14, background: "#4ade80", borderRadius: "50%",
-          border: "2px solid #1A1A1A", boxShadow: "0 0 8px #4ade80",
+          position: "absolute", top: 0, right: 0,
+          width: 14, height: 14, background: "#22c55e", borderRadius: "50%",
+          border: "2.5px solid #1a1a2e",
+          boxShadow: "0 0 0 0 rgba(34,197,94,0.6)",
+          animation: "dot-pulse 2.5s ease-in-out infinite",
         }} />
         {pulseCount > 0 && (
           <div style={{
@@ -125,10 +127,10 @@ export default function ChatWidget() {
         }}>
           <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
             <div style={{ position: "relative" }}>
-              <div style={{ width: 38, height: 38, borderRadius: 12, background: "linear-gradient(135deg,#B8960C,#D4AF37)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <Bot size={20} color="white" />
+              <div style={{ width: 38, height: 38, borderRadius: 12, background: "linear-gradient(135deg, #1a1a2e, #2a2a4a)", border: "1.5px solid #b8902e", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <Bot size={20} color="#b8902e" />
               </div>
-              <div style={{ position: "absolute", bottom: -1, right: -1, width: 10, height: 10, background: "#4ade80", borderRadius: "50%", border: "2px solid #0a0808", boxShadow: "0 0 6px #4ade80" }} />
+              <div style={{ position: "absolute", bottom: -1, right: -1, width: 11, height: 11, background: "#22c55e", borderRadius: "50%", border: "2px solid #0a0808", boxShadow: "0 0 6px rgba(34,197,94,0.8)" }} />
             </div>
             <div>
               <div style={{ fontSize: 14, fontWeight: 700, color: "#F5F0E8", display: "flex", alignItems: "center", gap: 6 }}>
@@ -147,8 +149,8 @@ export default function ChatWidget() {
           {messages.map((m, i) => (
             <div key={i} style={{ display: "flex", justifyContent: m.role === "user" ? "flex-end" : "flex-start", gap: 8, alignItems: "flex-end" }}>
               {m.role === "assistant" && (
-                <div style={{ width: 28, height: 28, borderRadius: 9, background: "linear-gradient(135deg,#B8960C,#D4AF37)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                  <Bot size={14} color="white" />
+                <div style={{ width: 28, height: 28, borderRadius: 9, background: "linear-gradient(135deg, #1a1a2e, #2a2a4a)", border: "1.5px solid #b8902e", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                  <Bot size={14} color="#b8902e" />
                 </div>
               )}
               <div className="chat-bubble" style={{
@@ -164,8 +166,8 @@ export default function ChatWidget() {
 
           {loading && (
             <div style={{ display: "flex", alignItems: "flex-end", gap: 8 }}>
-              <div style={{ width: 28, height: 28, borderRadius: 9, background: "linear-gradient(135deg,#B8960C,#D4AF37)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <Bot size={14} color="white" />
+              <div style={{ width: 28, height: 28, borderRadius: 9, background: "linear-gradient(135deg, #1a1a2e, #2a2a4a)", border: "1.5px solid #b8902e", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <Bot size={14} color="#b8902e" />
               </div>
               <div style={{ padding: "12px 16px", borderRadius: "18px 18px 18px 4px", background: "rgba(10,15,30,0.9)", border: "1px solid rgba(212,175,55,0.12)", display: "flex", gap: 4, alignItems: "center" }}>
                 {[0, 1, 2].map(j => (
@@ -225,6 +227,11 @@ export default function ChatWidget() {
       <style>{`
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
         @keyframes pulseRing { 0% { transform: scale(0.8); opacity: 1; } 100% { transform: scale(2); opacity: 0; } }
+        @keyframes dot-pulse {
+          0%   { box-shadow: 0 0 0 0   rgba(34,197,94,0.7); }
+          70%  { box-shadow: 0 0 0 6px rgba(34,197,94,0);   }
+          100% { box-shadow: 0 0 0 0   rgba(34,197,94,0);   }
+        }
         @keyframes aria-shimmer { 0% { left: -100%; } 100% { left: 100%; } }
         .aria-chat-btn::before {
           content: '';
@@ -241,6 +248,7 @@ export default function ChatWidget() {
         }
         @media (prefers-reduced-motion: reduce) {
           .aria-chat-btn::before { animation: none; }
+          @keyframes dot-pulse { 0%, 100% { box-shadow: none; } }
         }
         @media (max-width: 480px) {
           .chat-window { width: calc(100vw - 16px) !important; right: 8px !important; left: 8px !important; }
