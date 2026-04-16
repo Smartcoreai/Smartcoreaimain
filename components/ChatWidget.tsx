@@ -74,20 +74,22 @@ export default function ChatWidget() {
       <button
         onClick={() => { setOpen(true); setPulseCount(0); }}
         aria-label="Open AI chat"
+        className="aria-chat-btn"
         style={{
           position: "fixed", bottom: 24, right: 24, zIndex: 9998,
           width: 56, height: 56,
-          background: "linear-gradient(135deg, #D4AF37, #B8960C)",
-          border: "none", borderRadius: "50%", cursor: "pointer",
+          background: "linear-gradient(90deg, #1a1a2e 0%, #2a2a4a 50%, #1a1a2e 100%)",
+          border: "1.5px solid #b8902e", borderRadius: "50%", cursor: "pointer",
           display: "flex", alignItems: "center", justifyContent: "center",
-          boxShadow: "0 4px 24px rgba(212,175,55,0.45)",
-          transition: "all 0.3s ease",
+          boxShadow: "0 8px 24px rgba(184,144,46,0.25), 0 0 0 1px rgba(184,144,46,0.3)",
+          transition: "transform 0.3s, box-shadow 0.3s, opacity 0.3s",
           transform: open ? "scale(0) rotate(90deg)" : "scale(1) rotate(0deg)",
           opacity: open ? 0 : 1,
           pointerEvents: open ? "none" : "auto",
+          overflow: "hidden",
         }}
       >
-        <MessageCircle size={24} color="#1A1A1A" />
+        <MessageCircle size={24} color="#D4AF37" />
         <div style={{
           position: "absolute", top: -1, right: -1,
           width: 14, height: 14, background: "#4ade80", borderRadius: "50%",
@@ -223,6 +225,23 @@ export default function ChatWidget() {
       <style>{`
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
         @keyframes pulseRing { 0% { transform: scale(0.8); opacity: 1; } 100% { transform: scale(2); opacity: 0; } }
+        @keyframes aria-shimmer { 0% { left: -100%; } 100% { left: 100%; } }
+        .aria-chat-btn::before {
+          content: '';
+          position: absolute;
+          top: 0; left: -100%;
+          width: 100%; height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(184,144,46,0.4), transparent);
+          animation: aria-shimmer 4s infinite;
+          pointer-events: none;
+        }
+        .aria-chat-btn:hover {
+          transform: scale(1.05) !important;
+          box-shadow: 0 12px 32px rgba(184,144,46,0.4), 0 0 0 2px rgba(184,144,46,0.5) !important;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .aria-chat-btn::before { animation: none; }
+        }
         @media (max-width: 480px) {
           .chat-window { width: calc(100vw - 16px) !important; right: 8px !important; left: 8px !important; }
           .chat-messages { overflow-x: hidden; width: 100%; }
