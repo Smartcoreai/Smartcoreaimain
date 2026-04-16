@@ -112,7 +112,7 @@ function StatCard({ stat, delay }: { stat: Stat; delay: number }) {
 
 export default function TestimonialSection() {
   const { t } = useLanguage();
-  const s = t.aiStats as {
+  const s = t.aiStats as unknown as {
     eyebrow: string;
     headline: string;
     subtitle: string;
