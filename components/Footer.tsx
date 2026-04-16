@@ -51,13 +51,15 @@ export default function Footer() {
             {/* Social links */}
             <div style={{ display: "flex", gap: 8 }}>
               {[
-                { icon: <Twitter size={13} />, href: "#" },
-                { icon: <Linkedin size={13} />, href: "#" },
-                { icon: <Instagram size={13} />, href: "#" },
+                { icon: <Twitter size={13} />, href: "#", target: undefined },
+                { icon: <Linkedin size={13} />, href: "https://www.linkedin.com/company/smartcoreai", target: "_blank" },
+                { icon: <Instagram size={13} />, href: "#", target: undefined },
               ].map((s, i) => (
                 <a
                   key={i}
                   href={s.href}
+                  target={s.target}
+                  rel={s.target === "_blank" ? "noopener noreferrer" : undefined}
                   style={{
                     width: 32, height: 32, borderRadius: 8,
                     background: "#f7f6f1", border: "1px solid #e8e6dc",
@@ -93,10 +95,12 @@ export default function Footer() {
                 {t.footer.categories[cat]}
               </div>
               <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 10 }}>
-                {t.footer.links[cat].map((link) => (
+                {(t.footer.links[cat] as { label: string; href: string; target?: string }[]).map((link) => (
                   <li key={link.label}>
                     <a
                       href={link.href}
+                      target={link.target}
+                      rel={link.target === "_blank" ? "noopener noreferrer" : undefined}
                       style={{
                         fontSize: 13, color: "#5a5a6e", textDecoration: "none", transition: "color 0.15s",
                       }}
