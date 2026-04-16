@@ -240,13 +240,13 @@ export default function PricingPage() {
                       {/* Current price */}
                       <div style={{ display: "flex", alignItems: "baseline", gap: 6, marginBottom: 10 }}>
                         <span style={{
-                          fontFamily: "'Playfair Display', Georgia, serif",
-                          fontSize: 44, fontWeight: 700,
+                          fontFamily: "'DM Sans', -apple-system, sans-serif",
+                          fontSize: 44, fontWeight: 800,
                           background: "linear-gradient(135deg, #b8902e, #8a6d22)",
                           WebkitBackgroundClip: "text",
                           WebkitTextFillColor: "transparent",
                           backgroundClip: "text",
-                          letterSpacing: "-0.02em",
+                          letterSpacing: "-0.03em",
                           fontVariantNumeric: "tabular-nums",
                           lineHeight: 1,
                         }}>

@@ -114,7 +114,7 @@ export default function CalculatorPage() {
                   <div>
                     <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 14 }}>
                       <label style={labelStyle}>{c.labelMissed}</label>
-                      <span style={{ fontSize: 22, fontWeight: 700, color: "#b8902e", fontFamily: "'Playfair Display', serif", lineHeight: 1 }}>
+                      <span style={{ fontSize: 22, fontWeight: 700, color: "#b8902e", fontFamily: "'DM Sans', -apple-system, sans-serif", fontVariantNumeric: "tabular-nums", letterSpacing: "-0.03em", lineHeight: 1 }}>
                         {missedPct}%
                       </span>
                     </div>
@@ -188,15 +188,16 @@ export default function CalculatorPage() {
                   </div>
                   <div style={{ fontSize: 16, color: "#5a5a6e", marginBottom: 8 }}>{c.resultHeading}</div>
                   <div style={{
-                    fontFamily: "'Playfair Display', Georgia, serif",
+                    fontFamily: "'DM Sans', -apple-system, sans-serif",
                     fontSize: "clamp(36px, 5vw, 52px)",
-                    fontWeight: 700,
+                    fontWeight: 800,
+                    fontVariantNumeric: "tabular-nums",
+                    letterSpacing: "-0.03em",
                     background: "linear-gradient(135deg, #b8902e, #8a6d22)",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
                     backgroundClip: "text",
                     lineHeight: 1.1,
-                    letterSpacing: "-0.02em",
                     margin: "0 0 8px",
                   }}>
                     {nokFmt(annualSavings)}
@@ -223,8 +224,10 @@ export default function CalculatorPage() {
                       <div style={{ flex: 1, minWidth: 0 }}>
                         <div style={{ fontSize: 13, color: "#8a8a98", marginBottom: 2 }}>{label}</div>
                         <div style={{
-                          fontFamily: "'Playfair Display', Georgia, serif",
+                          fontFamily: "'DM Sans', -apple-system, sans-serif",
                           fontSize: 22, fontWeight: 700,
+                          fontVariantNumeric: "tabular-nums",
+                          letterSpacing: "-0.03em",
                           color: "#1a1a2e", lineHeight: 1,
                         }}>
                           {value}{" "}
@@ -252,8 +255,10 @@ export default function CalculatorPage() {
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <div style={{ fontSize: 13, color: "rgba(255,255,255,0.5)", marginBottom: 2 }}>{c.resultTotal}</div>
                       <div style={{
-                        fontFamily: "'Playfair Display', Georgia, serif",
-                        fontSize: 24, fontWeight: 700,
+                        fontFamily: "'DM Sans', -apple-system, sans-serif",
+                        fontSize: 24, fontWeight: 800,
+                        fontVariantNumeric: "tabular-nums",
+                        letterSpacing: "-0.03em",
                         background: "linear-gradient(135deg, #b8902e, #f5d87e)",
                         WebkitBackgroundClip: "text",
                         WebkitTextFillColor: "transparent",
