@@ -146,7 +146,8 @@ export default function PricingPage() {
                       background: plan.featured ? "#1a1a2e" : "#ffffff",
                       border: `1px solid ${plan.featured ? "#b8902e" : "#e8e6dc"}`,
                       borderRadius: 24,
-                      padding: "40px 32px",
+                      padding: "32px 28px",
+                      width: "100%",
                       height: "100%",
                       display: "flex",
                       flexDirection: "column",
@@ -154,12 +155,12 @@ export default function PricingPage() {
                     }}
                     onMouseEnter={e => {
                       const el = e.currentTarget as HTMLElement;
-                      el.style.transform = plan.featured ? "scale(1.02) translateY(-4px)" : "translateY(-4px)";
+                      el.style.transform = "translateY(-4px)";
                       el.style.boxShadow = "0 24px 60px rgba(26,26,46,0.15)";
                     }}
                     onMouseLeave={e => {
                       const el = e.currentTarget as HTMLElement;
-                      el.style.transform = plan.featured ? "scale(1.02)" : "scale(1)";
+                      el.style.transform = "translateY(0)";
                       el.style.boxShadow = "none";
                     }}
                   >
@@ -182,40 +183,42 @@ export default function PricingPage() {
 
                     {/* Plan icon */}
                     <div style={{
-                      width: 52, height: 52, borderRadius: "50%",
+                      width: 44, height: 44, borderRadius: "50%",
                       background: plan.featured ? "rgba(184,144,46,0.15)" : "#fdf9ed",
                       border: plan.featured ? "1px solid rgba(184,144,46,0.4)" : "1px solid #f5ebd0",
                       display: "flex", alignItems: "center", justifyContent: "center",
-                      color: "#b8902e", marginBottom: 20, flexShrink: 0,
+                      color: "#b8902e", marginBottom: 16, flexShrink: 0,
                     }}>
-                      <plan.Icon size={22} />
+                      <plan.Icon size={20} />
                     </div>
 
                     {/* Plan name */}
                     <div style={{
-                      fontSize: 13, fontWeight: 700, color: "#b8902e",
+                      fontSize: 12, fontWeight: 700, color: "#b8902e",
                       letterSpacing: "0.1em", textTransform: "uppercase",
-                      marginBottom: 8,
+                      marginBottom: 6,
                     }}>
                       {plan.name}
                     </div>
 
-                    {/* Tagline */}
+                    {/* Tagline — fixed height so all cards align */}
                     <div style={{
                       fontFamily: "'Playfair Display', Georgia, serif",
-                      fontSize: 24, fontWeight: 700,
+                      fontSize: 20, fontWeight: 700,
                       color: plan.featured ? "#f5f0e8" : "#1a1a2e",
-                      marginBottom: 12, lineHeight: 1.25,
+                      marginBottom: 10, lineHeight: 1.25,
                       letterSpacing: "-0.01em",
+                      minHeight: "2.6em",
                     }}>
                       {plan.tagline}
                     </div>
 
-                    {/* Description */}
+                    {/* Description — fixed height so prices align */}
                     <p style={{
-                      fontSize: 14,
+                      fontSize: 13,
                       color: plan.featured ? "#a09888" : "#5a5a6e",
-                      lineHeight: 1.65, margin: "0 0 24px",
+                      lineHeight: 1.65, margin: "0 0 18px",
+                      minHeight: "4.2em",
                     }}>
                       {plan.desc}
                     </p>
@@ -223,25 +226,25 @@ export default function PricingPage() {
                     {/* Price block */}
                     <div style={{
                       borderBottom: `1px solid ${plan.featured ? "rgba(255,255,255,0.08)" : "#e8e6dc"}`,
-                      paddingBottom: 20, marginBottom: 20,
+                      paddingBottom: 16, marginBottom: 16,
                     }}>
                       {/* Old price */}
                       <div style={{
-                        fontSize: 14,
+                        fontSize: 13,
                         fontVariantNumeric: "tabular-nums",
                         textDecoration: "line-through",
                         textDecorationColor: "#b8902e",
                         color: plan.featured ? "#5a5248" : "#8a8a98",
-                        marginBottom: 6,
+                        marginBottom: 4,
                       }}>
                         {nokStr(plan.originalPrice)}
                       </div>
 
                       {/* Current price */}
-                      <div style={{ display: "flex", alignItems: "baseline", gap: 6, marginBottom: 10 }}>
+                      <div style={{ display: "flex", alignItems: "baseline", gap: 6, marginBottom: 8 }}>
                         <span style={{
                           fontFamily: "'DM Sans', -apple-system, sans-serif",
-                          fontSize: 44, fontWeight: 800,
+                          fontSize: 38, fontWeight: 800,
                           background: "linear-gradient(135deg, #b8902e, #8a6d22)",
                           WebkitBackgroundClip: "text",
                           WebkitTextFillColor: "transparent",
@@ -252,7 +255,7 @@ export default function PricingPage() {
                         }}>
                           {nokStr(plan.price)}
                         </span>
-                        <span style={{ fontSize: 14, color: plan.featured ? "#8a8070" : "#5a5a6e" }}>
+                        <span style={{ fontSize: 13, color: plan.featured ? "#8a8070" : "#5a5a6e" }}>
                           /{p.period}
                         </span>
                       </div>
@@ -284,8 +287,8 @@ export default function PricingPage() {
 
                     {/* Features */}
                     <ul style={{
-                      listStyle: "none", padding: 0, margin: "0 0 28px",
-                      display: "flex", flexDirection: "column", gap: 10,
+                      listStyle: "none", padding: 0, margin: "0 0 20px",
+                      display: "flex", flexDirection: "column", gap: 8,
                       flexGrow: 1,
                     }}>
                       {(plan.features as readonly string[]).map(f => (
@@ -312,7 +315,7 @@ export default function PricingPage() {
                       href="/about#booking"
                       style={{
                         display: "flex", alignItems: "center", justifyContent: "center",
-                        gap: 8, padding: "14px 20px", borderRadius: 12,
+                        gap: 8, padding: "12px 20px", borderRadius: 12,
                         fontWeight: 600, fontSize: 14,
                         textDecoration: "none", transition: "all 0.2s ease",
                         marginTop: "auto",
@@ -614,17 +617,10 @@ export default function PricingPage() {
           display: flex;
           flex-direction: column;
         }
-        .pricing-card--featured {
-          transform: scale(1.02);
-        }
-
         @media (max-width: 968px) {
           .pricing-grid {
             grid-template-columns: 1fr !important;
             max-width: 480px !important;
-          }
-          .pricing-card--featured {
-            transform: scale(1) !important;
           }
         }
 
