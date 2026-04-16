@@ -29,7 +29,7 @@ export default function StickyBookingBar() {
       alignItems: "center",
       gap: 20,
       padding: "12px 20px",
-      background: "rgba(10, 8, 4, 0.92)",
+      background: "rgba(26, 26, 46, 0.95)",
       backdropFilter: "blur(18px)",
       WebkitBackdropFilter: "blur(18px)",
       border: "1px solid rgba(212,175,55,0.28)",
@@ -61,7 +61,13 @@ export default function StickyBookingBar() {
       }} />
 
       {/* CTA button */}
-      <a href="#booking" className="btn-gold" style={{ fontSize: 13, padding: "10px 20px" }}>
+      <a
+        href="https://calendly.com/smartcoreaimeeting/new-meeting"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="btn-gold"
+        style={{ fontSize: 13, padding: "10px 20px" }}
+      >
         {t.hero.ctaPrimary} <ArrowRight size={14} />
       </a>
     </div>
