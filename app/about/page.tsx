@@ -9,8 +9,8 @@ import { Mail, MapPin, Target, BarChart2, Users } from "lucide-react";
 import Script from "next/script";
 
 const TEAM_META = [
-  { image: "/team/aleksander.png" },
   { image: "/team/henrik.png" },
+  { image: "/team/aleksander.png" },
 ];
 
 const VALUE_ICONS = [Target, BarChart2, Users];
@@ -19,7 +19,7 @@ export default function AboutPage() {
   const { t } = useLanguage();
   const a = t.about;
 
-  const members = (a.team.members as readonly { name: string; role: string; bio: string; email: string }[]).map(
+  const members = (a.team.members as readonly { name: string; role: string; bio: string; email: string; linkedin: string }[]).map(
     (m, i) => ({ ...m, ...TEAM_META[i] }),
   );
 
@@ -181,33 +181,24 @@ export default function AboutPage() {
                       {member.bio}
                     </p>
 
-                    {/* Email */}
-                    <a
-                      href={`mailto:${member.email}`}
-                      style={{
-                        display: "inline-flex", alignItems: "center", gap: 8,
-                        marginTop: 28, fontSize: 13, color: "#1a1a2e",
-                        textDecoration: "none", padding: "9px 18px",
-                        borderRadius: 10, border: "1px solid #e8e6dc",
-                        background: "#fafaf8", transition: "all 0.2s ease",
-                        fontFamily: "inherit", fontWeight: 500,
-                      }}
-                      onMouseEnter={e => {
-                        const el = e.currentTarget as HTMLElement;
-                        el.style.borderColor = "#f5ebd0";
-                        el.style.background = "#fdf9ed";
-                        el.style.color = "#b8902e";
-                      }}
-                      onMouseLeave={e => {
-                        const el = e.currentTarget as HTMLElement;
-                        el.style.borderColor = "#e8e6dc";
-                        el.style.background = "#fafaf8";
-                        el.style.color = "#1a1a2e";
-                      }}
-                    >
-                      <Mail size={13} />
-                      {member.email}
-                    </a>
+                    {/* Contact row: email + LinkedIn */}
+                    <div className="contact-row" style={{ marginTop: 28 }}>
+                      <a href={`mailto:${member.email}`} className="contact-email">
+                        <Mail size={14} />
+                        {member.email}
+                      </a>
+                      <a
+                        href={member.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="contact-linkedin"
+                        aria-label="LinkedIn"
+                      >
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                      </a>
+                    </div>
                   </div>
                 </ScrollReveal>
               ))}
@@ -356,6 +347,46 @@ export default function AboutPage() {
       <ChatWidget />
 
       <style>{`
+        .contact-row {
+          display: flex;
+          gap: 8px;
+          align-items: stretch;
+          width: 100%;
+        }
+        .contact-email {
+          flex: 1;
+          background: #f7f6f1;
+          border-radius: 10px;
+          padding: 12px 16px;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          color: #5a5a6e;
+          font-size: 13px;
+          text-decoration: none;
+          transition: background 0.15s, color 0.15s;
+          font-family: inherit;
+          font-weight: 500;
+          min-width: 0;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+        .contact-email:hover { background: #f0eee5; color: #b8902e; }
+        .contact-linkedin {
+          width: 44px;
+          flex-shrink: 0;
+          background: #f7f6f1;
+          border-radius: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #5a5a6e;
+          text-decoration: none;
+          transition: background 0.15s, color 0.15s;
+        }
+        .contact-linkedin:hover { background: #f0eee5; color: #1a1a2e; }
+
         .about-team-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
