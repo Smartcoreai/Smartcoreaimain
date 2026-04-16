@@ -77,31 +77,44 @@ export default function ChatWidget() {
         className="aria-chat-btn"
         style={{
           position: "fixed", bottom: 24, right: 24, zIndex: 9998,
-          width: 56, height: 56,
-          background: "linear-gradient(90deg, #1a1a2e 0%, #2a2a4a 50%, #1a1a2e 100%)",
+          width: 68, height: 68,
+          background: "linear-gradient(135deg, #1a1a2e 0%, #2a2a4a 50%, #1a1a2e 100%)",
           border: "1.5px solid #b8902e", borderRadius: "50%", cursor: "pointer",
           display: "flex", alignItems: "center", justifyContent: "center",
-          boxShadow: "0 8px 24px rgba(184,144,46,0.25), 0 0 0 1px rgba(184,144,46,0.3)",
+          boxShadow: "0 8px 28px rgba(184,144,46,0.30), 0 0 0 1px rgba(184,144,46,0.25)",
           transition: "transform 0.3s, box-shadow 0.3s, opacity 0.3s",
           transform: open ? "scale(0) rotate(90deg)" : "scale(1) rotate(0deg)",
           opacity: open ? 0 : 1,
           pointerEvents: open ? "none" : "auto",
-          overflow: "hidden",
+          overflow: "visible",
+          padding: 0,
         }}
       >
-        <MessageCircle size={24} color="#D4AF37" />
+        {/* Inner wrapper for shimmer (overflow: hidden scoped here) */}
         <div style={{
-          position: "absolute", top: 0, right: 0,
-          width: 14, height: 14, background: "#22c55e", borderRadius: "50%",
-          border: "2.5px solid #1a1a2e",
-          boxShadow: "0 0 0 0 rgba(34,197,94,0.6)",
+          position: "absolute", inset: 0, borderRadius: "50%",
+          overflow: "hidden", pointerEvents: "none",
+        }}>
+          <div className="aria-btn-shimmer" />
+        </div>
+
+        <MessageCircle size={28} color="#D4AF37" style={{ position: "relative", zIndex: 2 }} />
+
+        {/* Green online dot — outside the overflow:hidden wrapper */}
+        <div style={{
+          position: "absolute", top: -2, right: -2,
+          width: 16, height: 16, background: "#22c55e", borderRadius: "50%",
+          border: "2.5px solid #f7f6f1",
+          zIndex: 10,
           animation: "dot-pulse 2.5s ease-in-out infinite",
         }} />
+
         {pulseCount > 0 && (
           <div style={{
             position: "absolute", inset: -8, borderRadius: "50%",
             border: "2px solid rgba(212,175,55,0.5)",
             animation: "pulseRing 1.5s ease-out 3",
+            zIndex: 1,
           }} />
         )}
       </button>
@@ -109,37 +122,65 @@ export default function ChatWidget() {
       {/* Chat window */}
       <div className="chat-window" style={{
         position: "fixed", bottom: 24, right: 24, zIndex: 9999,
-        width: 360, display: "flex", flexDirection: "column",
-        background: "#0a0808", border: "1px solid rgba(255,255,255,0.08)",
-        borderRadius: 22, boxShadow: "0 24px 80px rgba(0,0,0,0.6)",
-        overflow: "hidden", height: 520,
+        width: 368, display: "flex", flexDirection: "column",
+        background: "linear-gradient(180deg, #1a1a2e 0%, #242442 50%, #1a1a2e 100%)",
+        border: "1.5px solid #b8902e",
+        borderRadius: 22,
+        boxShadow: "0 24px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(184,144,46,0.1)",
+        overflow: "hidden", height: 540,
         transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
         transform: open ? "scale(1) translateY(0)" : "scale(0.85) translateY(20px)",
         opacity: open ? 1 : 0,
         pointerEvents: open ? "auto" : "none",
         transformOrigin: "bottom right",
       }}>
+        {/* Shimmer stripe at top of widget */}
+        <div className="aria-widget-shimmer-stripe" />
+
         {/* Header */}
         <div style={{
           padding: "16px 18px", display: "flex", alignItems: "center", justifyContent: "space-between",
-          background: "linear-gradient(135deg, #1a1408, #0d0c08)",
-          borderBottom: "1px solid rgba(212,175,55,0.10)",
+          background: "rgba(0,0,0,0.25)",
+          borderBottom: "1px solid rgba(184,144,46,0.15)",
         }}>
           <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
             <div style={{ position: "relative" }}>
-              <div style={{ width: 38, height: 38, borderRadius: 12, background: "linear-gradient(135deg, #1a1a2e, #2a2a4a)", border: "1.5px solid #b8902e", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <Bot size={20} color="#b8902e" />
+              {/* Header avatar */}
+              <div style={{
+                width: 44, height: 44, borderRadius: 14,
+                background: "linear-gradient(135deg, #0f0f1f, #2a2a4a)",
+                border: "1.5px solid #b8902e",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                boxShadow: "0 4px 12px rgba(184,144,46,0.2)",
+              }}>
+                <Bot size={22} color="#b8902e" />
               </div>
-              <div style={{ position: "absolute", bottom: -1, right: -1, width: 11, height: 11, background: "#22c55e", borderRadius: "50%", border: "2px solid #0a0808", boxShadow: "0 0 6px rgba(34,197,94,0.8)" }} />
+              {/* Green dot outside avatar */}
+              <div style={{
+                position: "absolute", top: -3, right: -3,
+                width: 13, height: 13, background: "#22c55e", borderRadius: "50%",
+                border: "2.5px solid #1a1a2e",
+                boxShadow: "0 0 6px rgba(34,197,94,0.8)",
+              }} />
             </div>
             <div>
               <div style={{ fontSize: 14, fontWeight: 700, color: "#F5F0E8", display: "flex", alignItems: "center", gap: 6 }}>
                 Aria <Sparkles size={12} color="#D4AF37" />
               </div>
-              <div style={{ fontSize: 11, color: "#8A8070" }}>SmartcoreAI · Always online</div>
+              <div style={{ fontSize: 11, color: "rgba(255,255,255,0.40)" }}>SmartcoreAI · Always online</div>
             </div>
           </div>
-          <button onClick={() => setOpen(false)} style={{ background: "rgba(255,255,255,0.06)", border: "none", borderRadius: 8, padding: "6px", color: "#8A8070", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <button
+            onClick={() => setOpen(false)}
+            style={{
+              background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.10)",
+              borderRadius: 8, padding: "6px", color: "rgba(255,255,255,0.50)",
+              cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
+              transition: "background 0.2s",
+            }}
+            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.14)"; }}
+            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.08)"; }}
+          >
             <X size={16} />
           </button>
         </div>
@@ -149,16 +190,24 @@ export default function ChatWidget() {
           {messages.map((m, i) => (
             <div key={i} style={{ display: "flex", justifyContent: m.role === "user" ? "flex-end" : "flex-start", gap: 8, alignItems: "flex-end" }}>
               {m.role === "assistant" && (
-                <div style={{ width: 28, height: 28, borderRadius: 9, background: "linear-gradient(135deg, #1a1a2e, #2a2a4a)", border: "1.5px solid #b8902e", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                  <Bot size={14} color="#b8902e" />
+                <div style={{
+                  width: 32, height: 32, borderRadius: 10,
+                  background: "linear-gradient(135deg, #0f0f1f, #2a2a4a)",
+                  border: "1.5px solid rgba(184,144,46,0.5)",
+                  display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
+                }}>
+                  <Bot size={16} color="#b8902e" />
                 </div>
               )}
               <div className="chat-bubble" style={{
                 padding: "10px 14px",
                 borderRadius: m.role === "user" ? "18px 18px 4px 18px" : "18px 18px 18px 4px",
-                background: m.role === "user" ? "linear-gradient(135deg,#B8960C,#D4AF37)" : "rgba(10,15,30,0.9)",
-                border: m.role === "assistant" ? "1px solid rgba(212,175,55,0.12)" : "none",
-                fontSize: 13, color: m.role === "user" ? "#1A1A1A" : "#F5F0E8", maxWidth: "78%", lineHeight: 1.6,
+                background: m.role === "user"
+                  ? "linear-gradient(135deg, #B8960C, #D4AF37)"
+                  : "linear-gradient(135deg, #242442, #2e2e54)",
+                border: m.role === "assistant" ? "1px solid rgba(184,144,46,0.18)" : "none",
+                fontSize: 13, color: m.role === "user" ? "#1A1A1A" : "#F0EDE8",
+                maxWidth: "78%", lineHeight: 1.6,
                 whiteSpace: "pre-wrap", wordBreak: "break-word", overflowWrap: "break-word",
               }}>{m.content}</div>
             </div>
@@ -166,10 +215,20 @@ export default function ChatWidget() {
 
           {loading && (
             <div style={{ display: "flex", alignItems: "flex-end", gap: 8 }}>
-              <div style={{ width: 28, height: 28, borderRadius: 9, background: "linear-gradient(135deg, #1a1a2e, #2a2a4a)", border: "1.5px solid #b8902e", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <Bot size={14} color="#b8902e" />
+              <div style={{
+                width: 32, height: 32, borderRadius: 10,
+                background: "linear-gradient(135deg, #0f0f1f, #2a2a4a)",
+                border: "1.5px solid rgba(184,144,46,0.5)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+              }}>
+                <Bot size={16} color="#b8902e" />
               </div>
-              <div style={{ padding: "12px 16px", borderRadius: "18px 18px 18px 4px", background: "rgba(10,15,30,0.9)", border: "1px solid rgba(212,175,55,0.12)", display: "flex", gap: 4, alignItems: "center" }}>
+              <div style={{
+                padding: "12px 16px", borderRadius: "18px 18px 18px 4px",
+                background: "linear-gradient(135deg, #242442, #2e2e54)",
+                border: "1px solid rgba(184,144,46,0.18)",
+                display: "flex", gap: 4, alignItems: "center",
+              }}>
                 {[0, 1, 2].map(j => (
                   <div key={j} style={{ width: 5, height: 5, borderRadius: "50%", background: "#D4AF37", animation: `blink 1.2s ${j * 0.2}s step-end infinite` }} />
                 ))}
@@ -182,10 +241,10 @@ export default function ChatWidget() {
               {t.chat.quickReplies.map(q => (
                 <button key={q} onClick={() => send(q)} style={{
                   padding: "8px 14px", textAlign: "left", fontSize: 12, color: "#D4AF37",
-                  background: "rgba(212,175,55,0.07)", border: "1px solid rgba(212,175,55,0.18)",
+                  background: "rgba(212,175,55,0.07)", border: "1px solid rgba(212,175,55,0.20)",
                   borderRadius: 12, cursor: "pointer", fontFamily: "inherit", transition: "all 0.2s",
                 }}
-                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "rgba(212,175,55,0.14)"; }}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "rgba(212,175,55,0.15)"; }}
                 onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "rgba(212,175,55,0.07)"; }}
                 >{q}</button>
               ))}
@@ -196,29 +255,44 @@ export default function ChatWidget() {
         </div>
 
         {/* Input */}
-        <div style={{ padding: "12px 14px", borderTop: "1px solid rgba(212,175,55,0.08)", background: "rgba(212,175,55,0.01)" }}>
-          <div style={{ display: "flex", gap: 8, alignItems: "center", background: "rgba(212,175,55,0.04)", border: "1px solid rgba(212,175,55,0.10)", borderRadius: 14, padding: "6px 8px 6px 14px" }}>
+        <div style={{
+          padding: "12px 14px",
+          borderTop: "1px solid rgba(184,144,46,0.12)",
+          background: "rgba(0,0,0,0.20)",
+        }}>
+          <div style={{
+            display: "flex", gap: 8, alignItems: "center",
+            background: "rgba(255,255,255,0.06)",
+            border: "1px solid rgba(184,144,46,0.18)",
+            borderRadius: 14, padding: "6px 8px 6px 14px",
+          }}>
             <input
               ref={inputRef}
               value={input}
               onChange={e => setInput(e.target.value)}
               onKeyDown={e => e.key === "Enter" && !e.shiftKey && send()}
               placeholder={t.chat.placeholder}
-              style={{ flex: 1, background: "transparent", border: "none", outline: "none", fontSize: 13, color: "#F5F0E8", fontFamily: "inherit" }}
+              style={{
+                flex: 1, background: "transparent", border: "none", outline: "none",
+                fontSize: 13, color: "#F5F0E8", fontFamily: "inherit",
+              }}
             />
             <button
               onClick={() => send()}
               disabled={!input.trim() || loading}
               style={{
-                width: 34, height: 34, borderRadius: 10, border: "none", cursor: input.trim() ? "pointer" : "not-allowed",
-                background: input.trim() ? "linear-gradient(135deg,#B8960C,#D4AF37)" : "rgba(212,175,55,0.06)",
+                width: 34, height: 34, borderRadius: 10, border: "none",
+                cursor: input.trim() ? "pointer" : "not-allowed",
+                background: input.trim()
+                  ? "linear-gradient(135deg, #B8960C, #D4AF37)"
+                  : "rgba(255,255,255,0.06)",
                 display: "flex", alignItems: "center", justifyContent: "center",
                 transition: "all 0.2s", flexShrink: 0,
               }}>
-              <Send size={14} color={input.trim() ? "#1A1A1A" : "#5A5248"} />
+              <Send size={14} color={input.trim() ? "#1A1A1A" : "rgba(255,255,255,0.25)"} />
             </button>
           </div>
-          <div style={{ textAlign: "center", marginTop: 8, fontSize: 10, color: "#5A5248" }}>
+          <div style={{ textAlign: "center", marginTop: 8, fontSize: 10, color: "rgba(255,255,255,0.35)" }}>
             {t.chat.poweredBy}
           </div>
         </div>
@@ -233,21 +307,52 @@ export default function ChatWidget() {
           100% { box-shadow: 0 0 0 0   rgba(34,197,94,0);   }
         }
         @keyframes aria-shimmer { 0% { left: -100%; } 100% { left: 100%; } }
-        .aria-chat-btn::before {
-          content: '';
+        @keyframes aria-widget-shimmer {
+          0%   { transform: translateX(-100%); }
+          100% { transform: translateX(400%); }
+        }
+
+        /* Shimmer stripe on the floating button (inside inner wrapper) */
+        .aria-btn-shimmer {
           position: absolute;
           top: 0; left: -100%;
           width: 100%; height: 100%;
-          background: linear-gradient(90deg, transparent, rgba(184,144,46,0.4), transparent);
-          animation: aria-shimmer 4s infinite;
+          background: linear-gradient(90deg, transparent, rgba(212,175,55,0.45), transparent);
+          animation: aria-shimmer 3.5s infinite;
           pointer-events: none;
         }
-        .aria-chat-btn:hover {
-          transform: scale(1.05) !important;
-          box-shadow: 0 12px 32px rgba(184,144,46,0.4), 0 0 0 2px rgba(184,144,46,0.5) !important;
+
+        /* Gold shimmer stripe at top of widget */
+        .aria-widget-shimmer-stripe {
+          position: absolute;
+          top: 0; left: 0; right: 0;
+          height: 2px;
+          background: linear-gradient(90deg, transparent 0%, #b8902e 30%, #D4AF37 50%, #b8902e 70%, transparent 100%);
+          overflow: hidden;
+          z-index: 5;
         }
+        .aria-widget-shimmer-stripe::after {
+          content: '';
+          position: absolute;
+          top: 0; left: 0;
+          width: 25%; height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+          animation: aria-widget-shimmer 3s 1s ease-in-out infinite;
+        }
+
+        .aria-chat-btn:hover {
+          transform: scale(1.06) !important;
+          box-shadow: 0 12px 36px rgba(184,144,46,0.45), 0 0 0 2px rgba(184,144,46,0.5) !important;
+        }
+
+        /* Scrollbar styling for messages */
+        .chat-messages::-webkit-scrollbar { width: 4px; }
+        .chat-messages::-webkit-scrollbar-track { background: transparent; }
+        .chat-messages::-webkit-scrollbar-thumb { background: rgba(184,144,46,0.3); border-radius: 2px; }
+
         @media (prefers-reduced-motion: reduce) {
-          .aria-chat-btn::before { animation: none; }
+          .aria-btn-shimmer { animation: none; }
+          .aria-widget-shimmer-stripe::after { animation: none; }
           @keyframes dot-pulse { 0%, 100% { box-shadow: none; } }
         }
         @media (max-width: 480px) {
