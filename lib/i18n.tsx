@@ -371,6 +371,16 @@ export const translations = {
       getStarted: "Book a free call →",
       bookCall: "Book a free call →",
       bottomNote: "All plans include onboarding support · 14-day money-back guarantee",
+      urgencyBarPrefix: "Only ",
+      urgencyBarSuffix: " founding-client spots available. Prices revert to standard pricing once filled.",
+      heroEyebrow: "PRICING",
+      heroHeadline1: "Simple pricing.",
+      heroHeadline2: "Real value.",
+      heroSubtitle: "No hidden costs. No long contracts. Just AI systems that pay for themselves — or your money back.",
+      trustItems: ["14-day trial", "Money-back guarantee", "Live in 7 days"],
+      foundingBadge: "Founding price",
+      planNames: ["AI Chatbot", "AI Receptionist", "Leadgen System"],
+      planTaglines: ["Your always-on chat agent", "Your AI front desk", "Your lead-generation engine"],
       plans: [
         {
           desc: "A custom-trained AI assistant that handles leads, FAQs, bookings and follow-ups — 24/7.",
@@ -810,6 +820,16 @@ export const translations = {
       getStarted: "Book en gratis samtale →",
       bookCall: "Book en gratis samtale →",
       bottomNote: "Alle planer inkluderer onboardingstøtte · 14-dagers pengene-tilbake-garanti",
+      urgencyBarPrefix: "Kun ",
+      urgencyBarSuffix: " grunnleggerplasser tilgjengelig. Prisene går tilbake til standardpris når fylt.",
+      heroEyebrow: "PRISER",
+      heroHeadline1: "Enkle priser.",
+      heroHeadline2: "Ekte verdi.",
+      heroSubtitle: "Ingen skjulte kostnader. Ingen lange kontrakter. Bare AI-systemer som betaler seg selv — eller pengene tilbake.",
+      trustItems: ["14 dagers prøveperiode", "Pengene tilbake-garanti", "Live på 7 dager"],
+      foundingBadge: "Grunnleggerplasser",
+      planNames: ["AI Chatbot", "AI Resepsjonist", "Leadgen System"],
+      planTaglines: ["Din 24/7 chatassistent", "Din alltid-på-jobb resepsjonist", "Din automatiske leadmaskin"],
       plans: [
         {
           desc: "En skreddersydd AI-assistent som håndterer leads, spørsmål, bookinger og oppfølging — 24/7.",
