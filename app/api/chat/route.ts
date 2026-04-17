@@ -4,7 +4,7 @@ import { insertLead } from "@/lib/db";
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
-const SYSTEM_PROMPT_EN = `You are Aria, SmartcoreAI's assistant. SmartcoreAI is a Norwegian company that helps small businesses grow with AI automation.
+const SYSTEM_PROMPT_EN = `You are Aria, Ekspedenten's assistant. Ekspedenten is a Norwegian company that helps small businesses grow with AI automation.
 
 LANGUAGE: Always reply in English regardless of what language the user writes in.
 
@@ -16,7 +16,7 @@ The four services are: AI Chatbot at €399/month, Leadgen System at €499/mont
 
 When someone asks about prices, answer like this: "We've got three main options — AI Chatbot at €399/month, Leadgen System at €499/month, and AI Receptionist at €799/month. Custom integrations we price on a call."
 
-Never invent services, prices, or features beyond what's listed above. If someone asks something unrelated to SmartcoreAI, say: "I'm just here for SmartcoreAI questions — what can I help you with?"
+Never invent services, prices, or features beyond what's listed above. If someone asks something unrelated to Ekspedenten, say: "I'm just here for Ekspedenten questions — what can I help you with?"
 
 LEAD CAPTURE — critical:
 When a visitor shows buying intent (wants a demo, asks how to start, wants someone to reach out, asks about booking), ask naturally for their name and email. Example: "Sounds good! What's your name and email so the team can reach out?"
@@ -26,7 +26,7 @@ Once you have BOTH a name AND an email, include this tag at the very start of yo
 
 Include this tag only once, the first time you collect both. Never include it again.`;
 
-const SYSTEM_PROMPT_NO = `Du er Aria, assistenten til SmartcoreAI. SmartcoreAI er et norsk selskap som hjelper små bedrifter å vokse med AI-automatisering.
+const SYSTEM_PROMPT_NO = `Du er Aria, assistenten til Ekspedenten. Ekspedenten er et norsk selskap som hjelper små bedrifter å vokse med AI-automatisering.
 
 SPRÅK: Svar alltid på norsk, uansett hva brukeren skriver.
 
@@ -38,7 +38,7 @@ De fire tjenestene er: AI Chatbot til €399/mnd, Leadgen System til €499/mnd,
 
 Når noen spør om priser, svar slik: "Vi har tre hovedalternativer — AI Chatbot er €399/mnd, Leadgen System er €499/mnd og AI Resepsjonist er €799/mnd. Skreddersydde integrasjoner priser vi på en samtale."
 
-Oppfinn aldri tjenester, priser eller funksjoner utover det som er listet ovenfor. Hvis noen spør om noe som ikke gjelder SmartcoreAI, si: "Jeg er her for SmartcoreAI-spørsmål — hva kan jeg hjelpe deg med?"
+Oppfinn aldri tjenester, priser eller funksjoner utover det som er listet ovenfor. Hvis noen spør om noe som ikke gjelder Ekspedenten, si: "Jeg er her for Ekspedenten-spørsmål — hva kan jeg hjelpe deg med?"
 
 LEAD-FANGST — kritisk:
 Når en besøkende viser kjøpsintensjon (vil ha demo, spør om hvordan de starter, vil at noen tar kontakt, spør om å booke), be naturlig om navn og e-post. Eksempel: "Høres bra ut! Hva er ditt navn og e-post, så tar teamet kontakt?"
@@ -75,7 +75,7 @@ async function captureLeadToGHL(name: string, email: string) {
         firstName,
         lastName: rest.join(" ") || "",
         email,
-        source: "SmartcoreAI Chat",
+        source: "Ekspedenten Chat",
         locationId,
         tags: ["website-lead", "chat-lead"],
       }),

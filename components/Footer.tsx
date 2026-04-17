@@ -34,7 +34,7 @@ export default function Footer() {
             <a href="/" style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", marginBottom: 16 }}>
               <Image
                 src="/logo-transparent.png"
-                alt="SmartcoreAI logo"
+                alt="Ekspedenten logo"
                 height={36} width={36}
                 style={{ width: "auto", height: 36, objectFit: "contain" }}
               />
@@ -42,7 +42,7 @@ export default function Footer() {
                 fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif",
                 fontWeight: 700, fontSize: 17, color: "#1a1a2e", letterSpacing: "-0.02em",
               }}>
-                Smartcore<span style={{ color: "#b8902e" }}>AI</span>
+                Ekspedenten
               </span>
             </a>
 
@@ -94,7 +94,7 @@ export default function Footer() {
               href="https://www.linkedin.com/company/smart-coreai/"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="SmartcoreAI on LinkedIn"
+              aria-label="Ekspedenten on LinkedIn"
               style={{
                 display: "inline-flex", alignItems: "center", justifyContent: "center",
                 width: 44, height: 44, borderRadius: 12,
@@ -147,7 +147,7 @@ export default function Footer() {
       }}
     >
       <span style={{ fontSize: 13, color: "rgba(255,255,255,0.5)" }}>
-        © {new Date().getFullYear()} SmartcoreAI. {f.rights}
+        © {new Date().getFullYear()} Ekspedenten. {f.rights}
       </span>
       <a
         href="/privacy"

@@ -42,7 +42,7 @@ export default function Navbar() {
           <a href="/" style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", flexShrink: 0 }}>
             <Image
               src="/logo-transparent.png"
-              alt="SmartcoreAI logo"
+              alt="Ekspedenten logo"
               height={36} width={36}
               style={{ width: "auto", height: 36, objectFit: "contain" }}
             />
@@ -53,7 +53,7 @@ export default function Navbar() {
               color: "#1a1a2e",
               letterSpacing: "-0.02em",
             }}>
-              Smartcore<span style={{ color: "#b8902e" }}>AI</span>
+              Ekspedenten
             </span>
           </a>
 

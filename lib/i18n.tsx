@@ -36,7 +36,7 @@ export const translations = {
         { icon: "🤖", text: "AI responding",     sub: "24/7 active" },
       ],
       headlineNew: "Your clinic's new receptionist works 24/7 — and never needs time off.",
-      subNew: "SmartcoreAI builds AI receptionists, chatbots and follow-up systems for service businesses. Live in 7 days.",
+      subNew: "Ekspedenten builds AI receptionists, chatbots and follow-up systems for service businesses. Live in 7 days.",
       trustLine: "14-day free trial · No lock-in · Money-back guarantee",
     },
     problem: {
@@ -148,7 +148,7 @@ export const translations = {
       cards: [
         { title: "GDPR-compliant", desc: "All data is processed in accordance with GDPR. Stored in the EU." },
         { title: "Encrypted storage", desc: "End-to-end encryption. Your data is safe." },
-        { title: "Norwegian org. no.", desc: "SmartcoreAI is a Norwegian registered company." },
+        { title: "Norwegian org. no.", desc: "Ekspedenten is a Norwegian registered company." },
         { title: "You own the data", desc: "All customer data belongs to you. Export at any time." },
       ],
     },
@@ -275,7 +275,7 @@ export const translations = {
     },
     faq: {
       title: "Frequently Asked Questions",
-      subtitle: "Everything you need to know about how SmartcoreAI works.",
+      subtitle: "Everything you need to know about how Ekspedenten works.",
       sections: [
         {
           q: "GDPR and data handling — where is data stored?",
@@ -349,7 +349,7 @@ export const translations = {
       successDesc: "We'll be in touch within 4 hours. Check your inbox.",
       sendAnother: "Send another",
       errorTitle: "Something went wrong.",
-      errorDesc: "Please try again or email us at hei@smartcoreai.no",
+      errorDesc: "Please try again or email us at hei@ekspedenten.no",
       responseNote: "We respond within 4 hours during business hours.",
     },
     footer: {
@@ -367,10 +367,10 @@ export const translations = {
       },
     },
     chat: {
-      welcome: "Hey! I'm Aria, SmartcoreAI's assistant 👋\n\nI can tell you about our services and pricing, or help you figure out which solution fits your business best.\n\nWhat can I help you with?",
+      welcome: "Hey! I'm Aria, Ekspedenten's assistant 👋\n\nI can tell you about our services and pricing, or help you figure out which solution fits your business best.\n\nWhat can I help you with?",
       quickReplies: ["What services do you offer?", "How much does it cost?", "How fast can we get started?"],
       placeholder: "Ask me anything...",
-      poweredBy: "Powered by SmartcoreAI · responses may vary",
+      poweredBy: "Powered by Ekspedenten · responses may vary",
     },
     pricingPage: {
       back: "← Back",
@@ -405,11 +405,11 @@ export const translations = {
       },
       compare: {
         eyebrow: "COMPARISON",
-        headline: "With SmartcoreAI vs. without",
+        headline: "With Ekspedenten vs. without",
         subtitle: "Real differences for your business — no buzzwords.",
         colArea: "Area",
         colWithout: "Without AI",
-        colWith: "With SmartcoreAI",
+        colWith: "With Ekspedenten",
         rows: [
           { area: "Availability",         without: "Business hours",           with: "24/7 without stopping"     },
           { area: "Lead response time",   without: "Hours — days",             with: "Under 2 seconds"           },
@@ -453,24 +453,24 @@ export const translations = {
         tag: "Our story",
         headline1: "Two best friends.",
         headline2: "One mission.",
-        subtext: "We started SmartcoreAI because we saw the same problem everywhere: small and mid-sized businesses were being left behind in the AI revolution.",
+        subtext: "We started Ekspedenten because we saw the same problem everywhere: small and mid-sized businesses were being left behind in the AI revolution.",
       },
       team: {
         tag: "The team",
-        headline: "The people behind SmartcoreAI",
+        headline: "The people behind Ekspedenten",
         members: [
           {
             name: "Henrik Andreassen Bøe",
             role: "CO-FOUNDER & CEO",
-            bio: "Entrepreneur from Bergen, focused on making technology deliver real results — not just impress. Co-founded SmartcoreAI with Aleksander after seeing how many businesses pay for AI that never delivers. Runs the commercial side: client relations, strategy, growth.",
-            email: "henrik@smartcoreai.no",
+            bio: "Entrepreneur from Bergen, focused on making technology deliver real results — not just impress. Co-founded Ekspedenten with Aleksander after seeing how many businesses pay for AI that never delivers. Runs the commercial side: client relations, strategy, growth.",
+            email: "henrik@ekspedenten.no",
             linkedin: "https://www.linkedin.com/in/henrik-andreassen-b%C3%B8e",
           },
           {
             name: "Aleksander Nordeide Bjørndal",
             role: "CO-FOUNDER & CTO",
-            bio: "Self-taught developer from Bergen with a passion for building AI systems that actually work. Co-founded SmartcoreAI with Henrik because he was tired of seeing businesses pay for technology that never delivered. Runs the technical side: building, integrations, AI training.",
-            email: "aleksander@smartcoreai.no",
+            bio: "Self-taught developer from Bergen with a passion for building AI systems that actually work. Co-founded Ekspedenten with Henrik because he was tired of seeing businesses pay for technology that never delivered. Runs the technical side: building, integrations, AI training.",
+            email: "aleksander@ekspedenten.no",
             linkedin: "https://www.linkedin.com/in/aleksander-bj%C3%B8rndal/",
           },
         ],
@@ -479,8 +479,8 @@ export const translations = {
         tag: "Our story",
         headline: "How we got here",
         paragraphs: [
-          "SmartcoreAI was founded in 2026 in Bergen, Norway by two best friends who saw the same problem everywhere: small and mid-sized businesses were being left behind in the AI revolution. Enterprises had the budgets. For everyone else, AI was a luxury they couldn't afford.",
-          "We built SmartcoreAI to change that. No six-month implementation projects. No technical jargon. Just AI systems that plug into your business and start working — in days, not months.",
+          "Ekspedenten was founded in 2026 in Bergen, Norway by two best friends who saw the same problem everywhere: small and mid-sized businesses were being left behind in the AI revolution. Enterprises had the budgets. For everyone else, AI was a luxury they couldn't afford.",
+          "We built Ekspedenten to change that. No six-month implementation projects. No technical jargon. Just AI systems that plug into your business and start working — in days, not months.",
           "Our model is built on commitment. A one-time setup fee, a fixed monthly price, and a minimum three-month partnership — because real results take time to compound. We don't sell quick fixes. We build systems that grow with you.",
           "Today we build AI chatbots, lead generation systems, and AI receptionists for Scandinavian B2C businesses — everything from automated booking to lead qualification running 24/7.",
           "Our team is lean by choice. We'd rather build fewer systems that actually drive revenue than sell dashboards nobody opens. We only work with businesses where AI can deliver a measurable return, because focus is how you build trust.",
@@ -507,7 +507,7 @@ export const translations = {
       labelHours: "How many hours do you spend on booking and follow-up per week?",
       resultsTitle: "Your savings estimate",
       resultHeading: "You can save",
-      resultSuffix: "per year with SmartcoreAI",
+      resultSuffix: "per year with Ekspedenten",
       resultBookings: "Bookings recovered",
       resultBookingsUnit: "per month",
       resultRevenue: "Extra revenue",
@@ -550,7 +550,7 @@ export const translations = {
         { icon: "🤖", text: "AI svarer",          sub: "24/7 aktiv" },
       ],
       headlineNew: "Klinikkens nye resepsjonist jobber 24/7 — og trenger aldri fri.",
-      subNew: "SmartcoreAI bygger AI-resepsjonister, chatboter og oppfølgingssystemer for norske servicebedrifter. Live på 7 dager.",
+      subNew: "Ekspedenten bygger AI-resepsjonister, chatboter og oppfølgingssystemer for norske servicebedrifter. Live på 7 dager.",
       trustLine: "14 dagers gratis prøveperiode · Ingen bindingstid · Pengene tilbake-garanti",
     },
     problem: {
@@ -662,7 +662,7 @@ export const translations = {
       cards: [
         { title: "GDPR-kompatibel", desc: "All data behandles i henhold til GDPR. Lagret i EU." },
         { title: "Kryptert lagring", desc: "Ende-til-ende-kryptering. Dine data er trygge." },
-        { title: "Norsk org.nr.", desc: "SmartcoreAI er et norskregistrert selskap." },
+        { title: "Norsk org.nr.", desc: "Ekspedenten er et norskregistrert selskap." },
         { title: "Du eier dataene", desc: "All kundedata tilhører deg. Eksportér når som helst." },
       ],
     },
@@ -789,7 +789,7 @@ export const translations = {
     },
     faq: {
       title: "Ofte stilte spørsmål",
-      subtitle: "Alt du trenger å vite om hvordan SmartcoreAI fungerer.",
+      subtitle: "Alt du trenger å vite om hvordan Ekspedenten fungerer.",
       sections: [
         {
           q: "GDPR og datahåndtering — hvor lagres dataene?",
@@ -863,7 +863,7 @@ export const translations = {
       successDesc: "Vi tar kontakt innen 4 timer. Sjekk innboksen din.",
       sendAnother: "Send en ny",
       errorTitle: "Noe gikk galt.",
-      errorDesc: "Prøv igjen eller send e-post til hei@smartcoreai.no",
+      errorDesc: "Prøv igjen eller send e-post til hei@ekspedenten.no",
       responseNote: "Vi svarer innen 4 timer i arbeidstiden.",
     },
     footer: {
@@ -881,10 +881,10 @@ export const translations = {
       },
     },
     chat: {
-      welcome: "Hei! Jeg er Aria, SmartcoreAI sin assistent 👋\n\nJeg kan fortelle deg om tjenestene og prisene våre, eller hjelpe deg å finne ut hvilken løsning som passer best for din bedrift.\n\nHva kan jeg hjelpe deg med?",
+      welcome: "Hei! Jeg er Aria, Ekspedenten sin assistent 👋\n\nJeg kan fortelle deg om tjenestene og prisene våre, eller hjelpe deg å finne ut hvilken løsning som passer best for din bedrift.\n\nHva kan jeg hjelpe deg med?",
       quickReplies: ["Hvilke tjenester tilbyr dere?", "Hva koster det?", "Hvor raskt kan vi starte?"],
       placeholder: "Spør meg om hva som helst...",
-      poweredBy: "Drevet av SmartcoreAI · svar kan variere",
+      poweredBy: "Drevet av Ekspedenten · svar kan variere",
     },
     pricingPage: {
       back: "← Tilbake",
@@ -919,11 +919,11 @@ export const translations = {
       },
       compare: {
         eyebrow: "SAMMENLIGNING",
-        headline: "Med SmartcoreAI vs. uten",
+        headline: "Med Ekspedenten vs. uten",
         subtitle: "Ekte forskjeller for din bedrift — ikke floskler.",
         colArea: "Område",
         colWithout: "Uten AI",
-        colWith: "Med SmartcoreAI",
+        colWith: "Med Ekspedenten",
         rows: [
           { area: "Tilgjengelighet",                 without: "Åpningstider",            with: "24/7 uten stopp"           },
           { area: "Responstid på leads",             without: "Timer — dager",           with: "Under 2 sekunder"          },
@@ -967,24 +967,24 @@ export const translations = {
         tag: "Vår historie",
         headline1: "To bestekamerater.",
         headline2: "Én misjon.",
-        subtext: "Vi startet SmartcoreAI fordi vi så det samme problemet overalt: små og mellomstore bedrifter ble etterlatt i AI-revolusjonen.",
+        subtext: "Vi startet Ekspedenten fordi vi så det samme problemet overalt: små og mellomstore bedrifter ble etterlatt i AI-revolusjonen.",
       },
       team: {
         tag: "Teamet",
-        headline: "Menneskene bak SmartcoreAI",
+        headline: "Menneskene bak Ekspedenten",
         members: [
           {
             name: "Henrik Andreassen Bøe",
             role: "MEDGRÜNDER & CEO",
-            bio: "Entreprenør fra Bergen, opptatt av at teknologi faktisk skal skape resultater — ikke bare imponere. Grunnla SmartcoreAI sammen med Aleksander etter å ha sett hvor mange bedrifter som betaler for AI som aldri leverer. Driver det kommersielle: kundekontakt, strategi, vekst.",
-            email: "henrik@smartcoreai.no",
+            bio: "Entreprenør fra Bergen, opptatt av at teknologi faktisk skal skape resultater — ikke bare imponere. Grunnla Ekspedenten sammen med Aleksander etter å ha sett hvor mange bedrifter som betaler for AI som aldri leverer. Driver det kommersielle: kundekontakt, strategi, vekst.",
+            email: "henrik@ekspedenten.no",
             linkedin: "https://www.linkedin.com/in/henrik-andreassen-b%C3%B8e",
           },
           {
             name: "Aleksander Nordeide Bjørndal",
             role: "MEDGRÜNDER & CTO",
-            bio: "Selvlært utvikler fra Bergen med en lidenskap for å bygge AI-systemer som faktisk fungerer. Grunnla SmartcoreAI sammen med Henrik fordi han var lei av å se bedrifter betale for teknologi som aldri leverte. Driver det tekniske: bygging, integrasjoner, AI-trening.",
-            email: "aleksander@smartcoreai.no",
+            bio: "Selvlært utvikler fra Bergen med en lidenskap for å bygge AI-systemer som faktisk fungerer. Grunnla Ekspedenten sammen med Henrik fordi han var lei av å se bedrifter betale for teknologi som aldri leverte. Driver det tekniske: bygging, integrasjoner, AI-trening.",
+            email: "aleksander@ekspedenten.no",
             linkedin: "https://www.linkedin.com/in/aleksander-bj%C3%B8rndal/",
           },
         ],
@@ -993,8 +993,8 @@ export const translations = {
         tag: "Vår historie",
         headline: "Slik startet det",
         paragraphs: [
-          "SmartcoreAI ble grunnlagt i 2026 i Bergen, Norge av to bestekamerater som så det samme problemet overalt: små og mellomstore bedrifter ble etterlatt i AI-revolusjonen. De store selskapene hadde budsjettene. For alle andre var AI en luksus de ikke hadde råd til.",
-          "Vi bygde SmartcoreAI for å endre det. Ingen seks måneders implementeringsprosjekter. Ingen teknisk sjargong. Bare AI-systemer som kobles inn i bedriften din og begynner å jobbe — på dager, ikke måneder.",
+          "Ekspedenten ble grunnlagt i 2026 i Bergen, Norge av to bestekamerater som så det samme problemet overalt: små og mellomstore bedrifter ble etterlatt i AI-revolusjonen. De store selskapene hadde budsjettene. For alle andre var AI en luksus de ikke hadde råd til.",
+          "Vi bygde Ekspedenten for å endre det. Ingen seks måneders implementeringsprosjekter. Ingen teknisk sjargong. Bare AI-systemer som kobles inn i bedriften din og begynner å jobbe — på dager, ikke måneder.",
           "Modellen vår er bygget på forpliktelse: et engangs oppsettgebyr, en fast månedspris, og et minimum tre måneders samarbeid — fordi ekte resultater tar tid. Vi selger ikke raske løsninger. Vi bygger systemer som vokser med deg.",
           "I dag bygger vi AI-chatboter, leadgenereringssystemer og AI-resepsjonister for skandinaviske B2C-bedrifter — alt fra automatisert booking til leadkvalifisering som kjører 24/7.",
           "Teamet vårt er lite med vilje. Vi bygger heller færre systemer som faktisk driver inntekter, enn å selge dashboards ingen åpner. Vi jobber kun med bedrifter der AI kan levere målbar avkastning, fordi fokus er slik man bygger tillit.",
@@ -1021,7 +1021,7 @@ export const translations = {
       labelHours: "Hvor mange timer bruker dere på booking og oppfølging per uke?",
       resultsTitle: "Ditt besparingsestimat",
       resultHeading: "Du kan spare",
-      resultSuffix: "per år med SmartcoreAI",
+      resultSuffix: "per år med Ekspedenten",
       resultBookings: "Tapte bookinger gjenvunnet",
       resultBookingsUnit: "stk/måned",
       resultRevenue: "Ekstra inntekt",

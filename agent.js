@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// SmartcoreAI Website Agent
+// Ekspedenten Website Agent
 // Usage:
 //   node agent.js fix                    — auto-fix incorrect services/prices
 //   node agent.js check                  — scan for problems
@@ -220,7 +220,7 @@ WRONG services that must NEVER appear on the site:
   - Any price for the above services that differs from the list above
 `;
 
-const FIX_SYSTEM = `You are the Content Agent for SmartcoreAI's website (Next.js 14, TypeScript).
+const FIX_SYSTEM = `You are the Content Agent for Ekspedenten's website (Next.js 14, TypeScript).
 Your job: scan ALL source files and fix any incorrect service names or prices.
 
 ${CORRECT_SERVICES}
@@ -237,7 +237,7 @@ Process:
 
 End with a summary of all files changed (or "No issues found" if everything was correct).`;
 
-const CHECK_SYSTEM = `You are the QA Agent for SmartcoreAI's website.
+const CHECK_SYSTEM = `You are the QA Agent for Ekspedenten's website.
 Perform a thorough audit and report every issue you find.
 
 Checks to run:
@@ -256,7 +256,7 @@ Format your report as:
 
 End with: OVERALL: PASS or OVERALL: FAIL (N issues found)`;
 
-const UPDATE_SYSTEM = `You are the Update Agent for SmartcoreAI's website (Next.js 14, TypeScript).
+const UPDATE_SYSTEM = `You are the Update Agent for Ekspedenten's website (Next.js 14, TypeScript).
 You receive a plain-English instruction and apply that exact change across all relevant files.
 
 ${CORRECT_SERVICES}
@@ -274,7 +274,7 @@ async function main() {
   const [, , command, ...rest] = process.argv;
 
   const HELP = `
-SmartcoreAI Website Agent
+Ekspedenten Website Agent
 ─────────────────────────
 Commands:
   node agent.js fix                     Auto-fix incorrect services and prices
@@ -293,7 +293,7 @@ Examples:
     process.exit(0);
   }
 
-  console.log(`\n🤖 SmartcoreAI Agent — mode: ${command}`);
+  console.log(`\n🤖 Ekspedenten Agent — mode: ${command}`);
   console.log("─".repeat(60));
 
   switch (command) {

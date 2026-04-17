@@ -6,8 +6,8 @@ import Footer from "@/components/Footer";
 const SECTIONS = [
   {
     title: "1. Hvem vi er",
-    body: "SmartcoreAI er et norskregistrert selskap (org.nr: under registrering) som leverer AI-baserte kommunikasjons- og bookingsystemer til norske bedrifter. Vi har ansvar for behandlingen av personopplysningene som samles inn via denne nettsiden og våre tjenester.",
-    contact: "Kontakt: aleksander@smartcoreai.no",
+    body: "Ekspedenten er et norskregistrert selskap (org.nr: under registrering) som leverer AI-baserte kommunikasjons- og bookingsystemer til norske bedrifter. Vi har ansvar for behandlingen av personopplysningene som samles inn via denne nettsiden og våre tjenester.",
+    contact: "Kontakt: aleksander@ekspedenten.no",
   },
   {
     title: "2. Hvilke data vi samler inn",
@@ -67,7 +67,7 @@ const SECTIONS = [
   {
     title: "9. Kontakt oss",
     body: "Har du spørsmål om personvern, ønsker innsyn i dine data, eller vil utøve noen av rettighetene dine? Ta kontakt med oss på:",
-    contact: "aleksander@smartcoreai.no",
+    contact: "aleksander@ekspedenten.no",
   },
 ];
 

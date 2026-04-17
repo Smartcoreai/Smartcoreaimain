@@ -62,7 +62,7 @@ export default function ChatWidget() {
       const data = await res.json();
       setMessages([...newMessages, { role: "assistant", content: data.reply }]);
     } catch {
-      setMessages([...newMessages, { role: "assistant", content: "Sorry, something went wrong. Please try again or email us at hei@smartcoreai.no" }]);
+      setMessages([...newMessages, { role: "assistant", content: "Sorry, something went wrong. Please try again or email us at hei@ekspedenten.no" }]);
     } finally {
       setLoading(false);
     }
@@ -167,7 +167,7 @@ export default function ChatWidget() {
               <div style={{ fontSize: 14, fontWeight: 700, color: "#F5F0E8", display: "flex", alignItems: "center", gap: 6 }}>
                 Aria <Sparkles size={12} color="#D4AF37" />
               </div>
-              <div style={{ fontSize: 11, color: "rgba(255,255,255,0.40)" }}>SmartcoreAI · Always online</div>
+              <div style={{ fontSize: 11, color: "rgba(255,255,255,0.40)" }}>Ekspedenten · Always online</div>
             </div>
           </div>
           <button

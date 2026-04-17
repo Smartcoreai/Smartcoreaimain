@@ -22,8 +22,8 @@ export async function POST(req: NextRequest) {
     try {
       const resend = new Resend(apiKey);
       await resend.emails.send({
-        from: "SmartcoreAI <onboarding@resend.dev>",
-        to: process.env.CONTACT_EMAIL || "hei@smartcoreai.no",
+        from: "Ekspedenten <onboarding@resend.dev>",
+        to: process.env.CONTACT_EMAIL || "hei@ekspedenten.no",
         subject: `New enquiry from ${name}`,
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
             <h3 style="color: #333; margin-bottom: 8px;">Message</h3>
             <p style="color: #444; line-height: 1.6;">${message.replace(/\n/g, "<br>")}</p>
             <hr style="margin: 24px 0; border: none; border-top: 1px solid #eee;" />
-            <p style="color: #999; font-size: 12px;">Sent from smartcoreai.com contact form</p>
+            <p style="color: #999; font-size: 12px;">Sent from ekspedenten.no contact form</p>
           </div>
         `,
       });
@@ -76,7 +76,7 @@ export async function POST(req: NextRequest) {
           email,
           phone: phone || undefined,
           companyName: business || "",
-          source: "SmartcoreAI Website",
+          source: "Ekspedenten Website",
           locationId,
           tags: ["website-lead", "website-inquiry"],
         }),

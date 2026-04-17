@@ -6,15 +6,15 @@ import ForceScrollTop from "@/components/ForceScrollTop";
 import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "SmartcoreAI — AI-Powered Growth Systems for Modern Businesses",
-  description: "AI chatbots, booking automation, CRM systems, and custom integrations. Built for businesses that move fast. Starting at $399/month.",
+  title: "Ekspedenten — AI-resepsjonist for klinikker og servicebedrifter",
+  description: "Ekspedenten bygger AI-resepsjonister, chatboter og bookingsystemer for norske servicebedrifter. Live på 7 dager.",
   icons: {
     icon: "/favicon.ico",
     apple: "/logo-transparent.png",
   },
   openGraph: {
-    title: "SmartcoreAI — AI-Powered Growth Systems",
-    description: "Chatbots, booking automation, CRM systems. Built for businesses that move fast.",
+    title: "Ekspedenten — AI-resepsjonist for servicebedrifter",
+    description: "AI-resepsjonister og bookingsystemer for norske servicebedrifter.",
     type: "website",
   },
 };
