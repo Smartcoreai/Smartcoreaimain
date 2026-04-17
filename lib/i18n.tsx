@@ -155,7 +155,7 @@ export const translations = {
     finalCta: {
       headline: "Ready to let AI do the work?",
       subtitle: "Book a no-obligation call. We'll show you exactly what we can build for your business — and you decide if it's worth it.",
-      cta: "Book a free call →",
+      cta: "Book a free call",
       trustLine: "No lock-in · 14-day money-back guarantee · Response within 4 hours",
     },
     ticker: [
@@ -397,8 +397,8 @@ export const translations = {
       setupFee: "kr 10,000 one-time setup",
       setupFeeCustom: "Setup fee by agreement",
       priceCustom: "Custom quote for every project",
-      getStarted: "Book a free call →",
-      bookCall: "Book a free call →",
+      getStarted: "Book a free call",
+      bookCall: "Book a free call",
       bottomNote: "All plans include onboarding support · 14-day money-back guarantee",
       urgencyBarPrefix: "Only ",
       urgencyBarSuffix: " founding-client spots available. Prices revert to standard pricing once filled.",
@@ -684,7 +684,7 @@ export const translations = {
     finalCta: {
       headline: "Klar til å la AI gjøre jobben?",
       subtitle: "Book en uforpliktende samtale. Vi viser deg nøyaktig hva vi kan bygge for din bedrift — og du bestemmer om det er verdt det.",
-      cta: "Book en gratis samtale →",
+      cta: "Book en gratis samtale",
       trustLine: "Ingen bindingstid · 14 dagers pengene-tilbake-garanti · Svar innen 4 timer",
     },
     ticker: [
@@ -926,8 +926,8 @@ export const translations = {
       setupFee: "kr 10 000 engangsoppsett",
       setupFeeCustom: "Oppsettgebyr avtales",
       priceCustom: "Skreddersydd pris for hvert prosjekt",
-      getStarted: "Book en gratis samtale →",
-      bookCall: "Book en gratis samtale →",
+      getStarted: "Book en gratis samtale",
+      bookCall: "Book en gratis samtale",
       bottomNote: "Alle planer inkluderer onboardingstøtte · 14-dagers pengene-tilbake-garanti",
       urgencyBarPrefix: "Kun ",
       urgencyBarSuffix: " grunnleggerplasser tilgjengelig. Prisene går tilbake til standardpris når fylt.",

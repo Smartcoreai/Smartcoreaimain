@@ -138,6 +138,9 @@ function PhoneMockup() {
       maxWidth: 278,
       margin: "0 auto",
       filter: "drop-shadow(0 28px 56px rgba(26,26,46,0.16)) drop-shadow(0 8px 16px rgba(0,0,0,0.08))",
+      /* Fixed height so phone never resizes as messages animate */
+      height: 560,
+      overflow: "hidden",
     }}>
       {/* Phone shell — always stationary */}
       <div style={{
@@ -202,13 +205,14 @@ function PhoneMockup() {
             </div>
           </div>
 
-          {/* Messages */}
+          {/* Messages — fixed height, never grows */}
           <div style={{
             padding: "12px 10px",
             display: "flex",
             flexDirection: "column",
             gap: 7,
-            minHeight: 270,
+            height: 390,
+            overflow: "hidden",
           }}>
             <ChatBubble msg={CHAT_MSGS[0]} visible={phase >= 1} />
 
