@@ -138,9 +138,6 @@ function PhoneMockup() {
       maxWidth: 278,
       margin: "0 auto",
       filter: "drop-shadow(0 28px 56px rgba(26,26,46,0.16)) drop-shadow(0 8px 16px rgba(0,0,0,0.08))",
-      /* Fixed height so phone never resizes as messages animate */
-      height: 560,
-      overflow: "hidden",
     }}>
       {/* Phone shell — always stationary */}
       <div style={{
@@ -205,27 +202,26 @@ function PhoneMockup() {
             </div>
           </div>
 
-          {/* Messages — fixed height, never grows */}
+          {/* Messages */}
           <div style={{
             padding: "12px 10px",
             display: "flex",
             flexDirection: "column",
             gap: 7,
-            height: 390,
-            overflow: "hidden",
+            minHeight: 270,
           }}>
             <ChatBubble msg={CHAT_MSGS[0]} visible={phase >= 1} />
 
-            {/* Aria typing 1 */}
+            {/* Aria typing 1 — scaleY so layout height never changes */}
             <div style={{
               alignSelf: "flex-start",
               background: "#ffffff",
               borderRadius: "4px 14px 14px 14px",
               boxShadow: "0 1px 4px rgba(0,0,0,0.07)",
-              maxHeight: phase === 2 ? 40 : 0,
               opacity: phase === 2 ? 1 : 0,
-              overflow: "hidden",
-              transition: "max-height 0.25s ease, opacity 0.25s ease",
+              transform: phase === 2 ? "scaleY(1)" : "scaleY(0)",
+              transformOrigin: "top left",
+              transition: "opacity 0.25s ease, transform 0.25s ease",
             }}>
               <TypingDots />
             </div>
@@ -233,16 +229,16 @@ function PhoneMockup() {
             <ChatBubble msg={CHAT_MSGS[1]} visible={phase >= 3} />
             <ChatBubble msg={CHAT_MSGS[2]} visible={phase >= 4} />
 
-            {/* Aria typing 2 */}
+            {/* Aria typing 2 — scaleY so layout height never changes */}
             <div style={{
               alignSelf: "flex-start",
               background: "#ffffff",
               borderRadius: "4px 14px 14px 14px",
               boxShadow: "0 1px 4px rgba(0,0,0,0.07)",
-              maxHeight: phase === 5 ? 40 : 0,
               opacity: phase === 5 ? 1 : 0,
-              overflow: "hidden",
-              transition: "max-height 0.25s ease, opacity 0.25s ease",
+              transform: phase === 5 ? "scaleY(1)" : "scaleY(0)",
+              transformOrigin: "top left",
+              transition: "opacity 0.25s ease, transform 0.25s ease",
             }}>
               <TypingDots />
             </div>
