@@ -145,6 +145,8 @@ function PhoneMockup() {
         borderRadius: 40,
         padding: "10px 10px 16px",
         border: "1px solid rgba(255,255,255,0.06)",
+        maxHeight: 520,
+        overflow: "hidden",
       }}>
         {/* Status bar */}
         <div style={{
@@ -208,7 +210,8 @@ function PhoneMockup() {
             display: "flex",
             flexDirection: "column",
             gap: 7,
-            minHeight: 270,
+            minHeight: 220,
+            overflow: "hidden",
           }}>
             <ChatBubble msg={CHAT_MSGS[0]} visible={phase >= 1} />
 
