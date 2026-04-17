@@ -6,7 +6,6 @@ import ChatWidget from "@/components/ChatWidget";
 import ScrollReveal from "@/components/ScrollReveal";
 import { useLanguage } from "@/lib/i18n";
 import { Mail, MapPin, Target, BarChart2, Users } from "lucide-react";
-import Script from "next/script";
 
 const TEAM_META = [
   { image: "/team/henrik.png" },
@@ -342,8 +341,6 @@ export default function AboutPage() {
 
       <Footer />
 
-      <Script src="https://assets.calendly.com/assets/external/widget.css" strategy="lazyOnload" />
-      <Script src="https://assets.calendly.com/assets/external/widget.js" strategy="lazyOnload" />
       <ChatWidget />
 
       <style>{`

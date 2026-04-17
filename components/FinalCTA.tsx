@@ -1,5 +1,4 @@
 "use client";
-import Script from "next/script";
 import ScrollReveal from "@/components/ScrollReveal";
 import { useLanguage } from "@/lib/i18n";
 
@@ -9,9 +8,6 @@ export default function FinalCTA() {
 
   return (
     <section style={{ background: "#f7f6f1", padding: "108px 24px" }}>
-      <Script src="https://assets.calendly.com/assets/external/widget.css" strategy="lazyOnload" />
-      <Script src="https://assets.calendly.com/assets/external/widget.js" strategy="lazyOnload" />
-
       <div className="wrap">
         <ScrollReveal>
           <div style={{ textAlign: "center", maxWidth: 640, margin: "0 auto" }}>
