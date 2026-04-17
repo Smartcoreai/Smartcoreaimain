@@ -3,147 +3,229 @@ import { useEffect, useRef, useState } from "react";
 import ScrollReveal from "@/components/ScrollReveal";
 import { useLanguage } from "@/lib/i18n";
 
-type Stat = {
-  value: string;
-  countTo: number;
-  suffix: string;
-  prefix?: string;
-  text: string;
-  context: string;
+type Module = {
+  label: string;
+  title: string;
+  desc: string;
+  features: readonly string[];
 };
 
+// ── Count-up for stat card ────────────────────────────────────────────────────
 function useCountUp(target: number, duration: number, triggered: boolean) {
   const [val, setVal] = useState(0);
   useEffect(() => {
     if (!triggered) { setVal(0); return; }
-    let current = 0;
+    let cur = 0;
     const step = target / (duration / 16);
     const id = setInterval(() => {
-      current = Math.min(current + step, target);
-      setVal(Math.floor(current));
-      if (current >= target) clearInterval(id);
+      cur = Math.min(cur + step, target);
+      setVal(Math.floor(cur));
+      if (cur >= target) clearInterval(id);
     }, 16);
     return () => clearInterval(id);
   }, [triggered, target, duration]);
   return val;
 }
 
-function StatCard({ stat, delay }: { stat: Stat; delay: number }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [inView, setInView] = useState(false);
-
-  useEffect(() => {
-    const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setInView(true); },
-      { threshold: 0.3 }
-    );
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, []);
-
-  const count = useCountUp(stat.countTo, 1200, inView);
+// ── Block 1 visual: phone chat mockup ────────────────────────────────────────
+function PhoneChatVisual() {
+  const MSGS = [
+    { from: "user", time: "21:34", text: "Hei, har dere ledig time i morgen?" },
+    { from: "aria", time: "21:34", text: "Hei! Vi har ledig kl 14:00 eller 16:30. Hvilken passer best?" },
+    { from: "user", time: "21:35", text: "Kl 14 passer perfekt!" },
+    { from: "aria", time: "21:35", text: "Booket! Du får bekreftelse på SMS nå ✓" },
+  ];
 
   return (
-    <ScrollReveal delay={delay} style={{ height: "100%" }}>
-      <div
-        ref={ref}
-        style={{
-          background: "#ffffff",
-          border: "1px solid #e8e6dc",
-          borderRadius: 16,
-          padding: "32px",
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          gap: 12,
-          transition: "border-color 0.2s ease, box-shadow 0.2s ease",
-        }}
-        onMouseEnter={e => {
-          const el = e.currentTarget as HTMLElement;
-          el.style.borderColor = "#f5ebd0";
-          el.style.boxShadow = "0 8px 32px rgba(184,144,46,0.10)";
-        }}
-        onMouseLeave={e => {
-          const el = e.currentTarget as HTMLElement;
-          el.style.borderColor = "#e8e6dc";
-          el.style.boxShadow = "none";
-        }}
-      >
-        {/* Big number */}
+    <div style={{
+      background: "#0f0f1f",
+      borderRadius: 24,
+      border: "2px solid rgba(184,144,46,0.3)",
+      padding: 12,
+      maxWidth: 300,
+      margin: "0 auto",
+      boxShadow: "0 20px 60px rgba(0,0,0,0.4)",
+    }}>
+      {/* Chat header */}
+      <div style={{
+        background: "#1a1a2e",
+        borderRadius: "14px 14px 0 0",
+        padding: "10px 14px",
+        display: "flex", alignItems: "center", gap: 10,
+        borderBottom: "1px solid rgba(184,144,46,0.15)",
+      }}>
         <div style={{
-          fontFamily: "'DM Sans', -apple-system, sans-serif",
-          fontSize: 48,
-          fontWeight: 700,
-          lineHeight: 1,
-          letterSpacing: "-0.03em",
-          background: "linear-gradient(135deg, #b8902e, #8a6d22)",
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
-          backgroundClip: "text",
-        }}>
-          {stat.prefix ?? ""}{count}{stat.suffix}
+          width: 32, height: 32, borderRadius: "50%",
+          background: "linear-gradient(135deg, #b8902e, #d4af37)",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          fontSize: 13, fontWeight: 800, color: "#fff", flexShrink: 0,
+        }}>A</div>
+        <div>
+          <div style={{ fontSize: 12, fontWeight: 700, color: "#fff" }}>Aria</div>
+          <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+            <div style={{ width: 5, height: 5, borderRadius: "50%", background: "#4ade80", boxShadow: "0 0 4px #4ade80" }} />
+            <span style={{ fontSize: 9.5, color: "#4ade80", fontWeight: 600 }}>Online</span>
+          </div>
         </div>
-
-        {/* Description */}
-        <p style={{
-          fontSize: 15,
-          color: "#5a5a6e",
-          lineHeight: 1.6,
-          margin: 0,
-          flexGrow: 1,
-        }}>
-          {stat.text}
-        </p>
-
-        {/* Context */}
-        <p style={{
-          fontSize: 12,
-          color: "#8a8a98",
-          fontStyle: "italic",
-          margin: 0,
-          lineHeight: 1.5,
-        }}>
-          {stat.context}
-        </p>
       </div>
-    </ScrollReveal>
+
+      {/* Messages */}
+      <div style={{
+        background: "#f7f6f1",
+        borderRadius: "0 0 14px 14px",
+        padding: "12px 10px",
+        display: "flex", flexDirection: "column", gap: 6,
+      }}>
+        {MSGS.map((msg, i) => {
+          const isUser = msg.from === "user";
+          return (
+            <div key={i} style={{ alignSelf: isUser ? "flex-end" : "flex-start", maxWidth: "86%" }}>
+              <div style={{
+                padding: "8px 11px",
+                borderRadius: isUser ? "12px 4px 12px 12px" : "4px 12px 12px 12px",
+                background: isUser ? "#1a1a2e" : "#ffffff",
+                color: isUser ? "#ffffff" : "#1a1a2e",
+                fontSize: 11.5, lineHeight: 1.5,
+                boxShadow: "0 1px 3px rgba(0,0,0,0.07)",
+              }}>
+                {!isUser && (
+                  <div style={{ fontSize: 9, fontWeight: 700, color: "#b8902e", marginBottom: 2 }}>Aria ✨</div>
+                )}
+                {msg.text}
+              </div>
+              <div style={{ fontSize: 9, color: "#8a8a98", marginTop: 2, textAlign: isUser ? "right" : "left", paddingInline: 2 }}>
+                {msg.time}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
   );
 }
 
+// ── Block 2 visual: conversion stat card ─────────────────────────────────────
+function StatVisual({ triggered }: { triggered: boolean }) {
+  const count = useCountUp(47, 1400, triggered);
+  return (
+    <div style={{
+      background: "rgba(255,255,255,0.06)",
+      border: "1px solid rgba(184,144,46,0.2)",
+      borderRadius: 16,
+      padding: 24,
+      textAlign: "center",
+      maxWidth: 260,
+      margin: "0 auto",
+    }}>
+      <div style={{
+        fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.5)",
+        letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 14,
+      }}>
+        KONVERTERINGSRATE
+      </div>
+      <div style={{
+        fontFamily: "'DM Sans', -apple-system, sans-serif",
+        fontSize: 52, fontWeight: 700, lineHeight: 1,
+        letterSpacing: "-0.03em",
+        background: "linear-gradient(135deg, #b8902e, #d4af37)",
+        WebkitBackgroundClip: "text",
+        WebkitTextFillColor: "transparent",
+        backgroundClip: "text",
+        marginBottom: 10,
+      }}>
+        {count}%
+      </div>
+      <div style={{ fontSize: 13, color: "rgba(255,255,255,0.6)", marginBottom: 18 }}>
+        av besøkende blir leads
+      </div>
+      {/* Progress bar */}
+      <div style={{ background: "rgba(255,255,255,0.1)", borderRadius: 999, height: 6, overflow: "hidden" }}>
+        <div style={{
+          height: "100%",
+          width: `${(count / 47) * 100}%`,
+          background: "linear-gradient(90deg, #b8902e, #d4a84d)",
+          borderRadius: 999,
+          transition: "width 0.12s linear",
+        }} />
+      </div>
+    </div>
+  );
+}
+
+// ── Feature list ──────────────────────────────────────────────────────────────
+function FeatureList({ features }: { features: readonly string[] }) {
+  return (
+    <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 10 }}>
+      {features.map((f, i) => (
+        <li key={i} style={{ display: "flex", alignItems: "flex-start", gap: 10, fontSize: 14, color: "#5a5a6e" }}>
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" style={{ flexShrink: 0, marginTop: 1 }}>
+            <circle cx="9" cy="9" r="9" fill="#fdf9ed" />
+            <path d="M5.5 9l2.5 2.5 4.5-5" stroke="#b8902e" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+          {f}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+// ── Main export ───────────────────────────────────────────────────────────────
 export default function TestimonialSection() {
   const { t } = useLanguage();
-  const s = t.aiStats as unknown as {
+  const s = t.solution as unknown as {
     eyebrow: string;
-    headline: string;
+    headline1: string;
+    headline2: string;
     subtitle: string;
-    stats: Stat[];
+    modules: Module[];
   };
 
-  return (
-    <section style={{ background: "#f7f6f1", padding: "96px 24px" }}>
-      <div className="wrap">
+  const block2Ref = useRef<HTMLDivElement>(null);
+  const [block2InView, setBlock2InView] = useState(false);
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setBlock2InView(true); },
+      { threshold: 0.25 }
+    );
+    if (block2Ref.current) obs.observe(block2Ref.current);
+    return () => obs.disconnect();
+  }, []);
 
-        {/* Header */}
+  const m0 = s.modules[0];
+  const m1 = s.modules[1];
+
+  return (
+    <section style={{ background: "#ffffff", padding: "96px 24px" }}>
+      <div className="wrap" style={{ maxWidth: 1020, margin: "0 auto" }}>
+
+        {/* ── Header ── */}
         <ScrollReveal>
-          <div style={{ textAlign: "center", marginBottom: 56 }}>
+          <div style={{ textAlign: "center", marginBottom: 64 }}>
+            {/* Eyebrow with gold lines */}
             <div style={{
+              display: "inline-flex", alignItems: "center", gap: 14,
               fontSize: 13, fontWeight: 700,
               letterSpacing: "0.08em", textTransform: "uppercase",
-              color: "#b8902e", marginBottom: 16,
+              color: "#b8902e", marginBottom: 20,
             }}>
+              <span style={{ display: "block", width: 40, height: 1, background: "linear-gradient(90deg, transparent, #b8902e)" }} />
               {s.eyebrow}
+              <span style={{ display: "block", width: 40, height: 1, background: "linear-gradient(90deg, #b8902e, transparent)" }} />
             </div>
+
             <h2 style={{
               fontFamily: "'Playfair Display', Georgia, serif",
-              fontSize: "clamp(28px, 4vw, 44px)",
-              fontWeight: 700, color: "#1a1a2e",
-              margin: "0 0 16px", letterSpacing: "-0.02em",
-              lineHeight: 1.15,
+              fontSize: "clamp(30px, 4vw, 42px)",
+              fontWeight: 700, lineHeight: 1.15,
+              color: "#1a1a2e", margin: "0 0 18px",
+              letterSpacing: "-0.02em",
             }}>
-              {s.headline}
+              {s.headline1}{" "}
+              <span style={{ fontStyle: "italic", color: "#b8902e" }}>{s.headline2}</span>
             </h2>
+
             <p style={{
-              fontSize: 16, color: "#5a5a6e",
+              fontSize: 17, color: "#5a5a6e",
               lineHeight: 1.7, margin: 0,
               maxWidth: 520, marginLeft: "auto", marginRight: "auto",
             }}>
@@ -152,30 +234,136 @@ export default function TestimonialSection() {
           </div>
         </ScrollReveal>
 
-        {/* 2×2 grid */}
-        <div className="ai-stats-grid">
-          {s.stats.map((stat, i) => (
-            <StatCard key={i} stat={stat} delay={i * 80} />
-          ))}
+        {/* ── Blocks ── */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+
+          {/* BLOCK 1 — text left, visual right */}
+          <ScrollReveal>
+            <div className="sol-block sol-block--normal">
+              {/* Text side */}
+              <div className="sol-block-text">
+                <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16 }}>
+                  <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#b8902e", flexShrink: 0 }} />
+                  <span style={{ fontSize: 12, fontWeight: 700, color: "#b8902e", letterSpacing: "0.08em", textTransform: "uppercase" }}>
+                    {m0.label}
+                  </span>
+                </div>
+                <h3 style={{
+                  fontFamily: "'Playfair Display', Georgia, serif",
+                  fontSize: "clamp(20px, 2.2vw, 26px)",
+                  fontWeight: 700, color: "#1a1a2e",
+                  margin: "0 0 14px", lineHeight: 1.25, letterSpacing: "-0.01em",
+                }}>
+                  {m0.title}
+                </h3>
+                <p style={{ fontSize: 15, color: "#5a5a6e", lineHeight: 1.7, margin: "0 0 24px" }}>
+                  {m0.desc}
+                </p>
+                <FeatureList features={m0.features} />
+              </div>
+
+              {/* Visual side */}
+              <div className="sol-block-visual">
+                <PhoneChatVisual />
+              </div>
+            </div>
+          </ScrollReveal>
+
+          {/* BLOCK 2 — visual left, text right (reversed) */}
+          <ScrollReveal>
+            <div className="sol-block sol-block--reversed" ref={block2Ref}>
+              {/* Text side */}
+              <div className="sol-block-text">
+                <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16 }}>
+                  <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#b8902e", flexShrink: 0 }} />
+                  <span style={{ fontSize: 12, fontWeight: 700, color: "#b8902e", letterSpacing: "0.08em", textTransform: "uppercase" }}>
+                    {m1.label}
+                  </span>
+                </div>
+                <h3 style={{
+                  fontFamily: "'Playfair Display', Georgia, serif",
+                  fontSize: "clamp(20px, 2.2vw, 26px)",
+                  fontWeight: 700, color: "#1a1a2e",
+                  margin: "0 0 14px", lineHeight: 1.25, letterSpacing: "-0.01em",
+                }}>
+                  {m1.title}
+                </h3>
+                <p style={{ fontSize: 15, color: "#5a5a6e", lineHeight: 1.7, margin: "0 0 24px" }}>
+                  {m1.desc}
+                </p>
+                <FeatureList features={m1.features} />
+              </div>
+
+              {/* Visual side */}
+              <div className="sol-block-visual">
+                <StatVisual triggered={block2InView} />
+              </div>
+            </div>
+          </ScrollReveal>
+
         </div>
       </div>
 
       <style>{`
-        .ai-stats-grid {
+        .sol-block {
           display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 24px;
-          max-width: 860px;
-          margin: 0 auto;
-          align-items: stretch;
+          grid-template-columns: 1fr 1fr;
+          border-radius: 20px;
+          border: 1px solid #e8e6dc;
+          background: #fafaf8;
+          overflow: hidden;
+          position: relative;
+          transition: border-color 0.25s ease, box-shadow 0.25s ease;
         }
-        .ai-stats-grid > .reveal {
+        .sol-block::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(135deg, transparent 30%, rgba(184,144,46,0.12) 50%, transparent 70%);
+          opacity: 0;
+          transition: opacity 0.35s ease;
+          pointer-events: none;
+          border-radius: 20px;
+        }
+        .sol-block:hover {
+          border-color: #b8902e;
+          box-shadow: 0 0 40px rgba(184,144,46,0.08), 0 16px 48px rgba(26,26,46,0.08);
+        }
+        .sol-block:hover::after { opacity: 1; }
+
+        .sol-block-text {
+          padding: 48px 40px;
           display: flex;
           flex-direction: column;
+          justify-content: center;
         }
-        @media (max-width: 640px) {
-          .ai-stats-grid {
+        .sol-block-visual {
+          background: linear-gradient(135deg, #1a1a2e 0%, #242442 100%);
+          padding: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-height: 340px;
+        }
+
+        /* Reversed: visual on left, text on right */
+        .sol-block--reversed {
+          direction: rtl;
+        }
+        .sol-block--reversed > * {
+          direction: ltr;
+        }
+
+        @media (max-width: 768px) {
+          .sol-block {
             grid-template-columns: 1fr !important;
+            direction: ltr !important;
+          }
+          .sol-block-visual {
+            min-height: 280px;
+          }
+          .sol-block-text {
+            padding: 32px 24px;
           }
         }
       `}</style>

@@ -63,19 +63,25 @@ export const translations = {
     solution: {
       eyebrow: "THE SOLUTION",
       headline: "Three systems. One platform. Zero friction.",
+      headline1: "Three systems.",
+      headline2: "One platform.",
+      subtitle: "Responds in your business's tone, qualifies leads automatically — with full visibility into everything.",
       modules: [
         {
           label: "AI Receptionist",
-          desc: "Answers calls, books appointments and qualifies leads — around the clock. Like a receptionist who never gets sick, never takes holiday, and is always professional.",
+          title: "Your customers get answers in seconds. Not hours.",
+          desc: "Aria answers incoming calls in your business's tone — checks availability, books appointments and confirms with the customer. Your team only steps in when needed.",
           features: ["Responds within 2 seconds", "Books directly into the calendar", "Sends SMS confirmation", "Transfers to you when needed"],
         },
         {
           label: "AI Chatbot",
-          desc: "Captures leads from your website 24/7. Answers questions, qualifies inquiries and books meetings — without you lifting a finger.",
+          title: "Capture leads from your website — around the clock.",
+          desc: "Answers questions, qualifies inquiries and books meetings automatically. Without you lifting a finger.",
           features: ["Tailored to your business", "Multi-channel (web, Instagram, SMS)", "CRM integration", "Unlimited conversations"],
         },
         {
           label: "Lead Follow-up",
+          title: "No lead slips through the cracks.",
           desc: "Automatic follow-up of leads who didn't book the first time. SMS, email and chat — until they book or say no.",
           features: ["Automatic for 7 days", "Personal and natural tone", "Synced with CRM", "51,000 leads handled"],
         },
@@ -586,19 +592,25 @@ export const translations = {
     solution: {
       eyebrow: "LØSNINGEN",
       headline: "Tre systemer. Én plattform. Null friksjon.",
+      headline1: "Tre systemer.",
+      headline2: "Én plattform.",
+      subtitle: "Svarer i din bedrifts tone, kvalifiserer leads automatisk — med full oversikt over alt som skjer.",
       modules: [
         {
           label: "AI-resepsjonist",
-          desc: "Svarer på samtaler, booker timer og kvalifiserer leads — døgnet rundt. Som en resepsjonist som aldri er syk, aldri tar ferie, og alltid er blid.",
+          title: "Kundene dine får svar på sekunder. Ikke timer.",
+          desc: "Aria svarer innkommende samtaler i din bedrifts tone — sjekker tilgjengelighet, booker timer og bekrefter med kunden. Teamet ditt trår bare inn når det trengs.",
           features: ["Svarer innen 2 sekunder", "Booker direkte i kalenderen", "Sender bekreftelse på SMS", "Overfører til deg ved behov"],
         },
         {
           label: "AI-chatbot",
-          desc: "Fanger leads fra nettsiden din 24/7. Svarer på spørsmål, kvalifiserer henvendelser og booker møter — uten at du løfter en finger.",
+          title: "Fang leads fra nettsiden din — døgnet rundt.",
+          desc: "Svarer på spørsmål, kvalifiserer henvendelser og booker møter automatisk. Uten at du løfter en finger.",
           features: ["Tilpasset din bedrift", "Flerkanal (web, Instagram, SMS)", "CRM-integrasjon", "Ubegrenset samtaler"],
         },
         {
           label: "Lead-oppfølging",
+          title: "Ingen lead faller gjennom sprekkene.",
           desc: "Automatisk oppfølging av leads som ikke booket første gang. SMS, e-post og chat — til de booker eller sier nei.",
           features: ["Automatisk i 7 dager", "Personlig og naturlig tone", "Synkronisert med CRM", "51 000 leads håndtert"],
         },
