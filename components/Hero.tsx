@@ -53,7 +53,7 @@ function ChatBubble({ msg, visible }: { msg: typeof CHAT_MSGS[0]; visible: boole
       transition: "opacity 0.35s cubic-bezier(0.22,1,0.36,1), transform 0.35s cubic-bezier(0.22,1,0.36,1)",
     }}>
       <div style={{
-        padding: "9px 12px",
+        padding: "10px 14px",
         borderRadius: isUser ? "14px 4px 14px 14px" : "4px 14px 14px 14px",
         background: isUser ? "#1a1a2e" : "#ffffff",
         color: isUser ? "#ffffff" : "#1a1a2e",
@@ -135,31 +135,31 @@ function PhoneMockup() {
   return (
     <div style={{
       width: "100%",
-      maxWidth: 278,
+      maxWidth: 300,
       margin: "0 auto",
-      filter: "drop-shadow(0 28px 56px rgba(26,26,46,0.16)) drop-shadow(0 8px 16px rgba(0,0,0,0.08))",
+      filter: "drop-shadow(0 20px 60px rgba(0,0,0,0.2)) drop-shadow(0 8px 16px rgba(0,0,0,0.08))",
     }}>
-      {/* Phone shell — always stationary */}
+      {/* Phone shell — iPhone-style thick border */}
       <div style={{
         background: "#0f0f1a",
-        borderRadius: 40,
-        padding: "10px 10px 16px",
-        border: "1px solid rgba(255,255,255,0.06)",
-        maxHeight: 520,
+        borderRadius: 44,
+        border: "8px solid #1a1a2e",
+        boxShadow: "0 20px 60px rgba(0,0,0,0.2)",
         overflow: "hidden",
+        display: "flex",
+        flexDirection: "column",
       }}>
+        {/* Dynamic Island */}
+        <div style={{ display: "flex", justifyContent: "center", paddingTop: 12, paddingBottom: 2, background: "#0f0f1a" }}>
+          <div style={{ width: 120, height: 28, borderRadius: 14, background: "#000" }} />
+        </div>
+
         {/* Status bar */}
         <div style={{
           display: "flex", alignItems: "center", justifyContent: "space-between",
-          padding: "6px 20px 8px",
+          padding: "4px 20px 8px", background: "#0f0f1a",
         }}>
           <span style={{ fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.65)" }}>21:34</span>
-          <div style={{
-            width: 56, height: 9,
-            background: "#0f0f1a",
-            borderRadius: 5,
-            border: "1px solid rgba(255,255,255,0.08)",
-          }} />
           <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
             <div style={{
               width: 13, height: 7, borderRadius: 2,
@@ -177,9 +177,12 @@ function PhoneMockup() {
 
         {/* Chat window — fades between cycles, shell stays visible */}
         <div style={{
-          background: "#f7f6f1", borderRadius: 28, overflow: "hidden",
+          background: "#f7f6f1",
+          borderRadius: "20px 20px 0 0",
+          overflow: "hidden",
           opacity: fading ? 0 : 1,
           transition: "opacity 0.85s ease",
+          flex: 1,
         }}>
           {/* Chat header */}
           <div style={{
@@ -206,12 +209,10 @@ function PhoneMockup() {
 
           {/* Messages */}
           <div style={{
-            padding: "12px 10px",
+            padding: "12px 10px 20px",
             display: "flex",
             flexDirection: "column",
-            gap: 7,
-            minHeight: 220,
-            overflow: "hidden",
+            gap: 12,
           }}>
             <ChatBubble msg={CHAT_MSGS[0]} visible={phase >= 1} />
 
@@ -249,6 +250,15 @@ function PhoneMockup() {
             <ChatBubble msg={CHAT_MSGS[3]} visible={phase >= 6} />
             <BookingCard visible={phase >= 7} />
           </div>
+        </div>
+
+        {/* Home indicator */}
+        <div style={{
+          display: "flex", justifyContent: "center",
+          paddingTop: 10, paddingBottom: 10,
+          background: "#0f0f1a",
+        }}>
+          <div style={{ width: 134, height: 5, borderRadius: 3, background: "rgba(255,255,255,0.3)" }} />
         </div>
       </div>
     </div>
