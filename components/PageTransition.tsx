@@ -12,6 +12,7 @@ export default function PageTransition({ children }: { children: React.ReactNode
     if (pathname !== prevPathname.current) {
       setIsVisible(false);
       const timeout = setTimeout(() => {
+        window.scrollTo(0, 0);
         setDisplayChildren(children);
         setIsVisible(true);
         prevPathname.current = pathname;
