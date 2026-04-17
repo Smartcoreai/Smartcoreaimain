@@ -65,7 +65,6 @@ function PhoneMockup() {
         overflow: "hidden",
         display: "flex",
         flexDirection: "column",
-        maxHeight: 480,
       }}>
         {/* Dynamic Island */}
         <div style={{ display: "flex", justifyContent: "center", paddingTop: 10, paddingBottom: 2, background: "#0f0f1a", flexShrink: 0 }}>
@@ -98,10 +97,8 @@ function PhoneMockup() {
           background: "#f7f6f1",
           borderRadius: "20px 20px 0 0",
           overflow: "hidden",
-          flex: 1,
           display: "flex",
           flexDirection: "column",
-          minHeight: 0,
         }}>
           {/* Chat header */}
           <div style={{
@@ -133,7 +130,6 @@ function PhoneMockup() {
             display: "flex",
             flexDirection: "column",
             gap: 8,
-            overflow: "hidden",
           }}>
             {CHAT_MSGS.map((msg, i) => (
               <ChatBubble key={i} msg={msg} delay={i * 200} />
