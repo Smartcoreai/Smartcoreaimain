@@ -13,6 +13,7 @@ export default function Footer() {
   };
 
   return (
+    <>
     <footer style={{
       background: "#ffffff",
       borderTop: "1px solid #e8e6dc",
@@ -117,13 +118,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Divider */}
-        <div style={{ height: 1, background: "#e8e6dc", marginBottom: 24 }} />
-
-        {/* Bottom strip */}
-        <div style={{ fontSize: 12, color: "#8a8a98" }}>
-          © {new Date().getFullYear()} SmartcoreAI. {f.rights}
-        </div>
       </div>
 
       <style>{`
@@ -133,7 +127,36 @@ export default function Footer() {
         @media (max-width: 520px) {
           .footer-grid { grid-template-columns: 1fr !important; }
         }
+        @media (max-width: 600px) {
+          .bottom-bar { flex-direction: column !important; gap: 8px !important; text-align: center !important; }
+        }
       `}</style>
     </footer>
+
+    {/* Navy bottom bar */}
+    <div
+      className="bottom-bar"
+      style={{
+        background: "#1a1a2e",
+        borderTop: "1px solid rgba(255,255,255,0.08)",
+        padding: "16px 48px",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+      }}
+    >
+      <span style={{ fontSize: 13, color: "rgba(255,255,255,0.5)" }}>
+        © {new Date().getFullYear()} SmartcoreAI. {f.rights}
+      </span>
+      <a
+        href="/privacy"
+        style={{ fontSize: 13, color: "rgba(255,255,255,0.5)", textDecoration: "none", transition: "color 0.15s" }}
+        onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = "#b8902e"; }}
+        onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.5)"; }}
+      >
+        Privacy Policy
+      </a>
+    </div>
+    </>
   );
 }
