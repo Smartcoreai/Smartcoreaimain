@@ -81,7 +81,7 @@ export default function ChatWidget() {
           background: "linear-gradient(135deg, #1a1a2e 0%, #2a2a4a 50%, #1a1a2e 100%)",
           border: "1.5px solid #b8902e", borderRadius: "50%", cursor: "pointer",
           display: "flex", alignItems: "center", justifyContent: "center",
-          boxShadow: "0 8px 28px rgba(184,144,46,0.30), 0 0 0 1px rgba(184,144,46,0.25)",
+          boxShadow: "inset 0 2px 8px rgba(0,0,0,0.3), 0 0 0 1px rgba(212,175,55,0.6), 0 0 12px 2px rgba(212,175,55,0.4), 0 0 30px 6px rgba(212,175,55,0.25), 0 0 60px 12px rgba(212,175,55,0.15)",
           transition: "transform 0.3s, box-shadow 0.3s, opacity 0.3s",
           transform: open ? "scale(0) rotate(90deg)" : "scale(1) rotate(0deg)",
           opacity: open ? 0 : 1,
@@ -342,7 +342,7 @@ export default function ChatWidget() {
 
         .aria-chat-btn:hover {
           transform: scale(1.06) !important;
-          box-shadow: 0 12px 36px rgba(184,144,46,0.45), 0 0 0 2px rgba(184,144,46,0.5) !important;
+          box-shadow: inset 0 2px 8px rgba(0,0,0,0.3), 0 0 0 1px rgba(212,175,55,0.8), 0 0 16px 4px rgba(212,175,55,0.55), 0 0 40px 8px rgba(212,175,55,0.35), 0 0 80px 16px rgba(212,175,55,0.2) !important;
         }
 
         /* Scrollbar styling for messages */

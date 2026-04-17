@@ -91,9 +91,10 @@ export default function Footer() {
               {f.followUs}
             </div>
             <a
-              href="https://www.linkedin.com/company/smartcoreai"
+              href="https://www.linkedin.com/company/smart-coreai/"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="SmartcoreAI on LinkedIn"
               style={{
                 display: "inline-flex", alignItems: "center", justifyContent: "center",
                 width: 44, height: 44, borderRadius: 12,
