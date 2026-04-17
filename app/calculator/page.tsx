@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { TrendingUp, Clock, Calendar, DollarSign } from "lucide-react";
+import { TrendingUp, Calendar, DollarSign } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ChatWidget from "@/components/ChatWidget";
@@ -22,22 +22,18 @@ export default function CalculatorPage() {
   const [callsPerWeek,  setCallsPerWeek]  = useState<string>("50");
   const [missedPct,     setMissedPct]     = useState(30);
   const [customerValue, setCustomerValue] = useState<string>("2000");
-  const [hoursPerWeek,  setHoursPerWeek]  = useState<string>("15");
 
-  // ── Calculations (parse to number only here) ─────────────────────────────────
+  // ── Calculations ──────────────────────────────────────────────────────────────
   const calls   = Math.max(0, parseFloat(callsPerWeek)  || 0);
   const custVal = Math.max(0, parseFloat(customerValue) || 0);
-  const hours   = Math.max(0, parseFloat(hoursPerWeek)  || 0);
 
   const lostBookingsPerMonth  = calls * (missedPct / 100) * 4;
   const extraRevenuePerMonth  = lostBookingsPerMonth * custVal * 0.3;
-  const hoursSavedPerMonth    = hours * 4 * 0.85;
-  const annualSavings         = (extraRevenuePerMonth + hoursSavedPerMonth * 500) * 12;
+  const annualSavings         = extraRevenuePerMonth * 12;
 
   const RESULT_ITEMS = [
-    { icon: Calendar, label: c.resultBookings, value: numFmt(lostBookingsPerMonth),  unit: c.resultBookingsUnit },
-    { icon: TrendingUp, label: c.resultRevenue, value: nokFmt(extraRevenuePerMonth), unit: c.resultRevenueUnit },
-    { icon: Clock, label: c.resultHours,        value: numFmt(hoursSavedPerMonth),   unit: c.resultHoursUnit },
+    { icon: Calendar,   label: c.resultBookings, value: numFmt(lostBookingsPerMonth),  unit: c.resultBookingsUnit },
+    { icon: TrendingUp, label: c.resultRevenue,  value: nokFmt(extraRevenuePerMonth),  unit: c.resultRevenueUnit },
   ];
 
   return (
@@ -149,24 +145,6 @@ export default function CalculatorPage() {
                         className="calc-input"
                         style={{ ...inputStyle, paddingLeft: 36 }}
                       />
-                    </div>
-                  </div>
-
-                  {/* Hours per week */}
-                  <div>
-                    <label style={labelStyle}>{c.labelHours}</label>
-                    <div style={{ position: "relative" }}>
-                      <input
-                        type="number"
-                        min={0}
-                        value={hoursPerWeek}
-                        onChange={e => setHoursPerWeek(e.target.value)}
-                        onFocus={e => e.target.select()}
-                        onBlur={e => { if (e.target.value === "" || e.target.value === "0") setHoursPerWeek("15"); }}
-                        className="calc-input"
-                        style={inputStyle}
-                      />
-                      <span style={inputSuffixStyle}>timer/uke</span>
                     </div>
                   </div>
 
