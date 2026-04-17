@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { LanguageProvider } from "@/lib/i18n";
 import ScrollReset from "@/components/ScrollReset";
-import PageTransition from "@/components/PageTransition";
+import ForceScrollTop from "@/components/ForceScrollTop";
 
 export const metadata: Metadata = {
   title: "SmartcoreAI — AI-Powered Growth Systems for Modern Businesses",
@@ -22,11 +22,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" style={{ background: "#1A1A1A" }}>
       <body style={{ margin: 0, background: "#1A1A1A" }}>
+        <ForceScrollTop />
         <ScrollReset />
         <LanguageProvider>
-          <PageTransition>
-            {children}
-          </PageTransition>
+          {children}
         </LanguageProvider>
       </body>
     </html>
