@@ -17,7 +17,7 @@ export const translations = {
       bookCall: "Book a free call",
     },
     hero: {
-      tag: "AI-powered growth systems",
+      tag: "FOR NORDIC DENTAL CLINICS",
       headline1: "Your business,",
       headline2: "runs itself.",
       subtext: "AI chatbots, booking automation, CRM systems — fully integrated, deployed in days. Not months.",
@@ -551,7 +551,7 @@ export const translations = {
       bookCall: "Book en gratis samtale",
     },
     hero: {
-      tag: "AI-drevne vekstsystemer",
+      tag: "FOR NORDISKE TANNKLINIKKER",
       headline1: "Din bedrift,",
       headline2: "driver seg selv.",
       subtext: "AI-chatboter, bookingautomatisering, CRM-systemer — fullt integrert, klart på dager. Ikke måneder.",
