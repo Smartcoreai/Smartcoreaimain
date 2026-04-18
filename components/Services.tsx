@@ -328,9 +328,6 @@ export default function Services() {
                 <div style={{ color: active === i ? s.color : "#8A8070", transition: "color 0.25s" }}>{s.icon}</div>
                 <span style={{ fontSize: 13, fontWeight: 600, color: active === i ? "#F5F0E8" : "#8A8070", transition: "color 0.25s" }}>{s.label}</span>
               </div>
-              {s.originalPriceDisplay && (
-                <div style={{ fontSize: 10, color: "#5A5248", textDecoration: "line-through", fontFamily: "Syne, system-ui, sans-serif", fontVariantNumeric: "tabular-nums" }}>{s.originalPriceDisplay}</div>
-              )}
               <div style={{ fontSize: 12, color: active === i ? s.color : "#44444e", fontWeight: 600, transition: "color 0.25s", fontFamily: "Syne, system-ui, sans-serif", fontVariantNumeric: "tabular-nums" }}>{s.price}</div>
             </button>
           ))}
@@ -367,9 +364,6 @@ export default function Services() {
             </div>
             <div className="services-price-row" style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
               <div>
-                {svc.originalPriceDisplay && (
-                  <div style={{ fontSize: 12, color: "#8A8070", textDecoration: "line-through", marginBottom: 2, fontFamily: "Syne, system-ui, sans-serif", fontVariantNumeric: "tabular-nums" }}>{svc.originalPriceDisplay}</div>
-                )}
                 <div style={{ fontFamily: "Syne, system-ui, sans-serif", fontSize: 22, fontWeight: 800, color: "#F5F0E8", fontVariantNumeric: "tabular-nums" }}>{svc.price}</div>
                 <div style={{ fontSize: 11, color: "#8A8070" }}>{t.services.monthNote}</div>
               </div>

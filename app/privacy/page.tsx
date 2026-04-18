@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 const SECTIONS = [
   {
     title: "1. Hvem vi er",
-    body: "Ekspedenten er et norskregistrert selskap (org.nr: under registrering) som leverer AI-baserte kommunikasjons- og bookingsystemer til norske bedrifter. Vi har ansvar for behandlingen av personopplysningene som samles inn via denne nettsiden og våre tjenester.",
+    body: "Ekspedenten er et norskregistrert selskap (Org.nr: Registrering pågår — oppdateres snarest) som leverer AI-baserte kommunikasjons- og bookingsystemer til norske bedrifter. Vi har ansvar for behandlingen av personopplysningene som samles inn via denne nettsiden og våre tjenester.",
     contact: "Kontakt: aleksander@ekspedenten.no",
   },
   {

@@ -37,7 +37,7 @@ export const translations = {
       ],
       headlineNew: "Your clinic's new receptionist works 24/7 — and never needs time off.",
       subNew: "Ekspedenten builds AI receptionists, chatbots and follow-up systems for service businesses. Live in 7 days.",
-      trustLine: "14-day free trial · No lock-in · Money-back guarantee",
+      trustLine: "3-month minimum · 14-day money-back guarantee",
     },
     problem: {
       eyebrow: "THE PROBLEM",
@@ -148,7 +148,7 @@ export const translations = {
       cards: [
         { title: "GDPR-compliant", desc: "All data is processed in accordance with GDPR. Stored in the EU." },
         { title: "Encrypted storage", desc: "End-to-end encryption. Your data is safe." },
-        { title: "Norwegian org. no.", desc: "Ekspedenten is a Norwegian registered company." },
+        { title: "EU data storage", desc: "All data is stored on EU servers in Frankfurt, Germany." },
         { title: "You own the data", desc: "All customer data belongs to you. Export at any time." },
       ],
     },
@@ -156,7 +156,7 @@ export const translations = {
       headline: "Ready to let AI do the work?",
       subtitle: "Book a no-obligation call. We'll show you exactly what we can build for your business — and you decide if it's worth it.",
       cta: "Book a free call",
-      trustLine: "No lock-in · 14-day money-back guarantee · Response within 4 hours",
+      trustLine: "3-month minimum · 14-day money-back guarantee · Response within 4 hours",
     },
     ticker: [
       "AI Chatbot", "Booking Automation", "CRM System", "Lead Capture",
@@ -295,7 +295,7 @@ export const translations = {
         },
         {
           q: "What happens when I cancel?",
-          a: "There's a 3-month minimum period. After that, you can cancel anytime with 30 days notice. Upon cancellation, we export all your data and delete it from our systems within 30 days.",
+          a: "There's a 3-month minimum period. After the minimum period, you can cancel with 30 days notice. Upon cancellation, we export all your data and delete it from our systems within 30 days.",
         },
         {
           q: "What is the uptime guarantee / SLA?",
@@ -551,7 +551,7 @@ export const translations = {
       ],
       headlineNew: "Klinikkens nye resepsjonist jobber 24/7 — og trenger aldri fri.",
       subNew: "Ekspedenten bygger AI-resepsjonister, chatboter og oppfølgingssystemer for norske servicebedrifter. Live på 7 dager.",
-      trustLine: "14 dagers gratis prøveperiode · Ingen bindingstid · Pengene tilbake-garanti",
+      trustLine: "3 måneders minimumsperiode · 14 dagers pengene-tilbake-garanti",
     },
     problem: {
       eyebrow: "PROBLEMET",
@@ -662,7 +662,7 @@ export const translations = {
       cards: [
         { title: "GDPR-kompatibel", desc: "All data behandles i henhold til GDPR. Lagret i EU." },
         { title: "Kryptert lagring", desc: "Ende-til-ende-kryptering. Dine data er trygge." },
-        { title: "Norsk org.nr.", desc: "Ekspedenten er et norskregistrert selskap." },
+        { title: "EU datalagring", desc: "All data lagres på EU-servere i Frankfurt, Tyskland." },
         { title: "Du eier dataene", desc: "All kundedata tilhører deg. Eksportér når som helst." },
       ],
     },
@@ -670,7 +670,7 @@ export const translations = {
       headline: "Klar til å la AI gjøre jobben?",
       subtitle: "Book en uforpliktende samtale. Vi viser deg nøyaktig hva vi kan bygge for din bedrift — og du bestemmer om det er verdt det.",
       cta: "Book en gratis samtale",
-      trustLine: "Ingen bindingstid · 14 dagers pengene-tilbake-garanti · Svar innen 4 timer",
+      trustLine: "3 måneders minimumsperiode · 14 dagers pengene-tilbake-garanti · Svar innen 4 timer",
     },
     ticker: [
       "AI-chatbot", "Bookingautomatisering", "CRM-system", "Leadfangst",
@@ -906,7 +906,7 @@ export const translations = {
       heroHeadline2: "Ekte verdi.",
       heroSubtitle: "Ingen skjulte kostnader. Ingen lange kontrakter. Bare AI-systemer som betaler seg selv — eller pengene tilbake.",
       trustItems: ["14 dagers prøveperiode", "Pengene tilbake-garanti", "Live på 7 dager"],
-      foundingBadge: "Grunnleggerplasser",
+      foundingBadge: "Lanseringspris",
       planNames: ["AI Chatbot", "AI Resepsjonist", "Leadgen System"],
       planTaglines: ["Din 24/7 chatassistent", "Din alltid-på-jobb resepsjonist", "Din automatiske leadmaskin"],
       guarantee: {
@@ -1009,7 +1009,7 @@ export const translations = {
         headline: "Klar for en samtale?",
         subtitle: "La oss finne ut om AI kan tilføre målbar verdi til din bedrift — ingen salgspress.",
         button: "Book en gratis samtale →",
-        trustLine: "Ingen bindingstid · 14 dagers pengene-tilbake-garanti · Svar innen 4 timer",
+        trustLine: "3 måneders minimumsperiode · 14 dagers pengene-tilbake-garanti · Svar innen 4 timer",
       },
     },
     calculator: {

@@ -124,11 +124,7 @@ export default function Pricing() {
                 </div>
               ) : (
                 <div style={{ marginBottom: 28, minHeight: 120, display: "flex", flexDirection: "column", justifyContent: "flex-start" }}>
-                  {/* Original (crossed out) */}
-                  <div style={{ fontFamily: "system-ui, -apple-system, sans-serif", fontSize: 13, color: "#4A4438", textDecoration: "line-through", marginBottom: 6, fontVariantNumeric: "tabular-nums" }}>
-                    {formatPrice(plan.originalPrice, lang)}/{t.pricing.period}
-                  </div>
-                  {/* Live price row — flex so /period is never clipped */}
+                  {/* Live price row */}
                   <div style={{ display: "flex", alignItems: "baseline", gap: 4, flexWrap: "wrap" }}>
                     <span style={{
                       fontFamily: "system-ui, -apple-system, sans-serif",
@@ -147,10 +143,16 @@ export default function Pricing() {
                     </span>
                     <span style={{ fontFamily: "system-ui, -apple-system, sans-serif", fontSize: 13, color: "#6A6050", fontWeight: 500, whiteSpace: "nowrap" }}>/{t.pricing.period}</span>
                   </div>
-                  {/* Founding label */}
+                  {/* Lanseringspris label */}
                   <div style={{ display: "inline-flex", alignItems: "center", gap: 5, marginTop: 10, padding: "3px 10px", borderRadius: 999, background: `${plan.color}14`, border: `1px solid ${plan.color}28` }}>
                     <Zap size={10} color={plan.color} />
                     <span style={{ fontSize: 10, fontWeight: 700, color: plan.color, letterSpacing: "0.06em", textTransform: "uppercase" }}>{t.pricing.foundingPrice}</span>
+                  </div>
+                  {/* Launch disclaimer */}
+                  <div style={{ fontSize: 10, color: "#5A5248", marginTop: 6, lineHeight: 1.4 }}>
+                    {lang === "no"
+                      ? `Gjelder de første 10 kundene. Ordinær pris: ${formatPrice(plan.originalPrice, lang)}/${t.pricing.period}`
+                      : `For the first 10 clients. Standard price: ${formatPrice(plan.originalPrice, lang)}/${t.pricing.period}`}
                   </div>
                   {/* Setup fee */}
                   <div style={{ fontSize: 11, color: "#5A5248", marginTop: 8 }}>

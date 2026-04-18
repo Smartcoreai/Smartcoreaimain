@@ -208,18 +208,6 @@ export default function PricingPage() {
                       borderBottom: `1px solid ${plan.featured ? "rgba(255,255,255,0.08)" : "#e8e6dc"}`,
                       paddingBottom: 16, marginBottom: 16,
                     }}>
-                      {/* Old price */}
-                      <div style={{
-                        fontSize: 13,
-                        fontVariantNumeric: "tabular-nums",
-                        textDecoration: "line-through",
-                        textDecorationColor: "#b8902e",
-                        color: plan.featured ? "#5a5248" : "#8a8a98",
-                        marginBottom: 4,
-                      }}>
-                        {nokStr(plan.originalPrice)}
-                      </div>
-
                       {/* Current price */}
                       <div style={{ display: "flex", alignItems: "baseline", gap: 6, marginBottom: 8 }}>
                         <span style={{
@@ -240,7 +228,7 @@ export default function PricingPage() {
                         </span>
                       </div>
 
-                      {/* Founding badge */}
+                      {/* Lanseringspris badge */}
                       <div style={{
                         display: "inline-flex", alignItems: "center", gap: 5,
                         padding: "3px 10px", borderRadius: 999,
@@ -248,10 +236,18 @@ export default function PricingPage() {
                         border: "1px solid rgba(184,144,46,0.25)",
                         fontSize: 10, fontWeight: 700,
                         color: "#b8902e", letterSpacing: "0.06em",
-                        textTransform: "uppercase", marginBottom: 10,
+                        textTransform: "uppercase", marginBottom: 8,
                       }}>
                         <Star size={9} fill="currentColor" />
                         {p.foundingBadge}
+                      </div>
+
+                      {/* Launch disclaimer */}
+                      <div style={{
+                        fontSize: 11, color: plan.featured ? "#7a7060" : "#8a8a98",
+                        lineHeight: 1.4, marginBottom: 4,
+                      }}>
+                        Gjelder de første 10 kundene. Ordinær pris: {nokStr(plan.originalPrice)}/mnd
                       </div>
 
                       {/* Setup fee */}
