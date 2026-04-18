@@ -36,20 +36,20 @@ export default function Navbar() {
       transition: "box-shadow 0.25s, border-color 0.25s",
     }}>
       <div className="wrap" style={{ padding: "0 32px" }}>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: 68 }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: 76 }}>
 
           {/* Logo */}
           <a href="/" style={{ display: "flex", alignItems: "center", gap: 14, textDecoration: "none", flexShrink: 0 }}>
-            <Image
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src="/ekspedenten-logo.png"
               alt="Ekspedenten logo"
-              height={52} width={52}
-              style={{ width: "auto", height: 52, objectFit: "contain" }}
+              style={{ height: "56px", width: "auto", minHeight: "56px", objectFit: "contain", display: "block" }}
             />
             <span style={{
               fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif",
               fontWeight: 700,
-              fontSize: 24,
+              fontSize: 26,
               color: "#1a1a2e",
               letterSpacing: "-0.02em",
               lineHeight: 1,
