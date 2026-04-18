@@ -11,9 +11,9 @@ type Module = {
 
 // ── Count-up ──────────────────────────────────────────────────────────────────
 function useCountUp(target: number, duration: number, triggered: boolean) {
-  const [val, setVal] = useState(0);
+  const [val, setVal] = useState(target);
   useEffect(() => {
-    if (!triggered) { setVal(0); return; }
+    if (!triggered) return;
     let cur = 0;
     const step = target / (duration / 16);
     const id = setInterval(() => {

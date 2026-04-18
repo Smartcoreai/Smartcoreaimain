@@ -19,9 +19,9 @@ export default function CalculatorPage() {
   const { t } = useLanguage();
   const c = t.calculator;
 
-  const [callsPerWeek,  setCallsPerWeek]  = useState<string>("50");
-  const [missedPct,     setMissedPct]     = useState(30);
-  const [customerValue, setCustomerValue] = useState<string>("2000");
+  const [callsPerWeek,  setCallsPerWeek]  = useState<string>("20");
+  const [missedPct,     setMissedPct]     = useState(25);
+  const [customerValue, setCustomerValue] = useState<string>("1500");
 
   // ── Calculations ──────────────────────────────────────────────────────────────
   const calls   = Math.max(0, parseFloat(callsPerWeek)  || 0);
@@ -98,7 +98,7 @@ export default function CalculatorPage() {
                         value={callsPerWeek}
                         onChange={e => setCallsPerWeek(e.target.value)}
                         onFocus={e => e.target.select()}
-                        onBlur={e => { if (e.target.value === "" || e.target.value === "0") setCallsPerWeek("50"); }}
+                        onBlur={e => { if (e.target.value === "" || e.target.value === "0") setCallsPerWeek("20"); }}
                         className="calc-input"
                         style={inputStyle}
                       />
@@ -141,7 +141,7 @@ export default function CalculatorPage() {
                         value={customerValue}
                         onChange={e => setCustomerValue(e.target.value)}
                         onFocus={e => e.target.select()}
-                        onBlur={e => { if (e.target.value === "" || e.target.value === "0") setCustomerValue("2000"); }}
+                        onBlur={e => { if (e.target.value === "" || e.target.value === "0") setCustomerValue("1500"); }}
                         className="calc-input"
                         style={{ ...inputStyle, paddingLeft: 36 }}
                       />

@@ -48,10 +48,28 @@ export default function Footer() {
 
             <p style={{
               fontSize: 14, color: "#5a5a6e", lineHeight: 1.7,
-              maxWidth: 240, margin: 0,
+              maxWidth: 240, margin: "0 0 16px",
             }}>
               {f.tagline}
             </p>
+
+            <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+              {[
+                { label: "📞", text: "+47 XXX XX XXX", href: "tel:+47XXXXXXXXX" },
+                { label: "✉️", text: "hei@ekspedenten.no", href: "mailto:hei@ekspedenten.no" },
+                { label: "📍", text: "Bergen, Norge", href: undefined },
+              ].map(({ label, text, href }) => (
+                <div key={text} style={{ display: "flex", alignItems: "center", gap: 7, fontSize: 13, color: "#5a5a6e" }}>
+                  <span style={{ fontSize: 12 }}>{label}</span>
+                  {href
+                    ? <a href={href} style={{ color: "#5a5a6e", textDecoration: "none", transition: "color 0.15s" }}
+                        onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = "#1a1a2e"; }}
+                        onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = "#5a5a6e"; }}
+                      >{text}</a>
+                    : <span>{text}</span>}
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Company links column */}

@@ -8,9 +8,9 @@ const MODULE_ICONS = [Phone, MessageSquare, Target];
 
 // ── Count-up hook ─────────────────────────────────────────────────────────────
 function useCountUp(target: number, duration: number, triggered: boolean) {
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(target);
   useEffect(() => {
-    if (!triggered) { setValue(0); return; }
+    if (!triggered) return;
     let current = 0;
     const increment = target / (duration / 16);
     const id = setInterval(() => {
