@@ -31,7 +31,6 @@ export default function Pricing() {
           <h2 className="text-[26px] sm:text-[42px] lg:text-[58px]" style={{
             fontFamily: "'Playfair Display', Georgia, serif",
             fontWeight: 700,
-            fontStyle: "italic",
             color: "#F5F0E8",
             letterSpacing: "-0.01em",
             marginBottom: 16,

@@ -24,19 +24,27 @@
   --radius-xl: 24px;
 }
 
-/* ── Global zoom (outside @layer so it cannot be overridden by Tailwind) ── */
+/* ── Base html reset ── */
 html {
-  zoom: 0.9;
   background-color: #000000;
   min-width: 100vw;
   margin: 0;
 }
 
-@supports not (zoom: 0.9) {
+/* ── 90% zoom on desktop only (outside @layer so Tailwind cannot override) ── */
+@media (min-width: 768px) {
   html {
-    transform: scale(0.9);
-    transform-origin: top left;
-    width: 111.11%;
+    zoom: 0.9;
+  }
+}
+
+@media (min-width: 768px) {
+  @supports not (zoom: 0.9) {
+    html {
+      transform: scale(0.9);
+      transform-origin: top left;
+      width: 111.11%;
+    }
   }
 }
 

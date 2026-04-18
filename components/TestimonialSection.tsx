@@ -297,7 +297,7 @@ export default function TestimonialSection() {
             margin: "0 0 18px", letterSpacing: "-0.02em",
           }}>
             {s.headline1}{" "}
-            <span style={{ fontStyle: "italic", color: "#b8902e" }}>{s.headline2}</span>
+            <span style={{ color: "#b8902e" }}>{s.headline2}</span>
           </h2>
           <p style={{
             fontSize: 17, color: "#5a5a6e", lineHeight: 1.7, margin: 0,

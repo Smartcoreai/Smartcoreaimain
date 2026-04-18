@@ -24,7 +24,7 @@ export default function TermsPage() {
             {[
               { title: "Agreement", body: "By using Ekspedenten's services, you agree to these terms. If you do not agree, please do not use our services." },
               { title: "Services", body: "Ekspedenten provides AI-powered automation systems including chatbots, lead generation tools, AI receptionists, and custom integrations. Service scope is defined in your individual agreement." },
-              { title: "Payment", body: "Services are billed monthly. All prices are in EUR. You may cancel at any time. Refunds are available within 14 days of purchase if you are not satisfied." },
+              { title: "Payment", body: "Services are billed monthly. All prices are in EUR. You may cancel at any time. Refunds are available within 30 days of purchase if you are not satisfied." },
               { title: "Intellectual property", body: "All AI systems, code, and deliverables built by Ekspedenten for your business are yours upon full payment. We retain the right to use anonymized case studies for marketing purposes unless agreed otherwise." },
               { title: "Limitation of liability", body: "Ekspedenten is not liable for indirect, incidental, or consequential damages arising from use of our services. Our total liability is limited to the amount paid in the preceding 3 months." },
               { title: "Contact", body: "Questions about these terms? Contact us at aleksander@ekspedenten.no or henrik@ekspedenten.no." },

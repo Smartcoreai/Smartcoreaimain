@@ -93,7 +93,7 @@ export default function SocialProof() {
 
           {/* TODO: replace with real client quote (approved in writing) */}
           <p style={{
-            fontSize: 16, fontStyle: "italic",
+            fontSize: 16,
             color: "#8A8070", marginBottom: 16, lineHeight: 1.75,
           }}>
             &ldquo;TODO: Replace with real approved client testimonial.&rdquo;

@@ -52,7 +52,7 @@ export default function AboutPage() {
               }}>
                 {a.hero.headline1}
                 <br />
-                <span style={{ fontStyle: "italic", color: "#b8902e" }}>{a.hero.headline2}</span>
+                <span style={{ color: "#b8902e" }}>{a.hero.headline2}</span>
               </h1>
             </ScrollReveal>
 

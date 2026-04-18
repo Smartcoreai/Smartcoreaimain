@@ -72,7 +72,7 @@ export default function PricingPage() {
               }}>
                 {p.heroHeadline1}
                 <br />
-                <span style={{ fontStyle: "italic", color: "#b8902e" }}>{p.heroHeadline2}</span>
+                <span style={{ color: "#b8902e" }}>{p.heroHeadline2}</span>
               </h1>
             </ScrollReveal>
 
