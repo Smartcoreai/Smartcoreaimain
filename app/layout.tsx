@@ -18,6 +18,11 @@ export const metadata: Metadata = {
     title: "Ekspedenten — AI-resepsjonist for servicebedrifter",
     description: "AI-resepsjonister og bookingsystemer for norske servicebedrifter.",
     type: "website",
+    images: [{ url: "/logo-transparent.png", width: 546, height: 476, alt: "Ekspedenten" }],
+  },
+  twitter: {
+    card: "summary",
+    images: ["/logo-transparent.png"],
   },
 };
 
