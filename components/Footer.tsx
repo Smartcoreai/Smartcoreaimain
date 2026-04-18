@@ -33,7 +33,7 @@ export default function Footer() {
           <div>
             <a href="/" style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", marginBottom: 16 }}>
               <Image
-                src="/logo-transparent.png"
+                src="/ekspedenten-logo.png"
                 alt="Ekspedenten logo"
                 height={40} width={40}
                 style={{ width: "auto", height: 40, objectFit: "contain" }}

@@ -6,23 +6,23 @@ import ForceScrollTop from "@/components/ForceScrollTop";
 import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "Ekspedenten — AI-resepsjonist for klinikker og servicebedrifter",
-  description: "Ekspedenten bygger AI-resepsjonister, chatboter og bookingsystemer for norske servicebedrifter. Live på 7 dager.",
+  title: "Ekspedenten — AI-resepsjonist for tannklinikker",
+  description: "Ekspedenten bygger AI-resepsjonister for norske tannklinikker. Svarer, booker og følger opp — 24/7.",
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
     ],
-    apple: "/logo-transparent.png",
+    apple: "/ekspedenten-logo.png",
   },
   openGraph: {
-    title: "Ekspedenten — AI-resepsjonist for servicebedrifter",
-    description: "AI-resepsjonister og bookingsystemer for norske servicebedrifter.",
+    title: "Ekspedenten — AI-resepsjonist for tannklinikker",
+    description: "Ekspedenten bygger AI-resepsjonister for norske tannklinikker. Svarer, booker og følger opp — 24/7.",
     type: "website",
-    images: [{ url: "/logo-transparent.png", width: 546, height: 476, alt: "Ekspedenten" }],
+    images: [{ url: "/ekspedenten-logo.png", width: 800, height: 800, alt: "Ekspedenten" }],
   },
   twitter: {
     card: "summary",
-    images: ["/logo-transparent.png"],
+    images: ["/ekspedenten-logo.png"],
   },
 };
 

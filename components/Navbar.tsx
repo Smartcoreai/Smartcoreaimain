@@ -41,7 +41,7 @@ export default function Navbar() {
           {/* Logo */}
           <a href="/" style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", flexShrink: 0 }}>
             <Image
-              src="/logo-transparent.png"
+              src="/ekspedenten-logo.png"
               alt="Ekspedenten logo"
               height={40} width={40}
               style={{ width: "auto", height: 40, objectFit: "contain" }}

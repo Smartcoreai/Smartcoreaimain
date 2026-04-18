@@ -16,7 +16,7 @@ export default function NotFound() {
         padding: "80px 24px",
       }}>
         <div style={{ textAlign: "center", maxWidth: 520 }}>
-          <Image src="/logo-transparent.png" alt="Ekspedenten" width={56} height={56} style={{ margin: "0 auto 32px" }} />
+          <Image src="/ekspedenten-logo.png" alt="Ekspedenten" width={56} height={56} style={{ margin: "0 auto 32px" }} />
 
           <div style={{
             fontFamily: "system-ui, sans-serif",
