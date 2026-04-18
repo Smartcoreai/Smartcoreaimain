@@ -146,9 +146,9 @@ export const translations = {
       eyebrow: "SECURITY AND TRUST",
       headline: "Built for Norwegian businesses. Owned by you.",
       cards: [
-        { title: "GDPR-compliant", desc: "All data is processed in accordance with GDPR. Stored in the EU." },
-        { title: "Encrypted storage", desc: "End-to-end encryption. Your data is safe." },
-        { title: "EU data storage", desc: "All data is stored on EU servers in Frankfurt, Germany." },
+        { title: "GDPR-compliant", desc: "All data is processed in accordance with GDPR via GoHighLevel, certified under the EU-US Data Privacy Framework." },
+        { title: "Encrypted storage", desc: "TLS/SSL encryption in transit and at rest. Your data is safe." },
+        { title: "Data security", desc: "Data stored in USA via GoHighLevel (SOC 2 Type II certified, EU-US Data Privacy Framework)." },
         { title: "You own the data", desc: "All customer data belongs to you. Export at any time." },
       ],
     },
@@ -279,7 +279,7 @@ export const translations = {
       sections: [
         {
           q: "GDPR and data handling — where is data stored?",
-          a: "All data is stored securely on EU servers (Frankfurt, Germany) via AWS. Only you and your team have access to customer data. We are fully GDPR compliant. Upon cancellation, all data is deleted within 30 days, unless you request an export first.",
+          a: "Data is stored in the USA via GoHighLevel, our CRM and communication platform. GoHighLevel is certified under the EU-US Data Privacy Framework and SOC 2 Type II. Only you and your team have access to customer data. Upon cancellation, all data is deleted within 30 days, unless you request an export first. Note: if your business is subject to strict EEA data residency requirements (e.g. public sector or healthcare), please contact us before signing.",
         },
         {
           q: "Who owns the data?",
@@ -400,7 +400,7 @@ export const translations = {
           { title: "14-day trial", desc: "Try the full system for free with no commitment" },
           { title: "Money-back guarantee", desc: "Not satisfied within 14 days? Full refund, no questions asked" },
           { title: "Live in 7 days", desc: "From signing to production — or you don't pay" },
-          { title: "GDPR compliant", desc: "All data stored securely in the EU. You own your data" },
+          { title: "GDPR compliant", desc: "Data stored via GoHighLevel (EU-US Data Privacy Framework certified). You own your data" },
         ],
       },
       compare: {
@@ -660,9 +660,9 @@ export const translations = {
       eyebrow: "SIKKERHET OG TILLIT",
       headline: "Bygget for norske bedrifter. Eid av deg.",
       cards: [
-        { title: "GDPR-kompatibel", desc: "All data behandles i henhold til GDPR. Lagret i EU." },
-        { title: "Kryptert lagring", desc: "Ende-til-ende-kryptering. Dine data er trygge." },
-        { title: "EU datalagring", desc: "All data lagres på EU-servere i Frankfurt, Tyskland." },
+        { title: "GDPR-kompatibel", desc: "All data behandles i henhold til GDPR via GoHighLevel, sertifisert under EU-US Data Privacy Framework." },
+        { title: "Kryptert lagring", desc: "TLS/SSL-kryptering under overføring og lagring. Dine data er trygge." },
+        { title: "Datasikkerhet", desc: "Data lagres i USA via GoHighLevel (SOC 2 Type II-sertifisert, EU-US Data Privacy Framework)." },
         { title: "Du eier dataene", desc: "All kundedata tilhører deg. Eksportér når som helst." },
       ],
     },
@@ -793,7 +793,7 @@ export const translations = {
       sections: [
         {
           q: "GDPR og datahåndtering — hvor lagres dataene?",
-          a: "All data lagres sikkert på servere i EU (Frankfurt, Tyskland) via AWS. Kun du og ditt team har tilgang til kundedata. Vi følger GDPR fullt ut. Ved kansellering slettes all data innen 30 dager, med mindre du ber om eksport først.",
+          a: "Data lagres i USA via GoHighLevel, vår CRM- og kommunikasjonsplattform. GoHighLevel er sertifisert under EU-US Data Privacy Framework og SOC 2 Type II. Kun du og ditt team har tilgang til kundedata. Ved kansellering slettes all data innen 30 dager, med mindre du ber om eksport først. Merk: Hvis din virksomhet har særskilte krav til lagring innenfor EØS (f.eks. offentlig sektor eller helsevesen), anbefaler vi at du tar kontakt med oss før avtale inngås.",
         },
         {
           q: "Hvem eier dataene?",
@@ -914,7 +914,7 @@ export const translations = {
           { title: "14 dagers prøveperiode",    desc: "Prøv hele systemet helt gratis uten forpliktelser" },
           { title: "Pengene tilbake-garanti",   desc: "Ikke fornøyd innen 14 dager? Full refusjon, ingen spørsmål" },
           { title: "Live på 7 dager",           desc: "Fra signering til produksjon — eller du betaler ikke" },
-          { title: "GDPR-kompatibel",           desc: "All data lagres sikkert i EU. Du eier dataene" },
+          { title: "GDPR-kompatibel",           desc: "Data lagres via GoHighLevel (EU-US Data Privacy Framework-sertifisert). Du eier dataene" },
         ],
       },
       compare: {

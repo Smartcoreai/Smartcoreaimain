@@ -9,7 +9,9 @@ export const metadata: Metadata = {
   title: "Ekspedenten — AI-resepsjonist for klinikker og servicebedrifter",
   description: "Ekspedenten bygger AI-resepsjonister, chatboter og bookingsystemer for norske servicebedrifter. Live på 7 dager.",
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+    ],
     apple: "/logo-transparent.png",
   },
   openGraph: {

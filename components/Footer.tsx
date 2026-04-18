@@ -35,8 +35,8 @@ export default function Footer() {
               <Image
                 src="/logo-transparent.png"
                 alt="Ekspedenten logo"
-                height={36} width={36}
-                style={{ width: "auto", height: 36, objectFit: "contain" }}
+                height={40} width={40}
+                style={{ width: "auto", height: 40, objectFit: "contain" }}
               />
               <span style={{
                 fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif",
