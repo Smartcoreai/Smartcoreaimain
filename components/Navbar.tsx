@@ -39,19 +39,20 @@ export default function Navbar() {
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: 68 }}>
 
           {/* Logo */}
-          <a href="/" style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", flexShrink: 0 }}>
+          <a href="/" style={{ display: "flex", alignItems: "center", gap: 12, textDecoration: "none", flexShrink: 0 }}>
             <Image
               src="/ekspedenten-logo.png"
               alt="Ekspedenten logo"
-              height={40} width={40}
-              style={{ width: "auto", height: 40, objectFit: "contain" }}
+              height={44} width={44}
+              style={{ width: "auto", height: 44, objectFit: "contain" }}
             />
             <span style={{
               fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif",
-              fontWeight: 700,
-              fontSize: 17,
+              fontWeight: 600,
+              fontSize: 22,
               color: "#1a1a2e",
               letterSpacing: "-0.02em",
+              lineHeight: 1,
             }}>
               Ekspedenten
             </span>

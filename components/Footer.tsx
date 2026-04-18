@@ -31,16 +31,16 @@ export default function Footer() {
 
           {/* Brand column */}
           <div>
-            <a href="/" style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", marginBottom: 16 }}>
+            <a href="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none", marginBottom: 16 }}>
               <Image
                 src="/ekspedenten-logo.png"
                 alt="Ekspedenten logo"
-                height={40} width={40}
-                style={{ width: "auto", height: 40, objectFit: "contain" }}
+                height={36} width={36}
+                style={{ width: "auto", height: 36, objectFit: "contain" }}
               />
               <span style={{
                 fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif",
-                fontWeight: 700, fontSize: 17, color: "#1a1a2e", letterSpacing: "-0.02em",
+                fontWeight: 600, fontSize: 19, color: "#1a1a2e", letterSpacing: "-0.02em", lineHeight: 1,
               }}>
                 Ekspedenten
               </span>
