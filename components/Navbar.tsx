@@ -44,12 +44,12 @@ export default function Navbar() {
             <img
               src="/ekspedenten-logo.png"
               alt="Ekspedenten logo"
-              style={{ height: "56px", width: "auto", minHeight: "56px", objectFit: "contain", display: "block" }}
+              style={{ height: "62px", width: "auto", minHeight: "62px", objectFit: "contain", display: "block" }}
             />
             <span style={{
               fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif",
-              fontWeight: 700,
-              fontSize: 26,
+              fontWeight: 600,
+              fontSize: 20,
               color: "#1a1a2e",
               letterSpacing: "-0.02em",
               lineHeight: 1,

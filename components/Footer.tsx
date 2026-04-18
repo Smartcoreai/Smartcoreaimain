@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import { useLanguage } from "@/lib/i18n";
 
 export default function Footer() {
@@ -32,15 +31,15 @@ export default function Footer() {
           {/* Brand column */}
           <div>
             <a href="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none", marginBottom: 16 }}>
-              <Image
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
                 src="/ekspedenten-logo.png"
                 alt="Ekspedenten logo"
-                height={36} width={36}
-                style={{ width: "auto", height: 36, objectFit: "contain" }}
+                style={{ height: "44px", width: "auto", minHeight: "44px", objectFit: "contain", display: "block" }}
               />
               <span style={{
                 fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif",
-                fontWeight: 600, fontSize: 19, color: "#1a1a2e", letterSpacing: "-0.02em", lineHeight: 1,
+                fontWeight: 600, fontSize: 17, color: "#1a1a2e", letterSpacing: "-0.02em", lineHeight: 1,
               }}>
                 Ekspedenten
               </span>
