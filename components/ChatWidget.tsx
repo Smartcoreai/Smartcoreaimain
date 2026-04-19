@@ -301,7 +301,7 @@ export default function ChatWidget() {
       <style>{`
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
         @keyframes pulseRing { 0% { transform: scale(0.8); opacity: 1; } 100% { transform: scale(2); opacity: 0; } }
-        @keyframes ring-rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
         @keyframes dot-pulse {
           0%   { box-shadow: 0 0 0 0   rgba(34,197,94,0.7); }
           70%  { box-shadow: 0 0 0 6px rgba(34,197,94,0);   }
@@ -341,19 +341,6 @@ export default function ChatWidget() {
           animation: aria-widget-shimmer 3s 1s ease-in-out infinite;
         }
 
-        /* Rotating gradient ring */
-        .aria-chat-btn::before {
-          content: '';
-          position: absolute;
-          inset: -4px;
-          border-radius: 50%;
-          background: conic-gradient(from 0deg, #FFD700, #D4AF37, #B8860B, #FFF1A8, #FFD700);
-          -webkit-mask: radial-gradient(circle, transparent 88%, black 91%);
-          mask: radial-gradient(circle, transparent 88%, black 91%);
-          animation: ring-rotate 5s linear infinite;
-          z-index: 0;
-          pointer-events: none;
-        }
 
         .aria-chat-btn:hover {
           transform: scale(1.05) !important;
@@ -367,7 +354,7 @@ export default function ChatWidget() {
 
         @media (prefers-reduced-motion: reduce) {
           .aria-btn-shimmer { animation: none; }
-          .aria-chat-btn::before { animation: none; }
+
           .aria-widget-shimmer-stripe::after { animation: none; }
           @keyframes dot-pulse { 0%, 100% { box-shadow: none; } }
         }
