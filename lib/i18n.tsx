@@ -36,7 +36,7 @@ export const translations = {
         { icon: "🤖", text: "AI responding",     sub: "24/7 active" },
       ],
       headlineNew: "Your dental clinic's digital receptionist — answers, books and follows up while you treat patients",
-      subNew: "Ekspedenten builds AI receptionists, chatbots and follow-up systems for service businesses. Live in 7 days.",
+      subNew: "Aria answers the phone, sends reminders to existing patients, and follows up with website visitors who didn't book. Live in 7 days.",
       trustLine: "3-month minimum · 30-day unconditional guarantee",
     },
     problem: {
@@ -570,7 +570,7 @@ export const translations = {
         { icon: "🤖", text: "AI svarer",          sub: "24/7 aktiv" },
       ],
       headlineNew: "Tannklinikkens digitale ekspedient — svarer, booker og følger opp mens du behandler pasienter",
-      subNew: "Ekspedenten bygger AI-resepsjonister, chatboter og oppfølgingssystemer for norske servicebedrifter. Live på 7 dager.",
+      subNew: "Aria tar telefonen, sender påminnelser til eksisterende pasienter, og følger opp nettbesøkende som ikke booket. Live på 7 dager.",
       trustLine: "3 måneders minimumsperiode · 30 dagers ubetinget garanti",
     },
     problem: {
