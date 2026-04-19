@@ -31,22 +31,6 @@ html {
   margin: 0;
 }
 
-/* ── 110% zoom on desktop only (outside @layer so Tailwind cannot override) ── */
-@media (min-width: 768px) {
-  html {
-    zoom: 1.1;
-  }
-}
-
-@media (min-width: 768px) {
-  @supports not (zoom: 1.1) {
-    html {
-      transform: scale(1.1);
-      transform-origin: top left;
-      width: 90.91%;
-    }
-  }
-}
 
 @layer base {
   *, *::before, *::after { box-sizing: border-box; }
