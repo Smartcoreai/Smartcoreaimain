@@ -31,19 +31,19 @@ html {
   margin: 0;
 }
 
-/* ── 90% zoom on desktop only (outside @layer so Tailwind cannot override) ── */
+/* ── 110% zoom on desktop only (outside @layer so Tailwind cannot override) ── */
 @media (min-width: 768px) {
   html {
-    zoom: 0.9;
+    zoom: 1.1;
   }
 }
 
 @media (min-width: 768px) {
-  @supports not (zoom: 0.9) {
+  @supports not (zoom: 1.1) {
     html {
-      transform: scale(0.9);
+      transform: scale(1.1);
       transform-origin: top left;
-      width: 111.11%;
+      width: 90.91%;
     }
   }
 }
