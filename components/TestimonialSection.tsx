@@ -280,16 +280,6 @@ export default function TestimonialSection() {
             transition: "opacity 700ms ease, transform 700ms cubic-bezier(0.22,1,0.36,1)",
           }}
         >
-          <div style={{
-            display: "inline-flex", alignItems: "center", gap: 14,
-            fontSize: 13, fontWeight: 700,
-            letterSpacing: "0.08em", textTransform: "uppercase",
-            color: "#b8902e", marginBottom: 20,
-          }}>
-            <span style={{ display: "block", width: 40, height: 1, background: "linear-gradient(90deg, transparent, #b8902e)" }} />
-            {s.eyebrow}
-            <span style={{ display: "block", width: 40, height: 1, background: "linear-gradient(90deg, #b8902e, transparent)" }} />
-          </div>
           <h2 style={{
             fontFamily: "'Playfair Display', Georgia, serif",
             fontSize: "clamp(30px, 4vw, 42px)",
