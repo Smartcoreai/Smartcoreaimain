@@ -1,7 +1,8 @@
 "use client";
 import { ArrowRight } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
 
-// ── Chat messages — static, short ────────────────────────────────────────────
+// ── Chat messages ─────────────────────────────────────────────────────────────
 const CHAT_MSGS = [
   { from: "user", time: "21:34", text: "Hei, har dere ledig time for tannrens i denne uken?" },
   { from: "aria", time: "21:34", text: "Hei Anders! Vi har ledig torsdag kl 14:00 eller fredag kl 10:30. Hvilken passer best?" },
@@ -9,15 +10,56 @@ const CHAT_MSGS = [
   { from: "aria", time: "21:35", text: "Perfekt — booket! SMS-bekreftelse sendt ✓" },
 ];
 
+// Animation timing (ms from IntersectionObserver trigger)
+const SEQUENCE = [
+  { at: 500,  typing: 0 },
+  { at: 2000, show: 0 },
+  { at: 2800, typing: 1 },
+  { at: 4500, show: 1 },
+  { at: 5300, typing: 2 },
+  { at: 6800, show: 2 },
+  { at: 7600, typing: 3 },
+  { at: 9200, show: 3 },
+];
+
+// ── Typing indicator ──────────────────────────────────────────────────────────
+function TypingIndicator({ isUser }: { isUser: boolean }) {
+  const dotColor = isUser ? "rgba(255,255,255,0.65)" : "#9a9aaa";
+  return (
+    <div style={{
+      alignSelf: isUser ? "flex-end" : "flex-start",
+      animation: "msgFadeIn 0.2s ease both",
+    }}>
+      <div style={{
+        padding: "8px 12px",
+        borderRadius: isUser ? "14px 4px 14px 14px" : "4px 14px 14px 14px",
+        background: isUser ? "#1a1a2e" : "#ffffff",
+        boxShadow: "0 1px 4px rgba(0,0,0,0.07)",
+        display: "flex",
+        gap: 4,
+        alignItems: "center",
+        minWidth: 44,
+      }}>
+        {[0, 1, 2].map(i => (
+          <div key={i} style={{
+            width: 5, height: 5, borderRadius: "50%",
+            background: dotColor,
+            animation: `typing-pulse 1.2s ${i * 0.2}s ease-in-out infinite`,
+          }} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 // ── Chat bubble ───────────────────────────────────────────────────────────────
-function ChatBubble({ msg, delay }: { msg: typeof CHAT_MSGS[0]; delay: number }) {
+function ChatBubble({ msg }: { msg: typeof CHAT_MSGS[0] }) {
   const isUser = msg.from === "user";
   return (
     <div style={{
       alignSelf: isUser ? "flex-end" : "flex-start",
       maxWidth: "86%",
-      animation: `msgFadeIn 0.25s ease both`,
-      animationDelay: `${delay}ms`,
+      animation: "msgFadeIn 0.3s ease both",
     }}>
       <div style={{
         padding: "8px 12px",
@@ -46,10 +88,62 @@ function ChatBubble({ msg, delay }: { msg: typeof CHAT_MSGS[0]; delay: number })
   );
 }
 
-// ── Phone mockup — static ─────────────────────────────────────────────────────
+// ── Phone mockup — animated ───────────────────────────────────────────────────
 function PhoneMockup() {
+  const [visibleCount, setVisibleCount] = useState(0);
+  const [typingIdx, setTypingIdx]       = useState<number | null>(null);
+  const wrapRef  = useRef<HTMLDivElement>(null);
+  const started  = useRef(false);
+
+  useEffect(() => {
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReduced) {
+      setVisibleCount(CHAT_MSGS.length);
+      return;
+    }
+
+    const timers: ReturnType<typeof setTimeout>[] = [];
+
+    function startAnimation() {
+      if (started.current) return;
+      started.current = true;
+
+      for (const step of SEQUENCE) {
+        if ("typing" in step) {
+          const idx = step.typing as number;
+          timers.push(setTimeout(() => setTypingIdx(idx), step.at));
+        }
+        if ("show" in step) {
+          const n = (step.show as number) + 1;
+          timers.push(setTimeout(() => {
+            setVisibleCount(n);
+            setTypingIdx(null);
+          }, step.at));
+        }
+      }
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          startAnimation();
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    const el = wrapRef.current;
+    if (el) observer.observe(el);
+
+    return () => {
+      observer.disconnect();
+      timers.forEach(clearTimeout);
+    };
+  }, []);
+
   return (
-    <div className="phone-mockup-wrap" style={{
+    <div ref={wrapRef} className="phone-mockup-wrap" style={{
       width: "100%",
       maxWidth: 260,
       margin: "0 auto",
@@ -125,7 +219,7 @@ function PhoneMockup() {
             </div>
           </div>
 
-          {/* Messages */}
+          {/* Messages — animated sequentially */}
           <div style={{
             padding: "10px 10px 16px",
             display: "flex",
@@ -135,7 +229,10 @@ function PhoneMockup() {
             overflowY: "hidden",
           }}>
             {CHAT_MSGS.map((msg, i) => (
-              <ChatBubble key={i} msg={msg} delay={i * 200} />
+              <div key={i}>
+                {i < visibleCount && <ChatBubble msg={msg} />}
+                {typingIdx === i && <TypingIndicator isUser={msg.from === "user"} />}
+              </div>
             ))}
           </div>
         </div>
@@ -308,15 +405,19 @@ export default function Hero() {
           from { opacity: 0; transform: translateY(6px); }
           to   { opacity: 1; transform: translateY(0); }
         }
+        @keyframes typing-pulse {
+          0%, 60%, 100% { opacity: 0.3; }
+          30%            { opacity: 1; }
+        }
 
         /* Mobile < 768px: stacked, telefon skjult, CTAs fullbredde */
         @media (max-width: 767px) {
-          .hero-grid         { grid-template-columns: 1fr !important; gap: 48px !important; }
-          .hero-phone        { display: none !important; }
+          .hero-grid          { grid-template-columns: 1fr !important; gap: 48px !important; }
+          .hero-phone         { display: none !important; }
           .hero-title-desktop { display: none !important; }
           .hero-title-mobile  { display: block !important; }
-          .hero-ctas         { flex-direction: column !important; }
-          .hero-ctas a       { justify-content: center !important; }
+          .hero-ctas          { flex-direction: column !important; }
+          .hero-ctas a        { justify-content: center !important; }
         }
 
         /* Desktop ≥ 768px: skjul kort mobiltittel */
@@ -327,8 +428,13 @@ export default function Hero() {
 
         /* Tablet 768–1023px: 2 kolonner, smalere gap og telefon */
         @media (min-width: 768px) and (max-width: 1023px) {
-          .hero-grid          { gap: 32px 40px !important; }
-          .phone-mockup-wrap  { max-width: 220px !important; }
+          .hero-grid         { gap: 32px 40px !important; }
+          .phone-mockup-wrap { max-width: 220px !important; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          @keyframes msgFadeIn    { from { opacity: 1; } to { opacity: 1; } }
+          @keyframes typing-pulse { from { opacity: 1; } to { opacity: 1; } }
         }
       `}</style>
     </section>
