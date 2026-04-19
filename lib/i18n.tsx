@@ -37,7 +37,7 @@ export const translations = {
       ],
       headlineNew: "Your dental clinic's digital receptionist.",
       subNew: "Aria answers the phone, sends reminders to existing patients, and follows up with website visitors who didn't book. Live in 7 days.",
-      trustLine: "3-month minimum · 30-day unconditional guarantee",
+      trustLine: "3-month minimum · 14-day money-back guarantee",
     },
     problem: {
       eyebrow: "THE PROBLEM",
@@ -156,7 +156,7 @@ export const translations = {
       headline: "Ready to let AI do the work?",
       subtitle: "Book a no-obligation call. We'll show you exactly what we can build for your business — and you decide if it's worth it.",
       cta: "Book a free call",
-      trustLine: "3-month minimum · 30-day unconditional guarantee · Response within 4 hours",
+      trustLine: "3-month minimum · 14-day money-back guarantee · Response within 4 hours",
     },
     ticker: [
       "AI Chatbot", "Booking Automation", "CRM System", "Lead Capture",
@@ -180,7 +180,7 @@ export const translations = {
         {
           num: "03",
           title: "You launch and we iterate",
-          desc: "Go live with a 30-day free trial. If you're not satisfied, you get a full refund — no questions asked.",
+          desc: "Go live with a 14-day free trial. If you're not satisfied, you get a full refund — no questions asked.",
         },
       ],
     },
@@ -234,7 +234,7 @@ export const translations = {
       foundingPrice: "Founding price",
       setupFee: "kr 10,000 one-time setup",
       setupFeeCustom: "Setup fee by agreement",
-      bottomNote: "All plans include onboarding support · 30-day unconditional guarantee · ",
+      bottomNote: "All plans include onboarding support · 14-day money-back guarantee · ",
       customBundles: "Custom bundles available",
       priceCustom: "Custom quote for every project",
       plans: [
@@ -291,7 +291,7 @@ export const translations = {
         },
         {
           q: "What if it doesn't work — can we cancel?",
-          a: "We offer a 30-day unconditional guarantee. If you're not satisfied within the first 30 days, you get a full refund — no questions asked. After that there is a 3-month minimum period, because real results take time to build. After the minimum period you can cancel with 30 days' notice. We believe in proving value, not locking you in.",
+          a: "We offer a 14-day money-back guarantee. If you're not satisfied within the first 14 days, you get a full refund — no questions asked. After that there is a 3-month minimum period, because real results take time to build. After the minimum period you can cancel with 30 days' notice. We believe in proving value, not locking you in.",
         },
         {
           q: "Which systems do you integrate with?",
@@ -404,21 +404,21 @@ export const translations = {
       priceCustom: "Custom quote for every project",
       getStarted: "Book a free call",
       bookCall: "Book a free call",
-      bottomNote: "All plans include onboarding support · 30-day unconditional guarantee",
+      bottomNote: "All plans include onboarding support · 14-day money-back guarantee",
       urgencyBarPrefix: "Only ",
       urgencyBarSuffix: " founding-client spots available. Prices revert to standard pricing once filled.",
       heroEyebrow: "PRICING",
       heroHeadline1: "Simple pricing.",
       heroHeadline2: "Real value.",
       heroSubtitle: "No hidden costs. No long contracts. Just AI systems that pay for themselves — or your money back.",
-      trustItems: ["30-day trial", "Money-back guarantee", "Live in 7 days"],
+      trustItems: ["14-day trial", "Money-back guarantee", "Live in 7 days"],
       foundingBadge: "Founding price",
       planNames: ["AI Chatbot", "AI Receptionist", "Leadgen System"],
       planTaglines: ["Your always-on chat agent", "Your AI front desk", "Your lead-generation engine"],
       guarantee: {
         items: [
-          { title: "30-day trial", desc: "Try the full system for free with no commitment" },
-          { title: "Money-back guarantee", desc: "Not satisfied within 30 days? Full refund, no questions asked" },
+          { title: "14-day trial", desc: "Try the full system for free with no commitment" },
+          { title: "Money-back guarantee", desc: "Not satisfied within 14 days? Full refund, no questions asked" },
           { title: "Live in 7 days", desc: "From signing to production — or you don't pay" },
           { title: "GDPR compliant", desc: "Data stored via GoHighLevel (EU-US Data Privacy Framework certified). You own your data" },
         ],
@@ -515,7 +515,7 @@ export const translations = {
         headline: "Ready for a conversation?",
         subtitle: "Let's find out if AI can add measurable value to your business — no pitch, no pressure.",
         button: "Book a free call →",
-        trustLine: "No commitment · 30-day unconditional guarantee · Response within 4 hours",
+        trustLine: "No commitment · 14-day money-back guarantee · Response within 4 hours",
       },
     },
     calculator: {
@@ -571,7 +571,7 @@ export const translations = {
       ],
       headlineNew: "Tannklinikkens digitale ekspedient.",
       subNew: "Aria tar telefonen, sender påminnelser til eksisterende pasienter, og følger opp nettbesøkende som ikke booket. Live på 7 dager.",
-      trustLine: "3 måneders minimumsperiode · 30 dagers ubetinget garanti",
+      trustLine: "3 måneders minimumsperiode · 14 dagers pengene-tilbake-garanti",
     },
     problem: {
       eyebrow: "PROBLEMET",
@@ -690,7 +690,7 @@ export const translations = {
       headline: "Klar til å la AI gjøre jobben?",
       subtitle: "Book en uforpliktende samtale. Vi viser deg nøyaktig hva vi kan bygge for din bedrift — og du bestemmer om det er verdt det.",
       cta: "Book en gratis samtale",
-      trustLine: "3 måneders minimumsperiode · 30 dagers ubetinget garanti · Svar innen 4 timer",
+      trustLine: "3 måneders minimumsperiode · 14 dagers pengene-tilbake-garanti · Svar innen 4 timer",
     },
     ticker: [
       "AI-chatbot", "Bookingautomatisering", "CRM-system", "Leadfangst",
@@ -714,7 +714,7 @@ export const translations = {
         {
           num: "03",
           title: "Du lanserer og vi forbedrer",
-          desc: "Gå live med 30 dagers gratis prøveperiode. Ikke fornøyd? Full refusjon — ingen spørsmål stilt.",
+          desc: "Gå live med 14 dagers gratis prøveperiode. Ikke fornøyd? Full refusjon — ingen spørsmål stilt.",
         },
       ],
     },
@@ -768,7 +768,7 @@ export const translations = {
       foundingPrice: "Lanseringspris",
       setupFee: "kr 10 000 engangsoppsett",
       setupFeeCustom: "Oppsettgebyr avtales",
-      bottomNote: "Alle planer inkluderer onboarding-støtte · 30-dagers ubetinget garanti · ",
+      bottomNote: "Alle planer inkluderer onboarding-støtte · 14-dagers pengene-tilbake-garanti · ",
       customBundles: "Tilpassede pakker tilgjengelig",
       priceCustom: "Skreddersydd pris for hvert prosjekt",
       plans: [
@@ -825,7 +825,7 @@ export const translations = {
         },
         {
           q: "Hva om det ikke fungerer — kan vi si opp?",
-          a: "Vi har 30 dagers ubetinget garanti. Er du ikke fornøyd i løpet av de første 30 dagene, får du full refusjon — ingen spørsmål stilt. Etter det har vi en 3 måneders minimumsperiode fordi ekte resultater tar tid å bygge opp. Etter minimumsperioden kan du si opp med 30 dagers varsel. Vi tror på å bevise verdien, ikke å låse deg inne.",
+          a: "Vi har 14 dagers pengene-tilbake-garanti. Er du ikke fornøyd i løpet av de første 14 dagene, får du full refusjon — ingen spørsmål stilt. Etter det har vi en 3 måneders minimumsperiode fordi ekte resultater tar tid å bygge opp. Etter minimumsperioden kan du si opp med 30 dagers varsel. Vi tror på å bevise verdien, ikke å låse deg inne.",
         },
         {
           q: "Hvilke systemer integrerer dere med?",
@@ -938,21 +938,21 @@ export const translations = {
       priceCustom: "Skreddersydd pris for hvert prosjekt",
       getStarted: "Book en gratis samtale",
       bookCall: "Book en gratis samtale",
-      bottomNote: "Alle planer inkluderer onboardingstøtte · 30-dagers ubetinget garanti",
+      bottomNote: "Alle planer inkluderer onboardingstøtte · 14-dagers pengene-tilbake-garanti",
       urgencyBarPrefix: "Kun ",
       urgencyBarSuffix: " grunnleggerplasser tilgjengelig. Prisene går tilbake til standardpris når fylt.",
       heroEyebrow: "PRISER",
       heroHeadline1: "Enkle priser.",
       heroHeadline2: "Ekte verdi.",
       heroSubtitle: "Ingen skjulte kostnader. Ingen lange kontrakter. Bare AI-systemer som betaler seg selv — eller pengene tilbake.",
-      trustItems: ["30 dagers prøveperiode", "Pengene tilbake-garanti", "Live på 7 dager"],
+      trustItems: ["14 dagers prøveperiode", "Pengene tilbake-garanti", "Live på 7 dager"],
       foundingBadge: "Lanseringspris",
       planNames: ["AI Chatbot", "AI Resepsjonist", "Leadgen System"],
       planTaglines: ["Din 24/7 chatassistent", "Din alltid-på-jobb resepsjonist", "Din automatiske leadmaskin"],
       guarantee: {
         items: [
-          { title: "30 dagers prøveperiode",    desc: "Prøv hele systemet helt gratis uten forpliktelser" },
-          { title: "Pengene tilbake-garanti",   desc: "Ikke fornøyd innen 30 dager? Full refusjon, ingen spørsmål" },
+          { title: "14 dagers prøveperiode",    desc: "Prøv hele systemet helt gratis uten forpliktelser" },
+          { title: "Pengene tilbake-garanti",   desc: "Ikke fornøyd innen 14 dager? Full refusjon, ingen spørsmål" },
           { title: "Live på 7 dager",           desc: "Fra signering til produksjon — eller du betaler ikke" },
           { title: "GDPR-kompatibel",           desc: "Data lagres via GoHighLevel (EU-US Data Privacy Framework-sertifisert). Du eier dataene" },
         ],
@@ -1049,7 +1049,7 @@ export const translations = {
         headline: "Klar for en samtale?",
         subtitle: "La oss finne ut om AI kan tilføre målbar verdi til din bedrift — ingen salgspress.",
         button: "Book en gratis samtale →",
-        trustLine: "3 måneders minimumsperiode · 30 dagers ubetinget garanti · Svar innen 4 timer",
+        trustLine: "3 måneders minimumsperiode · 14 dagers pengene-tilbake-garanti · Svar innen 4 timer",
       },
     },
     calculator: {
