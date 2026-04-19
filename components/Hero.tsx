@@ -52,7 +52,7 @@ function PhoneMockup() {
   return (
     <div style={{
       width: "100%",
-      maxWidth: 300,
+      maxWidth: 360,
       margin: "0 auto",
       filter: "drop-shadow(0 20px 60px rgba(0,0,0,0.2)) drop-shadow(0 8px 16px rgba(0,0,0,0.08))",
     }}>
@@ -155,14 +155,14 @@ export default function Hero() {
   const { t } = useLanguage();
 
   return (
-    <section style={{ background: "#ffffff", padding: "72px 24px 96px", overflow: "hidden" }}>
+    <section style={{ background: "#ffffff", padding: "48px 24px 64px", overflow: "hidden" }}>
       <div className="wrap">
         <div className="hero-grid" style={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
           gap: "56px 80px",
           alignItems: "center",
-          maxWidth: 1080,
+          maxWidth: 1200,
           margin: "0 auto",
         }}>
           {/* ── Left: text ── */}
