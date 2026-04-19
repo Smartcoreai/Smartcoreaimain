@@ -66,7 +66,7 @@ export default function Pipeline() {
           <h2 style={{
             fontFamily: "'Playfair Display', Georgia, serif",
             fontSize: "clamp(32px,4vw,52px)",
-            fontWeight: 700, color: "#F5F0E8", letterSpacing: "-0.01em", marginBottom: 14, lineHeight: 1.1,
+            fontWeight: 700, fontStyle: "normal", color: "#F5F0E8", letterSpacing: "-0.01em", marginBottom: 14, lineHeight: 1.1,
           }}>
             From stranger to{" "}
             <span style={{ background: "linear-gradient(135deg,#D4AF37,#F5D87E)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
@@ -140,7 +140,7 @@ export default function Pipeline() {
                     }}>{s.icon}</div>
                     <div>
                       <div style={{ fontSize: 11, color: "#8A8070", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.08em" }}>Step {s.step}</div>
-                      <div style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 22, fontWeight: 800, color: "#F5F0E8", letterSpacing: "-0.02em" }}>{s.title}</div>
+                      <div style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 22, fontWeight: 800, fontStyle: "normal", color: "#F5F0E8", letterSpacing: "-0.02em" }}>{s.title}</div>
                     </div>
                   </div>
                   <p style={{ fontSize: 15, color: "#8A8070", lineHeight: 1.75, marginBottom: 24 }}>{s.desc}</p>
@@ -177,7 +177,7 @@ export default function Pipeline() {
                     background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)",
                     borderRadius: 16, padding: "24px", textAlign: "center",
                   }}>
-                    <div style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 40, fontWeight: 800, color: "#F5F0E8", letterSpacing: "-0.01em", marginBottom: 4 }}>
+                    <div style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 40, fontWeight: 800, fontStyle: "normal", color: "#F5F0E8", letterSpacing: "-0.01em", marginBottom: 4 }}>
                       {s.metric}
                     </div>
                     <div style={{ fontSize: 13, color: "#8A8070" }}>{s.metricLabel}</div>

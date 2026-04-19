@@ -45,7 +45,7 @@ export default function AboutPage() {
               <h1 style={{
                 fontFamily: "'Playfair Display', Georgia, serif",
                 fontSize: "clamp(44px, 7vw, 80px)",
-                fontWeight: 700, lineHeight: 1.1,
+                fontWeight: 700, lineHeight: 1.1, fontStyle: "normal",
                 color: "#1a1a2e",
                 margin: "0 0 24px",
                 letterSpacing: "-0.02em",
@@ -103,7 +103,7 @@ export default function AboutPage() {
                 <h2 style={{
                   fontFamily: "'Playfair Display', Georgia, serif",
                   fontSize: "clamp(28px, 4vw, 46px)",
-                  fontWeight: 700, color: "#1a1a2e",
+                  fontWeight: 700, fontStyle: "normal", color: "#1a1a2e",
                   margin: 0, letterSpacing: "-0.02em",
                 }}>
                   {a.team.headline}
@@ -150,7 +150,7 @@ export default function AboutPage() {
                     {/* Name */}
                     <h3 style={{
                       fontFamily: "'Playfair Display', Georgia, serif",
-                      fontSize: 22, fontWeight: 700, color: "#1a1a2e",
+                      fontSize: 22, fontWeight: 700, fontStyle: "normal", color: "#1a1a2e",
                       margin: "0 0 6px", letterSpacing: "-0.01em",
                     }}>
                       {member.name}
@@ -221,7 +221,7 @@ export default function AboutPage() {
                 <h2 style={{
                   fontFamily: "'Playfair Display', Georgia, serif",
                   fontSize: "clamp(28px, 4vw, 46px)",
-                  fontWeight: 700, color: "#1a1a2e",
+                  fontWeight: 700, fontStyle: "normal", color: "#1a1a2e",
                   margin: 0, letterSpacing: "-0.02em",
                 }}>
                   {a.story.headline}
@@ -310,7 +310,7 @@ export default function AboutPage() {
               <h2 style={{
                 fontFamily: "'Playfair Display', Georgia, serif",
                 fontSize: "clamp(32px, 4.5vw, 52px)",
-                fontWeight: 700, color: "#1a1a2e",
+                fontWeight: 700, fontStyle: "normal", color: "#1a1a2e",
                 margin: "0 0 20px", letterSpacing: "-0.02em",
               }}>
                 {a.cta.headline}

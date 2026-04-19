@@ -65,7 +65,7 @@ export default function PricingPage() {
               <h1 style={{
                 fontFamily: "'Playfair Display', Georgia, serif",
                 fontSize: "clamp(40px, 6vw, 60px)",
-                fontWeight: 700, lineHeight: 1.1,
+                fontWeight: 700, lineHeight: 1.1, fontStyle: "normal",
                 color: "#1a1a2e",
                 margin: "22px 0 24px",
                 letterSpacing: "-0.02em",
@@ -184,7 +184,7 @@ export default function PricingPage() {
                     {/* Tagline — fixed height so all cards align */}
                     <div style={{
                       fontFamily: "'Playfair Display', Georgia, serif",
-                      fontSize: 20, fontWeight: 700,
+                      fontSize: 20, fontWeight: 700, fontStyle: "normal",
                       color: plan.featured ? "#f5f0e8" : "#1a1a2e",
                       marginBottom: 10, lineHeight: 1.25,
                       letterSpacing: "-0.01em",
@@ -395,7 +395,7 @@ export default function PricingPage() {
                 <h2 style={{
                   fontFamily: "'Playfair Display', Georgia, serif",
                   fontSize: "clamp(28px, 3.8vw, 42px)",
-                  fontWeight: 700, color: "#1a1a2e",
+                  fontWeight: 700, fontStyle: "normal", color: "#1a1a2e",
                   margin: "0 0 14px", letterSpacing: "-0.02em",
                 }}>
                   {(p.compare as { headline: string }).headline}
@@ -474,7 +474,7 @@ export default function PricingPage() {
               <h2 style={{
                 fontFamily: "'Playfair Display', Georgia, serif",
                 fontSize: "clamp(28px, 3.8vw, 38px)",
-                fontWeight: 700, color: "#1a1a2e",
+                fontWeight: 700, fontStyle: "normal", color: "#1a1a2e",
                 margin: "0 0 16px", letterSpacing: "-0.02em",
               }}>
                 {(p.faqTeaser as { headline: string }).headline}

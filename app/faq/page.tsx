@@ -32,7 +32,7 @@ export default function FAQPage() {
             <h1 style={{
               fontFamily: "'Playfair Display', Georgia, serif",
               fontSize: "clamp(36px, 5vw, 62px)",
-              fontWeight: 700,
+              fontWeight: 700, fontStyle: "normal",
               color: "#1a1a2e",
               letterSpacing: "-0.02em",
               lineHeight: 1.1,

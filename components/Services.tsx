@@ -298,7 +298,7 @@ export default function Services() {
           <div className="tag" style={{ display: "inline-flex", marginBottom: 16 }}>{t.services.tag}</div>
           <h2 className="text-[22px] sm:text-4xl lg:text-[52px]" style={{
             fontFamily: "'Playfair Display', Georgia, serif",
-            fontWeight: 700, color: "#F5F0E8", letterSpacing: "-0.01em", marginBottom: 14, lineHeight: 1.1,
+            fontWeight: 700, fontStyle: "normal", color: "#F5F0E8", letterSpacing: "-0.01em", marginBottom: 14, lineHeight: 1.1,
           }}>
             {t.services.headline1}{" "}
             <span style={{ background: "linear-gradient(135deg,#D4AF37,#F5D87E)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
@@ -347,7 +347,7 @@ export default function Services() {
                 <div style={{ padding: "6px", borderRadius: 10, background: svc.color + "20", color: svc.color, border: `1px solid ${svc.color}30`, display: "flex", alignItems: "center", justifyContent: "center" }}>{svc.icon}</div>
                 <span style={{ fontSize: 11, padding: "3px 10px", borderRadius: 999, background: svc.color + "18", color: svc.color, fontWeight: 600, border: `1px solid ${svc.color}30` }}>{svc.tag}</span>
               </div>
-              <h3 className="text-xl md:text-[26px]" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 800, color: "#F5F0E8", letterSpacing: "-0.02em", marginBottom: 10, lineHeight: 1.2 }}>
+              <h3 className="text-xl md:text-[26px]" style={{ fontFamily: "'Playfair Display', Georgia, serif", fontWeight: 800, fontStyle: "normal", color: "#F5F0E8", letterSpacing: "-0.02em", marginBottom: 10, lineHeight: 1.2 }}>
                 {svc.headline}
               </h3>
               <p style={{ fontSize: 14, color: "#8A8070", lineHeight: 1.7, marginBottom: 24 }}>{svc.desc}</p>

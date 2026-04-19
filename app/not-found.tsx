@@ -35,7 +35,7 @@ export default function NotFound() {
           <h1 style={{
             fontFamily: "Playfair Display, Georgia, serif",
             fontSize: "clamp(24px, 4vw, 36px)",
-            fontWeight: 700,
+            fontWeight: 700, fontStyle: "normal",
             color: "#F5F0E8",
             margin: "0 0 16px",
           }}>

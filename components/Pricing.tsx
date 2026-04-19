@@ -30,7 +30,7 @@ export default function Pricing() {
           <div className="tag" style={{ display: "inline-flex", marginBottom: 20 }}>{t.pricing.tag}</div>
           <h2 className="text-[26px] sm:text-[42px] lg:text-[58px]" style={{
             fontFamily: "'Playfair Display', Georgia, serif",
-            fontWeight: 700,
+            fontWeight: 700, fontStyle: "normal",
             color: "#F5F0E8",
             letterSpacing: "-0.01em",
             marginBottom: 16,

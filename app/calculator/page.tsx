@@ -61,7 +61,7 @@ export default function CalculatorPage() {
               <h1 style={{
                 fontFamily: "'Playfair Display', Georgia, serif",
                 fontSize: "clamp(32px, 5vw, 52px)",
-                fontWeight: 700, lineHeight: 1.1,
+                fontWeight: 700, lineHeight: 1.1, fontStyle: "normal",
                 color: "#1a1a2e", margin: "0 0 18px",
                 letterSpacing: "-0.02em",
               }}>

@@ -293,7 +293,7 @@ export default function TestimonialSection() {
           <h2 style={{
             fontFamily: "'Playfair Display', Georgia, serif",
             fontSize: "clamp(30px, 4vw, 42px)",
-            fontWeight: 700, lineHeight: 1.15, color: "#1a1a2e",
+            fontWeight: 700, lineHeight: 1.15, fontStyle: "normal", color: "#1a1a2e",
             margin: "0 0 18px", letterSpacing: "-0.02em",
           }}>
             {s.headline1}{" "}
@@ -321,7 +321,7 @@ export default function TestimonialSection() {
                 <h3 style={{
                   fontFamily: "'Playfair Display', Georgia, serif",
                   fontSize: "clamp(20px, 2.2vw, 26px)",
-                  fontWeight: 700, color: "#1a1a2e",
+                  fontWeight: 700, fontStyle: "normal", color: "#1a1a2e",
                   margin: "0 0 14px", lineHeight: 1.25, letterSpacing: "-0.01em",
                 }}>{m0.title}</h3>
                 <p style={{ fontSize: 15, color: "#5a5a6e", lineHeight: 1.7, margin: "0 0 24px" }}>{m0.desc}</p>
@@ -342,7 +342,7 @@ export default function TestimonialSection() {
                 <h3 style={{
                   fontFamily: "'Playfair Display', Georgia, serif",
                   fontSize: "clamp(20px, 2.2vw, 26px)",
-                  fontWeight: 700, color: "#1a1a2e",
+                  fontWeight: 700, fontStyle: "normal", color: "#1a1a2e",
                   margin: "0 0 14px", lineHeight: 1.25, letterSpacing: "-0.01em",
                 }}>{m1.title}</h3>
                 <p style={{ fontSize: 15, color: "#5a5a6e", lineHeight: 1.7, margin: "0 0 24px" }}>{m1.desc}</p>
@@ -363,7 +363,7 @@ export default function TestimonialSection() {
                 <h3 style={{
                   fontFamily: "'Playfair Display', Georgia, serif",
                   fontSize: "clamp(20px, 2.2vw, 26px)",
-                  fontWeight: 700, color: "#1a1a2e",
+                  fontWeight: 700, fontStyle: "normal", color: "#1a1a2e",
                   margin: "0 0 14px", lineHeight: 1.25, letterSpacing: "-0.01em",
                 }}>{m2.title}</h3>
                 <p style={{ fontSize: 15, color: "#5a5a6e", lineHeight: 1.7, margin: "0 0 24px" }}>{m2.desc}</p>
