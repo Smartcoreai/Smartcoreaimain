@@ -10,9 +10,17 @@ export const metadata: Metadata = {
   description: "Ekspedenten bygger AI-resepsjonister for norske tannklinikker. Svarer, booker og følger opp — 24/7.",
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon.ico",       sizes: "any",   type: "image/x-icon" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
     ],
-    apple: "/ekspedenten-logo.png",
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+    other: [
+      { rel: "manifest", url: "/site.webmanifest" },
+    ],
   },
   openGraph: {
     title: "Ekspedenten — AI-resepsjonist for tannklinikker",
@@ -29,6 +37,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" style={{ background: "#1A1A1A" }}>
+      <head>
+        <meta name="theme-color" content="#1a1f3a" />
+      </head>
       <body style={{ margin: 0, background: "#1A1A1A" }}>
         <ForceScrollTop />
         <ScrollReset />
