@@ -51,11 +51,11 @@ function PhoneMockup() {
   return (
     <div className="phone-mockup-wrap" style={{
       width: "100%",
-      maxWidth: 360,
+      maxWidth: 260,
       margin: "0 auto",
       filter: "drop-shadow(0 20px 60px rgba(0,0,0,0.2)) drop-shadow(0 8px 16px rgba(0,0,0,0.08))",
     }}>
-      {/* Phone shell */}
+      {/* Phone shell — fixed iPhone aspect ratio */}
       <div style={{
         background: "#0f0f1a",
         borderRadius: 44,
@@ -64,6 +64,7 @@ function PhoneMockup() {
         overflow: "hidden",
         display: "flex",
         flexDirection: "column",
+        aspectRatio: "9 / 19.5",
       }}>
         {/* Dynamic Island */}
         <div style={{ display: "flex", justifyContent: "center", paddingTop: 10, paddingBottom: 2, background: "#0f0f1a", flexShrink: 0 }}>
@@ -91,13 +92,14 @@ function PhoneMockup() {
           </div>
         </div>
 
-        {/* Chat window */}
+        {/* Chat window — flex: 1 fills remaining height inside fixed aspect-ratio shell */}
         <div style={{
           background: "#f7f6f1",
           borderRadius: "20px 20px 0 0",
           overflow: "hidden",
           display: "flex",
           flexDirection: "column",
+          flex: 1,
         }}>
           {/* Chat header */}
           <div style={{
@@ -123,12 +125,14 @@ function PhoneMockup() {
             </div>
           </div>
 
-          {/* Messages — all static */}
+          {/* Messages */}
           <div style={{
             padding: "10px 10px 16px",
             display: "flex",
             flexDirection: "column",
             gap: 8,
+            flex: 1,
+            overflowY: "hidden",
           }}>
             {CHAT_MSGS.map((msg, i) => (
               <ChatBubble key={i} msg={msg} delay={i * 200} />
@@ -324,7 +328,7 @@ export default function Hero() {
         /* Tablet 768–1023px: 2 kolonner, smalere gap og telefon */
         @media (min-width: 768px) and (max-width: 1023px) {
           .hero-grid          { gap: 32px 40px !important; }
-          .phone-mockup-wrap  { max-width: 300px !important; }
+          .phone-mockup-wrap  { max-width: 220px !important; }
         }
       `}</style>
     </section>
