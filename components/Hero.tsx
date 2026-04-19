@@ -1,6 +1,5 @@
 "use client";
 import { ArrowRight } from "lucide-react";
-import { useLanguage } from "@/lib/i18n";
 
 // ── Chat messages — static, short ────────────────────────────────────────────
 const CHAT_MSGS = [
@@ -50,7 +49,7 @@ function ChatBubble({ msg, delay }: { msg: typeof CHAT_MSGS[0]; delay: number })
 // ── Phone mockup — static ─────────────────────────────────────────────────────
 function PhoneMockup() {
   return (
-    <div style={{
+    <div className="phone-mockup-wrap" style={{
       width: "100%",
       maxWidth: 360,
       margin: "0 auto",
@@ -150,10 +149,22 @@ function PhoneMockup() {
   );
 }
 
+// ── CTA handlers ──────────────────────────────────────────────────────────────
+function openCalendly(e: React.MouseEvent) {
+  e.preventDefault();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (window as any).Calendly?.initPopupWidget({
+    url: "https://calendly.com/smartcoreaimeeting/new-meeting",
+  });
+}
+
+function openAriaChat(e: React.MouseEvent) {
+  e.preventDefault();
+  window.dispatchEvent(new Event("openAriaChat"));
+}
+
 // ── Main Hero ─────────────────────────────────────────────────────────────────
 export default function Hero() {
-  const { t } = useLanguage();
-
   return (
     <section style={{ background: "#ffffff", padding: "48px 24px 64px", overflow: "hidden" }}>
       <div className="wrap">
@@ -165,47 +176,63 @@ export default function Hero() {
           maxWidth: 1200,
           margin: "0 auto",
         }}>
+
           {/* ── Left: text ── */}
           <div>
             {/* Eyebrow */}
             <div style={{
-              fontSize: 13, fontWeight: 600,
-              letterSpacing: "0.06em",
+              fontSize: 12, fontWeight: 600,
+              letterSpacing: "0.08em",
               textTransform: "uppercase",
               color: "#b8902e",
               marginBottom: 20,
             }}>
-              {t.hero.tag}
+              For nordiske tannklinikker
             </div>
 
-            {/* H1 */}
-            <h1 style={{
+            {/* H1 — desktop (≥ 768px) */}
+            <h1 className="hero-title-desktop" style={{
               fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif",
-              fontSize: "clamp(34px, 4.2vw, 54px)",
-              fontWeight: 600,
-              lineHeight: 1.09,
+              fontSize: "clamp(28px, 3.4vw, 48px)",
+              fontWeight: 700,
+              lineHeight: 1.1,
               letterSpacing: "-0.02em",
               color: "#1a1a2e",
               margin: "0 0 22px",
             }}>
-              {t.hero.headlineNew}
+              Tannklinikkens digitale ekspedient — svarer anropet, booker timen, og henter tilbake pasientene som forsvant.
             </h1>
 
-            {/* Sub */}
+            {/* H1 — mobile (< 768px) */}
+            <h1 className="hero-title-mobile" style={{
+              fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif",
+              fontSize: "clamp(28px, 7vw, 40px)",
+              fontWeight: 700,
+              lineHeight: 1.1,
+              letterSpacing: "-0.02em",
+              color: "#1a1a2e",
+              margin: "0 0 20px",
+            }}>
+              Tannklinikkens digitale ekspedient — henter tilbake pasientene som forsvant.
+            </h1>
+
+            {/* Undertittel */}
             <p style={{
               fontSize: 17,
               color: "#5a5a6e",
               lineHeight: 1.65,
               margin: "0 0 36px",
-              maxWidth: 470,
+              maxWidth: 480,
             }}>
-              {t.hero.subNew}
+              Aria svarer anropet og booker timen. Hun sender påminnelser til eksisterende pasienter, og følger opp nettbesøkende som ikke bookte. Live på 7 dager.
             </p>
 
             {/* CTAs */}
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginBottom: 22 }}>
+            <div className="hero-ctas" style={{ display: "flex", flexWrap: "wrap", gap: 12, marginBottom: 20 }}>
+              {/* Primær: Calendly popup */}
               <a
-                href="#booking"
+                href="#"
+                onClick={openCalendly}
                 style={{
                   display: "inline-flex", alignItems: "center", gap: 7,
                   padding: "14px 26px", borderRadius: 11,
@@ -225,15 +252,17 @@ export default function Hero() {
                   el.style.transform = "translateY(0)";
                 }}
               >
-                {t.hero.ctaPrimary} <ArrowRight size={16} />
+                Book gratis samtale <ArrowRight size={16} />
               </a>
 
+              {/* Sekundær: åpner Aria chatbot */}
               <a
-                href="#services"
+                href="#"
+                onClick={openAriaChat}
                 style={{
                   display: "inline-flex", alignItems: "center", gap: 7,
                   padding: "14px 26px", borderRadius: 11,
-                  background: "transparent", color: "#1a1a2e",
+                  background: "#ffffff", color: "#1a1a2e",
                   border: "1.5px solid #e8e6dc",
                   fontSize: 15, fontWeight: 600, textDecoration: "none",
                   transition: "border-color 0.2s, color 0.2s",
@@ -249,16 +278,16 @@ export default function Hero() {
                   el.style.color = "#1a1a2e";
                 }}
               >
-                {t.hero.ctaSecondary}
+                Prøv Aria selv
               </a>
             </div>
 
-            {/* Trust line */}
+            {/* Microcopy */}
             <p style={{
               fontSize: 13, color: "#8a8a98",
               margin: 0, lineHeight: 1.5,
             }}>
-              {t.hero.trustLine}
+              Live på 7 dager · 14-dagers pengene-tilbake-garanti · Svar fra oss innen 4 timer
             </p>
           </div>
 
@@ -266,6 +295,7 @@ export default function Hero() {
           <div className="hero-phone" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
             <PhoneMockup />
           </div>
+
         </div>
       </div>
 
@@ -274,9 +304,27 @@ export default function Hero() {
           from { opacity: 0; transform: translateY(6px); }
           to   { opacity: 1; transform: translateY(0); }
         }
-        @media (max-width: 900px) {
-          .hero-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
-          .hero-phone { display: none !important; }
+
+        /* Mobile < 768px: stacked, telefon skjult, CTAs fullbredde */
+        @media (max-width: 767px) {
+          .hero-grid         { grid-template-columns: 1fr !important; gap: 48px !important; }
+          .hero-phone        { display: none !important; }
+          .hero-title-desktop { display: none !important; }
+          .hero-title-mobile  { display: block !important; }
+          .hero-ctas         { flex-direction: column !important; }
+          .hero-ctas a       { justify-content: center !important; }
+        }
+
+        /* Desktop ≥ 768px: skjul kort mobiltittel */
+        @media (min-width: 768px) {
+          .hero-title-mobile  { display: none !important; }
+          .hero-title-desktop { display: block !important; }
+        }
+
+        /* Tablet 768–1023px: 2 kolonner, smalere gap og telefon */
+        @media (min-width: 768px) and (max-width: 1023px) {
+          .hero-grid          { gap: 32px 40px !important; }
+          .phone-mockup-wrap  { max-width: 300px !important; }
         }
       `}</style>
     </section>
