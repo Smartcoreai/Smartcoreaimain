@@ -53,21 +53,37 @@ export default function Footer() {
             </p>
 
             <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-              {[
-                { label: "📞", text: "+47 XXX XX XXX", href: "tel:+47XXXXXXXXX" },
-                { label: "✉️", text: "hei@ekspedenten.no", href: "mailto:hei@ekspedenten.no" },
-                { label: "📍", text: "Bergen, Norge", href: undefined },
-              ].map(({ label, text, href }) => (
-                <div key={text} style={{ display: "flex", alignItems: "center", gap: 7, fontSize: 13, color: "#5a5a6e" }}>
-                  <span style={{ fontSize: 12 }}>{label}</span>
-                  {href
-                    ? <a href={href} style={{ color: "#5a5a6e", textDecoration: "none", transition: "color 0.15s" }}
-                        onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = "#1a1a2e"; }}
-                        onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = "#5a5a6e"; }}
-                      >{text}</a>
-                    : <span>{text}</span>}
-                </div>
-              ))}
+              {/* Calendly CTA */}
+              <div style={{ display: "flex", alignItems: "center", gap: 7, fontSize: 13, color: "#5a5a6e" }}>
+                <span style={{ fontSize: 12 }}>📅</span>
+                <a
+                  href="https://calendly.com/smartcoreaimeeting/new-meeting"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: "#5a5a6e", textDecoration: "none", transition: "color 0.15s" }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = "#1a1a2e"; }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = "#5a5a6e"; }}
+                >
+                  Book en gratis samtale
+                </a>
+              </div>
+              {/* Email */}
+              <div style={{ display: "flex", alignItems: "center", gap: 7, fontSize: 13, color: "#5a5a6e" }}>
+                <span style={{ fontSize: 12 }}>✉️</span>
+                <a
+                  href="mailto:hei@ekspedenten.no"
+                  style={{ color: "#5a5a6e", textDecoration: "none", transition: "color 0.15s" }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = "#1a1a2e"; }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = "#5a5a6e"; }}
+                >
+                  hei@ekspedenten.no
+                </a>
+              </div>
+              {/* Location */}
+              <div style={{ display: "flex", alignItems: "center", gap: 7, fontSize: 13, color: "#5a5a6e" }}>
+                <span style={{ fontSize: 12 }}>📍</span>
+                <span>Bergen, Norge</span>
+              </div>
             </div>
           </div>
 
@@ -108,10 +124,10 @@ export default function Footer() {
               {f.followUs}
             </div>
             <a
-              href="https://www.linkedin.com/company/smart-coreai/"
+              href="https://www.linkedin.com/company/ekspedenten/"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Ekspedenten on LinkedIn"
+              aria-label="Ekspedenten på LinkedIn"
               style={{
                 display: "inline-flex", alignItems: "center", justifyContent: "center",
                 width: 44, height: 44, borderRadius: 12,
