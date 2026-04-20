@@ -150,8 +150,8 @@ export default function Pricing() {
                   {/* Launch disclaimer */}
                   <div style={{ fontSize: 10, color: "#5A5248", marginTop: 6, lineHeight: 1.4 }}>
                     {lang === "no"
-                      ? `Gjelder de første 10 kundene. Ordinær pris: ${formatPrice(plan.originalPrice, lang)}/${t.pricing.period}`
-                      : `For the first 10 clients. Standard price: ${formatPrice(plan.originalPrice, lang)}/${t.pricing.period}`}
+                      ? `Gjelder de første 5 kundene. Ordinær pris: ${formatPrice(plan.originalPrice, lang)}/${t.pricing.period}`
+                      : `For the first 5 clients. Standard price: ${formatPrice(plan.originalPrice, lang)}/${t.pricing.period}`}
                   </div>
                   {/* Setup fee */}
                   <div style={{ fontSize: 11, color: "#5A5248", marginTop: 8 }}>

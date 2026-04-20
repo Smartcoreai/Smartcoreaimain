@@ -8,9 +8,9 @@ import { useLanguage } from "@/lib/i18n";
 
 // Display order: Chatbot (i18n plans[0]), Receptionist (i18n plans[2]), Leadgen (i18n plans[1])
 const PLAN_DATA = [
-  { planIdx: 0, price: 4_710,  originalPrice: 8_240,  featured: false, Icon: MessageSquare },
-  { planIdx: 2, price: 9_430,  originalPrice: 18_870, featured: true,  Icon: Phone },
-  { planIdx: 1, price: 5_890,  originalPrice: 11_790, featured: false, Icon: Zap },
+  { planIdx: 0, price: 4_490,  originalPrice: 4_710,  featured: false, Icon: MessageSquare },
+  { planIdx: 2, price: 8_590,  originalPrice: 9_430,  featured: true,  Icon: Phone },
+  { planIdx: 1, price: 5_790,  originalPrice: 5_890,  featured: false, Icon: Zap },
 ];
 
 function nokStr(n: number): string {
@@ -247,7 +247,7 @@ export default function PricingPage() {
                         fontSize: 11, color: plan.featured ? "#7a7060" : "#8a8a98",
                         lineHeight: 1.4, marginBottom: 4,
                       }}>
-                        Gjelder de første 10 kundene. Ordinær pris: {nokStr(plan.originalPrice)}/mnd
+                        Gjelder de første 5 kundene. Ordinær pris: {nokStr(plan.originalPrice)}/mnd
                       </div>
 
                       {/* Setup fee */}
