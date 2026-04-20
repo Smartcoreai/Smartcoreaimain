@@ -473,7 +473,7 @@ export const translations = {
         tag: "Our story",
         headline1: "Two best friends.",
         headline2: "One mission.",
-        subtext: "We started Ekspedenten because we saw the same problem everywhere: small and mid-sized businesses were being left behind in the AI revolution.",
+        subtext: "We started Ekspedenten because we saw the same problem over and over: dental clinics were losing patients to missed calls — while the AI tools that could have helped were built for enterprise companies, not for them.",
       },
       team: {
         tag: "The team",
@@ -1007,7 +1007,7 @@ export const translations = {
         tag: "Vår historie",
         headline1: "To bestekamerater.",
         headline2: "Én misjon.",
-        subtext: "Vi startet Ekspedenten fordi vi så det samme problemet overalt: små og mellomstore bedrifter ble etterlatt i AI-revolusjonen.",
+        subtext: "Vi startet Ekspedenten fordi vi så det samme problemet igjen og igjen: tannklinikker mistet pasienter til ubesvarte anrop — mens AI-verktøyene som kunne hjulpet var bygget for enterprise-selskaper, ikke for dem.",
       },
       team: {
         tag: "Teamet",
