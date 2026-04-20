@@ -12,7 +12,6 @@ export default function ChatWidget() {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [showQuickReplies, setShowQuickReplies] = useState(true);
-  const [pulseCount, setPulseCount] = useState(0);
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -30,15 +29,9 @@ export default function ChatWidget() {
     if (open) setTimeout(() => inputRef.current?.focus(), 100);
   }, [open]);
 
-  useEffect(() => {
-    if (open) return;
-    const timer = setTimeout(() => setPulseCount(1), 6000);
-    return () => clearTimeout(timer);
-  }, [open]);
-
   // Allow any component to open the widget via a custom event
   useEffect(() => {
-    const handler = () => { setOpen(true); setPulseCount(0); };
+    const handler = () => { setOpen(true); };
     window.addEventListener("openAriaChat", handler);
     return () => window.removeEventListener("openAriaChat", handler);
   }, []);
@@ -72,7 +65,7 @@ export default function ChatWidget() {
     <>
       {/* Floating button */}
       <button
-        onClick={() => { setOpen(true); setPulseCount(0); }}
+        onClick={() => { setOpen(true); }}
         aria-label="Open AI chat"
         className="aria-chat-btn"
         style={{
@@ -81,7 +74,7 @@ export default function ChatWidget() {
           background: "linear-gradient(135deg, #1a1a2e 0%, #2a2a4a 50%, #1a1a2e 100%)",
           borderRadius: "50%", cursor: "pointer",
           display: "flex", alignItems: "center", justifyContent: "center",
-          boxShadow: "inset 0 2px 8px rgba(0,0,0,0.3), 0 0 12px 2px rgba(212,175,55,0.4), 0 0 30px 6px rgba(212,175,55,0.25), 0 0 60px 12px rgba(212,175,55,0.15)",
+          boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
           transition: "transform 0.3s ease, box-shadow 0.4s ease, opacity 0.3s",
           transform: open ? "scale(0) rotate(90deg)" : "scale(1) rotate(0deg)",
           opacity: open ? 0 : 1,
@@ -109,14 +102,6 @@ export default function ChatWidget() {
           animation: "dot-pulse 2.5s ease-in-out infinite",
         }} />
 
-        {pulseCount > 0 && (
-          <div style={{
-            position: "absolute", inset: -8, borderRadius: "50%",
-            border: "2px solid rgba(212,175,55,0.5)",
-            animation: "pulseRing 1.5s ease-out 3",
-            zIndex: 1,
-          }} />
-        )}
       </button>
 
       {/* Chat window */}
@@ -300,7 +285,6 @@ export default function ChatWidget() {
 
       <style>{`
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
-        @keyframes pulseRing { 0% { transform: scale(0.8); opacity: 1; } 100% { transform: scale(2); opacity: 0; } }
 
         @keyframes dot-pulse {
           0%   { box-shadow: 0 0 0 0   rgba(34,197,94,0.7); }
