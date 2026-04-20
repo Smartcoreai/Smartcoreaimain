@@ -288,7 +288,7 @@ export default function Hero() {
               color: "#b8902e",
               marginBottom: 20,
             }}>
-              For nordiske tannklinikker
+              For skandinaviske tannklinikker
             </div>
 
             {/* H1 — desktop (≥ 768px) */}
