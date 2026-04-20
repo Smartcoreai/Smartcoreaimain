@@ -1,16 +1,16 @@
 "use client";
-import { Check, Star, MessageSquare, Phone, Zap, ArrowRight, Shield, DollarSign, Clock, Lock } from "lucide-react";
+import { Check, Star, Phone, Zap, Package, ArrowRight, Shield, DollarSign, Clock, Lock } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ChatWidget from "@/components/ChatWidget";
 import ScrollReveal from "@/components/ScrollReveal";
 import { useLanguage } from "@/lib/i18n";
 
-// Display order: Chatbot (i18n plans[0]), Receptionist (i18n plans[2]), Leadgen (i18n plans[1])
+// Display order: AI Resepsjonist (0), Lead-Oppfølger (1), Full pakke (2, featured)
 const PLAN_DATA = [
-  { planIdx: 0, price: 4_490,  originalPrice: 4_710,  featured: false, Icon: MessageSquare },
-  { planIdx: 2, price: 8_590,  originalPrice: 9_430,  featured: true,  Icon: Phone },
-  { planIdx: 1, price: 5_790,  originalPrice: 5_890,  featured: false, Icon: Zap },
+  { planIdx: 0, price: 11_000, featured: false, Icon: Phone },
+  { planIdx: 1, price: 7_500,  featured: false, Icon: Zap },
+  { planIdx: 2, price: 17_000, featured: true,  Icon: Package },
 ];
 
 function nokStr(n: number): string {
@@ -247,7 +247,7 @@ export default function PricingPage() {
                         fontSize: 11, color: plan.featured ? "#7a7060" : "#8a8a98",
                         lineHeight: 1.4, marginBottom: 4,
                       }}>
-                        Gjelder de første 5 kundene. Ordinær pris: {nokStr(plan.originalPrice)}/mnd
+                        Lanseringspris for de første 5 kundene. Kontakt oss for ordinær pris.
                       </div>
 
                       {/* Setup fee */}

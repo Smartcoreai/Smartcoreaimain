@@ -1,21 +1,23 @@
 "use client";
 import { Check, Star, Zap } from "lucide-react";
-import { useLanguage, formatPrice } from "@/lib/i18n";
+import { useLanguage } from "@/lib/i18n";
 
 const PLAN_META = [
-  { name: "AI Chatbot",             price: 399,  originalPrice: 699,  color: "#D4AF37", accent: "#F5D87E", popular: false, icon: "💬" },
-  { name: "Leadgen System",         price: 499,  originalPrice: 999,  color: "#F5D87E", accent: "#D4AF37", popular: false, icon: "🎯" },
-  { name: "AI Receptionist",        price: 799,  originalPrice: 1599, color: "#D4AF37", accent: "#F5D87E", popular: true,  icon: "📞" },
-  { name: "Custom AI Integrations", price: 1500, originalPrice: 2199, color: "#C9A84C", accent: "#D4AF37", popular: false, icon: "⚙️", priceCustom: true },
+  { price: 11_000, color: "#D4AF37", accent: "#F5D87E", popular: false, icon: "📞" },
+  { price: 7_500,  color: "#F5D87E", accent: "#D4AF37", popular: false, icon: "🎯" },
+  { price: 17_000, color: "#D4AF37", accent: "#F5D87E", popular: true,  icon: "📦" },
 ];
 
+function nokFmt(n: number): string {
+  return "kr " + n.toLocaleString("nb-NO").replace(/\u00A0/g, " ");
+}
+
 export default function Pricing() {
-  const { t, lang } = useLanguage();
+  const { t, lang } = useLanguage(); // lang used for disclaimer text
 
   const PLANS = PLAN_META.map((meta, i) => ({
     ...meta,
     ...t.pricing.plans[i],
-    name: t.services.items[i].label,  // use translated label so NO shows "AI Resepsjonist"
   }));
 
   return (
@@ -111,54 +113,43 @@ export default function Pricing() {
                 </div>
               </div>
 
-              {/* Price block — non-custom cards get minHeight so features align across cards */}
-              {plan.priceCustom ? (
-                <div style={{ marginBottom: 28 }}>
-                  <div style={{ fontFamily: "system-ui, -apple-system, sans-serif", fontSize: 22, fontWeight: 700, color: plan.color, lineHeight: 1.3 }}>
-                    {t.pricing.priceCustom}
-                  </div>
-                  <div style={{ fontSize: 11, color: "#5A5248", marginTop: 8 }}>
-                    {t.pricing.setupFeeCustom}
-                  </div>
+              {/* Price block */}
+              <div style={{ marginBottom: 28, minHeight: 120, display: "flex", flexDirection: "column", justifyContent: "flex-start" }}>
+                {/* Live price row */}
+                <div style={{ display: "flex", alignItems: "baseline", gap: 4, flexWrap: "wrap" }}>
+                  <span style={{
+                    fontFamily: "system-ui, -apple-system, sans-serif",
+                    fontSize: "clamp(26px, 3.2vw, 38px)",
+                    fontWeight: 800,
+                    lineHeight: 1,
+                    fontVariantNumeric: "tabular-nums",
+                    background: `linear-gradient(135deg, ${plan.color} 0%, ${plan.accent} 60%, ${plan.color} 100%)`,
+                    backgroundSize: "200% auto",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                    animation: "shimmer 4s linear infinite",
+                  }}>
+                    {nokFmt(plan.price)}
+                  </span>
+                  <span style={{ fontFamily: "system-ui, -apple-system, sans-serif", fontSize: 13, color: "#6A6050", fontWeight: 500, whiteSpace: "nowrap" }}>/{t.pricing.period}</span>
                 </div>
-              ) : (
-                <div style={{ marginBottom: 28, minHeight: 120, display: "flex", flexDirection: "column", justifyContent: "flex-start" }}>
-                  {/* Live price row */}
-                  <div style={{ display: "flex", alignItems: "baseline", gap: 4, flexWrap: "wrap" }}>
-                    <span style={{
-                      fontFamily: "system-ui, -apple-system, sans-serif",
-                      fontSize: "clamp(26px, 3.2vw, 38px)",
-                      fontWeight: 800,
-                      lineHeight: 1,
-                      fontVariantNumeric: "tabular-nums",
-                      background: `linear-gradient(135deg, ${plan.color} 0%, ${plan.accent} 60%, ${plan.color} 100%)`,
-                      backgroundSize: "200% auto",
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                      backgroundClip: "text",
-                      animation: "shimmer 4s linear infinite",
-                    }}>
-                      {formatPrice(plan.price, lang)}
-                    </span>
-                    <span style={{ fontFamily: "system-ui, -apple-system, sans-serif", fontSize: 13, color: "#6A6050", fontWeight: 500, whiteSpace: "nowrap" }}>/{t.pricing.period}</span>
-                  </div>
-                  {/* Lanseringspris label */}
-                  <div style={{ display: "inline-flex", alignItems: "center", gap: 5, marginTop: 10, padding: "3px 10px", borderRadius: 999, background: `${plan.color}14`, border: `1px solid ${plan.color}28` }}>
-                    <Zap size={10} color={plan.color} />
-                    <span style={{ fontSize: 10, fontWeight: 700, color: plan.color, letterSpacing: "0.06em", textTransform: "uppercase" }}>{t.pricing.foundingPrice}</span>
-                  </div>
-                  {/* Launch disclaimer */}
-                  <div style={{ fontSize: 10, color: "#5A5248", marginTop: 6, lineHeight: 1.4 }}>
-                    {lang === "no"
-                      ? `Gjelder de første 5 kundene. Ordinær pris: ${formatPrice(plan.originalPrice, lang)}/${t.pricing.period}`
-                      : `For the first 5 clients. Standard price: ${formatPrice(plan.originalPrice, lang)}/${t.pricing.period}`}
-                  </div>
-                  {/* Setup fee */}
-                  <div style={{ fontSize: 11, color: "#5A5248", marginTop: 8 }}>
-                    {t.pricing.setupFee}
-                  </div>
+                {/* Lanseringspris label */}
+                <div style={{ display: "inline-flex", alignItems: "center", gap: 5, marginTop: 10, padding: "3px 10px", borderRadius: 999, background: `${plan.color}14`, border: `1px solid ${plan.color}28` }}>
+                  <Zap size={10} color={plan.color} />
+                  <span style={{ fontSize: 10, fontWeight: 700, color: plan.color, letterSpacing: "0.06em", textTransform: "uppercase" }}>{t.pricing.foundingPrice}</span>
                 </div>
-              )}
+                {/* Launch disclaimer */}
+                <div style={{ fontSize: 10, color: "#5A5248", marginTop: 6, lineHeight: 1.4 }}>
+                  {lang === "no"
+                    ? "Lanseringspris for de første 5 kundene. Kontakt oss for ordinær pris."
+                    : "Founding price for the first 5 clients. Contact us for standard pricing."}
+                </div>
+                {/* Setup fee */}
+                <div style={{ fontSize: 11, color: "#5A5248", marginTop: 8 }}>
+                  {t.pricing.setupFee}
+                </div>
+              </div>
 
               {/* Divider */}
               <div style={{ height: 1, background: `linear-gradient(90deg, transparent, ${plan.color}30, transparent)`, marginBottom: 24 }} />
