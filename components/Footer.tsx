@@ -67,17 +67,33 @@ export default function Footer() {
                   Book en gratis samtale
                 </a>
               </div>
-              {/* Email */}
+              {/* Email — CEO */}
               <div style={{ display: "flex", alignItems: "center", gap: 7, fontSize: 13, color: "#5a5a6e" }}>
                 <span style={{ fontSize: 12 }}>✉️</span>
-                <a
-                  href="mailto:hei@ekspedenten.no"
-                  style={{ color: "#5a5a6e", textDecoration: "none", transition: "color 0.15s" }}
-                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = "#1a1a2e"; }}
-                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = "#5a5a6e"; }}
-                >
-                  hei@ekspedenten.no
-                </a>
+                <span>CEO:&nbsp;
+                  <a
+                    href="mailto:henrik@ekspedenten.no"
+                    style={{ color: "#5a5a6e", textDecoration: "none", transition: "color 0.15s" }}
+                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = "#1a1a2e"; }}
+                    onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = "#5a5a6e"; }}
+                  >
+                    henrik@ekspedenten.no
+                  </a>
+                </span>
+              </div>
+              {/* Email — CTO */}
+              <div style={{ display: "flex", alignItems: "center", gap: 7, fontSize: 13, color: "#5a5a6e" }}>
+                <span style={{ fontSize: 12 }}>✉️</span>
+                <span>CTO:&nbsp;
+                  <a
+                    href="mailto:aleksander@ekspedenten.no"
+                    style={{ color: "#5a5a6e", textDecoration: "none", transition: "color 0.15s" }}
+                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = "#1a1a2e"; }}
+                    onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = "#5a5a6e"; }}
+                  >
+                    aleksander@ekspedenten.no
+                  </a>
+                </span>
               </div>
               {/* Location */}
               <div style={{ display: "flex", alignItems: "center", gap: 7, fontSize: 13, color: "#5a5a6e" }}>
