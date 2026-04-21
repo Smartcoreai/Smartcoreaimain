@@ -52,10 +52,22 @@ export default function ChatWidget() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ messages: newMessages, lang }),
       });
+      if (res.status === 429) {
+        const data = await res.json();
+        setMessages([...newMessages, { role: "assistant", content: data.error ?? "Du har sendt for mange meldinger. Prøv igjen om en time." }]);
+        setLoading(false);
+        return;
+      }
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        setMessages([...newMessages, { role: "assistant", content: data.error ?? "Noe gikk galt. Prøv en kortere melding." }]);
+        setLoading(false);
+        return;
+      }
       const data = await res.json();
       setMessages([...newMessages, { role: "assistant", content: data.reply }]);
     } catch {
-      setMessages([...newMessages, { role: "assistant", content: "Sorry, something went wrong. Please try again or email us at hei@ekspedenten.no" }]);
+      setMessages([...newMessages, { role: "assistant", content: "Noe gikk galt. Prøv igjen eller book en gratis samtale: https://calendly.com/smartcoreaimeeting/new-meeting" }]);
     } finally {
       setLoading(false);
     }

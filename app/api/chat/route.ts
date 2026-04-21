@@ -1,8 +1,20 @@
 import { NextRequest, NextResponse } from "next/server";
 import Anthropic from "@anthropic-ai/sdk";
+import { LRUCache } from "lru-cache";
 import { insertLead } from "@/lib/db";
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+
+const chatRateLimit = new LRUCache<string, number>({
+  max: 5000,
+  ttl: 1000 * 60 * 60, // 1 hour
+});
+
+function getClientIp(req: NextRequest): string {
+  const forwarded = req.headers.get("x-forwarded-for");
+  if (forwarded) return forwarded.split(",")[0].trim();
+  return req.headers.get("x-real-ip") ?? "unknown";
+}
 
 const SYSTEM_PROMPT = `Du er Aria, assistenten til Ekspedenten. Ekspedenten er et norsk selskap som hjelper tannklinikker i Skandinavia med AI-automatisering — vi svarer telefoner, booker timer og følger opp pasienter automatisk, 24/7.
 
@@ -148,9 +160,42 @@ async function captureLeadToGHL(name: string, email: string) {
 
 export async function POST(req: NextRequest) {
   try {
+    // Rate limiting
+    const ip = getClientIp(req);
+    const count = chatRateLimit.get(ip) ?? 0;
+    if (count >= 20) {
+      return NextResponse.json(
+        { error: "Du har sendt for mange meldinger. Prøv igjen om en time, eller book en gratis samtale.", bookingUrl: "https://calendly.com/smartcoreaimeeting/new-meeting" },
+        { status: 429, headers: { "Retry-After": "3600" } }
+      );
+    }
+    chatRateLimit.set(ip, count + 1);
+
     const { messages, lang } = await req.json();
+
+    // Input validation
     if (!Array.isArray(messages)) {
-      return NextResponse.json({ error: "messages required" }, { status: 400 });
+      return NextResponse.json({ error: "Invalid request format" }, { status: 400 });
+    }
+    if (messages.length > 20) {
+      return NextResponse.json({ error: "Samtalen er for lang. Start en ny." }, { status: 400 });
+    }
+    for (const msg of messages) {
+      if (!msg || typeof msg !== "object") {
+        return NextResponse.json({ error: "Invalid message format" }, { status: 400 });
+      }
+      if (typeof msg.content !== "string") {
+        return NextResponse.json({ error: "Invalid content type" }, { status: 400 });
+      }
+      if (msg.content.length > 2000) {
+        return NextResponse.json({ error: "Meldingen er for lang. Kortere, takk." }, { status: 400 });
+      }
+      if (msg.content.length < 1) {
+        return NextResponse.json({ error: "Tom melding ikke tillatt" }, { status: 400 });
+      }
+      if (msg.role !== "user" && msg.role !== "assistant") {
+        return NextResponse.json({ error: "Invalid role" }, { status: 400 });
+      }
     }
 
     const systemPrompt = SYSTEM_PROMPT;
