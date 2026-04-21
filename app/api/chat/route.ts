@@ -92,60 +92,6 @@ Inkluder taggen kun én gang, første gang du har begge. Aldri igjen etter det.`
 
 const LEAD_TAG_RE = /^\[LEAD:name=([^,\]]+),email=([^\]]+)\]\s*/;
 
-async function captureLeadToGHL(name: string, email: string) {
-  const ghlKey = process.env.GHL_API_KEY;
-  const locationId = process.env.GHL_LOCATION_ID;
-  const GHL_PIPELINE_ID = process.env.GHL_PIPELINE_ID!;
-  const GHL_STAGE_ID = process.env.GHL_STAGE_ID!;
-
-  if (!ghlKey || !locationId) return;
-
-  const ghlHeaders = {
-    Authorization: `Bearer ${ghlKey}`,
-    Version: "2021-07-28",
-    "Content-Type": "application/json",
-  };
-
-  let contactId: string | null = null;
-  try {
-    const [firstName, ...rest] = name.trim().split(" ");
-    const contactRes = await fetch("https://services.leadconnectorhq.com/contacts/", {
-      method: "POST",
-      headers: ghlHeaders,
-      body: JSON.stringify({
-        firstName,
-        lastName: rest.join(" ") || "",
-        email,
-        source: "Ekspedenten Chat",
-        locationId,
-        tags: ["website-lead", "chat-lead"],
-      }),
-    });
-    const contactData = await contactRes.json();
-    contactId = contactData?.contact?.id ?? null;
-  } catch (err) {
-    console.error("[GHL chat] contact creation failed:", err);
-  }
-
-  if (contactId) {
-    try {
-      await fetch("https://services.leadconnectorhq.com/opportunities/", {
-        method: "POST",
-        headers: ghlHeaders,
-        body: JSON.stringify({
-          pipelineId: GHL_PIPELINE_ID,
-          pipelineStageId: GHL_STAGE_ID,
-          locationId,
-          contactId,
-          name: `${name} — Chat Lead`,
-          status: "open",
-        }),
-      });
-    } catch (err) {
-      console.error("[GHL chat] opportunity creation failed:", err);
-    }
-  }
-}
 
 export async function POST(req: NextRequest) {
   try {
@@ -210,8 +156,6 @@ export async function POST(req: NextRequest) {
       } catch (err) {
         console.error("[chat lead] DB insert failed:", err);
       }
-      // Fire-and-forget — don't block the chat reply on GHL
-      captureLeadToGHL(name, email).catch(console.error);
     }
 
     return NextResponse.json({ reply: text });

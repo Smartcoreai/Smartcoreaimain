@@ -147,9 +147,9 @@ export const translations = {
       eyebrow: "SECURITY AND TRUST",
       headline: "Built for Norwegian businesses. Owned by you.",
       cards: [
-        { title: "GDPR-compliant", desc: "All data is processed in accordance with GDPR via GoHighLevel, certified under the EU-US Data Privacy Framework." },
+        { title: "GDPR-compliant", desc: "All data is processed in accordance with GDPR. We only use third-party providers with valid data processing agreements." },
         { title: "Encrypted storage", desc: "TLS/SSL encryption in transit and at rest. Your data is safe." },
-        { title: "Data security", desc: "Data stored in USA via GoHighLevel (SOC 2 Type II certified, EU-US Data Privacy Framework)." },
+        { title: "Data security", desc: "Data is stored securely by certified providers. Access is restricted to authorised personnel only." },
         { title: "You own the data", desc: "All customer data belongs to you. Export at any time." },
       ],
     },
@@ -298,7 +298,7 @@ export const translations = {
         },
         {
           q: "What about GDPR, patient data and confidentiality?",
-          a: "Important clarification: Aria does NOT handle patient records, diagnoses or medical information. Aria handles only administrative communication — appointment booking, opening hours, prices and general questions. Our system is powered by GoHighLevel, which is certified under the EU-US Data Privacy Framework and SOC 2 Type II. Data is stored on servers in the USA, not in the EU. For clinics with strict requirements for data storage within the EU/EEA we recommend an individual assessment — we are happy to help with this.",
+          a: "Important clarification: Aria does NOT handle patient records, diagnoses or medical information. Aria handles only administrative communication — appointment booking, opening hours, prices and general questions. All data is processed in accordance with GDPR. For clinics with strict requirements for data storage within the EU/EEA we recommend an individual assessment — we are happy to help with this.",
         },
         {
           q: "Who owns the data, and what happens to it when we leave?",
@@ -419,7 +419,7 @@ export const translations = {
           { title: "14-day trial", desc: "Try the full system for free with no commitment" },
           { title: "Money-back guarantee", desc: "Not satisfied within 14 days? Full refund, no questions asked" },
           { title: "Live in 7 days", desc: "From signing to production — or you don't pay" },
-          { title: "GDPR compliant", desc: "Data stored via GoHighLevel (EU-US Data Privacy Framework certified). You own your data" },
+          { title: "GDPR compliant", desc: "All data processed in accordance with GDPR. You own your data." },
         ],
       },
       compare: {
@@ -676,9 +676,9 @@ export const translations = {
       eyebrow: "SIKKERHET OG TILLIT",
       headline: "Bygget for norske bedrifter. Eid av deg.",
       cards: [
-        { title: "GDPR-kompatibel", desc: "All data behandles i henhold til GDPR via GoHighLevel, sertifisert under EU-US Data Privacy Framework." },
+        { title: "GDPR-kompatibel", desc: "All data behandles i henhold til GDPR. Vi bruker kun tredjepartsleverandører med gyldige databehandlingsavtaler." },
         { title: "Kryptert lagring", desc: "TLS/SSL-kryptering under overføring og lagring. Dine data er trygge." },
-        { title: "Datasikkerhet", desc: "Data lagres i USA via GoHighLevel (SOC 2 Type II-sertifisert, EU-US Data Privacy Framework)." },
+        { title: "Datasikkerhet", desc: "Data lagres sikkert av sertifiserte leverandører. Tilgang er begrenset til autorisert personell." },
         { title: "Du eier dataene", desc: "All kundedata tilhører deg. Eksportér når som helst." },
       ],
     },
@@ -827,7 +827,7 @@ export const translations = {
         },
         {
           q: "Hva med GDPR, pasientdata og taushetsplikt?",
-          a: "Viktig avklaring: Aria håndterer IKKE pasientjournaler, diagnoser eller medisinsk informasjon. Aria håndterer kun administrativ kommunikasjon — timebestilling, åpningstider, priser og generelle spørsmål. Systemet vårt drives av GoHighLevel, som er sertifisert under EU-US Data Privacy Framework og er SOC 2 Type II-sertifisert. Data lagres på servere i USA, ikke i EU. For klinikker med strenge krav til datalagring innenfor EU/EØS anbefaler vi en individuell vurdering — vi bistår gjerne med dette.",
+          a: "Viktig avklaring: Aria håndterer IKKE pasientjournaler, diagnoser eller medisinsk informasjon. Aria håndterer kun administrativ kommunikasjon — timebestilling, åpningstider, priser og generelle spørsmål. All data behandles i henhold til GDPR. For klinikker med strenge krav til datalagring innenfor EU/EØS anbefaler vi en individuell vurdering — vi bistår gjerne med dette.",
         },
         {
           q: "Hvem eier dataen, og hva skjer med den når vi avslutter?",
@@ -948,7 +948,7 @@ export const translations = {
           { title: "14 dagers prøveperiode",    desc: "Prøv hele systemet helt gratis uten forpliktelser" },
           { title: "Pengene tilbake-garanti",   desc: "Ikke fornøyd innen 14 dager? Full refusjon, ingen spørsmål" },
           { title: "Live på 7 dager",           desc: "Fra signering til produksjon — eller du betaler ikke" },
-          { title: "GDPR-kompatibel",           desc: "Data lagres via GoHighLevel (EU-US Data Privacy Framework-sertifisert). Du eier dataene" },
+          { title: "GDPR-kompatibel",           desc: "All data behandles i henhold til GDPR. Du eier dataene." },
         ],
       },
       compare: {

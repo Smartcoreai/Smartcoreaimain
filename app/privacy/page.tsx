@@ -31,7 +31,7 @@ const SECTIONS = [
     title: "4. Hvem vi deler data med",
     bullets: [
       "Vi selger aldri dine personopplysninger til tredjeparter",
-      "Vi bruker GoHighLevel som vår CRM- og kommunikasjonsplattform. GoHighLevel er sertifisert under EU-US Data Privacy Framework og SOC 2 Type II",
+      "Vi bruker tredjepartsleverandører for CRM og kommunikasjon — kun leverandører med GDPR-kompatible databehandlingsavtaler",
       "Vi bruker Calendly for bookingadministrasjon. Calendly er GDPR-kompatibel og har egne databehandlingsavtaler",
       "Vi deler kun data med tjenesteleverandører som er nødvendige for å levere tjenesten",
     ],
@@ -39,8 +39,8 @@ const SECTIONS = [
   {
     title: "5. Datalagring og sikkerhet",
     bullets: [
-      "Data lagres i USA via GoHighLevel (sertifisert under EU-US Data Privacy Framework og SOC 2 Type II)",
-      "GoHighLevel bruker TLS/SSL-kryptering for alle data i overføring og hvile",
+      "Data kan lagres hos tredjepartsleverandører utenfor EU — kun via leverandører sertifisert under EU-US Data Privacy Framework",
+      "TLS/SSL-kryptering benyttes for alle data i overføring og hvile",
       "Tilgang er begrenset til autorisert personell",
       "Merk: Dersom din virksomhet er underlagt særskilte krav til datalagring innenfor EØS (f.eks. offentlig sektor eller helsevesen), anbefaler vi å ta kontakt med oss før avtale inngås",
     ],
