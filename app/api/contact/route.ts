@@ -2,43 +2,14 @@ import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import { insertLead } from "@/lib/db";
 import { formRatelimit, getClientIp } from "@/lib/ratelimit";
-
-function escapeHtml(text: string): string {
-  return text
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-}
-
-function validateContact(body: unknown): { valid: boolean; error?: string } {
-  if (!body || typeof body !== "object") return { valid: false, error: "Invalid request" };
-  const b = body as Record<string, unknown>;
-
-  if (typeof b.name !== "string" || b.name.trim().length < 2 || b.name.length > 100)
-    return { valid: false, error: "Navn må være mellom 2 og 100 tegn" };
-
-  if (typeof b.email !== "string" || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(b.email) || b.email.length > 254)
-    return { valid: false, error: "Ugyldig e-postadresse" };
-
-  if (b.phone !== undefined && b.phone !== "") {
-    if (typeof b.phone !== "string" || b.phone.length > 30)
-      return { valid: false, error: "Ugyldig telefonnummer" };
-  }
-
-  if (b.business !== undefined && b.business !== "") {
-    if (typeof b.business !== "string" || b.business.length > 200)
-      return { valid: false, error: "Klinikknavnet er for langt" };
-  }
-
-  if (typeof b.message !== "string" || b.message.trim().length < 10 || b.message.length > 5000)
-    return { valid: false, error: "Meldingen må være mellom 10 og 5000 tegn" };
-
-  return { valid: true };
-}
+import { ContactSchema, checkContentLength, escapeHtml } from "@/lib/validators";
 
 export async function POST(req: NextRequest) {
+  // Reject oversized bodies
+  if (!checkContentLength(req)) {
+    return NextResponse.json({ error: "Request too large" }, { status: 413 });
+  }
+
   // Rate limiting
   const ip = getClientIp(req);
   if (formRatelimit) {
@@ -52,15 +23,22 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  const body = await req.json();
-  const validation = validateContact(body);
-  if (!validation.valid) {
-    return NextResponse.json({ error: validation.error }, { status: 400 });
+  // Parse JSON
+  let raw: unknown;
+  try {
+    raw = await req.json();
+  } catch {
+    return NextResponse.json({ error: "Ugyldig forespørsel" }, { status: 400 });
   }
 
-  const { name, email, phone, business, message } = body as {
-    name: string; email: string; phone?: string; business?: string; message: string;
-  };
+  // Validate + strip HTML tags
+  const result = ContactSchema.safeParse(raw);
+  if (!result.success) {
+    const msg = result.error.issues[0]?.message ?? "Ugyldig forespørsel";
+    return NextResponse.json({ error: msg }, { status: 400 });
+  }
+
+  const { name, email, phone, business, message } = result.data;
 
   // Save to leads database
   try {
@@ -69,7 +47,7 @@ export async function POST(req: NextRequest) {
     console.error("Failed to save lead:", err);
   }
 
-  // Send email via Resend
+  // Send email via Resend (escapeHtml for HTML template only — data already stripped)
   const apiKey = process.env.RESEND_API_KEY;
   if (apiKey) {
     try {

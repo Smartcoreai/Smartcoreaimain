@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import Anthropic from "@anthropic-ai/sdk";
 import { insertLead } from "@/lib/db";
 import { chatRatelimit, getClientIp } from "@/lib/ratelimit";
+import { ChatSchema, checkContentLength } from "@/lib/validators";
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
@@ -94,6 +95,11 @@ const LEAD_TAG_RE = /^\[LEAD:name=([^,\]]+),email=([^\]]+)\]\s*/;
 
 
 export async function POST(req: NextRequest) {
+  // Reject oversized bodies
+  if (!checkContentLength(req)) {
+    return NextResponse.json({ error: "Request too large" }, { status: 413 });
+  }
+
   try {
     // Rate limiting
     const ip = getClientIp(req);
@@ -108,32 +114,20 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    const { messages, lang } = await req.json();
+    // Parse JSON
+    let raw: unknown;
+    try {
+      raw = await req.json();
+    } catch {
+      return NextResponse.json({ error: "Ugyldig forespørsel" }, { status: 400 });
+    }
 
-    // Input validation
-    if (!Array.isArray(messages)) {
-      return NextResponse.json({ error: "Invalid request format" }, { status: 400 });
+    // Validate + strip HTML tags from message content
+    const result = ChatSchema.safeParse(raw);
+    if (!result.success) {
+      return NextResponse.json({ error: "Ugyldig meldingsformat" }, { status: 400 });
     }
-    if (messages.length > 20) {
-      return NextResponse.json({ error: "Samtalen er for lang. Start en ny." }, { status: 400 });
-    }
-    for (const msg of messages) {
-      if (!msg || typeof msg !== "object") {
-        return NextResponse.json({ error: "Invalid message format" }, { status: 400 });
-      }
-      if (typeof msg.content !== "string") {
-        return NextResponse.json({ error: "Invalid content type" }, { status: 400 });
-      }
-      if (msg.content.length > 2000) {
-        return NextResponse.json({ error: "Meldingen er for lang. Kortere, takk." }, { status: 400 });
-      }
-      if (msg.content.length < 1) {
-        return NextResponse.json({ error: "Tom melding ikke tillatt" }, { status: 400 });
-      }
-      if (msg.role !== "user" && msg.role !== "assistant") {
-        return NextResponse.json({ error: "Invalid role" }, { status: 400 });
-      }
-    }
+    const { messages, lang } = result.data;
 
     const systemPrompt = SYSTEM_PROMPT;
 
