@@ -1,13 +1,75 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
+import { LRUCache } from "lru-cache";
 import { insertLead } from "@/lib/db";
 
-export async function POST(req: NextRequest) {
-  const { name, email, phone, business, message } = await req.json();
+const contactRateLimit = new LRUCache<string, number>({
+  max: 5000,
+  ttl: 1000 * 60 * 60, // 1 hour
+});
 
-  if (!name || !email || !message) {
-    return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+function getClientIp(req: NextRequest): string {
+  const forwarded = req.headers.get("x-forwarded-for");
+  if (forwarded) return forwarded.split(",")[0].trim();
+  return req.headers.get("x-real-ip") ?? "unknown";
+}
+
+function escapeHtml(text: string): string {
+  return text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function validateContact(body: unknown): { valid: boolean; error?: string } {
+  if (!body || typeof body !== "object") return { valid: false, error: "Invalid request" };
+  const b = body as Record<string, unknown>;
+
+  if (typeof b.name !== "string" || b.name.trim().length < 2 || b.name.length > 100)
+    return { valid: false, error: "Navn må være mellom 2 og 100 tegn" };
+
+  if (typeof b.email !== "string" || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(b.email) || b.email.length > 254)
+    return { valid: false, error: "Ugyldig e-postadresse" };
+
+  if (b.phone !== undefined && b.phone !== "") {
+    if (typeof b.phone !== "string" || b.phone.length > 30)
+      return { valid: false, error: "Ugyldig telefonnummer" };
   }
+
+  if (b.business !== undefined && b.business !== "") {
+    if (typeof b.business !== "string" || b.business.length > 200)
+      return { valid: false, error: "Klinikknavnet er for langt" };
+  }
+
+  if (typeof b.message !== "string" || b.message.trim().length < 10 || b.message.length > 5000)
+    return { valid: false, error: "Meldingen må være mellom 10 og 5000 tegn" };
+
+  return { valid: true };
+}
+
+export async function POST(req: NextRequest) {
+  // Rate limiting
+  const ip = getClientIp(req);
+  const count = contactRateLimit.get(ip) ?? 0;
+  if (count >= 3) {
+    return NextResponse.json(
+      { error: "For mange innsendinger. Prøv igjen om en time eller book en samtale direkte." },
+      { status: 429, headers: { "Retry-After": "3600" } }
+    );
+  }
+  contactRateLimit.set(ip, count + 1);
+
+  const body = await req.json();
+  const validation = validateContact(body);
+  if (!validation.valid) {
+    return NextResponse.json({ error: validation.error }, { status: 400 });
+  }
+
+  const { name, email, phone, business, message } = body as {
+    name: string; email: string; phone?: string; business?: string; message: string;
+  };
 
   // Save to leads database
   try {
@@ -29,13 +91,13 @@ export async function POST(req: NextRequest) {
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
             <h2 style="color: #D4AF37;">New contact form submission</h2>
             <table style="width: 100%; border-collapse: collapse;">
-              <tr><td style="padding: 8px 0; color: #666; width: 120px;">Name</td><td style="padding: 8px 0;"><strong>${name}</strong></td></tr>
-              <tr><td style="padding: 8px 0; color: #666;">Email</td><td style="padding: 8px 0;"><a href="mailto:${email}">${email}</a></td></tr>
-              <tr><td style="padding: 8px 0; color: #666;">Business</td><td style="padding: 8px 0;">${business || "—"}</td></tr>
+              <tr><td style="padding: 8px 0; color: #666; width: 120px;">Name</td><td style="padding: 8px 0;"><strong>${escapeHtml(name)}</strong></td></tr>
+              <tr><td style="padding: 8px 0; color: #666;">Email</td><td style="padding: 8px 0;"><a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></td></tr>
+              <tr><td style="padding: 8px 0; color: #666;">Business</td><td style="padding: 8px 0;">${escapeHtml(business || "—")}</td></tr>
             </table>
             <hr style="margin: 16px 0; border: none; border-top: 1px solid #eee;" />
             <h3 style="color: #333; margin-bottom: 8px;">Message</h3>
-            <p style="color: #444; line-height: 1.6;">${message.replace(/\n/g, "<br>")}</p>
+            <p style="color: #444; line-height: 1.6;">${escapeHtml(message).replace(/\n/g, "<br>")}</p>
             <hr style="margin: 24px 0; border: none; border-top: 1px solid #eee;" />
             <p style="color: #999; font-size: 12px;">Sent from ekspedenten.no contact form</p>
           </div>

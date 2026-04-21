@@ -10,22 +10,38 @@ export default function ContactSection() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", business: "", message: "" });
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    setErrorMsg(null);
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
-      if (!res.ok) throw new Error("API error");
+      if (res.status === 429) {
+        const data = await res.json();
+        setErrorMsg(data.error ?? "For mange innsendinger. Prøv igjen om en time eller book en samtale: https://calendly.com/smartcoreaimeeting/new-meeting");
+        setLoading(false);
+        return;
+      }
+      if (res.status === 400) {
+        const data = await res.json();
+        setErrorMsg(data.error ?? "Sjekk at alle felter er riktig fylt ut.");
+        setLoading(false);
+        return;
+      }
+      if (!res.ok) {
+        setErrorMsg("Noe gikk galt. Prøv igjen eller send e-post til henrik@ekspedenten.no");
+        setLoading(false);
+        return;
+      }
       setSent(true);
-    } catch (err) {
-      console.error(err);
-      setError(true);
+    } catch {
+      setErrorMsg("Noe gikk galt. Prøv igjen eller send e-post til henrik@ekspedenten.no");
     } finally {
       setLoading(false);
     }
@@ -110,14 +126,14 @@ export default function ContactSection() {
                   {t.contact.sendAnother}
                 </button>
               </div>
-            ) : error ? (
+            ) : errorMsg ? (
               <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100%", gap: 16, textAlign: "center" }}>
                 <div style={{ width: 64, height: 64, borderRadius: "50%", background: "rgba(239,68,68,0.12)", display: "flex", alignItems: "center", justifyContent: "center", border: "1px solid rgba(239,68,68,0.3)" }}>
                   <AlertCircle size={32} color="#ef4444" />
                 </div>
                 <div style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 22, fontWeight: 700, fontStyle: "normal", color: "#F5F0E8" }}>{t.contact.errorTitle}</div>
-                <div style={{ fontSize: 14, color: "#8A8070", lineHeight: 1.7 }}>{t.contact.errorDesc}</div>
-                <button onClick={() => setError(false)}
+                <div style={{ fontSize: 14, color: "#8A8070", lineHeight: 1.7 }}>{errorMsg}</div>
+                <button onClick={() => setErrorMsg(null)}
                   style={{ padding: "10px 20px", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 10, color: "#8A8070", fontSize: 13, cursor: "pointer", fontFamily: "inherit" }}>
                   {t.contact.sendAnother}
                 </button>
