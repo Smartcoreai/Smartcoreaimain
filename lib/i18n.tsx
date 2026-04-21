@@ -45,18 +45,18 @@ export const translations = {
       cards: [
         {
           title: "Calls you can't answer",
-          stat: "47%",
-          desc: "47% of incoming calls to clinics go unanswered. Each one is a potential booking.",
+          stat: "38%",
+          desc: "38% of calls to dental clinics go unanswered. 80% are booking requests — 65% from new patients.",
         },
         {
-          title: "Slow replies cost bookings",
-          stat: "31%",
-          desc: "31% of leads book with a competitor if they don't get a reply within 5 minutes.",
+          title: "The patient books with whoever answers first",
+          stat: "78%",
+          desc: "78% of customers book with the first business that responds. Responding within 5 minutes gives a 21× higher qualification rate than responding after 30.",
         },
         {
-          title: "Inquiries lost in the inbox",
-          stat: "66%",
-          desc: "66% of clinics have no system to automatically follow up on leads.",
+          title: "Patients who never come back",
+          stat: "30–40%",
+          desc: "30–40% of patients never book their next appointment after a recommended recall. Automated reminders lift retention by 15–30%.",
         },
       ],
     },
@@ -573,18 +573,18 @@ export const translations = {
       cards: [
         {
           title: "Telefoner du ikke rekker",
-          stat: "47%",
-          desc: "47% av innkommende anrop til klinikker blir aldri besvart. Hver av dem er en potensiell booking.",
+          stat: "38%",
+          desc: "38% av anrop til tannklinikker blir aldri besvart. 80% av dem er bookingforespørsler — 65% fra nye pasienter.",
         },
         {
-          title: "Sene svar koster bookinger",
-          stat: "31%",
-          desc: "31% av leads booker hos konkurrenten hvis de ikke får svar innen 5 minutter.",
+          title: "Pasienten velger den som svarer først",
+          stat: "78%",
+          desc: "78% av kunder booker hos første bedrift som svarer. Svar innen 5 minutter gir 21× høyere kvalifiseringsrate enn svar etter 30.",
         },
         {
-          title: "Henvendelser som forsvinner i innboksen",
-          stat: "66%",
-          desc: "66% av klinikker har ikke et system for å følge opp leads automatisk.",
+          title: "Pasienter som aldri kommer tilbake",
+          stat: "30–40%",
+          desc: "30–40% av pasienter booker aldri neste time etter anbefalt recall. Automatiserte innkallinger løfter retensjon med 15–30%.",
         },
       ],
     },
