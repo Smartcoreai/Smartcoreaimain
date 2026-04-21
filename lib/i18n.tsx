@@ -59,6 +59,7 @@ export const translations = {
           desc: "30–40% of patients never book their next appointment after a recommended recall. Automated reminders lift retention by 15–30%.",
         },
       ],
+      sources: "Sources: Resonate AI (2025), Peerlogic, Harvard Business Review / Oldroyd (MIT, 2011), American Dental Association.",
     },
     solution: {
       eyebrow: "THE SOLUTION",
@@ -99,7 +100,7 @@ export const translations = {
     },
     midCta: {
       headline: "How much time do you spend on calls, booking and follow-ups today?",
-      subtitle: "Most clinics spend 15+ hours a week. We can cut it to under 2.",
+      subtitle: "A typical dental clinic spends 10–15 hours per week on calls, bookings, and follow-ups. Ekspedenten dramatically reduces that.",
       savingValue: "47",
       savingLabel: "hours saved per month",
       bookingValue: "kr 51 000",
@@ -587,6 +588,7 @@ export const translations = {
           desc: "30–40% av pasienter booker aldri neste time etter anbefalt recall. Automatiserte innkallinger løfter retensjon med 15–30%.",
         },
       ],
+      sources: "Kilder: Resonate AI (2025), Peerlogic, Harvard Business Review / Oldroyd (MIT, 2011), American Dental Association.",
     },
     solution: {
       eyebrow: "LØSNINGEN",
@@ -627,7 +629,7 @@ export const translations = {
     },
     midCta: {
       headline: "Hvor mye tid bruker du på telefoner, booking og oppfølging i dag?",
-      subtitle: "De fleste klinikker bruker 15+ timer i uken. Vi kan kutte det til under 2.",
+      subtitle: "En typisk tannklinikk bruker 10–15 timer i uken på telefon, booking og oppfølging. Ekspedenten reduserer det dramatisk.",
       savingValue: "47",
       savingLabel: "timer spart per måned",
       bookingValue: "kr 51 000",

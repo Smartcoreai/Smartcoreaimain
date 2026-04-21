@@ -125,6 +125,11 @@ export default function ProblemSection() {
             );
           })}
         </div>
+
+        {/* Source footnote */}
+        <p style={{ fontSize: 11, color: "#8a8a98", textAlign: "center", margin: "28px auto 0", maxWidth: 700, lineHeight: 1.6 }}>
+          {(s as typeof s & { sources: string }).sources}
+        </p>
       </div>
 
       <style>{`
