@@ -1,7 +1,12 @@
 .next/
 node_modules/
 data/
+.env
 .env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.production
 *.log
 Smartcoreaimain/
 .DS_Store

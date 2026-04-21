@@ -102,8 +102,8 @@ export async function POST(req: NextRequest) {
 
   // Send to GoHighLevel as a new contact + create opportunity
   // Pipeline: "Smartcoreaimainweb" (BTQoCZdlr20nXOVPYvw7), Stage: "New lead" (39f56ebe-de61-4a09-bee1-c755b0c8eeca)
-  const GHL_PIPELINE_ID = "BTQoCZdlr20nXOVPYvw7";
-  const GHL_STAGE_ID    = "39f56ebe-de61-4a09-bee1-c755b0c8eeca";
+  const GHL_PIPELINE_ID = process.env.GHL_PIPELINE_ID!;
+  const GHL_STAGE_ID    = process.env.GHL_STAGE_ID!;
 
   const ghlKey    = process.env.GHL_API_KEY;
   const locationId = process.env.GHL_LOCATION_ID;

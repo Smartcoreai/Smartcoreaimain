@@ -95,8 +95,8 @@ const LEAD_TAG_RE = /^\[LEAD:name=([^,\]]+),email=([^\]]+)\]\s*/;
 async function captureLeadToGHL(name: string, email: string) {
   const ghlKey = process.env.GHL_API_KEY;
   const locationId = process.env.GHL_LOCATION_ID;
-  const GHL_PIPELINE_ID = "BTQoCZdlr20nXOVPYvw7";
-  const GHL_STAGE_ID = "39f56ebe-de61-4a09-bee1-c755b0c8eeca";
+  const GHL_PIPELINE_ID = process.env.GHL_PIPELINE_ID!;
+  const GHL_STAGE_ID = process.env.GHL_STAGE_ID!;
 
   if (!ghlKey || !locationId) return;
 
