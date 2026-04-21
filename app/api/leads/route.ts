@@ -3,8 +3,19 @@ import { getAllLeads, insertLead } from "@/lib/db";
 import { formRatelimit, getClientIp } from "@/lib/ratelimit";
 import { LeadSchema, checkContentLength } from "@/lib/validators";
 
-// GET /api/leads — admin only (checked via header)
+// GET /api/leads — admin only, rate limited to prevent brute-force
 export async function GET(req: NextRequest) {
+  const ip = getClientIp(req);
+  if (formRatelimit) {
+    const { success, reset } = await formRatelimit.limit(`admin:${ip}`);
+    if (!success) {
+      const retryAfter = Math.ceil((reset - Date.now()) / 1000);
+      return NextResponse.json(
+        { error: "Too many requests." },
+        { status: 429, headers: { "Retry-After": String(retryAfter) } }
+      );
+    }
+  }
   const pw = req.headers.get("x-admin-password");
   if (pw !== process.env.ADMIN_PASSWORD) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });

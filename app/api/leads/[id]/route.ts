@@ -6,17 +6,19 @@ function checkAdmin(req: NextRequest) {
 }
 
 // PATCH /api/leads/[id] — update status
-export async function PATCH(req: NextRequest, { params }: { params: { id: string } }) {
+export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   if (!checkAdmin(req)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const { id } = await params;
   const { status } = await req.json();
-  const lead = updateLeadStatus(Number(params.id), status);
+  const lead = updateLeadStatus(Number(id), status);
   if (!lead) return NextResponse.json({ error: "Not found" }, { status: 404 });
   return NextResponse.json(lead);
 }
 
 // DELETE /api/leads/[id]
-export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   if (!checkAdmin(req)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  deleteLead(Number(params.id));
+  const { id } = await params;
+  deleteLead(Number(id));
   return NextResponse.json({ ok: true });
 }

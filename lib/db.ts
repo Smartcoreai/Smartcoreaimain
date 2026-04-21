@@ -53,6 +53,7 @@ export function insertLead(data: Omit<Lead, "id" | "created_at" | "status">): Le
 }
 
 export function updateLeadStatus(id: number, status: string): Lead | undefined {
+  if (!STATUSES.includes(status as LeadStatus)) return undefined;
   const leads = readAll();
   const lead = leads.find((l) => l.id === id);
   if (!lead) return undefined;

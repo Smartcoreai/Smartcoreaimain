@@ -12,6 +12,8 @@ export function middleware(request: NextRequest) {
       path: "/",
       maxAge: 60 * 60 * 24 * 30, // 30 days
       sameSite: "lax",
+      secure: true,
+      httpOnly: true,
     });
   }
 
