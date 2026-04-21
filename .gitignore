@@ -4,3 +4,5 @@ data/
 .env.local
 *.log
 Smartcoreaimain/
+.DS_Store
+**/.DS_Store
