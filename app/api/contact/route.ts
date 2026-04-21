@@ -1,18 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
-import { LRUCache } from "lru-cache";
 import { insertLead } from "@/lib/db";
-
-const contactRateLimit = new LRUCache<string, number>({
-  max: 5000,
-  ttl: 1000 * 60 * 60, // 1 hour
-});
-
-function getClientIp(req: NextRequest): string {
-  const forwarded = req.headers.get("x-forwarded-for");
-  if (forwarded) return forwarded.split(",")[0].trim();
-  return req.headers.get("x-real-ip") ?? "unknown";
-}
+import { formRatelimit, getClientIp } from "@/lib/ratelimit";
 
 function escapeHtml(text: string): string {
   return text
@@ -52,14 +41,16 @@ function validateContact(body: unknown): { valid: boolean; error?: string } {
 export async function POST(req: NextRequest) {
   // Rate limiting
   const ip = getClientIp(req);
-  const count = contactRateLimit.get(ip) ?? 0;
-  if (count >= 3) {
-    return NextResponse.json(
-      { error: "For mange innsendinger. Prøv igjen om en time eller book en samtale direkte." },
-      { status: 429, headers: { "Retry-After": "3600" } }
-    );
+  if (formRatelimit) {
+    const { success, reset } = await formRatelimit.limit(ip);
+    if (!success) {
+      const retryAfter = Math.ceil((reset - Date.now()) / 1000);
+      return NextResponse.json(
+        { error: "For mange innsendinger. Prøv igjen om litt eller book en samtale direkte." },
+        { status: 429, headers: { "Retry-After": String(retryAfter) } }
+      );
+    }
   }
-  contactRateLimit.set(ip, count + 1);
 
   const body = await req.json();
   const validation = validateContact(body);

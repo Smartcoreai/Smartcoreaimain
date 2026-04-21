@@ -1,20 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import Anthropic from "@anthropic-ai/sdk";
-import { LRUCache } from "lru-cache";
 import { insertLead } from "@/lib/db";
+import { chatRatelimit, getClientIp } from "@/lib/ratelimit";
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
-
-const chatRateLimit = new LRUCache<string, number>({
-  max: 5000,
-  ttl: 1000 * 60 * 60, // 1 hour
-});
-
-function getClientIp(req: NextRequest): string {
-  const forwarded = req.headers.get("x-forwarded-for");
-  if (forwarded) return forwarded.split(",")[0].trim();
-  return req.headers.get("x-real-ip") ?? "unknown";
-}
 
 const SYSTEM_PROMPT = `Du er Aria, assistenten til Ekspedenten. Ekspedenten er et norsk selskap som hjelper tannklinikker i Skandinavia med AI-automatisering — vi svarer telefoner, booker timer og følger opp pasienter automatisk, 24/7.
 
@@ -162,14 +151,16 @@ export async function POST(req: NextRequest) {
   try {
     // Rate limiting
     const ip = getClientIp(req);
-    const count = chatRateLimit.get(ip) ?? 0;
-    if (count >= 20) {
-      return NextResponse.json(
-        { error: "Du har sendt for mange meldinger. Prøv igjen om en time, eller book en gratis samtale.", bookingUrl: "https://calendly.com/smartcoreaimeeting/new-meeting" },
-        { status: 429, headers: { "Retry-After": "3600" } }
-      );
+    if (chatRatelimit) {
+      const { success, reset } = await chatRatelimit.limit(ip);
+      if (!success) {
+        const retryAfter = Math.ceil((reset - Date.now()) / 1000);
+        return NextResponse.json(
+          { error: "Du har sendt for mange meldinger. Prøv igjen om litt, eller book en gratis samtale.", bookingUrl: "https://calendly.com/smartcoreaimeeting/new-meeting" },
+          { status: 429, headers: { "Retry-After": String(retryAfter) } }
+        );
+      }
     }
-    chatRateLimit.set(ip, count + 1);
 
     const { messages, lang } = await req.json();
 

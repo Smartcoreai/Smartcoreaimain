@@ -1,17 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { LRUCache } from "lru-cache";
 import { getAllLeads, insertLead } from "@/lib/db";
-
-const leadsRateLimit = new LRUCache<string, number>({
-  max: 5000,
-  ttl: 1000 * 60 * 60, // 1 hour
-});
-
-function getClientIp(req: NextRequest): string {
-  const forwarded = req.headers.get("x-forwarded-for");
-  if (forwarded) return forwarded.split(",")[0].trim();
-  return req.headers.get("x-real-ip") ?? "unknown";
-}
+import { formRatelimit, getClientIp } from "@/lib/ratelimit";
 
 // GET /api/leads — admin only (checked via header)
 export async function GET(req: NextRequest) {
@@ -27,11 +16,16 @@ export async function GET(req: NextRequest) {
 export async function POST(req: NextRequest) {
   // Rate limiting
   const ip = getClientIp(req);
-  const count = leadsRateLimit.get(ip) ?? 0;
-  if (count >= 10) {
-    return NextResponse.json({ error: "Too many submissions. Try again later." }, { status: 429, headers: { "Retry-After": "3600" } });
+  if (formRatelimit) {
+    const { success, reset } = await formRatelimit.limit(ip);
+    if (!success) {
+      const retryAfter = Math.ceil((reset - Date.now()) / 1000);
+      return NextResponse.json(
+        { error: "Too many submissions. Try again later." },
+        { status: 429, headers: { "Retry-After": String(retryAfter) } }
+      );
+    }
   }
-  leadsRateLimit.set(ip, count + 1);
 
   try {
     const body = await req.json();
