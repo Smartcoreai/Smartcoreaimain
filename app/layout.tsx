@@ -4,6 +4,35 @@ import { LanguageProvider } from "@/lib/i18n";
 import ScrollReset from "@/components/ScrollReset";
 import ForceScrollTop from "@/components/ForceScrollTop";
 import Script from "next/script";
+import { Inter, Playfair_Display, Syne, DM_Sans } from "next/font/google";
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["400", "600", "700", "800"],
+  variable: "--font-playfair",
+  display: "swap",
+});
+
+const syne = Syne({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-syne",
+  display: "swap",
+});
+
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-dm-sans",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Ekspedenten — AI-resepsjonist for tannklinikker",
@@ -36,7 +65,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" style={{ background: "#1A1A1A" }}>
+    <html
+      lang="en"
+      style={{ background: "#1A1A1A" }}
+      className={`${inter.variable} ${playfair.variable} ${syne.variable} ${dmSans.variable}`}
+    >
       <head>
         <meta name="theme-color" content="#1a1f3a" />
       </head>

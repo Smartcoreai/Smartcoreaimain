@@ -21,8 +21,8 @@ const securityHeaders = [
     value: [
       "default-src 'self'",
       "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://assets.calendly.com",
-      "style-src 'self' 'unsafe-inline' https://assets.calendly.com https://fonts.googleapis.com",
-      "font-src 'self' https://fonts.gstatic.com",
+      "style-src 'self' 'unsafe-inline' https://assets.calendly.com",
+      "font-src 'self'",
       "img-src 'self' data: blob: https:",
       "connect-src 'self' https://api.anthropic.com https://upstash.io https://*.upstash.io",
       "frame-src https://calendly.com",

@@ -29,9 +29,9 @@ const config: Config = {
         lo:      "#5A5248",
       },
       fontFamily: {
-        sans:    ["Inter", "system-ui", "sans-serif"],
-        display: ["Syne", "system-ui", "sans-serif"],
-        body:    ["Inter", "system-ui", "sans-serif"],
+        sans:    ["var(--font-inter)", "system-ui", "sans-serif"],
+        display: ["var(--font-syne)", "system-ui", "sans-serif"],
+        body:    ["var(--font-inter)", "system-ui", "sans-serif"],
       },
       animation: {
         "gradient-x":  "gradient-x 8s ease infinite",
