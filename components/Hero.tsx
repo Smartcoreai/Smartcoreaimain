@@ -325,7 +325,7 @@ export default function Hero() {
               margin: "0 0 36px",
               maxWidth: 480,
             }}>
-              Aria svarer anropet og booker timen. Hun sender påminnelser til eksisterende pasienter, og følger opp nettbesøkende som ikke bookte. Live på 7 dager.
+              Aria er tannklinikkens digitale ekspedient — hun svarer anrop og chat, booker timer, sender påminnelser til eksisterende pasienter og henter tilbake nettbesøkende som ikke bookte. Live på 7 dager.
             </p>
 
             {/* CTAs */}

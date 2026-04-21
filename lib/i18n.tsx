@@ -62,9 +62,9 @@ export const translations = {
     },
     solution: {
       eyebrow: "THE SOLUTION",
-      headline: "Three systems. One platform. Zero friction.",
-      headline1: "Three systems.",
-      headline2: "One platform.",
+      headline: "Zero missed enquiries. Zero lost patients.",
+      headline1: "Zero missed enquiries.",
+      headline2: "Zero lost patients.",
       subtitle: "Responds in your business's tone, qualifies leads automatically — with full visibility into everything.",
       modules: [
         {
@@ -590,9 +590,9 @@ export const translations = {
     },
     solution: {
       eyebrow: "LØSNINGEN",
-      headline: "Tre systemer. Én plattform. Null friksjon.",
-      headline1: "Tre systemer.",
-      headline2: "Én plattform.",
+      headline: "Null tapte henvendelser. Null tapte pasienter.",
+      headline1: "Null tapte henvendelser.",
+      headline2: "Null tapte pasienter.",
       subtitle: "Svarer i din bedrifts tone, kvalifiserer leads automatisk — med full oversikt over alt som skjer.",
       modules: [
         {

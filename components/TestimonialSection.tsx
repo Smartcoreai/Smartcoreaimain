@@ -286,8 +286,8 @@ export default function TestimonialSection() {
             fontWeight: 700, lineHeight: 1.15, fontStyle: "normal", color: "#1a1a2e",
             margin: "0 0 18px", letterSpacing: "-0.02em",
           }}>
-            {s.headline1}{" "}
-            <span style={{ color: "#b8902e" }}>{s.headline2}</span>
+            <span style={{ color: "#D4AF37" }}>Null</span>{s.headline1.slice(4)}{" "}
+            <span style={{ color: "#D4AF37" }}>Null</span>{s.headline2.slice(4)}
           </h2>
           <p style={{
             fontSize: 17, color: "#5a5a6e", lineHeight: 1.7, margin: 0,
