@@ -6,6 +6,7 @@ import ChatWidget from "@/components/ChatWidget";
 import ScrollReveal from "@/components/ScrollReveal";
 import { useLanguage } from "@/lib/i18n";
 import { Mail, MapPin, Target, BarChart2, Users } from "lucide-react";
+import CalendlyEmbed from "@/components/CalendlyEmbed";
 
 const TEAM_META = [
   { image: "/team/henrik.png" },
@@ -324,11 +325,7 @@ export default function AboutPage() {
             </ScrollReveal>
 
             <div style={{ maxWidth: "700px", margin: "0 auto" }}>
-              <div
-                className="calendly-inline-widget"
-                data-url="https://calendly.com/smartcoreaimeeting/30min"
-                style={{ minWidth: "320px", height: "700px", width: "100%" }}
-              />
+              <CalendlyEmbed url="https://calendly.com/smartcoreaimeeting/30min" height={700} />
             </div>
 
             <p style={{ fontSize: 13, color: "#8a8a98", marginTop: 20 }}>

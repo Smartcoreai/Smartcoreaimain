@@ -533,6 +533,26 @@ export const translations = {
       cta: "Book a free call to get started →",
       backLink: "← Back",
     },
+    cookies: {
+      banner: {
+        title: "We use cookies",
+        desc: "We use cookies to improve your experience and to load Calendly for booking. You are in full control.",
+        accept: "Accept all",
+        decline: "Decline all",
+        customize: "Customize",
+        policyLink: "Cookie policy",
+      },
+      categories: {
+        necessary: { label: "Necessary", desc: "Required for the website to function. Cannot be disabled." },
+        functional: { label: "Functional", desc: "Enables features such as the Calendly booking embed." },
+        analytics:  { label: "Analytics",  desc: "Helps us understand how visitors use the site." },
+        marketing:  { label: "Marketing",  desc: "Used for targeted advertising and retargeting." },
+      },
+      save: "Save preferences",
+      calendlyFallback: "Accept cookies to book a meeting",
+      calendlyFallbackLink: "Or open Calendly directly →",
+      manageLink: "Manage cookie preferences",
+    },
   },
 
   no: {
@@ -1061,6 +1081,26 @@ export const translations = {
       resultTotal: "Total årlig verdi",
       cta: "Book en gratis samtale for å komme i gang →",
       backLink: "← Tilbake",
+    },
+    cookies: {
+      banner: {
+        title: "Vi bruker informasjonskapsler",
+        desc: "Vi bruker informasjonskapsler for å forbedre din opplevelse og laste inn Calendly for booking. Du har full kontroll.",
+        accept: "Godta alle",
+        decline: "Avslå alle",
+        customize: "Tilpass",
+        policyLink: "Cookie-policy",
+      },
+      categories: {
+        necessary: { label: "Nødvendige", desc: "Kreves for at nettsiden skal fungere. Kan ikke deaktiveres." },
+        functional: { label: "Funksjonelle", desc: "Aktiverer funksjoner som Calendly booking-embed." },
+        analytics:  { label: "Analyse",      desc: "Hjelper oss å forstå hvordan besøkende bruker siden." },
+        marketing:  { label: "Markedsføring", desc: "Brukes til målrettet annonsering og retargeting." },
+      },
+      save: "Lagre valg",
+      calendlyFallback: "Godta cookies for å booke møte",
+      calendlyFallbackLink: "Eller åpne Calendly direkte →",
+      manageLink: "Administrer cookie-innstillinger",
     },
   },
 } as const;
