@@ -251,14 +251,6 @@ function PhoneMockup() {
 }
 
 // ── CTA handlers ──────────────────────────────────────────────────────────────
-function openCalendly(e: React.MouseEvent) {
-  e.preventDefault();
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  (window as any).Calendly?.initPopupWidget({
-    url: "https://calendly.com/smartcoreaimeeting/new-meeting",
-  });
-}
-
 function openAriaChat(e: React.MouseEvent) {
   e.preventDefault();
   window.dispatchEvent(new Event("openAriaChat"));
@@ -330,10 +322,11 @@ export default function Hero() {
 
             {/* CTAs */}
             <div className="hero-ctas" style={{ display: "flex", flexWrap: "wrap", gap: 12, marginBottom: 20 }}>
-              {/* Primær: Calendly popup */}
+              {/* Primær: Book samtale (ekstern lenke) */}
               <a
-                href="#"
-                onClick={openCalendly}
+                href="https://calendly.com/smartcoreaimeeting/new-meeting"
+                target="_blank"
+                rel="noopener noreferrer"
                 style={{
                   display: "inline-flex", alignItems: "center", gap: 7,
                   padding: "14px 26px", borderRadius: 11,

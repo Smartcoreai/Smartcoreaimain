@@ -6,7 +6,7 @@ import ChatWidget from "@/components/ChatWidget";
 import ScrollReveal from "@/components/ScrollReveal";
 import { useLanguage } from "@/lib/i18n";
 import { Mail, MapPin, Target, BarChart2, Users } from "lucide-react";
-import CalendlyEmbed from "@/components/CalendlyEmbed";
+import BookCallButton from "@/components/BookCallButton";
 
 const TEAM_META = [
   { image: "/team/henrik.png" },
@@ -324,8 +324,8 @@ export default function AboutPage() {
               </p>
             </ScrollReveal>
 
-            <div style={{ maxWidth: "700px", margin: "0 auto" }}>
-              <CalendlyEmbed url="https://calendly.com/smartcoreaimeeting/30min" height={700} />
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <BookCallButton variant="primary" />
             </div>
 
             <p style={{ fontSize: 13, color: "#8a8a98", marginTop: 20 }}>

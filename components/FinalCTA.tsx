@@ -1,6 +1,7 @@
 "use client";
 import ScrollReveal from "@/components/ScrollReveal";
 import { useLanguage } from "@/lib/i18n";
+import BookCallButton from "@/components/BookCallButton";
 
 export default function FinalCTA() {
   const { t } = useLanguage();
@@ -30,12 +31,8 @@ export default function FinalCTA() {
 
           </div>
 
-          <div style={{ maxWidth: "700px", margin: "0 auto", marginTop: "32px" }}>
-            <div
-              className="calendly-inline-widget"
-              data-url="https://calendly.com/smartcoreaimeeting/new-meeting"
-              style={{ minWidth: "320px", height: "700px", width: "100%" }}
-            />
+          <div style={{ display: "flex", justifyContent: "center", marginTop: "32px" }}>
+            <BookCallButton variant="primary" />
           </div>
 
           <div style={{ textAlign: "center" }}>
