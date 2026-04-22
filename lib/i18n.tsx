@@ -41,7 +41,7 @@ export const translations = {
     },
     problem: {
       eyebrow: "THE PROBLEM",
-      headline: "Service businesses lose customers every day — without knowing it",
+      headline: "Your dental clinic is losing patients every day — without knowing it",
       cards: [
         {
           title: "Calls you can't answer",
@@ -63,7 +63,7 @@ export const translations = {
     },
     solution: {
       eyebrow: "THE SOLUTION",
-      headline: "Zero missed enquiries. Zero lost patients.",
+      headline: "Meet Aria — your clinic's digital receptionist.",
       headline1: "Zero missed enquiries.",
       headline2: "Zero lost patients.",
       subtitle: "Responds in your business's tone, qualifies leads automatically — with full visibility into everything.",
@@ -609,7 +609,7 @@ export const translations = {
     },
     problem: {
       eyebrow: "PROBLEMET",
-      headline: "Servicebedrifter taper kunder hver dag — uten å vite det",
+      headline: "Tannklinikken din mister pasienter hver dag — uten å vite det",
       cards: [
         {
           title: "Telefoner du ikke rekker",
@@ -631,7 +631,7 @@ export const translations = {
     },
     solution: {
       eyebrow: "LØSNINGEN",
-      headline: "Null tapte henvendelser. Null tapte pasienter.",
+      headline: "Møt Aria — klinikkens digitale ekspedient.",
       headline1: "Null tapte henvendelser.",
       headline2: "Null tapte pasienter.",
       subtitle: "Svarer i din bedrifts tone, kvalifiserer leads automatisk — med full oversikt over alt som skjer.",

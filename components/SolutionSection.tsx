@@ -221,8 +221,7 @@ export default function SolutionSection() {
               lineHeight: 1.15, letterSpacing: "-0.015em",
               color: "#1a1a2e", margin: 0,
             }}>
-              <span style={{ color: "#D4AF37" }}>Null</span>{s.headline1.slice(4)}{" "}
-              <span style={{ color: "#D4AF37" }}>Null</span>{s.headline2.slice(4)}
+              {s.headline}
             </h2>
           </div>
         </ScrollReveal>
