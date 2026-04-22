@@ -70,21 +70,15 @@ export const translations = {
       modules: [
         {
           label: "AI Receptionist",
-          title: "Your customers get answers in seconds. Not hours.",
-          desc: "Aria answers incoming calls in your business's tone — checks availability, books appointments and confirms with the customer. Your team only steps in when needed.",
-          features: ["Responds within 2 seconds", "Books directly into the calendar", "Sends SMS confirmation", "Transfers to you when needed"],
-        },
-        {
-          label: "AI Chatbot",
-          title: "Capture leads from your website — around the clock.",
-          desc: "Answers questions, qualifies inquiries and books meetings automatically. Without you lifting a finger.",
-          features: ["Tailored to your business", "Multi-channel (web, Instagram, SMS)", "CRM integration", "Unlimited conversations"],
+          title: "Your patients get answers in seconds. Not hours.",
+          desc: "Aria answers incoming calls and web chat in your clinic's tone — checks availability, books appointments and confirms with the patient. Your team only steps in when needed.",
+          features: ["Responds within 2 seconds", "Handles phone and web chat", "Books directly into the calendar", "Sends SMS confirmation", "Transfers to you when needed"],
         },
         {
           label: "Lead Follow-up",
           title: "Automatic follow-up until they book — or say no.",
           desc: "SMS, email and chat for 7 days. Personal tone, synced with CRM. No leads fall through the cracks.",
-          features: ["Personal and natural tone", "Synced with CRM", "Multi-channel follow-up"],
+          features: ["Personal and natural tone", "SMS, email and chat for 7 days", "Synced with CRM", "Multi-channel follow-up", "No leads fall through the cracks"],
         },
       ],
     },
@@ -638,21 +632,15 @@ export const translations = {
       modules: [
         {
           label: "AI-resepsjonist",
-          title: "Kundene dine får svar på sekunder. Ikke timer.",
-          desc: "Aria svarer innkommende samtaler i din bedrifts tone — sjekker tilgjengelighet, booker timer og bekrefter med kunden. Teamet ditt trår bare inn når det trengs.",
-          features: ["Svarer innen 2 sekunder", "Booker direkte i kalenderen", "Sender bekreftelse på SMS", "Overfører til deg ved behov"],
-        },
-        {
-          label: "AI-chatbot",
-          title: "Fang leads fra nettsiden din — døgnet rundt.",
-          desc: "Svarer på spørsmål, kvalifiserer henvendelser og booker møter automatisk. Uten at du løfter en finger.",
-          features: ["Tilpasset din bedrift", "Flerkanal (web, Instagram, SMS)", "CRM-integrasjon", "Ubegrenset samtaler"],
+          title: "Pasientene dine får svar på sekunder. Ikke timer.",
+          desc: "Aria svarer innkommende samtaler og chat i klinikkens tone — sjekker tilgjengelighet, booker timer og bekrefter med pasienten. Teamet ditt trår bare inn når det trengs.",
+          features: ["Svarer innen 2 sekunder", "Håndterer telefon og web-chat", "Booker direkte i kalenderen", "Sender bekreftelse på SMS", "Overfører til deg ved behov"],
         },
         {
           label: "Lead-oppfølging",
           title: "Automatisk oppfølging til de booker — eller sier nei.",
           desc: "SMS, e-post og chat i 7 dager. Personlig tone, synkronisert med CRM. Ingen leads faller mellom stolene.",
-          features: ["Personlig og naturlig tone", "Synkronisert med CRM", "Flerkanaloppfølging"],
+          features: ["Personlig og naturlig tone", "SMS, e-post og chat i 7 dager", "Synkronisert med CRM", "Flerkanaloppfølging", "Ingen leads faller mellom stolene"],
         },
       ],
     },

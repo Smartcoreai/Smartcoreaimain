@@ -1,10 +1,10 @@
 "use client";
-import { Phone, MessageSquare, Target, Check } from "lucide-react";
+import { Phone, Target, Check } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
 import ScrollReveal from "@/components/ScrollReveal";
 import { useLanguage } from "@/lib/i18n";
 
-const MODULE_ICONS = [Phone, MessageSquare, Target];
+const MODULE_ICONS = [Phone, Target];
 
 // ── Count-up hook ─────────────────────────────────────────────────────────────
 function useCountUp(target: number, duration: number, triggered: boolean) {
@@ -64,33 +64,6 @@ function CallVisual() {
   );
 }
 
-function ConversionVisual({ triggered }: { triggered: boolean }) {
-  const count = useCountUp(47, 1400, triggered);
-  return (
-    <div style={{
-      background: "#fafaf8", border: "1px solid #e8e6dc",
-      borderRadius: 12, padding: "12px 14px", marginBottom: 24,
-    }}>
-      <div style={{ fontSize: 10, color: "#8a8a98", marginBottom: 8 }}>Konverteringsrate</div>
-      <div style={{ display: "flex", alignItems: "baseline", gap: 3, marginBottom: 10 }}>
-        <span style={{
-          fontSize: 28, fontWeight: 700, color: "#b8902e",
-          lineHeight: 1, letterSpacing: "-0.02em",
-        }}>{count}</span>
-        <span style={{ fontSize: 16, fontWeight: 700, color: "#b8902e" }}>%</span>
-      </div>
-      <div style={{ background: "#e8e6dc", borderRadius: 999, height: 5, overflow: "hidden" }}>
-        <div style={{
-          height: "100%",
-          width: `${(count / 47) * 100}%`,
-          background: "linear-gradient(90deg, #b8902e, #d4af37)",
-          borderRadius: 999,
-          transition: "width 0.12s linear",
-        }} />
-      </div>
-    </div>
-  );
-}
 
 function ResponseVisual({ triggered }: { triggered: boolean }) {
   const count = useCountUp(38, 1200, triggered);
@@ -177,8 +150,7 @@ function ModuleCard({ module, index }: {
 
       {/* Mini-visual */}
       {index === 0 && <CallVisual />}
-      {index === 1 && <ConversionVisual triggered={inView} />}
-      {index === 2 && <ResponseVisual triggered={inView} />}
+      {index === 1 && <ResponseVisual triggered={inView} />}
 
       {/* Features */}
       <div style={{ display: "flex", flexDirection: "column", gap: 8, marginTop: "auto" }}>
@@ -228,9 +200,9 @@ export default function SolutionSection() {
 
         <div className="sol-grid" style={{
           display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
-          gap: 24,
-          maxWidth: 1020,
+          gridTemplateColumns: "1fr 1fr",
+          gap: 28,
+          maxWidth: 800,
           margin: "0 auto",
           alignItems: "stretch",
         }}>
@@ -252,11 +224,8 @@ export default function SolutionSection() {
           display: flex;
           flex-direction: column;
         }
-        @media (max-width: 767px) {
+        @media (max-width: 640px) {
           .sol-grid { grid-template-columns: 1fr !important; }
-        }
-        @media (min-width: 768px) and (max-width: 1000px) {
-          .sol-grid { grid-template-columns: repeat(2, 1fr) !important; }
         }
       `}</style>
     </section>

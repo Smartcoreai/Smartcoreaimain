@@ -264,7 +264,6 @@ export default function TestimonialSection() {
 
   const m0 = s.modules[0];
   const m1 = s.modules[1];
-  const m2 = s.modules[2];
 
   return (
     <section style={{ background: "#ffffff", padding: "96px 24px" }}>
@@ -339,27 +338,6 @@ export default function TestimonialSection() {
                 <FeatureList features={m1.features} />
               </div>
               <div className="sol-block-visual"><StatVisual triggered={b2InView} /></div>
-            </div>
-          </AnimatedBlock>
-
-          {/* BLOCK 3 — text left, visual right */}
-          <AnimatedBlock delay={240}>
-            <div className="sol-block sol-block--normal">
-              <div className="sol-block-text">
-                <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16 }}>
-                  <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#b8902e", flexShrink: 0 }} />
-                  <span style={{ fontSize: 12, fontWeight: 700, color: "#b8902e", letterSpacing: "0.08em", textTransform: "uppercase" }}>{m2.label}</span>
-                </div>
-                <h3 style={{
-                  fontFamily: "'Playfair Display', Georgia, serif",
-                  fontSize: "clamp(20px, 2.2vw, 26px)",
-                  fontWeight: 700, fontStyle: "normal", color: "#1a1a2e",
-                  margin: "0 0 14px", lineHeight: 1.25, letterSpacing: "-0.01em",
-                }}>{m2.title}</h3>
-                <p style={{ fontSize: 15, color: "#5a5a6e", lineHeight: 1.7, margin: "0 0 24px" }}>{m2.desc}</p>
-                <FeatureList features={m2.features} />
-              </div>
-              <div className="sol-block-visual"><PipelineVisual /></div>
             </div>
           </AnimatedBlock>
 
