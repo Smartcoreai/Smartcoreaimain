@@ -22,18 +22,24 @@ export default function CalculatorPage() {
   const [callsPerWeek,  setCallsPerWeek]  = useState<string>("20");
   const [missedPct,     setMissedPct]     = useState(25);
   const [customerValue, setCustomerValue] = useState<string>("1500");
+  const [recoveryRate,  setRecoveryRate]  = useState(30);
 
   // ── Calculations ──────────────────────────────────────────────────────────────
   const calls   = Math.max(0, parseFloat(callsPerWeek)  || 0);
   const custVal = Math.max(0, parseFloat(customerValue) || 0);
 
-  const lostBookingsPerMonth  = calls * (missedPct / 100) * 4;
-  const extraRevenuePerMonth  = lostBookingsPerMonth * custVal * 0.3;
-  const annualSavings         = extraRevenuePerMonth * 12;
+  const missedCallsPerMonth       = calls * (missedPct / 100) * 4.33;
+  const recoveredBookingsPerMonth = missedCallsPerMonth * (recoveryRate / 100);
+  const extraRevenuePerMonth      = recoveredBookingsPerMonth * custVal;
+  const annualSavings             = extraRevenuePerMonth * 12;
+
+  const explanationText = c.explanationTemplate
+    .replace("{missed}", numFmt(missedCallsPerMonth))
+    .replace("{rate}", String(recoveryRate));
 
   const RESULT_ITEMS = [
-    { icon: Calendar,   label: c.resultBookings, value: numFmt(lostBookingsPerMonth),  unit: c.resultBookingsUnit },
-    { icon: TrendingUp, label: c.resultRevenue,  value: nokFmt(extraRevenuePerMonth),  unit: c.resultRevenueUnit },
+    { icon: Calendar,   label: c.resultBookings, value: numFmt(recoveredBookingsPerMonth), unit: c.resultBookingsUnit },
+    { icon: TrendingUp, label: c.resultRevenue,  value: nokFmt(extraRevenuePerMonth),      unit: c.resultRevenueUnit },
   ];
 
   return (
@@ -148,6 +154,33 @@ export default function CalculatorPage() {
                     </div>
                   </div>
 
+                  {/* Recovery rate — slider */}
+                  <div>
+                    <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 14 }}>
+                      <label style={labelStyle}>{c.labelRecovery}</label>
+                      <span style={{ fontSize: 22, fontWeight: 700, color: "#b8902e", fontFamily: "'DM Sans', -apple-system, sans-serif", fontVariantNumeric: "tabular-nums", letterSpacing: "-0.03em", lineHeight: 1 }}>
+                        {recoveryRate}%
+                      </span>
+                    </div>
+                    <input
+                      type="range"
+                      min={10} max={60} step={1}
+                      value={recoveryRate}
+                      onChange={e => setRecoveryRate(Number(e.target.value))}
+                      className="calc-slider"
+                      style={{
+                        width: "100%",
+                        background: `linear-gradient(to right, #b8902e 0%, #b8902e ${((recoveryRate - 10) / 50) * 100}%, #e8e6dc ${((recoveryRate - 10) / 50) * 100}%, #e8e6dc 100%)`,
+                      }}
+                    />
+                    <div style={{ display: "flex", justifyContent: "space-between", marginTop: 6, fontSize: 12, color: "#8a8a98" }}>
+                      <span>10%</span><span>35%</span><span>60%</span>
+                    </div>
+                    <p style={{ fontSize: 12, color: "#8a8a98", lineHeight: 1.5, margin: "10px 0 0" }}>
+                      {c.hintRecovery}
+                    </p>
+                  </div>
+
                 </div>
               </div>
             </ScrollReveal>
@@ -248,6 +281,16 @@ export default function CalculatorPage() {
                     </div>
                   </div>
                 </div>
+
+                {/* Dynamic explanation */}
+                <p style={{
+                  fontSize: 13, color: "#5a5a6e", lineHeight: 1.6,
+                  margin: 0, padding: "12px 16px",
+                  background: "#f7f6f1", borderRadius: 10,
+                  border: "1px solid #e8e6dc",
+                }}>
+                  {explanationText}
+                </p>
 
                 {/* CTA */}
                 <a

@@ -532,6 +532,9 @@ export const translations = {
       resultTotal: "Total annual value",
       cta: "Book a free call to get started →",
       backLink: "← Back",
+      labelRecovery: "Realistic share of missed calls you recover",
+      hintRecovery: "Industry data shows clinics typically recover 25–35% of lost bookings with an AI receptionist. Adjust for your situation.",
+      explanationTemplate: "Estimate based on {missed} missed calls per month, with {rate}% recovered via AI receptionist.",
     },
     personvern: {
       back: "← Back",
@@ -1097,6 +1100,9 @@ export const translations = {
       resultTotal: "Total årlig verdi",
       cta: "Book en gratis samtale for å komme i gang →",
       backLink: "← Tilbake",
+      labelRecovery: "Realistisk andel ubesvarte anrop du gjenvinner",
+      hintRecovery: "Bransjedata viser at klinikker typisk gjenvinner 25–35% av tapte bookinger med AI-resepsjonist. Juster for din situasjon.",
+      explanationTemplate: "Estimatet baseres på {missed} ubesvarte anrop per måned, der {rate}% gjenvinnes med AI-resepsjonist.",
     },
     personvern: {
       back: "← Tilbake",
