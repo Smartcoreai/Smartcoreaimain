@@ -533,6 +533,22 @@ export const translations = {
       cta: "Book a free call to get started →",
       backLink: "← Back",
     },
+    personvern: {
+      back: "← Back",
+      headline: "Privacy Policy",
+      updated: "Last updated: 22 April 2026",
+      intro: "We are currently updating our privacy policy in connection with our rebrand from SmartcoreAI to Ekspedenten. A complete version will be available shortly.",
+      processorsHeadline: "Data processors we use",
+      processors: [
+        { name: "Anthropic", desc: "Powers the Aria AI assistant. Conversation data may be processed on Anthropic's servers." },
+        { name: "Resend", desc: "Sends transactional emails (contact form confirmations, notifications)." },
+        { name: "Calendly", desc: "Handles meeting booking. Subject to Calendly's own privacy policy." },
+        { name: "Vercel", desc: "Hosts the website and API. Data is processed in their secure infrastructure." },
+        { name: "Google Workspace", desc: "Used for internal communication and document storage." },
+      ],
+      contactHeadline: "Privacy enquiries",
+      contactDesc: "Questions about how we handle your data? Contact us at",
+    },
     cookies: {
       banner: {
         title: "We use cookies",
@@ -1081,6 +1097,22 @@ export const translations = {
       resultTotal: "Total årlig verdi",
       cta: "Book en gratis samtale for å komme i gang →",
       backLink: "← Tilbake",
+    },
+    personvern: {
+      back: "← Tilbake",
+      headline: "Personvernerklæring",
+      updated: "Sist oppdatert: 22. april 2026",
+      intro: "Vi oppdaterer for tiden vår personvernerklæring i forbindelse med rebrand fra SmartcoreAI til Ekspedenten. Fullstendig versjon kommer innen kort tid.",
+      processorsHeadline: "Databehandlere vi bruker",
+      processors: [
+        { name: "Anthropic", desc: "Driver AI-assistenten Aria. Samtaledata kan behandles på Anthropics servere." },
+        { name: "Resend", desc: "Sender transaksjonsbaserte e-poster (kontaktskjemabekreftelser, varsler)." },
+        { name: "Calendly", desc: "Håndterer møtebooking. Underlagt Calendlys egne personvernregler." },
+        { name: "Vercel", desc: "Drifter nettsiden og API-et. Data behandles i deres sikrede infrastruktur." },
+        { name: "Google Workspace", desc: "Brukes til intern kommunikasjon og dokumentlagring." },
+      ],
+      contactHeadline: "Personvernspørsmål",
+      contactDesc: "Spørsmål om hvordan vi behandler dine data? Ta kontakt på",
     },
     cookies: {
       banner: {
