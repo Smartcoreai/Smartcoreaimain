@@ -565,6 +565,11 @@ export const translations = {
       calendlyFallback: "Accept cookies to book a meeting",
       calendlyFallbackLink: "Or open Calendly directly →",
       manageLink: "Manage cookie preferences",
+      fallbackTitle: "Book a free consultation",
+      fallbackText: "To display the booking calendar here, please accept cookies. You can also book directly on Calendly.",
+      fallbackAcceptBtn: "Accept cookies",
+      fallbackDirectLink: "Book on Calendly →",
+      settingsLink: "Cookie settings",
     },
   },
 
@@ -1127,6 +1132,11 @@ export const translations = {
       calendlyFallback: "Godta cookies for å booke møte",
       calendlyFallbackLink: "Eller åpne Calendly direkte →",
       manageLink: "Administrer cookie-innstillinger",
+      fallbackTitle: "Book en uforpliktende samtale",
+      fallbackText: "For å vise booking-kalenderen her må du godta cookies. Du kan også booke direkte hos Calendly.",
+      fallbackAcceptBtn: "Godta cookies",
+      fallbackDirectLink: "Book på Calendly →",
+      settingsLink: "Cookie-innstillinger",
     },
   },
 } as const;

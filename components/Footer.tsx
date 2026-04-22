@@ -198,14 +198,28 @@ export default function Footer() {
       <span style={{ fontSize: 13, color: "rgba(255,255,255,0.5)" }}>
         © {new Date().getFullYear()} Ekspedenten. {f.rights}
       </span>
-      <a
-        href="/privacy"
-        style={{ fontSize: 13, color: "rgba(255,255,255,0.5)", textDecoration: "none", transition: "color 0.15s" }}
-        onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = "#b8902e"; }}
-        onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.5)"; }}
-      >
-        Privacy Policy
-      </a>
+      <div style={{ display: "flex", gap: 20, alignItems: "center" }}>
+        <button
+          onClick={() => window.dispatchEvent(new Event("ekspedenten-open-consent"))}
+          style={{
+            fontSize: 13, color: "rgba(255,255,255,0.5)", background: "none",
+            border: "none", cursor: "pointer", padding: 0, transition: "color 0.15s",
+            fontFamily: "var(--font-dm-sans), system-ui, sans-serif",
+          }}
+          onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = "#b8902e"; }}
+          onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.5)"; }}
+        >
+          {t.cookies.settingsLink}
+        </button>
+        <a
+          href="/personvern"
+          style={{ fontSize: 13, color: "rgba(255,255,255,0.5)", textDecoration: "none", transition: "color 0.15s" }}
+          onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = "#b8902e"; }}
+          onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.5)"; }}
+        >
+          Privacy Policy
+        </a>
+      </div>
     </div>
     </>
   );

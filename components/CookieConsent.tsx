@@ -57,6 +57,18 @@ export default function CookieConsent() {
     }
   }, []);
 
+  useEffect(() => {
+    const openHandler = () => {
+      const existing = getConsent();
+      if (existing) {
+        setChoices({ functional: existing.functional, analytics: existing.analytics, marketing: existing.marketing });
+      }
+      setVisible(true);
+    };
+    window.addEventListener("ekspedenten-open-consent", openHandler);
+    return () => window.removeEventListener("ekspedenten-open-consent", openHandler);
+  }, []);
+
   if (!visible) return null;
 
   function accept() {
