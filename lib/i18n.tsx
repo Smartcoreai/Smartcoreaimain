@@ -573,6 +573,11 @@ export const translations = {
       value: "7 DAYS",
       sub: "automatic follow-up",
     },
+    solutionWidget: {
+      label: "Continuous follow-up",
+      value: "7",
+      unit: "days",
+    },
   },
 
   no: {
@@ -1141,6 +1146,11 @@ export const translations = {
       label: "KONTINUERLIG",
       value: "7 DAGER",
       sub: "automatisk oppfølging",
+    },
+    solutionWidget: {
+      label: "Kontinuerlig oppfølging",
+      value: "7",
+      unit: "dager",
     },
   },
 } as const;

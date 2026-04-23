@@ -65,20 +65,21 @@ function CallVisual() {
 }
 
 
-function ResponseVisual({ triggered }: { triggered: boolean }) {
-  const count = useCountUp(38, 1200, triggered);
+function ResponseVisual() {
+  const { t } = useLanguage();
+  const w = t.solutionWidget;
   return (
     <div style={{
       background: "#fafaf8", border: "1px solid #e8e6dc",
       borderRadius: 12, padding: "12px 14px", marginBottom: 24,
     }}>
-      <div style={{ fontSize: 10, color: "#8a8a98", marginBottom: 6 }}>Gjennomsnittlig responstid</div>
+      <div style={{ fontSize: 10, color: "#8a8a98", marginBottom: 6 }}>{w.label}</div>
       <div style={{ display: "flex", alignItems: "baseline", gap: 6 }}>
         <span style={{
           fontSize: 28, fontWeight: 700, color: "#b8902e",
           lineHeight: 1, letterSpacing: "-0.02em",
-        }}>{count}</span>
-        <span style={{ fontSize: 13, fontWeight: 600, color: "#5a5a6e" }}>sek</span>
+        }}>{w.value}</span>
+        <span style={{ fontSize: 13, fontWeight: 600, color: "#5a5a6e" }}>{w.unit}</span>
       </div>
     </div>
   );
@@ -150,7 +151,7 @@ function ModuleCard({ module, index }: {
 
       {/* Mini-visual */}
       {index === 0 && <CallVisual />}
-      {index === 1 && <ResponseVisual triggered={inView} />}
+      {index === 1 && <ResponseVisual />}
 
       {/* Features */}
       <div style={{ display: "flex", flexDirection: "column", gap: 8, marginTop: "auto" }}>
