@@ -578,6 +578,13 @@ export const translations = {
       value: "7",
       unit: "days",
     },
+    pricingSize: {
+      toggleLabel: "Choose your clinic size",
+      small: "Small clinic",
+      medium: "Medium clinic",
+      large: "Large clinic",
+      inclVat: "incl. VAT",
+    },
   },
 
   no: {
@@ -1151,6 +1158,13 @@ export const translations = {
       label: "Kontinuerlig oppfølging",
       value: "7",
       unit: "dager",
+    },
+    pricingSize: {
+      toggleLabel: "Velg størrelse på din klinikk",
+      small: "Liten klinikk",
+      medium: "Medium klinikk",
+      large: "Stor klinikk",
+      inclVat: "ink. MVA",
     },
   },
 } as const;

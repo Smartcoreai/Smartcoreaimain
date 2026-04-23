@@ -1,11 +1,39 @@
 "use client";
+import { useState } from "react";
 import { Check, Star, Zap } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
 
+type ClinicSize = "small" | "medium" | "large";
+
+interface TierData {
+  price: number;
+  vat: number;
+  volume: string;
+  overage: string;
+}
+
+const TIERS: Record<ClinicSize, [TierData, TierData, TierData]> = {
+  small:  [
+    { price: 6_000,  vat: 7_500,  volume: "200 min/mnd",    overage: "Deretter 3 kr/min" },
+    { price: 4_500,  vat: 5_625,  volume: "100 leads/mnd",  overage: "Deretter 12 kr/lead" },
+    { price: 9_000,  vat: 11_250, volume: "200 min + 100 leads + AI Chatbot", overage: "" },
+  ],
+  medium: [
+    { price: 8_000,  vat: 10_000, volume: "600 min/mnd",    overage: "Deretter 3 kr/min" },
+    { price: 7_500,  vat: 9_375,  volume: "300 leads/mnd",  overage: "Deretter 12 kr/lead" },
+    { price: 13_000, vat: 16_250, volume: "600 min + 300 leads + AI Chatbot", overage: "" },
+  ],
+  large:  [
+    { price: 11_000, vat: 13_750, volume: "1 500 min/mnd",  overage: "Deretter 3 kr/min" },
+    { price: 10_500, vat: 13_125, volume: "800 leads/mnd",  overage: "Deretter 12 kr/lead" },
+    { price: 17_000, vat: 21_250, volume: "1 500 min + 800 leads + AI Chatbot", overage: "" },
+  ],
+};
+
 const PLAN_META = [
-  { price: 11_000, color: "#D4AF37", accent: "#F5D87E", popular: false, icon: "📞" },
-  { price: 7_500,  color: "#F5D87E", accent: "#D4AF37", popular: false, icon: "🎯" },
-  { price: 17_000, color: "#D4AF37", accent: "#F5D87E", popular: true,  icon: "📦" },
+  { color: "#D4AF37", accent: "#F5D87E", popular: false, icon: "📞" },
+  { color: "#F5D87E", accent: "#D4AF37", popular: false, icon: "🎯" },
+  { color: "#D4AF37", accent: "#F5D87E", popular: true,  icon: "📦" },
 ];
 
 function nokFmt(n: number): string {
@@ -13,23 +41,37 @@ function nokFmt(n: number): string {
 }
 
 export default function Pricing() {
-  const { t, lang } = useLanguage(); // lang used for disclaimer text
+  const { t, lang } = useLanguage();
+  const p = t.pricing;
+  const sz = t.pricingSize;
+
+  const [size, setSize] = useState<ClinicSize>("small");
+
+  const SIZES: { key: ClinicSize; label: string }[] = [
+    { key: "small",  label: sz.small },
+    { key: "medium", label: sz.medium },
+    { key: "large",  label: sz.large },
+  ];
+
+  const tiers = TIERS[size];
 
   const PLANS = PLAN_META.map((meta, i) => ({
     ...meta,
-    ...t.pricing.plans[i],
+    ...p.plans[i],
+    tier: tiers[i],
   }));
 
   return (
     <section id="pricing" style={{ background: "#111009", padding: "110px 24px", position: "relative", overflow: "hidden" }}>
 
-      {/* Subtle gold radial behind cards */}
+      {/* Subtle gold radial */}
       <div style={{ position: "absolute", top: "30%", left: "50%", transform: "translateX(-50%)", width: 900, height: 600, borderRadius: "50%", background: "radial-gradient(ellipse, rgba(212,175,55,0.05) 0%, transparent 70%)", pointerEvents: "none" }} />
 
       <div className="wrap">
+
         {/* Header */}
-        <div style={{ textAlign: "center", marginBottom: 72 }}>
-          <div className="tag" style={{ display: "inline-flex", marginBottom: 20 }}>{t.pricing.tag}</div>
+        <div style={{ textAlign: "center", marginBottom: 52 }}>
+          <div className="tag" style={{ display: "inline-flex", marginBottom: 20 }}>{p.tag}</div>
           <h2 className="text-[26px] sm:text-[42px] lg:text-[58px]" style={{
             fontFamily: "'Playfair Display', Georgia, serif",
             fontWeight: 700, fontStyle: "normal",
@@ -38,14 +80,61 @@ export default function Pricing() {
             marginBottom: 16,
             lineHeight: 1.1,
           }}>
-            {t.pricing.headline1}{" "}
+            {p.headline1}{" "}
             <span style={{ background: "linear-gradient(135deg,#D4AF37,#F5D87E)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
-              {t.pricing.headline2}
+              {p.headline2}
             </span>
           </h2>
           <p style={{ fontSize: 16, color: "#8A8070", maxWidth: 440, margin: "0 auto", lineHeight: 1.7 }}>
-            {t.pricing.subtext}
+            {p.subtext}
           </p>
+        </div>
+
+        {/* Size toggle */}
+        <div style={{ textAlign: "center", marginBottom: 52 }}>
+          <div style={{ fontSize: 12, color: "#6A6050", letterSpacing: "0.05em", textTransform: "uppercase", marginBottom: 14, fontWeight: 500 }}>
+            {sz.toggleLabel}
+          </div>
+          <div style={{
+            display: "inline-flex",
+            background: "rgba(255,255,255,0.04)",
+            border: "1px solid rgba(212,175,55,0.15)",
+            borderRadius: 999,
+            padding: 4,
+            gap: 4,
+          }}>
+            {SIZES.map(({ key, label }) => {
+              const active = size === key;
+              return (
+                <button
+                  key={key}
+                  onClick={() => setSize(key)}
+                  style={{
+                    padding: "9px 20px",
+                    borderRadius: 999,
+                    border: "none",
+                    cursor: "pointer",
+                    fontFamily: "var(--font-dm-sans), system-ui, sans-serif",
+                    fontSize: 13,
+                    fontWeight: 600,
+                    letterSpacing: "0.01em",
+                    transition: "background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease",
+                    background: active ? "#c8a04a" : "transparent",
+                    color: active ? "#0a0a0a" : "#6A6050",
+                    boxShadow: active ? "0 2px 12px rgba(200,160,74,0.3)" : "none",
+                  }}
+                  onMouseEnter={e => {
+                    if (!active) (e.currentTarget as HTMLElement).style.color = "#D4AF37";
+                  }}
+                  onMouseLeave={e => {
+                    if (!active) (e.currentTarget as HTMLElement).style.color = "#6A6050";
+                  }}
+                >
+                  {label}
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         {/* Cards grid */}
@@ -92,11 +181,11 @@ export default function Pricing() {
                   letterSpacing: "0.06em", textTransform: "uppercase",
                   boxShadow: "0 4px 24px rgba(212,175,55,0.4)",
                 }}>
-                  <Star size={10} fill="currentColor" /> {t.pricing.popular}
+                  <Star size={10} fill="currentColor" /> {p.popular}
                 </div>
               )}
 
-              {/* Icon + name row */}
+              {/* Icon + name */}
               <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 24 }}>
                 <div style={{
                   width: 42, height: 42, borderRadius: 12, flexShrink: 0,
@@ -114,8 +203,8 @@ export default function Pricing() {
               </div>
 
               {/* Price block */}
-              <div style={{ marginBottom: 28, minHeight: 120, display: "flex", flexDirection: "column", justifyContent: "flex-start" }}>
-                {/* Live price row */}
+              <div style={{ marginBottom: 28, minHeight: 130, display: "flex", flexDirection: "column", justifyContent: "flex-start" }}>
+                {/* Main price */}
                 <div style={{ display: "flex", alignItems: "baseline", gap: 4, flexWrap: "wrap" }}>
                   <span style={{
                     fontFamily: "system-ui, -apple-system, sans-serif",
@@ -129,25 +218,44 @@ export default function Pricing() {
                     WebkitTextFillColor: "transparent",
                     backgroundClip: "text",
                     animation: "shimmer 4s linear infinite",
+                    transition: "all 0.25s ease",
                   }}>
-                    {nokFmt(plan.price)}
+                    {nokFmt(plan.tier.price)}
                   </span>
-                  <span style={{ fontFamily: "system-ui, -apple-system, sans-serif", fontSize: 13, color: "#6A6050", fontWeight: 500, whiteSpace: "nowrap" }}>/{t.pricing.period}</span>
+                  <span style={{ fontFamily: "system-ui, -apple-system, sans-serif", fontSize: 13, color: "#6A6050", fontWeight: 500, whiteSpace: "nowrap" }}>/{p.period}</span>
                 </div>
-                {/* Lanseringspris label */}
-                <div style={{ display: "inline-flex", alignItems: "center", gap: 5, marginTop: 10, padding: "3px 10px", borderRadius: 999, background: `${plan.color}14`, border: `1px solid ${plan.color}28` }}>
+
+                {/* VAT + volume */}
+                <div style={{ marginTop: 6, display: "flex", flexDirection: "column", gap: 3 }}>
+                  <span style={{ fontSize: 11, color: "#5A5248" }}>
+                    {nokFmt(plan.tier.vat)} {sz.inclVat}
+                  </span>
+                  <span style={{ fontSize: 11, color: "#5A5248" }}>
+                    {plan.tier.volume}
+                  </span>
+                  {plan.tier.overage && (
+                    <span style={{ fontSize: 10, color: "#4A4240" }}>
+                      {plan.tier.overage}
+                    </span>
+                  )}
+                </div>
+
+                {/* Lanseringspris badge */}
+                <div style={{ display: "inline-flex", alignItems: "center", gap: 5, marginTop: 10, padding: "3px 10px", borderRadius: 999, background: `${plan.color}14`, border: `1px solid ${plan.color}28`, alignSelf: "flex-start" }}>
                   <Zap size={10} color={plan.color} />
-                  <span style={{ fontSize: 10, fontWeight: 700, color: plan.color, letterSpacing: "0.06em", textTransform: "uppercase" }}>{t.pricing.foundingPrice}</span>
+                  <span style={{ fontSize: 10, fontWeight: 700, color: plan.color, letterSpacing: "0.06em", textTransform: "uppercase" }}>{p.foundingPrice}</span>
                 </div>
+
                 {/* Launch disclaimer */}
                 <div style={{ fontSize: 10, color: "#5A5248", marginTop: 6, lineHeight: 1.4 }}>
                   {lang === "no"
                     ? "Lanseringspris for de første 5 kundene. Kontakt oss for ordinær pris."
                     : "Founding price for the first 5 clients. Contact us for standard pricing."}
                 </div>
+
                 {/* Setup fee */}
                 <div style={{ fontSize: 11, color: "#5A5248", marginTop: 8 }}>
-                  {t.pricing.setupFee}
+                  {p.setupFee}
                 </div>
               </div>
 
@@ -203,12 +311,16 @@ export default function Pricing() {
           @media (max-width: 768px) {
             .pricing-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
           }
+          @keyframes shimmer {
+            0%   { background-position: 200% center; }
+            100% { background-position: -200% center; }
+          }
         `}</style>
 
         <div style={{ marginTop: 52, textAlign: "center" }}>
           <p style={{ fontSize: 13, color: "#6A6050" }}>
-            {t.pricing.bottomNote}
-            <a href="#contact" style={{ color: "#D4AF37", textDecoration: "none" }}>{t.pricing.customBundles}</a>
+            {p.bottomNote}
+            <a href="#contact" style={{ color: "#D4AF37", textDecoration: "none" }}>{p.customBundles}</a>
           </p>
         </div>
       </div>
