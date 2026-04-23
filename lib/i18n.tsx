@@ -568,6 +568,11 @@ export const translations = {
       manageLink: "Manage cookie preferences",
       settingsLink: "Cookie settings",
     },
+    testimonialWidget: {
+      label: "CONTINUOUS",
+      value: "7 DAYS",
+      sub: "automatic follow-up",
+    },
   },
 
   no: {
@@ -1131,6 +1136,11 @@ export const translations = {
       save: "Lagre valg",
       manageLink: "Administrer cookie-innstillinger",
       settingsLink: "Cookie-innstillinger",
+    },
+    testimonialWidget: {
+      label: "KONTINUERLIG",
+      value: "7 DAGER",
+      sub: "automatisk oppfølging",
     },
   },
 } as const;

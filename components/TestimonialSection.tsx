@@ -105,9 +105,8 @@ function PhoneChatVisual() {
   );
 }
 
-// ── Block 2 visual: stat card ─────────────────────────────────────────────────
-function StatVisual({ triggered }: { triggered: boolean }) {
-  const count = useCountUp(47, 1400, triggered);
+// ── Block 2 visual: days widget ──────────────────────────────────────────────
+function StatVisual({ label, value, sub }: { label: string; value: string; sub: string; triggered?: boolean }) {
   return (
     <div style={{
       background: "rgba(255,255,255,0.06)",
@@ -116,7 +115,7 @@ function StatVisual({ triggered }: { triggered: boolean }) {
       maxWidth: 260, margin: "0 auto",
     }}>
       <div style={{ fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.5)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 14 }}>
-        KONVERTERINGSRATE
+        {label}
       </div>
       <div style={{
         fontFamily: "'DM Sans', -apple-system, sans-serif",
@@ -125,14 +124,14 @@ function StatVisual({ triggered }: { triggered: boolean }) {
         WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
         marginBottom: 10,
       }}>
-        {count}%
+        {value}
       </div>
-      <div style={{ fontSize: 13, color: "rgba(255,255,255,0.6)", marginBottom: 18 }}>av besøkende blir leads</div>
+      <div style={{ fontSize: 13, color: "rgba(255,255,255,0.6)", marginBottom: 18 }}>{sub}</div>
       <div style={{ background: "rgba(255,255,255,0.1)", borderRadius: 999, height: 6, overflow: "hidden" }}>
         <div style={{
-          height: "100%", width: `${(count / 47) * 100}%`,
+          height: "100%", width: "100%",
           background: "linear-gradient(90deg, #b8902e, #d4a84d)",
-          borderRadius: 999, transition: "width 0.12s linear",
+          borderRadius: 999,
         }} />
       </div>
     </div>
@@ -258,6 +257,7 @@ export default function TestimonialSection() {
     subtitle: string;
     modules: Module[];
   };
+  const w = t.testimonialWidget;
 
   const { ref: headerRef, inView: headerInView } = useInView(0.3);
   const { ref: b2Ref, inView: b2InView } = useInView(0.25);
@@ -337,7 +337,7 @@ export default function TestimonialSection() {
                 <p style={{ fontSize: 15, color: "#5a5a6e", lineHeight: 1.7, margin: "0 0 24px" }}>{m1.desc}</p>
                 <FeatureList features={m1.features} />
               </div>
-              <div className="sol-block-visual"><StatVisual triggered={b2InView} /></div>
+              <div className="sol-block-visual"><StatVisual label={w.label} value={w.value} sub={w.sub} /></div>
             </div>
           </AnimatedBlock>
 
