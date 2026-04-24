@@ -4,7 +4,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 import { useLanguage } from "@/lib/i18n";
 
 const GOLD = "#c8a04a";
-const NAVY = "#1a1a2e";
+const NAVY = "#000000";
 const CREAM = "#faf7f0";
 
 function useCountUp(target: number, duration: number, triggered: boolean) {
@@ -98,7 +98,8 @@ export default function MidCTA() {
             <div
               ref={cardRef}
               style={{
-                flex: "0.85",
+                flexShrink: 0,
+                width: 340,
                 background: "rgba(255,255,255,0.04)",
                 border: "1px solid rgba(200,160,74,0.18)",
                 borderRadius: 12,
@@ -112,7 +113,7 @@ export default function MidCTA() {
                 <div style={{
                   fontSize: 10, fontWeight: 700, letterSpacing: "0.1em",
                   textTransform: "uppercase", color: "rgba(250,247,240,0.45)",
-                  marginBottom: 10,
+                  marginBottom: 10, whiteSpace: "nowrap",
                 }}>
                   {s.savingLabel}
                 </div>
@@ -120,11 +121,11 @@ export default function MidCTA() {
                   fontFamily: "'DM Sans', system-ui, sans-serif",
                   fontSize: "clamp(32px, 4vw, 48px)",
                   fontWeight: 800, letterSpacing: "-0.03em", lineHeight: 1,
-                  color: GOLD, marginBottom: 8,
+                  color: GOLD, marginBottom: 8, whiteSpace: "nowrap",
                 }}>
                   {hoursCount}
                 </div>
-                <div style={{ fontSize: 13, color: "rgba(250,247,240,0.45)" }}>
+                <div style={{ fontSize: 13, color: "rgba(250,247,240,0.45)", whiteSpace: "nowrap" }}>
                   {s.savingLabel}
                 </div>
               </div>
@@ -137,7 +138,7 @@ export default function MidCTA() {
                 <div style={{
                   fontSize: 10, fontWeight: 700, letterSpacing: "0.1em",
                   textTransform: "uppercase", color: "rgba(250,247,240,0.45)",
-                  marginBottom: 10,
+                  marginBottom: 10, whiteSpace: "nowrap",
                 }}>
                   {s.bookingLabel}
                 </div>
@@ -145,11 +146,11 @@ export default function MidCTA() {
                   fontFamily: "'DM Sans', system-ui, sans-serif",
                   fontSize: "clamp(32px, 4vw, 48px)",
                   fontWeight: 800, letterSpacing: "-0.03em", lineHeight: 1,
-                  color: GOLD, marginBottom: 8,
+                  color: GOLD, marginBottom: 8, whiteSpace: "nowrap",
                 }}>
                   {s.bookingValue}
                 </div>
-                <div style={{ fontSize: 13, color: "rgba(250,247,240,0.45)" }}>
+                <div style={{ fontSize: 13, color: "rgba(250,247,240,0.45)", whiteSpace: "nowrap" }}>
                   {s.bookingLabel}
                 </div>
               </div>
