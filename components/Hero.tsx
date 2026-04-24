@@ -293,7 +293,7 @@ export default function Hero() {
               color: "#1a1a2e",
               margin: "0 0 22px",
             }}>
-              Tannklinikkens digitale ekspedient — svarer anropet, booker timen, og henter tilbake pasientene som forsvant.
+              Pasienthenvendelser. Håndtert automatisk.
             </h1>
 
             {/* H1 — mobile (< 768px) */}
@@ -306,7 +306,7 @@ export default function Hero() {
               color: "#1a1a2e",
               margin: "0 0 20px",
             }}>
-              Tannklinikkens digitale ekspedient — henter tilbake pasientene som forsvant.
+              Pasienthenvendelser. Håndtert automatisk.
             </h1>
 
             {/* Undertittel */}

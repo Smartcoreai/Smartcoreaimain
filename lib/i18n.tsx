@@ -18,9 +18,9 @@ export const translations = {
     },
     hero: {
       tag: "FOR SCANDINAVIAN DENTAL CLINICS",
-      headline1: "Your business,",
-      headline2: "runs itself.",
-      subtext: "AI chatbots, booking automation, CRM systems — fully integrated, deployed in days. Not months.",
+      headline1: "Patient inquiries.",
+      headline2: "Handled automatically.",
+      subtext: "Aria is the dental clinic's digital receptionist — she answers calls and chat, books appointments, sends reminders to existing patients, and re-engages website visitors who didn't book. Live in 7 days.",
       ctaPrimary: "Book a free call",
       ctaSecondary: "See how it works",
       ctaTryAria: "Try Aria →",
@@ -64,7 +64,7 @@ export const translations = {
     solution: {
       eyebrow: "THE SOLUTION",
       headline: "Meet Aria — your clinic's digital receptionist.",
-      headline1: "Zero missed enquiries.",
+      headline1: "Zero missed inquiries.",
       headline2: "Zero lost patients.",
       subtitle: "Responds in your business's tone, qualifies leads automatically — with full visibility into everything.",
       modules: [
@@ -599,9 +599,9 @@ export const translations = {
     },
     hero: {
       tag: "FOR SKANDINAVISKE TANNKLINIKKER",
-      headline1: "Din bedrift,",
-      headline2: "driver seg selv.",
-      subtext: "AI-chatboter, bookingautomatisering, CRM-systemer — fullt integrert, klart på dager. Ikke måneder.",
+      headline1: "Pasienthenvendelser.",
+      headline2: "Håndtert automatisk.",
+      subtext: "Aria er tannklinikkens digitale ekspedient — hun svarer anrop og chat, booker timer, sender påminnelser til eksisterende pasienter og henter tilbake nettbesøkende som ikke bookte. Live på 7 dager.",
       ctaPrimary: "Book gratis samtale",
       ctaSecondary: "Se hvordan det fungerer",
       ctaTryAria: "Prøv Aria →",
