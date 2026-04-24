@@ -42,41 +42,126 @@ export default function CalculatorPage() {
       <Navbar />
       <main style={{ background: "#ffffff", minHeight: "100vh" }}>
 
-        {/* Hero */}
-        <section style={{ background: "#ffffff", padding: "100px 24px 56px", textAlign: "center" }}>
-          <div style={{ maxWidth: 640, margin: "0 auto" }}>
-            <ScrollReveal>
-              <a href="/" style={{
-                display: "inline-flex", alignItems: "center", gap: 6,
-                fontSize: 13, color: "#8a8a98", textDecoration: "none",
-                marginBottom: 32, transition: "color 0.15s",
-              }}
-              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = GOLD; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = "#8a8a98"; }}
-              >
-                {c.backLink}
-              </a>
-            </ScrollReveal>
-            <ScrollReveal delay={60}>
-              <h1 style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
-                fontSize: "clamp(32px, 5vw, 52px)",
-                fontWeight: 700, lineHeight: 1.1, fontStyle: "normal",
-                color: "#1a1a2e", margin: "0 0 18px", letterSpacing: "-0.02em",
+        {/* Hero — dark two-column */}
+        <section style={{ background: NAVY, padding: "100px 24px 72px" }}>
+          <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+
+            {/* Back link */}
+            <a href="/" style={{
+              display: "inline-flex", alignItems: "center", gap: 6,
+              fontSize: 13, color: "rgba(250,247,240,0.4)", textDecoration: "none",
+              marginBottom: 48, transition: "color 0.15s",
+            }}
+            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = GOLD; }}
+            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = "rgba(250,247,240,0.4)"; }}
+            >
+              {c.backLink}
+            </a>
+
+            {/* Two-column layout */}
+            <div className="calc-hero-grid">
+
+              {/* ── Left: hook text ── */}
+              <div style={{ flex: "1.15" }}>
+                <h2 style={{
+                  fontFamily: "'Playfair Display', Georgia, serif",
+                  fontSize: "clamp(28px, 3.6vw, 48px)",
+                  fontWeight: 700, fontStyle: "normal",
+                  lineHeight: 1.12, letterSpacing: "-0.02em",
+                  color: CREAM, margin: "0 0 24px",
+                }}>
+                  {c.heroHook}
+                </h2>
+                <p style={{
+                  fontSize: "clamp(15px, 1.6vw, 17px)",
+                  color: "rgba(250,247,240,0.6)",
+                  lineHeight: 1.7, margin: "0 0 36px",
+                  maxWidth: 480,
+                }}>
+                  {c.heroParagraph}
+                </p>
+                <a
+                  href="#calculator-inputs"
+                  style={{
+                    display: "inline-flex", alignItems: "center", gap: 8,
+                    padding: "14px 28px", borderRadius: 11,
+                    background: GOLD, color: NAVY,
+                    fontSize: 15, fontWeight: 700, textDecoration: "none",
+                    transition: "opacity 0.18s ease",
+                    whiteSpace: "nowrap",
+                  }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.opacity = "0.88"; }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.opacity = "1"; }}
+                >
+                  {c.heroCta}
+                </a>
+              </div>
+
+              {/* ── Right: result boxes ── */}
+              <div style={{
+                flex: "0.85",
+                background: "rgba(255,255,255,0.04)",
+                border: "1px solid rgba(200,160,74,0.18)",
+                borderRadius: 12,
+                padding: "32px 36px",
+                display: "flex", flexDirection: "column",
               }}>
-                {c.title}
-              </h1>
-            </ScrollReveal>
-            <ScrollReveal delay={120}>
-              <p style={{ fontSize: 17, color: "#5a5a6e", lineHeight: 1.7, margin: 0 }}>
-                {c.subtitle}
-              </p>
-            </ScrollReveal>
+                {/* Box 1 — monthly loss */}
+                <div style={{ paddingBottom: 28 }}>
+                  <div style={{
+                    fontSize: 10, fontWeight: 700, letterSpacing: "0.1em",
+                    textTransform: "uppercase", color: "rgba(250,247,240,0.45)",
+                    marginBottom: 10,
+                  }}>
+                    {c.heroBox1Label}
+                  </div>
+                  <div style={{
+                    fontFamily: "'DM Sans', system-ui, sans-serif",
+                    fontSize: "clamp(32px, 4vw, 48px)",
+                    fontWeight: 800, letterSpacing: "-0.03em", lineHeight: 1,
+                    color: GOLD, marginBottom: 8,
+                    fontVariantNumeric: "tabular-nums",
+                  }}>
+                    {nokFmt(taptInntektPerMåned)}
+                  </div>
+                  <div style={{ fontSize: 13, color: "rgba(250,247,240,0.45)" }}>
+                    {c.heroBox1Sub}
+                  </div>
+                </div>
+
+                {/* Divider */}
+                <div style={{ height: 1, background: "rgba(255,255,255,0.08)", marginBottom: 28 }} />
+
+                {/* Box 2 — LTV */}
+                <div>
+                  <div style={{
+                    fontSize: 10, fontWeight: 700, letterSpacing: "0.1em",
+                    textTransform: "uppercase", color: "rgba(250,247,240,0.45)",
+                    marginBottom: 10,
+                  }}>
+                    {c.heroBox2Label}
+                  </div>
+                  <div style={{
+                    fontFamily: "'DM Sans', system-ui, sans-serif",
+                    fontSize: "clamp(32px, 4vw, 48px)",
+                    fontWeight: 800, letterSpacing: "-0.03em", lineHeight: 1,
+                    color: GOLD, marginBottom: 8,
+                    fontVariantNumeric: "tabular-nums",
+                  }}>
+                    {nokFmt(ltvLow)}
+                  </div>
+                  <div style={{ fontSize: 13, color: "rgba(250,247,240,0.45)" }}>
+                    {c.heroBox2Sub}
+                  </div>
+                </div>
+              </div>
+
+            </div>
           </div>
         </section>
 
         {/* Calculator body */}
-        <section style={{ background: "#f7f6f1", padding: "56px 24px 96px" }}>
+        <section id="calculator-inputs" style={{ background: "#f7f6f1", padding: "56px 24px 96px" }}>
           <div className="calc-grid wrap">
 
             {/* ── Left: inputs ─────────────────────────────────────────────── */}
@@ -332,6 +417,11 @@ export default function CalculatorPage() {
       <ChatWidget />
 
       <style>{`
+        .calc-hero-grid {
+          display: flex;
+          gap: 56px;
+          align-items: center;
+        }
         .calc-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
@@ -387,6 +477,10 @@ export default function CalculatorPage() {
           cursor: pointer;
         }
         @media (max-width: 768px) {
+          .calc-hero-grid {
+            flex-direction: column !important;
+            gap: 32px !important;
+          }
           .calc-grid {
             grid-template-columns: 1fr !important;
             gap: 24px !important;
