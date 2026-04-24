@@ -97,7 +97,7 @@ export default function CalculatorPage() {
                 </a>
               </div>
 
-              {/* ── Right: result boxes ── */}
+              {/* ── Right: static stat boxes ── */}
               <div style={{
                 flex: "0.85",
                 background: "rgba(255,255,255,0.04)",
@@ -106,7 +106,7 @@ export default function CalculatorPage() {
                 padding: "32px 36px",
                 display: "flex", flexDirection: "column",
               }}>
-                {/* Box 1 — monthly loss */}
+                {/* Box 1 — hours saved */}
                 <div style={{ paddingBottom: 28 }}>
                   <div style={{
                     fontSize: 10, fontWeight: 700, letterSpacing: "0.1em",
@@ -120,9 +120,8 @@ export default function CalculatorPage() {
                     fontSize: "clamp(32px, 4vw, 48px)",
                     fontWeight: 800, letterSpacing: "-0.03em", lineHeight: 1,
                     color: GOLD, marginBottom: 8,
-                    fontVariantNumeric: "tabular-nums",
                   }}>
-                    {nokFmt(taptInntektPerMåned)}
+                    {c.heroBox1Value}
                   </div>
                   <div style={{ fontSize: 13, color: "rgba(250,247,240,0.45)" }}>
                     {c.heroBox1Sub}
@@ -132,7 +131,7 @@ export default function CalculatorPage() {
                 {/* Divider */}
                 <div style={{ height: 1, background: "rgba(255,255,255,0.08)", marginBottom: 28 }} />
 
-                {/* Box 2 — LTV */}
+                {/* Box 2 — extra bookings */}
                 <div>
                   <div style={{
                     fontSize: 10, fontWeight: 700, letterSpacing: "0.1em",
@@ -146,9 +145,8 @@ export default function CalculatorPage() {
                     fontSize: "clamp(32px, 4vw, 48px)",
                     fontWeight: 800, letterSpacing: "-0.03em", lineHeight: 1,
                     color: GOLD, marginBottom: 8,
-                    fontVariantNumeric: "tabular-nums",
                   }}>
-                    {nokFmt(ltvLow)}
+                    {c.heroBox2Value}
                   </div>
                   <div style={{ fontSize: 13, color: "rgba(250,247,240,0.45)" }}>
                     {c.heroBox2Sub}
