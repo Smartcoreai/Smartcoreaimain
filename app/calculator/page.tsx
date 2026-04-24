@@ -7,7 +7,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 import { useLanguage } from "@/lib/i18n";
 
 const GOLD = "#c8a04a";
-const NAVY = "#0a0a0a";
+const NAVY = "#1a1a2e";
 const CREAM = "#faf7f0";
 
 function nokFmt(n: number): string {
