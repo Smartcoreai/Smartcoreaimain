@@ -1,44 +1,16 @@
 "use client";
-import { useRef, useState, useEffect } from "react";
+import { useState } from "react";
 import ScrollReveal from "@/components/ScrollReveal";
 import { useLanguage } from "@/lib/i18n";
 
 const GOLD = "#c8a04a";
-const NAVY = "#000000";
+const NAVY = "#1a1a2e";
 const CREAM = "#faf7f0";
-
-function useCountUp(target: number, duration: number, triggered: boolean) {
-  const [value, setValue] = useState(target);
-  useEffect(() => {
-    if (!triggered) return;
-    let current = 0;
-    const increment = target / (duration / 16);
-    const id = setInterval(() => {
-      current = Math.min(current + increment, target);
-      setValue(Math.floor(current));
-      if (current >= target) clearInterval(id);
-    }, 16);
-    return () => clearInterval(id);
-  }, [triggered, target, duration]);
-  return value;
-}
 
 export default function MidCTA() {
   const { t } = useLanguage();
   const s = t.midCta;
-
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [inView, setInView] = useState(false);
-  useEffect(() => {
-    const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setInView(true); },
-      { threshold: 0.3 }
-    );
-    if (cardRef.current) obs.observe(cardRef.current);
-    return () => obs.disconnect();
-  }, []);
-
-  const hoursCount = useCountUp(47, 1400, inView);
+  const [open, setOpen] = useState(false);
 
   return (
     <section style={{ background: NAVY, padding: "100px 24px" }}>
@@ -46,32 +18,31 @@ export default function MidCTA() {
         <div className="midcta-grid" style={{
           display: "flex",
           gap: "56px",
-          alignItems: "center",
+          alignItems: "flex-start",
           maxWidth: 1100,
           margin: "0 auto",
         }}>
 
           {/* Left: text */}
           <ScrollReveal>
-            <div style={{ flex: "1.15" }}>
+            <div style={{ flex: "1.1" }}>
               <h2 style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
-                fontSize: "clamp(28px, 3.6vw, 48px)",
+                fontFamily: "var(--font-dm-sans), system-ui, sans-serif",
+                fontSize: "clamp(24px, 3vw, 40px)",
                 fontWeight: 700,
-                fontStyle: "normal",
-                lineHeight: 1.12,
+                lineHeight: 1.15,
                 letterSpacing: "-0.02em",
                 color: CREAM,
-                margin: "0 0 24px",
+                margin: "0 0 20px",
               }}>
                 {s.headline}
               </h2>
               <p style={{
-                fontSize: "clamp(15px, 1.6vw, 17px)",
-                color: "rgba(250,247,240,0.6)",
+                fontSize: "clamp(15px, 1.5vw, 17px)",
+                color: "rgba(250,247,240,0.55)",
                 lineHeight: 1.7,
                 margin: "0 0 36px",
-                maxWidth: 480,
+                maxWidth: 460,
               }}>
                 {s.subtitle}
               </p>
@@ -95,65 +66,113 @@ export default function MidCTA() {
 
           {/* Right: stat box */}
           <ScrollReveal delay={120}>
-            <div
-              ref={cardRef}
-              style={{
-                flexShrink: 0,
-                width: 340,
-                background: "rgba(255,255,255,0.04)",
-                border: "1px solid rgba(200,160,74,0.18)",
-                borderRadius: 12,
-                padding: "32px 36px",
-                display: "flex",
-                flexDirection: "column",
-              }}
-            >
-              {/* Stat 1 — hours saved */}
-              <div style={{ paddingBottom: 28 }}>
+            <div style={{
+              flexShrink: 0,
+              width: 360,
+              background: "rgba(255,255,255,0.04)",
+              border: "1px solid rgba(200,160,74,0.18)",
+              borderRadius: 12,
+              padding: "32px 36px",
+              display: "flex",
+              flexDirection: "column",
+            }}>
+
+              {/* Stat 1 — lost revenue */}
+              <div style={{ paddingBottom: 24 }}>
                 <div style={{
                   fontSize: 10, fontWeight: 700, letterSpacing: "0.1em",
                   textTransform: "uppercase", color: "rgba(250,247,240,0.45)",
                   marginBottom: 10, whiteSpace: "nowrap",
                 }}>
-                  {s.savingLabel}
+                  {s.stat1Label}
                 </div>
                 <div style={{
                   fontFamily: "'DM Sans', system-ui, sans-serif",
-                  fontSize: "clamp(32px, 4vw, 48px)",
+                  fontSize: "clamp(28px, 3.5vw, 42px)",
                   fontWeight: 800, letterSpacing: "-0.03em", lineHeight: 1,
                   color: GOLD, marginBottom: 8, whiteSpace: "nowrap",
                 }}>
-                  {hoursCount}
+                  {s.stat1Value}
                 </div>
-                <div style={{ fontSize: 13, color: "rgba(250,247,240,0.45)", whiteSpace: "nowrap" }}>
-                  {s.savingLabel}
+                <div style={{ fontSize: 13, color: "rgba(250,247,240,0.4)", whiteSpace: "nowrap" }}>
+                  {s.stat1Sub}
                 </div>
               </div>
 
               {/* Divider */}
-              <div style={{ height: 1, background: "rgba(255,255,255,0.08)", marginBottom: 28 }} />
+              <div style={{ height: 1, background: "rgba(255,255,255,0.08)", marginBottom: 24 }} />
 
-              {/* Stat 2 — extra bookings */}
-              <div>
+              {/* Stat 2 — LTV */}
+              <div style={{ paddingBottom: 20 }}>
                 <div style={{
                   fontSize: 10, fontWeight: 700, letterSpacing: "0.1em",
                   textTransform: "uppercase", color: "rgba(250,247,240,0.45)",
                   marginBottom: 10, whiteSpace: "nowrap",
                 }}>
-                  {s.bookingLabel}
+                  {s.stat2Label}
                 </div>
                 <div style={{
                   fontFamily: "'DM Sans', system-ui, sans-serif",
-                  fontSize: "clamp(32px, 4vw, 48px)",
+                  fontSize: "clamp(28px, 3.5vw, 42px)",
                   fontWeight: 800, letterSpacing: "-0.03em", lineHeight: 1,
                   color: GOLD, marginBottom: 8, whiteSpace: "nowrap",
                 }}>
-                  {s.bookingValue}
+                  {s.stat2Value}
                 </div>
-                <div style={{ fontSize: 13, color: "rgba(250,247,240,0.45)", whiteSpace: "nowrap" }}>
-                  {s.bookingLabel}
+                <div style={{ fontSize: 13, color: "rgba(250,247,240,0.4)", whiteSpace: "nowrap" }}>
+                  {s.stat2Sub}
                 </div>
               </div>
+
+              {/* Breakdown trigger */}
+              <button
+                onClick={() => setOpen(v => !v)}
+                style={{
+                  background: "none", border: "none", cursor: "pointer",
+                  padding: 0, display: "inline-flex", alignItems: "center", gap: 5,
+                  fontSize: 13, fontWeight: 600, color: GOLD,
+                  fontFamily: "var(--font-dm-sans), system-ui, sans-serif",
+                  transition: "opacity 0.15s",
+                  alignSelf: "flex-start",
+                }}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.opacity = "0.7"; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.opacity = "1"; }}
+              >
+                {s.breakdownTrigger}
+                <span style={{
+                  display: "inline-block",
+                  transform: open ? "rotate(180deg)" : "rotate(0deg)",
+                  transition: "transform 0.22s ease",
+                  fontSize: 9,
+                }}>▼</span>
+              </button>
+
+              {/* Breakdown content */}
+              {open && (
+                <div style={{
+                  marginTop: 16,
+                  fontSize: 12,
+                  color: "rgba(250,247,240,0.55)",
+                  lineHeight: 1.65,
+                }}>
+                  <p style={{ fontSize: 12, fontWeight: 600, color: "rgba(250,247,240,0.7)", margin: "0 0 12px" }}>
+                    Slik beregner vi tallene:
+                  </p>
+                  <ol style={{ margin: 0, padding: "0 0 0 16px", display: "flex", flexDirection: "column", gap: 10 }}>
+                    {s.breakdown.map((item, i) => (
+                      <li key={i}>
+                        <strong style={{ color: "rgba(250,247,240,0.75)", display: "block", marginBottom: 2 }}>
+                          {item.title}
+                        </strong>
+                        {item.detail.split("\n").map((line, j) => (
+                          <span key={j} style={{ display: "block" }}>{line}</span>
+                        ))}
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              )}
+
             </div>
           </ScrollReveal>
 
@@ -166,6 +185,7 @@ export default function MidCTA() {
             flex-direction: column !important;
             gap: 32px !important;
           }
+          .midcta-grid > * { width: 100% !important; }
         }
       `}</style>
     </section>
