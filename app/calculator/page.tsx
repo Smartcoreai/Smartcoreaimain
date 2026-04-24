@@ -21,7 +21,7 @@ export default function CalculatorPage() {
   const { t } = useLanguage();
   const c = t.calculator;
 
-  const [callsPerWeek,  setCallsPerWeek]  = useState<string>("400");
+  const [callsPerWeek,  setCallsPerWeek]  = useState<string>("200");
   const [missedPct,     setMissedPct]     = useState(38);
   const [customerValue, setCustomerValue] = useState<string>("1500");
   const [showBreakdown, setShowBreakdown] = useState(false);
@@ -96,7 +96,7 @@ export default function CalculatorPage() {
                         value={callsPerWeek}
                         onChange={e => setCallsPerWeek(e.target.value)}
                         onFocus={e => e.target.select()}
-                        onBlur={e => { if (!e.target.value || e.target.value === "0") setCallsPerWeek("400"); }}
+                        onBlur={e => { if (!e.target.value || e.target.value === "0") setCallsPerWeek("200"); }}
                         className="calc-input"
                         style={inputStyle}
                       />
