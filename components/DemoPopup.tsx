@@ -3,11 +3,6 @@
 import { createClient } from "@supabase/supabase-js";
 import { useEffect, useState } from "react";
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-);
-
 const SERIF = "'Playfair Display', Georgia, serif";
 const SANS  = "var(--font-inter), -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif";
 
@@ -42,6 +37,11 @@ export function DemoPopup({ triggerText = "Bestill demo" }: { triggerText?: stri
     e.preventDefault();
     setSending(true);
     setError(null);
+
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    );
 
     const fd = new FormData(e.currentTarget);
     const { error } = await supabase.from("leads").insert({
