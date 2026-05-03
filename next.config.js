@@ -24,7 +24,7 @@ const securityHeaders = [
       "style-src 'self' 'unsafe-inline'",
       "font-src 'self'",
       "img-src 'self' data: blob: https:",
-      "connect-src 'self' https://api.anthropic.com https://upstash.io https://*.upstash.io",
+      "connect-src 'self' https://api.anthropic.com https://upstash.io https://*.upstash.io https://*.supabase.co",
       "frame-src 'none'",
       "object-src 'none'",
       "base-uri 'self'",

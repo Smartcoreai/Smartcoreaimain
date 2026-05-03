@@ -1,6 +1,6 @@
 "use client";
-import { ArrowRight } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
+import { DemoPopup } from "@/components/DemoPopup";
 
 // ── Chat messages ─────────────────────────────────────────────────────────────
 const CHAT_MSGS = [
@@ -322,32 +322,8 @@ export default function Hero() {
 
             {/* CTAs */}
             <div className="hero-ctas" style={{ display: "flex", flexWrap: "wrap", gap: 12, marginBottom: 20 }}>
-              {/* Primær: Book samtale (ekstern lenke) */}
-              <a
-                href="https://calendly.com/smartcoreaimeeting/new-meeting"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  display: "inline-flex", alignItems: "center", gap: 7,
-                  padding: "14px 26px", borderRadius: 11,
-                  background: "#1a1a2e", color: "#ffffff",
-                  fontSize: 15, fontWeight: 600, textDecoration: "none",
-                  boxShadow: "0 4px 16px rgba(26,26,46,0.18)",
-                  transition: "background 0.2s, transform 0.2s",
-                }}
-                onMouseEnter={e => {
-                  const el = e.currentTarget as HTMLElement;
-                  el.style.background = "#2d2d4e";
-                  el.style.transform = "translateY(-1px)";
-                }}
-                onMouseLeave={e => {
-                  const el = e.currentTarget as HTMLElement;
-                  el.style.background = "#1a1a2e";
-                  el.style.transform = "translateY(0)";
-                }}
-              >
-                Book gratis samtale <ArrowRight size={16} />
-              </a>
+              {/* Primær: Bestill demo (popup → Supabase leads) */}
+              <DemoPopup triggerText="Bestill demo" />
 
               {/* Sekundær: åpner Aria chatbot */}
               <a

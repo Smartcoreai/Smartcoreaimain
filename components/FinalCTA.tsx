@@ -1,7 +1,7 @@
 "use client";
 import ScrollReveal from "@/components/ScrollReveal";
 import { useLanguage } from "@/lib/i18n";
-import BookCallButton from "@/components/BookCallButton";
+import { DemoPopup } from "@/components/DemoPopup";
 
 export default function FinalCTA() {
   const { t } = useLanguage();
@@ -32,7 +32,7 @@ export default function FinalCTA() {
           </div>
 
           <div style={{ display: "flex", justifyContent: "center", marginTop: "32px" }}>
-            <BookCallButton variant="primary" />
+            <DemoPopup triggerText="Bestill demo" />
           </div>
 
           <div style={{ textAlign: "center" }}>
