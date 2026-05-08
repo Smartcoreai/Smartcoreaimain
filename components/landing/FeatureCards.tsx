@@ -25,8 +25,8 @@ export default function FeatureCards() {
             <h4>Integrerer med journalsystemet deres</h4>
             <p>Opus, Anita, Muntra og andre nordiske journalsystem. Ária leser kalenderen, booker time og oppdaterer pasientregisteret automatisk.</p>
             <div className="lp-feature-mock" style={{ textAlign: "center" }}>
-              <strong style={{ fontSize: 14, letterSpacing: "0.05em" }}>OPUS · ANITA · MUNTRA</strong>
-              <p style={{ marginTop: 6, fontSize: 12 }}>+ andre etter behov.</p>
+              <strong style={{ fontSize: 14, letterSpacing: "0.05em" }}>Opus · Anita · Muntra</strong>
+              <p style={{ marginTop: 6, fontSize: 12 }}>+ andre etter behov</p>
             </div>
           </div>
         </div>
