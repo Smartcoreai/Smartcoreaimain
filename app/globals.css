@@ -20,6 +20,26 @@
   --radius: 10px;
   --radius-lg: 16px;
   --radius-xl: 24px;
+
+  /* ── Landing-page tokens (used by app/landing.css and components/landing/*) ── */
+  --lp-bg-page: #f8f6f0;
+  --lp-bg-card: #ffffff;
+  --lp-bg-dark: #1a1f3a;
+  --lp-ink: #1a1f3a;
+  --lp-ink-secondary: #5a5f73;
+  --lp-ink-tertiary: #9a9ca6;
+  --lp-gold: #c9a24a;
+  --lp-gold-soft: #e8d5a1;
+  --lp-gold-bg: #faf3e2;
+  --lp-lavender: #b8a8e8;
+  --lp-lavender-soft: #d8cdf5;
+  --lp-lavender-bg: #f0ebff;
+  --lp-peach: #f5c4a8;
+  --lp-peach-soft: #fbdcc7;
+  --lp-peach-bg: #fff3e9;
+  --lp-mint: #b8e0c8;
+  --lp-mint-bg: #e7f6ed;
+  --lp-border: #e8e3d6;
 }
 
 /* ── Base html reset ── */

@@ -13,7 +13,13 @@ const BG_CREAM    = "#f7f6f1";
 const BORDER      = "#e8e6dc";
 const GOLD        = "#b8902e";
 
-export function DemoPopup({ triggerText = "Bestill demo" }: { triggerText?: string }) {
+export function DemoPopup({
+  triggerText = "Bestill demo",
+  className,
+}: {
+  triggerText?: string;
+  className?: string;
+}) {
   const [open, setOpen] = useState(false);
   const [sending, setSending] = useState(false);
   const [done, setDone] = useState(false);
@@ -80,32 +86,42 @@ export function DemoPopup({ triggerText = "Bestill demo" }: { triggerText?: stri
 
   return (
     <>
-      <button
-        type="button"
-        onClick={() => setOpen(true)}
-        style={{
-          display: "inline-flex", alignItems: "center", gap: 7,
-          padding: "14px 26px", borderRadius: 11,
-          background: NAVY, color: "#ffffff",
-          fontSize: 15, fontWeight: 600,
-          fontFamily: SANS,
-          border: "none", cursor: "pointer",
-          boxShadow: "0 4px 16px rgba(26,26,46,0.18)",
-          transition: "background 0.2s, transform 0.2s",
-        }}
-        onMouseEnter={e => {
-          const el = e.currentTarget as HTMLElement;
-          el.style.background = NAVY_HOVER;
-          el.style.transform = "translateY(-1px)";
-        }}
-        onMouseLeave={e => {
-          const el = e.currentTarget as HTMLElement;
-          el.style.background = NAVY;
-          el.style.transform = "translateY(0)";
-        }}
-      >
-        {triggerText}
-      </button>
+      {className ? (
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          className={className}
+        >
+          {triggerText}
+        </button>
+      ) : (
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          style={{
+            display: "inline-flex", alignItems: "center", gap: 7,
+            padding: "14px 26px", borderRadius: 11,
+            background: NAVY, color: "#ffffff",
+            fontSize: 15, fontWeight: 600,
+            fontFamily: SANS,
+            border: "none", cursor: "pointer",
+            boxShadow: "0 4px 16px rgba(26,26,46,0.18)",
+            transition: "background 0.2s, transform 0.2s",
+          }}
+          onMouseEnter={e => {
+            const el = e.currentTarget as HTMLElement;
+            el.style.background = NAVY_HOVER;
+            el.style.transform = "translateY(-1px)";
+          }}
+          onMouseLeave={e => {
+            const el = e.currentTarget as HTMLElement;
+            el.style.background = NAVY;
+            el.style.transform = "translateY(0)";
+          }}
+        >
+          {triggerText}
+        </button>
+      )}
 
       {open && (
         <div
