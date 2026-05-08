@@ -1,17 +1,16 @@
 "use client";
-import { useState } from "react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import "../landing.css";
+import { useState, useMemo } from "react";
+import LandingNavbar from "@/components/landing/LandingNavbar";
+import LandingFooter from "@/components/landing/LandingFooter";
 import ChatWidget from "@/components/ChatWidget";
-import ScrollReveal from "@/components/ScrollReveal";
+import { DemoPopup } from "@/components/DemoPopup";
 
-const SERIF = "'Playfair Display', Georgia, serif";
-const SANS = "var(--font-inter), -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif";
-const NUM_FONT = "var(--font-dm-sans), -apple-system, sans-serif";
-
-const nokFmt = (n: number) =>
-  "kr " + Math.round(n).toLocaleString("nb-NO").replace(/ /g, " ");
-const roiFmt = (n: number) => `${(Math.round(n * 10) / 10).toFixed(1)}x`;
+const fmtKr = (n: number) =>
+  "kr " + Math.round(n).toLocaleString("nb-NO").replace(/[,  ]/g, " ");
+const fmtNum = (n: number) =>
+  Math.round(n).toLocaleString("nb-NO").replace(/[,  ]/g, " ");
+const fmtRoi = (n: number) => `${(Math.round(n * 10) / 10).toFixed(1)}x`;
 
 export default function CalculatorPage() {
   const [callsPerDay, setCallsPerDay] = useState<string>("50");
@@ -19,476 +18,416 @@ export default function CalculatorPage() {
   const [patientBase, setPatientBase] = useState<string>("3000");
   const [noShowPct, setNoShowPct] = useState(12);
   const [bookingValue, setBookingValue] = useState<string>("2500");
-  const [showExplanation, setShowExplanation] = useState(false);
+  const [showExplanation, setShowExplanation] = useState(true);
 
-  const ad = Math.max(0, parseFloat(callsPerDay) || 0);
-  const pb = Math.max(0, parseFloat(patientBase) || 0);
-  const sp = Math.max(0, parseFloat(bookingValue) || 0);
-  const mu = missedPct / 100;
-  const ns = noShowPct / 100;
+  const result = useMemo(() => {
+    const ad = Math.max(0, parseFloat(callsPerDay) || 0);
+    const pb = Math.max(0, parseFloat(patientBase) || 0);
+    const sp = Math.max(0, parseFloat(bookingValue) || 0);
+    const mu = missedPct / 100;
+    const ns = noShowPct / 100;
 
-  const savedCalls = ad * 30 * mu * 0.5 * 0.225 * sp;
-  const reactivation = pb * 0.005 * 0.7 * sp * 0.5;
-  const reducedNoShows = ad * 30 * 0.225 * ns * 0.4 * sp;
-  const webLeads = 24 * 0.5 * sp;
-  const totalValue = savedCalls + reactivation + reducedNoShows + webLeads;
+    const ubesvarte = ad * 30 * mu * 0.113 * sp;
+    const reaktivering = pb * 0.00389 * sp;
+    const noShowsVerdi = ns * pb * 0.022 * sp * 0.4;
+    const webleads = 24 * 0.5 * sp;
+    const total = ubesvarte + reaktivering + noShowsVerdi + webleads;
 
-  const roiPilot = totalValue / 10000;
-  const roiStandard = totalValue / 25000;
+    return {
+      ubesvarte,
+      reaktivering,
+      noShowsVerdi,
+      webleads,
+      total,
+      pilotRoi: total / 10000,
+      standardRoi: total / 25000,
+      reddedeStoltimer: sp > 0 ? noShowsVerdi / sp : 0,
+      snittpris: sp,
+    };
+  }, [callsPerDay, missedPct, patientBase, noShowPct, bookingValue]);
+
+  const missedFill = ((missedPct - 10) / 40) * 100;
+  const noShowFill = ((noShowPct - 3) / 27) * 100;
 
   return (
-    <>
-      <Navbar />
-      <main className="calc-page">
-        <section className="calc-section">
-          <div className="calc-back-wrap">
-            <a href="/" className="calc-back-link">← Tilbake</a>
-          </div>
-
-          <div className="calc-header">
-            <h1 className="calc-title">Hva kan AI-resepsjonisten generere for din klinikk?</h1>
-            <p className="calc-subtitle">
-              Juster tallene som matcher din praksis. Estimatet oppdateres i sanntid.
-            </p>
-          </div>
-
-          <div className="calc-pill-row">
+    <div className="lp-root calc-page">
+      <LandingNavbar />
+      <main className="calc-main">
+        <div className="calc-container">
+          <div className="calc-topbar">
+            <a href="/" className="calc-back">← Tilbake</a>
             <button
               type="button"
-              className="calc-pill"
-              aria-pressed={showExplanation}
+              className="calc-toggle"
               onClick={() => setShowExplanation((v) => !v)}
+              aria-pressed={showExplanation}
             >
-              {showExplanation ? "Skjul forklaring" : "Vis forklaring"}
+              {showExplanation ? "× Skjul forklaring" : "+ Vis forklaring"}
             </button>
           </div>
 
-          <div className={`calc-grid ${showExplanation ? "with-explanation" : ""}`}>
-            {/* ── Left: inputs ───────────────────────────────────────────── */}
-            <ScrollReveal>
-              <div className="calc-card calc-inputs">
-                <h2 className="calc-card-title">Din klinikk</h2>
+          <div className={`calc-layout ${showExplanation ? "" : "no-explanation"}`}>
+            {/* COL 1: Inputs */}
+            <div className="calc-panel">
+              <div className="calc-panel-label">Klinikkens situasjon</div>
 
-                {/* Innkommende anrop per dag */}
-                <div className="calc-field">
-                  <label className="calc-label">Innkommende anrop per dag</label>
-                  <div className="calc-input-wrap">
-                    <input
-                      type="number"
-                      min={0}
-                      value={callsPerDay}
-                      onChange={(e) => setCallsPerDay(e.target.value)}
-                      onFocus={(e) => e.target.select()}
-                      onBlur={(e) => { if (!e.target.value || e.target.value === "0") setCallsPerDay("50"); }}
-                      className="calc-input"
-                    />
-                    <span className="calc-input-suffix">/ dag</span>
-                  </div>
+              <div className="calc-field">
+                <div className="calc-field-head">
+                  <label className="calc-field-label">Innkommende anrop per dag</label>
                 </div>
-
-                {/* Andel anrop som ikke besvares */}
-                <div className="calc-field">
-                  <div className="calc-label-row">
-                    <label className="calc-label">Andel anrop som ikke besvares</label>
-                    <span className="calc-value-pill">{missedPct}%</span>
-                  </div>
+                <div className="calc-input-wrap">
                   <input
-                    type="range"
-                    min={10}
-                    max={50}
-                    step={1}
-                    value={missedPct}
-                    onChange={(e) => setMissedPct(Number(e.target.value))}
-                    className="calc-slider"
-                    style={{
-                      background: `linear-gradient(to right, var(--gold) 0%, var(--gold) ${((missedPct - 10) / 40) * 100}%, var(--border) ${((missedPct - 10) / 40) * 100}%, var(--border) 100%)`,
-                    }}
+                    type="number"
+                    min={0}
+                    max={500}
+                    className="calc-input"
+                    value={callsPerDay}
+                    onChange={(e) => setCallsPerDay(e.target.value)}
+                    onFocus={(e) => e.target.select()}
+                    onBlur={(e) => { if (!e.target.value) setCallsPerDay("50"); }}
                   />
-                  <div className="calc-slider-ticks">
-                    <span>10%</span>
-                    <span>30%</span>
-                    <span>50%</span>
-                  </div>
                 </div>
+              </div>
 
-                {/* Antall pasienter i basen */}
-                <div className="calc-field">
-                  <label className="calc-label">Antall pasienter i basen</label>
-                  <div className="calc-input-wrap">
-                    <input
-                      type="number"
-                      min={0}
-                      value={patientBase}
-                      onChange={(e) => setPatientBase(e.target.value)}
-                      onFocus={(e) => e.target.select()}
-                      onBlur={(e) => { if (!e.target.value || e.target.value === "0") setPatientBase("3000"); }}
-                      className="calc-input"
-                    />
-                    <span className="calc-input-suffix">pasienter</span>
-                  </div>
+              <div className="calc-field">
+                <div className="calc-field-head">
+                  <label className="calc-field-label">Andel anrop som ikke besvares</label>
+                  <span className="calc-field-value">{missedPct}%</span>
                 </div>
+                <input
+                  type="range"
+                  min={10}
+                  max={50}
+                  step={1}
+                  className="calc-slider"
+                  value={missedPct}
+                  onChange={(e) => setMissedPct(Number(e.target.value))}
+                  style={{
+                    background: `linear-gradient(to right, var(--calc-gold) 0%, var(--calc-gold) ${missedFill}%, var(--calc-border) ${missedFill}%, var(--calc-border) 100%)`,
+                  }}
+                />
+                <div className="calc-slider-marks">
+                  <span>10%</span><span>30%</span><span>50%</span>
+                </div>
+              </div>
 
-                {/* No-show-rate */}
-                <div className="calc-field">
-                  <div className="calc-label-row">
-                    <label className="calc-label">No-show-rate i dag</label>
-                    <span className="calc-value-pill">{noShowPct}%</span>
-                  </div>
+              <div className="calc-field">
+                <div className="calc-field-head">
+                  <label className="calc-field-label">Antall pasienter i basen</label>
+                </div>
+                <div className="calc-input-wrap">
                   <input
-                    type="range"
-                    min={3}
-                    max={30}
-                    step={1}
-                    value={noShowPct}
-                    onChange={(e) => setNoShowPct(Number(e.target.value))}
-                    className="calc-slider"
-                    style={{
-                      background: `linear-gradient(to right, var(--gold) 0%, var(--gold) ${((noShowPct - 3) / 27) * 100}%, var(--border) ${((noShowPct - 3) / 27) * 100}%, var(--border) 100%)`,
-                    }}
+                    type="number"
+                    min={0}
+                    max={50000}
+                    className="calc-input"
+                    value={patientBase}
+                    onChange={(e) => setPatientBase(e.target.value)}
+                    onFocus={(e) => e.target.select()}
+                    onBlur={(e) => { if (!e.target.value) setPatientBase("3000"); }}
                   />
-                  <div className="calc-slider-ticks">
-                    <span>3%</span>
-                    <span>15%</span>
-                    <span>30%</span>
-                  </div>
                 </div>
+              </div>
 
-                {/* Snittpris per booking */}
-                <div className="calc-field">
-                  <label className="calc-label">Snittpris per booking</label>
-                  <div className="calc-input-wrap">
-                    <span className="calc-input-prefix">kr</span>
-                    <input
-                      type="number"
-                      min={0}
-                      value={bookingValue}
-                      onChange={(e) => setBookingValue(e.target.value)}
-                      onFocus={(e) => e.target.select()}
-                      onBlur={(e) => { if (!e.target.value || e.target.value === "0") setBookingValue("2500"); }}
-                      className="calc-input calc-input--prefixed"
-                    />
+              <div className="calc-field">
+                <div className="calc-field-head">
+                  <label className="calc-field-label">No-show-rate i dag</label>
+                  <span className="calc-field-value">{noShowPct}%</span>
+                </div>
+                <input
+                  type="range"
+                  min={3}
+                  max={30}
+                  step={1}
+                  className="calc-slider"
+                  value={noShowPct}
+                  onChange={(e) => setNoShowPct(Number(e.target.value))}
+                  style={{
+                    background: `linear-gradient(to right, var(--calc-gold) 0%, var(--calc-gold) ${noShowFill}%, var(--calc-border) ${noShowFill}%, var(--calc-border) 100%)`,
+                  }}
+                />
+                <div className="calc-slider-marks">
+                  <span>3%</span><span>15%</span><span>30%</span>
+                </div>
+              </div>
+
+              <div className="calc-field calc-field--last">
+                <div className="calc-field-head">
+                  <label className="calc-field-label">Snittpris per booking</label>
+                </div>
+                <div className="calc-input-wrap">
+                  <span className="calc-prefix">kr</span>
+                  <input
+                    type="number"
+                    min={0}
+                    max={100000}
+                    className="calc-input with-prefix"
+                    value={bookingValue}
+                    onChange={(e) => setBookingValue(e.target.value)}
+                    onFocus={(e) => e.target.select()}
+                    onBlur={(e) => { if (!e.target.value) setBookingValue("2500"); }}
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* COL 2: Results */}
+            <div className="calc-center-col">
+              <div className="calc-panel cream">
+                <div className="calc-panel-label">Total verdi generert per måned</div>
+                <div className="calc-total-value">{fmtKr(result.total)}</div>
+                <div className="calc-total-sub">På tvers av alle fire funksjonene i Ekspedenten</div>
+              </div>
+
+              <div className="calc-panel">
+                <div className="calc-panel-label">Verdi fordelt på funksjon</div>
+                <div className="calc-row">
+                  <span>Ubesvarte anrop reddet</span>
+                  <span className="calc-amount">{fmtKr(result.ubesvarte)}</span>
+                </div>
+                <div className="calc-row">
+                  <span>Reaktivering av sovende pasienter</span>
+                  <span className="calc-amount">{fmtKr(result.reaktivering)}</span>
+                </div>
+                <div className="calc-row">
+                  <span>Reduserte no-shows</span>
+                  <span className="calc-amount">{fmtKr(result.noShowsVerdi)}</span>
+                </div>
+                <div className="calc-row">
+                  <span>Webleads utenom åpningstid</span>
+                  <span className="calc-amount">{fmtKr(result.webleads)}</span>
+                </div>
+              </div>
+
+              <div className="calc-panel dark">
+                <div className="calc-panel-label">Avkastning på investering</div>
+                <div className="calc-roi-grid">
+                  <div className="calc-roi-cell">
+                    <div className="calc-roi-label">Pilotpris</div>
+                    <div className="calc-roi-value">{fmtRoi(result.pilotRoi)}</div>
+                  </div>
+                  <div className="calc-roi-cell">
+                    <div className="calc-roi-label">Standardpris</div>
+                    <div className="calc-roi-value">{fmtRoi(result.standardRoi)}</div>
                   </div>
                 </div>
               </div>
-            </ScrollReveal>
 
-            {/* ── Mid: outputs ───────────────────────────────────────────── */}
-            <ScrollReveal delay={100}>
-              <div className="calc-results">
-                {/* A — total value */}
-                <div className="calc-total-card">
-                  <div className="calc-eyebrow">Total verdi generert per måned</div>
-                  <div className="calc-total-number">{nokFmt(totalValue)}</div>
-                  <div className="calc-eyebrow-sub">Estimert merverdi med AI-resepsjonisten</div>
-                </div>
+              <DemoPopup
+                triggerText="Book en gratis samtale for å komme i gang →"
+                className="calc-cta"
+              />
+              <p className="calc-disclaimer">* Estimater basert på bransjedata. Faktiske resultater varierer.</p>
+            </div>
 
-                {/* B — breakdown */}
-                <div className="calc-breakdown-card">
-                  <div className="calc-card-title-sm">Verdi fordelt på funksjon</div>
-
-                  <div className="calc-row">
-                    <div className="calc-row-label">Ubesvarte anrop reddet</div>
-                    <div className="calc-row-value">{nokFmt(savedCalls)}</div>
+            {/* COL 3: Explanation */}
+            {showExplanation && (
+              <div className="calc-panel calc-explanation">
+                <div className="calc-expl-section">
+                  <h4>Reduserte no-shows</h4>
+                  <div className="calc-formula">
+                    Baseline no-show: <span className="calc-hl">{noShowPct}%</span><br />
+                    Ekspedenten reduserer med <span className="calc-hl">40%</span><br />
+                    = ~<span>{result.reddedeStoltimer.toFixed(1)}</span> reddede stoltimer/mnd<br />
+                    × <span className="calc-hl">{fmtNum(result.snittpris)} kr</span><br />
+                    = <span className="calc-hl">{fmtNum(result.noShowsVerdi)} kr</span>
                   </div>
-                  <div className="calc-row">
-                    <div className="calc-row-label">Reaktivering av sovende pasienter</div>
-                    <div className="calc-row-value">{nokFmt(reactivation)}</div>
-                  </div>
-                  <div className="calc-row">
-                    <div className="calc-row-label">Reduserte no-shows</div>
-                    <div className="calc-row-value">{nokFmt(reducedNoShows)}</div>
-                  </div>
-                  <div className="calc-row calc-row--last">
-                    <div className="calc-row-label">Webleads utenom åpningstid</div>
-                    <div className="calc-row-value">{nokFmt(webLeads)}</div>
-                  </div>
-                </div>
-
-                {/* C — ROI */}
-                <div className="calc-roi-card">
-                  <div className="calc-eyebrow calc-eyebrow--gold">Avkastning på investering</div>
-                  <div className="calc-roi-rows">
-                    <div className="calc-roi-row">
-                      <div className="calc-roi-label">
-                        Pilotpris
-                        <span className="calc-roi-sub">10 000 kr</span>
-                      </div>
-                      <div className="calc-roi-value">{roiFmt(roiPilot)}</div>
-                    </div>
-                    <div className="calc-roi-row">
-                      <div className="calc-roi-label">
-                        Standardpris
-                        <span className="calc-roi-sub">25 000 kr</span>
-                      </div>
-                      <div className="calc-roi-value">{roiFmt(roiStandard)}</div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* D — CTA */}
-                <a
-                  href="https://calendly.com/smartcoreaimeeting/new-meeting"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="calc-cta"
-                >
-                  Book gratis samtale
-                </a>
-
-                {/* E — disclaimer */}
-                <p className="calc-disclaimer">
-                  * Estimater basert på bransjedata. Faktiske resultater varierer.
-                </p>
-              </div>
-            </ScrollReveal>
-
-            {/* ── Right: explanation panel ───────────────────────────────── */}
-            <aside className="calc-explanation" aria-hidden={!showExplanation}>
-              <div className="calc-explanation-inner">
-                <div className="calc-card-title-sm">Hvor kommer tallene fra?</div>
-
-                <div className="calc-expl-block">
-                  <h4 className="calc-expl-h">Reduserte no-shows</h4>
-                  <p className="calc-expl-formula">
-                    anrop/dag × 30 × 22,5% booking-rate × no-show-rate × 40% reduksjon × snittpris
-                  </p>
-                  <p className="calc-expl-note">
-                    AI-bekreftelser og påminnelser kutter typisk no-shows med 30–50%.
-                  </p>
-                  <p className="calc-expl-source">
-                    Kilde: Imperial College London, 2025
+                  <p className="calc-expl-text">
+                    SMS-påminnelser + bekreftelsesflyt reduserer no-shows med 38–40%. <em>Imperial College London, 2025</em>
                   </p>
                 </div>
 
-                <div className="calc-expl-block">
-                  <h4 className="calc-expl-h">Webleads utenom åpningstid</h4>
-                  <p className="calc-expl-formula">
-                    ~24 webleads/mnd × 50% reddes med AI × snittpris
-                  </p>
-                  <p className="calc-expl-note">
-                    Mer enn halvparten av tannlege-leads kommer etter stengetid og forsvinner uten 24/7-respons.
-                  </p>
-                  <p className="calc-expl-source">
-                    Kilde: TrueLark, 2025
+                <div className="calc-expl-divider" />
+
+                <div className="calc-expl-section">
+                  <h4>Webleads utenom åpningstid</h4>
+                  <div className="calc-formula">
+                    ~<span className="calc-hl">24 webleads/mnd</span><br />
+                    × <span className="calc-hl">50%</span> reddes med AI-respons<br />
+                    = 12 ekstra bookinger<br />
+                    × <span className="calc-hl">{fmtNum(result.snittpris)} kr</span><br />
+                    = <span className="calc-hl">{fmtNum(result.webleads)} kr</span>
+                  </div>
+                  <p className="calc-expl-text">
+                    60% av webhenvendelser utenom åpningstid har booket et annet sted før klinikken rekker å svare. <em>TrueLark, 2025. 8 mill. samtaler</em>
                   </p>
                 </div>
 
-                <div className="calc-expl-block">
-                  <h4 className="calc-expl-h">Customer Lifetime Value</h4>
-                  <p className="calc-expl-note">
-                    En norsk pasient er typisk verdt mellom 15 000 og 25 000 kr over 5 år. Vi bruker bevisst en konservativ snittpris per booking i kalkulatoren — full LTV gir betydelig høyere tall.
+                <div className="calc-expl-divider" />
+
+                <div className="calc-expl-section">
+                  <h4>Customer Lifetime Value</h4>
+                  <p className="calc-expl-text">
+                    En typisk norsk tannpasient genererer 15 000–25 000 kr over 5 år. 20% av reddede bookinger er nye pasienter, så CLV-effekten kommer i tillegg til månedstallene over.
                   </p>
                 </div>
               </div>
-            </aside>
+            )}
           </div>
-        </section>
+        </div>
       </main>
-      <Footer />
+      <LandingFooter />
       <ChatWidget />
 
       <style jsx global>{`
         .calc-page {
-          --bg-page: #f5f3ee;
-          --bg-card: #ffffff;
-          --bg-card-accent: #fbf6ec;
-          --ink-primary: #1a1f3a;
-          --ink-secondary: #6b6f7d;
-          --gold: #c9a24a;
-          --gold-soft: #e8d5a1;
-          --gold-bg: #faf3e2;
-          --border: #e8e3d6;
+          --calc-bg-page: #f5f3ee;
+          --calc-bg-card: #ffffff;
+          --calc-bg-card-accent: #fbf6ec;
+          --calc-bg-dark: #1a1f3a;
+          --calc-ink: #1a1f3a;
+          --calc-ink-secondary: #5a5f73;
+          --calc-ink-tertiary: #9a9ca6;
+          --calc-gold: #c9a24a;
+          --calc-gold-soft: #e8d5a1;
+          --calc-gold-bg: #faf3e2;
+          --calc-border: #e8e3d6;
 
-          background: var(--bg-page);
-          min-height: 100vh;
-          font-family: ${SANS};
-          color: var(--ink-primary);
+          background: var(--calc-bg-page);
+          color: var(--calc-ink);
         }
+        .calc-page,
+        .calc-page input,
+        .calc-page button {
+          font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+        }
+        .calc-page * { box-sizing: border-box; }
 
-        .calc-section {
-          padding: 48px 24px 96px;
+        .calc-main {
+          padding: 32px 24px 80px;
+        }
+        .calc-container {
           max-width: 1280px;
           margin: 0 auto;
         }
 
-        .calc-back-wrap {
-          margin-bottom: 28px;
-        }
-        .calc-back-link {
-          font-size: 13px;
-          color: var(--ink-secondary);
-          text-decoration: none;
-          transition: color 0.15s;
-        }
-        .calc-back-link:hover { color: var(--gold); }
-
-        .calc-header {
-          max-width: 720px;
-          margin-bottom: 28px;
-        }
-        .calc-title {
-          font-family: ${SERIF};
-          font-size: clamp(28px, 4vw, 42px);
-          font-weight: 600;
-          line-height: 1.15;
-          letter-spacing: -0.02em;
-          color: var(--ink-primary);
-          margin: 0 0 12px;
-        }
-        .calc-subtitle {
-          font-size: 16px;
-          color: var(--ink-secondary);
-          line-height: 1.55;
-          margin: 0;
-        }
-
-        .calc-pill-row {
-          display: flex;
-          justify-content: flex-end;
-          margin-bottom: 20px;
-        }
-        .calc-pill {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          padding: 10px 20px;
-          border-radius: 999px;
-          background: var(--gold-bg);
-          color: var(--ink-primary);
-          border: 1px solid var(--gold-soft);
-          font-family: ${SANS};
-          font-size: 13px;
-          font-weight: 600;
-          cursor: pointer;
-          transition: background 0.2s, border-color 0.2s, transform 0.15s;
-        }
-        .calc-pill:hover {
-          background: var(--gold-soft);
-          transform: translateY(-1px);
-        }
-        .calc-pill[aria-pressed="true"] {
-          background: var(--gold);
-          color: #ffffff;
-          border-color: var(--gold);
-        }
-
-        /* Grid: flex-based for smooth animation of explanation panel */
-        .calc-grid {
-          display: flex;
-          gap: 24px;
-          align-items: stretch;
-        }
-        .calc-grid > :nth-child(1) { flex: 0 0 340px; }
-        .calc-grid > :nth-child(2) { flex: 1 1 0; min-width: 0; }
-        .calc-explanation {
-          flex: 0 0 0;
-          width: 0;
-          opacity: 0;
-          overflow: hidden;
-          transform: translateX(20px);
-          pointer-events: none;
-          transition:
-            flex-basis 0.4s ease,
-            width 0.4s ease,
-            opacity 0.4s ease,
-            transform 0.4s ease,
-            margin 0.4s ease;
-        }
-        .calc-grid.with-explanation .calc-explanation {
-          flex: 0 0 340px;
-          width: 340px;
-          opacity: 1;
-          transform: translateX(0);
-          pointer-events: auto;
-        }
-
-        /* Cards */
-        .calc-card,
-        .calc-breakdown-card,
-        .calc-explanation-inner {
-          background: var(--bg-card);
-          border: 1px solid var(--border);
-          border-radius: 20px;
-          padding: 28px;
-        }
-        .calc-inputs {
-          display: flex;
-          flex-direction: column;
-          gap: 22px;
-        }
-        .calc-card-title {
-          font-family: ${SERIF};
-          font-size: 20px;
-          font-weight: 600;
-          letter-spacing: -0.01em;
-          color: var(--ink-primary);
-          margin: 0 0 4px;
-        }
-        .calc-card-title-sm {
-          font-size: 12px;
-          font-weight: 700;
-          color: var(--ink-secondary);
-          text-transform: uppercase;
-          letter-spacing: 0.08em;
-          margin-bottom: 16px;
-        }
-
-        /* Fields */
-        .calc-field { display: flex; flex-direction: column; gap: 10px; }
-        .calc-label {
-          font-size: 14px;
-          font-weight: 500;
-          color: var(--ink-primary);
-          line-height: 1.4;
-        }
-        .calc-label-row {
+        /* Top bar */
+        .calc-topbar {
           display: flex;
           justify-content: space-between;
           align-items: center;
+          margin-bottom: 32px;
+          padding: 0 8px;
+          gap: 16px;
         }
-        .calc-value-pill {
-          font-family: ${NUM_FONT};
-          font-size: 18px;
-          font-weight: 700;
-          color: var(--gold);
-          font-variant-numeric: tabular-nums;
-          letter-spacing: -0.02em;
-          line-height: 1;
+        .calc-back {
+          color: var(--calc-ink-secondary);
+          text-decoration: none;
+          font-size: 14px;
+          font-weight: 500;
+          transition: color 0.2s;
+        }
+        .calc-back:hover { color: var(--calc-ink); }
+        .calc-toggle {
+          background: var(--calc-bg-card);
+          color: var(--calc-gold);
+          border: 1px solid var(--calc-border);
+          padding: 10px 18px;
+          border-radius: 999px;
+          font-size: 13px;
+          font-weight: 500;
+          cursor: pointer;
+          transition: border-color 0.2s, color 0.2s, background 0.2s;
+        }
+        .calc-toggle:hover {
+          border-color: var(--calc-gold-soft);
+          background: var(--calc-gold-bg);
         }
 
+        /* Layout */
+        .calc-layout {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          gap: 24px;
+        }
+        .calc-layout.no-explanation {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        /* Panels */
+        .calc-panel {
+          background: var(--calc-bg-card);
+          border-radius: 16px;
+          padding: 24px 22px;
+          box-shadow: 0 1px 3px rgba(26, 31, 58, 0.04);
+        }
+        .calc-panel.cream {
+          background: var(--calc-bg-card-accent);
+          border: 1px solid var(--calc-gold-soft);
+        }
+        .calc-panel.dark {
+          background: var(--calc-bg-dark);
+          color: white;
+        }
+        .calc-panel-label {
+          font-size: 10px;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 0.12em;
+          color: var(--calc-gold);
+          margin-bottom: 16px;
+        }
+        .calc-panel.dark .calc-panel-label {
+          color: var(--calc-gold-soft);
+        }
+
+        /* Center column */
+        .calc-center-col {
+          display: flex;
+          flex-direction: column;
+          gap: 14px;
+        }
+
+        /* Fields */
+        .calc-field { margin-bottom: 20px; }
+        .calc-field--last { margin-bottom: 0; }
+        .calc-field-head {
+          display: flex;
+          justify-content: space-between;
+          align-items: baseline;
+          margin-bottom: 8px;
+        }
+        .calc-field-label {
+          font-size: 13px;
+          color: var(--calc-ink);
+          font-weight: 500;
+        }
+        .calc-field-value {
+          font-size: 13px;
+          color: var(--calc-gold);
+          font-weight: 700;
+          font-feature-settings: "tnum" 1;
+        }
         .calc-input-wrap { position: relative; }
         .calc-input {
           width: 100%;
+          padding: 11px 14px;
+          border: 1px solid var(--calc-border);
+          border-radius: 8px;
           background: #ffffff;
-          border: 1px solid var(--border);
-          border-radius: 12px;
-          padding: 12px 14px;
-          color: var(--ink-primary);
-          font-size: 16px;
+          font-size: 14px;
+          color: var(--calc-ink);
           font-weight: 500;
-          font-family: ${SANS};
-          outline: none;
-          box-sizing: border-box;
+          font-family: inherit;
           transition: border-color 0.2s, box-shadow 0.2s;
           -moz-appearance: textfield;
+          font-feature-settings: "tnum" 1;
         }
         .calc-input::-webkit-outer-spin-button,
         .calc-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
         .calc-input:focus {
-          border-color: var(--gold);
-          box-shadow: 0 0 0 3px rgba(201,162,74,0.14);
+          outline: none;
+          border-color: var(--calc-gold);
+          box-shadow: 0 0 0 3px rgba(201, 162, 74, 0.12);
         }
-        .calc-input--prefixed { padding-left: 36px; }
-        .calc-input-prefix {
-          position: absolute; left: 14px; top: 50%;
+        .calc-input.with-prefix { padding-left: 36px; }
+        .calc-prefix {
+          position: absolute;
+          left: 14px;
+          top: 50%;
           transform: translateY(-50%);
-          font-size: 14px; color: var(--ink-secondary);
-          pointer-events: none;
-        }
-        .calc-input-suffix {
-          position: absolute; right: 14px; top: 50%;
-          transform: translateY(-50%);
-          font-size: 13px; color: var(--ink-secondary);
+          color: var(--calc-ink-tertiary);
+          font-size: 13px;
           pointer-events: none;
         }
 
@@ -498,243 +437,184 @@ export default function CalculatorPage() {
           appearance: none;
           width: 100%;
           height: 6px;
-          border-radius: 999px;
+          border-radius: 3px;
           outline: none;
           cursor: pointer;
         }
         .calc-slider::-webkit-slider-thumb {
           -webkit-appearance: none;
-          width: 22px; height: 22px;
+          width: 18px;
+          height: 18px;
           border-radius: 50%;
-          background: var(--gold);
-          border: 3px solid #ffffff;
-          box-shadow: 0 1px 6px rgba(201,162,74,0.45);
+          background: var(--calc-gold);
+          border: 2px solid white;
+          box-shadow: 0 2px 5px rgba(201, 162, 74, 0.35);
           cursor: pointer;
         }
         .calc-slider::-moz-range-thumb {
-          width: 22px; height: 22px;
+          width: 18px;
+          height: 18px;
           border-radius: 50%;
-          background: var(--gold);
-          border: 3px solid #ffffff;
-          box-shadow: 0 1px 6px rgba(201,162,74,0.45);
+          background: var(--calc-gold);
+          border: 2px solid white;
+          box-shadow: 0 2px 5px rgba(201, 162, 74, 0.35);
           cursor: pointer;
         }
-        .calc-slider-ticks {
+        .calc-slider-marks {
           display: flex;
           justify-content: space-between;
+          margin-top: 6px;
           font-size: 11px;
-          color: var(--ink-secondary);
-          margin-top: 4px;
+          color: var(--calc-ink-tertiary);
         }
 
-        /* Results column */
-        .calc-results {
-          display: flex;
-          flex-direction: column;
-          gap: 16px;
-        }
-
-        .calc-eyebrow {
-          font-size: 11px;
+        /* Total / breakdown / ROI */
+        .calc-total-value {
+          font-family: var(--font-inter), -apple-system, system-ui, sans-serif;
+          font-size: 40px;
           font-weight: 700;
-          color: var(--gold);
-          text-transform: uppercase;
-          letter-spacing: 0.1em;
-          margin-bottom: 10px;
-        }
-        .calc-eyebrow-sub {
-          font-size: 13px;
-          color: var(--ink-secondary);
-        }
-        .calc-eyebrow--gold {
-          color: var(--gold-soft);
-          margin-bottom: 14px;
-        }
-
-        .calc-total-card {
-          background: var(--gold-bg);
-          border: 1px solid var(--gold-soft);
-          border-radius: 20px;
-          padding: 32px 28px;
-        }
-        .calc-total-number {
-          font-family: ${NUM_FONT};
-          font-size: clamp(40px, 6vw, 56px);
-          font-weight: 800;
-          font-variant-numeric: tabular-nums;
+          color: var(--calc-ink);
           letter-spacing: -0.03em;
-          line-height: 1.05;
-          color: var(--ink-primary);
-          margin: 0 0 6px;
+          line-height: 1;
+          margin-bottom: 8px;
+          font-feature-settings: "tnum" 1;
+        }
+        .calc-total-sub {
+          font-size: 12px;
+          color: var(--calc-ink-secondary);
         }
 
-        .calc-breakdown-card {
-          padding: 24px 28px;
-        }
         .calc-row {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          padding: 14px 0;
-          border-bottom: 1px solid var(--border);
-          gap: 16px;
+          padding: 10px 0;
+          border-bottom: 1px solid var(--calc-border);
+          font-size: 13px;
+          gap: 12px;
         }
-        .calc-row--last { border-bottom: none; padding-bottom: 4px; }
-        .calc-row-label {
-          font-size: 14px;
-          color: var(--ink-secondary);
-          line-height: 1.4;
-        }
-        .calc-row-value {
-          font-family: ${NUM_FONT};
-          font-size: 17px;
+        .calc-row:last-child { border-bottom: none; }
+        .calc-amount {
           font-weight: 700;
-          font-variant-numeric: tabular-nums;
-          letter-spacing: -0.02em;
-          color: var(--ink-primary);
+          color: var(--calc-ink);
+          font-feature-settings: "tnum" 1;
+          letter-spacing: -0.01em;
           white-space: nowrap;
         }
 
-        .calc-roi-card {
-          background: var(--ink-primary);
-          color: #ffffff;
-          border-radius: 20px;
-          padding: 24px 28px;
+        .calc-roi-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 12px;
+          margin-top: 4px;
         }
-        .calc-roi-rows {
-          display: flex;
-          flex-direction: column;
-          gap: 14px;
-        }
-        .calc-roi-row {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          gap: 16px;
+        .calc-roi-cell {
+          text-align: center;
+          padding: 2px 0;
         }
         .calc-roi-label {
-          display: flex;
-          flex-direction: column;
-          gap: 2px;
-          font-size: 14px;
-          font-weight: 500;
-          color: #ffffff;
-        }
-        .calc-roi-sub {
-          font-size: 12px;
-          color: rgba(255,255,255,0.55);
-          font-weight: 400;
+          font-size: 10px;
+          text-transform: uppercase;
+          letter-spacing: 0.12em;
+          color: var(--calc-gold-soft);
+          margin-bottom: 8px;
+          font-weight: 600;
         }
         .calc-roi-value {
-          font-family: ${NUM_FONT};
-          font-size: 26px;
-          font-weight: 800;
-          font-variant-numeric: tabular-nums;
-          letter-spacing: -0.03em;
-          color: var(--gold-soft);
+          font-family: var(--font-inter), -apple-system, system-ui, sans-serif;
+          font-size: 32px;
+          font-weight: 700;
+          color: white;
+          line-height: 1;
+          letter-spacing: -0.04em;
+          font-feature-settings: "tnum" 1;
         }
 
+        /* CTA */
         .calc-cta {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding: 16px 24px;
+          background: var(--calc-bg-dark);
+          color: white;
+          border: none;
+          padding: 14px 20px;
           border-radius: 12px;
-          background: var(--ink-primary);
-          color: #ffffff;
-          font-size: 15px;
+          font-size: 14px;
           font-weight: 600;
-          text-decoration: none;
+          font-family: inherit;
+          cursor: pointer;
           width: 100%;
-          box-sizing: border-box;
-          box-shadow: 0 4px 20px rgba(10,10,10,0.15);
-          transition: background 0.2s, transform 0.15s;
-        }
-        .calc-cta:hover { background: #2d2d4e; transform: translateY(-1px); }
-
-        .calc-disclaimer {
           text-align: center;
-          font-size: 12px;
-          color: var(--ink-secondary);
-          margin: 0;
+          transition: transform 0.2s, box-shadow 0.2s;
+          text-decoration: none;
+          display: inline-block;
         }
-
-        /* Explanation panel */
-        .calc-explanation-inner {
-          padding: 24px 24px;
-          height: 100%;
-          box-sizing: border-box;
-          background: var(--bg-card-accent);
+        .calc-cta:hover {
+          transform: translateY(-1px);
+          box-shadow: 0 8px 20px rgba(26, 31, 58, 0.2);
         }
-        .calc-expl-block {
-          padding: 14px 0;
-          border-bottom: 1px solid var(--border);
-        }
-        .calc-expl-block:last-child { border-bottom: none; padding-bottom: 0; }
-        .calc-expl-block:first-of-type { padding-top: 0; }
-        .calc-expl-h {
-          font-family: ${SERIF};
-          font-size: 16px;
-          font-weight: 600;
-          color: var(--ink-primary);
-          margin: 0 0 8px;
-        }
-        .calc-expl-formula {
-          font-family: ${NUM_FONT};
-          font-size: 12px;
-          font-weight: 500;
-          color: var(--ink-primary);
-          background: #ffffff;
-          border: 1px solid var(--border);
-          border-radius: 8px;
-          padding: 8px 10px;
-          margin: 0 0 8px;
-          line-height: 1.45;
-        }
-        .calc-expl-note {
-          font-size: 13px;
-          color: var(--ink-secondary);
-          line-height: 1.55;
-          margin: 0 0 6px;
-        }
-        .calc-expl-source {
+        .calc-disclaimer {
           font-size: 11px;
-          color: var(--gold);
-          font-weight: 600;
-          letter-spacing: 0.02em;
-          margin: 0;
+          color: var(--calc-ink-tertiary);
+          text-align: center;
+          margin: 4px 0 0;
+          font-style: italic;
         }
 
-        /* Mobile */
-        @media (max-width: 980px) {
-          .calc-grid {
-            flex-direction: column;
-          }
-          .calc-grid > :nth-child(1),
-          .calc-grid > :nth-child(2) {
-            flex: 1 1 auto;
-          }
-          .calc-explanation {
-            flex: 1 1 auto;
-            width: auto;
-          }
-          .calc-grid:not(.with-explanation) .calc-explanation {
-            display: none;
-          }
-          .calc-grid.with-explanation .calc-explanation {
-            width: auto;
-          }
+        /* Explanation */
+        .calc-expl-section { margin-bottom: 20px; }
+        .calc-expl-section:last-child { margin-bottom: 0; }
+        .calc-expl-section h4 {
+          font-size: 14px;
+          font-weight: 700;
+          margin: 0 0 10px;
+          color: var(--calc-ink);
+          letter-spacing: -0.01em;
+        }
+        .calc-formula {
+          background: var(--calc-gold-bg);
+          border: 1px solid var(--calc-gold-soft);
+          border-radius: 8px;
+          padding: 12px 14px;
+          font-family: "SF Mono", "Menlo", "JetBrains Mono", monospace;
+          font-size: 12px;
+          line-height: 1.6;
+          color: var(--calc-ink);
+          margin-bottom: 10px;
+          font-feature-settings: "tnum" 1;
+        }
+        .calc-formula .calc-hl {
+          color: var(--calc-gold);
+          font-weight: 700;
+        }
+        .calc-expl-text {
+          font-size: 12px;
+          color: var(--calc-ink-secondary);
+          line-height: 1.55;
+          margin: 0;
+        }
+        .calc-expl-text em {
+          color: var(--calc-gold);
+          font-style: normal;
+          font-weight: 600;
+        }
+        .calc-expl-divider {
+          height: 1px;
+          background: var(--calc-border);
+          margin: 18px 0;
+        }
+
+        /* Mobile / tablet */
+        @media (max-width: 1024px) {
+          .calc-layout,
+          .calc-layout.no-explanation { grid-template-columns: 1fr; }
         }
         @media (max-width: 640px) {
-          .calc-section { padding: 32px 16px 64px; }
-          .calc-pill-row { display: none; }
-          .calc-card,
-          .calc-breakdown-card,
-          .calc-roi-card,
-          .calc-total-card,
-          .calc-explanation-inner { padding: 22px 20px; }
+          .calc-main { padding: 24px 16px 64px; }
+          .calc-panel { padding: 20px 18px; }
+          .calc-total-value { font-size: 32px; }
+          .calc-roi-value { font-size: 26px; }
+          .calc-toggle { padding: 8px 14px; font-size: 12px; }
         }
       `}</style>
-    </>
+    </div>
   );
 }
