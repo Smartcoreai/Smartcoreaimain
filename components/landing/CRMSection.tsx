@@ -5,7 +5,7 @@ export default function CRMSection() {
         <div className="lp-section-header">
           <span className="lp-pill lavender">CRM for klinikker</span>
           <h2>All aktivitet samlet<br />på ett sted.</h2>
-          <p>Logg inn på dashbordet ditt og se eksakt hva Ária gjorde i dag — samtaler, bookinger, missed calls og hvilke pasienter som trenger oppfølging fra teamet.</p>
+          <p>Logg inn på dashbordet ditt og se eksakt hva Ária gjorde i dag. Samtaler, bookinger, missed calls og hvilke pasienter som trenger oppfølging fra teamet.</p>
           <p className="lp-section-header-note">Eksempel-data nedenfor viser hvordan dashbordet ser ut etter første uke i drift.</p>
         </div>
 
@@ -18,7 +18,7 @@ export default function CRMSection() {
           </div>
           <div className="lp-crm-content">
             <div className="lp-crm-greeting">
-              <h3>God morgen, Henrik</h3>
+              <h3>God morgen, Marie</h3>
               <p>Bergen Tannklinikk · Mandag 5. mai · Ária har vært i drift i 247 timer</p>
             </div>
 
@@ -68,7 +68,7 @@ export default function CRMSection() {
                   <div className="lp-activity-dot alert" />
                   <div className="lp-activity-text">
                     <strong>Trenger oppfølging</strong>
-                    <span>Spørsmål om implantat — sendt til Henrik</span>
+                    <span>Spørsmål om implantat. Sendt til klinikken</span>
                   </div>
                   <div className="lp-activity-time">8 min</div>
                 </div>

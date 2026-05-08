@@ -15,7 +15,7 @@ export default function FoundersBlock() {
               </div>
             </div>
           </div>
-          <div className="lp-testimonial-img">— team-bilde —</div>
+          <div className="lp-testimonial-img">team-bilde</div>
         </div>
       </div>
     </section>

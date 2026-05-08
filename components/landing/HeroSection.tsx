@@ -12,7 +12,7 @@ export default function HeroSection() {
             Telefonen.<br />Besvart automatisk.
           </h1>
           <p className="lp-lead">
-            Ária svarer pasienter 24/7 på norsk og booker time direkte i kalenderen — mens teamet ditt fokuserer på pasientene som er foran dem.
+            Ária svarer pasienter 24/7 på norsk og booker time direkte i kalenderen, mens teamet ditt fokuserer på pasientene som er foran dem.
           </p>
           <div className="lp-btn-group">
             <DemoPopup triggerText="Bestill demo" className="lp-btn-primary" />
@@ -25,7 +25,7 @@ export default function HeroSection() {
         <div className="lp-hero-stage">
           <div className="lp-floating-sms">
             <div className="lp-sms-label">SMS · Bergen Tannklinikk</div>
-            <div className="lp-sms-text">Din time er bekreftet — torsdag kl 10:00. Klikk for å se detaljer →</div>
+            <div className="lp-sms-text">Din time er bekreftet, torsdag kl 10:00. Klikk for å se detaljer.</div>
           </div>
 
           <div className="lp-call-card">

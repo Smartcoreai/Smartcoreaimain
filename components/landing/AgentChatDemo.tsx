@@ -5,7 +5,7 @@ export default function AgentChatDemo() {
         <div className="lp-section-header">
           <span className="lp-pill mint">AI-resepsjonist</span>
           <h2>Pasientene får svar på minutter.<br />Ikke timer.</h2>
-          <p>Ária svarer øyeblikkelig på norsk — sjekker tilgjengelighet, foreslår tider, sender bekreftelse. Resepsjonen tar kun de samtalene som faktisk trenger menneskelig vurdering.</p>
+          <p>Ária svarer øyeblikkelig på norsk. Hun sjekker tilgjengelighet, foreslår tider, og sender bekreftelse. Resepsjonen tar kun de samtalene som faktisk trenger menneskelig vurdering.</p>
         </div>
 
         <div className="lp-chat-mockup">

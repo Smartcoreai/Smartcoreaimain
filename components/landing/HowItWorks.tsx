@@ -5,7 +5,7 @@ export default function HowItWorks() {
         <div className="lp-section-header">
           <span className="lp-pill peach">Slik funker det</span>
           <h2>Vi tar oss av oppsett og opplæring<br />som en del av avtalen.</h2>
-          <p>Ária leser klinikkens egne tjenester, priser og åpningstider — og bygger din kunnskapsbase automatisk.</p>
+          <p>Ária leser klinikkens egne tjenester, priser og åpningstider, og bygger din kunnskapsbase automatisk.</p>
         </div>
 
         <div className="lp-how-grid">

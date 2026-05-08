@@ -35,8 +35,8 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Ekspedenten — AI-resepsjonist for tannklinikker",
-  description: "Ekspedenten bygger AI-resepsjonister for norske tannklinikker. Svarer, booker og følger opp — 24/7.",
+  title: "Ekspedenten. AI-resepsjonist for tannklinikker",
+  description: "Ekspedenten bygger AI-resepsjonister for norske tannklinikker. Svarer, booker og følger opp 24/7.",
   icons: {
     icon: [
       { url: "/favicon.ico",       sizes: "any",   type: "image/x-icon" },
@@ -52,8 +52,8 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: "Ekspedenten — AI-resepsjonist for tannklinikker",
-    description: "Ekspedenten bygger AI-resepsjonister for norske tannklinikker. Svarer, booker og følger opp — 24/7.",
+    title: "Ekspedenten. AI-resepsjonist for tannklinikker",
+    description: "Ekspedenten bygger AI-resepsjonister for norske tannklinikker. Svarer, booker og følger opp 24/7.",
     type: "website",
     images: [{ url: "/ekspedenten-logo.png", width: 800, height: 800, alt: "Ekspedenten" }],
   },

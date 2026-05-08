@@ -796,6 +796,23 @@
   background: linear-gradient(135deg, var(--lp-bg-dark), #2d3457);
   color: white;
   border-color: transparent;
+  position: relative;
+  overflow: hidden;
+}
+.lp-crm-stat.highlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 25% 75%, rgba(201, 162, 74, 0.45) 0%, transparent 55%),
+    radial-gradient(circle at 85% 20%, rgba(184, 168, 232, 0.28) 0%, transparent 50%),
+    radial-gradient(circle at 70% 90%, rgba(245, 196, 168, 0.18) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+.lp-crm-stat.highlight > * {
+  position: relative;
+  z-index: 1;
 }
 .lp-stat-label {
   font-size: 11px;
@@ -1065,6 +1082,8 @@
   min-height: 380px;
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 .lp-feature-card:nth-child(1) {
   background: linear-gradient(135deg, var(--lp-lavender-bg) 0%, var(--lp-peach-bg) 100%);
@@ -1089,7 +1108,7 @@
   margin-bottom: 24px;
 }
 .lp-feature-mock {
-  margin-top: 32px;
+  margin-top: auto;
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(20px);
   border-radius: 12px;
