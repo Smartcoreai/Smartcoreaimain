@@ -91,33 +91,33 @@ export default function CRMSection() {
               </div>
 
               <div className="lp-crm-section">
-                <h4>Salgs-pipeline</h4>
+                <h4>Pasient-pipeline</h4>
                 <div className="lp-leads-card">
                   <div className="lp-leads-bar">
                     <div className="lp-lead-bucket"><div className="lp-num">8</div><div className="lp-label">Ny</div></div>
-                    <div className="lp-lead-bucket"><div className="lp-num">5</div><div className="lp-label">Kontakt</div></div>
-                    <div className="lp-lead-bucket gold"><div className="lp-num">3</div><div className="lp-label">Demo</div></div>
-                    <div className="lp-lead-bucket"><div className="lp-num">2</div><div className="lp-label">Tilbud</div></div>
+                    <div className="lp-lead-bucket"><div className="lp-num">5</div><div className="lp-label">Kontaktet</div></div>
+                    <div className="lp-lead-bucket gold"><div className="lp-num">3</div><div className="lp-label">Booket</div></div>
+                    <div className="lp-lead-bucket"><div className="lp-num">2</div><div className="lp-label">Bekreftet</div></div>
                   </div>
                   <div className="lp-lead-list">
                     <div className="lp-lead-row">
-                      <span className="lp-name">Danmarksplass Tannklinikk</span>
-                      <span className="lp-lead-tag demo">DEMO BOOKET</span>
+                      <span className="lp-name">Lars Olsen</span>
+                      <span className="lp-lead-tag demo">BOOKET</span>
                     </div>
                     <div className="lp-lead-row">
-                      <span className="lp-name">Solli Klinikk</span>
-                      <span className="lp-lead-tag tilbud">TILBUD</span>
+                      <span className="lp-name">Kari Nordmann</span>
+                      <span className="lp-lead-tag tilbud">OPPFØLGING</span>
                     </div>
                     <div className="lp-lead-row">
-                      <span className="lp-name">Nordlys Dental</span>
-                      <span className="lp-lead-tag demo">DEMO BOOKET</span>
+                      <span className="lp-name">Ingrid Hansen</span>
+                      <span className="lp-lead-tag demo">BOOKET</span>
                     </div>
                     <div className="lp-lead-row">
-                      <span className="lp-name">Fjord Medica</span>
+                      <span className="lp-name">Erik Bø</span>
                       <span className="lp-lead-tag ny">NY</span>
                     </div>
                     <div className="lp-lead-row">
-                      <span className="lp-name">Trondheim Tannhelse</span>
+                      <span className="lp-name">Mette Solberg</span>
                       <span className="lp-lead-tag ny">NY</span>
                     </div>
                   </div>
