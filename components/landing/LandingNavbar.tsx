@@ -13,6 +13,7 @@ export default function LandingNavbar() {
           <li><a href="#solution">Løsning</a></li>
           <li><a href="#how">Slik funker det</a></li>
           <li><Link href="/pricing">Priser</Link></li>
+          <li><Link href="/about">Om oss</Link></li>
         </ul>
 
         <div className="lp-nav-cta">
