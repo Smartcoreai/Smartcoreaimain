@@ -276,66 +276,172 @@ export const translations = {
       ],
     },
     faq: {
-      title: "Frequently Asked Questions",
-      subtitle: "Honest answers to everything your dental clinic needs to know before getting started.",
-      sections: [
+      hero: {
+        pill: "Frequently asked questions",
+        title1: "Questions clinics ask",
+        titleEm: "before they sign",
+        titleEnd: ".",
+        subtitle: "Honest answers to everything we get asked, from GDPR to pricing to how Aria actually handles an emergency call.",
+      },
+      tabs: {
+        sikkerhet: "Security & GDPR",
+        drift: "Operations & onboarding",
+        pris: "Pricing & terms",
+        pasient: "Patient experience",
+        teknisk: "Technical",
+      },
+      categories: [
         {
-          q: "What does it cost, and what do we get?",
-          a: "We offer three packages for dental clinics. AI Chatbot at NOK 4,710/mo captures leads from your website 24/7. AI Receptionist at NOK 9,430/mo answers incoming calls, books appointments and follows up with patients automatically. Leadgen System at NOK 5,890/mo automates the full lead process from enquiry to booked appointment. All packages include a one-time setup fee of NOK 10,000. What you get in return: fewer missed calls, more booked appointments, and a reception that never takes a break. Most clinics recoup the investment within the first month through appointments that would otherwise have been lost.",
+          id: "sikkerhet",
+          icon: "01",
+          iconClass: "gdpr",
+          title: "Security & GDPR",
+          count: "5 questions",
+          questions: [
+            {
+              q: "Where is patient data stored?",
+              a: "All patient data is processed within the EU. CRM data (conversations, bookings, contacts) is stored in Frankfurt via Supabase. Voice AI runs on Azure in Sweden Central. Both regions are inside the EU and covered by GDPR.\n\n**No patient data leaves the EU.** A Data Processing Agreement (DPA) is available as standard.",
+            },
+            {
+              q: "Does Aria ask about symptoms or health information?",
+              a: "No. Aria is intentionally designed **not** to collect detailed health information. She only asks about service category (cleaning, check-up, urgent) and suggests booking.\n\nIf the patient voluntarily mentions symptoms, Aria offers brief empathy and suggests an urgent appointment without asking for more details. Health information and anamnesis are taken up by the dentist at the clinic, where they belong.",
+            },
+            {
+              q: "Are you GDPR-compliant?",
+              a: "Yes. The full stack is GDPR-compliant from day one:\n\n• Data stored in the EU (Frankfurt and Sweden Central)\n• Aria does not ask about special categories (health data)\n• DPA available for all clinics\n• Clear policies for deletion and access\n• We plan to apply for the Datatilsynet sandbox before our 5th customer",
+            },
+            {
+              q: "What happens to the conversations? Are they stored?",
+              a: "By default we store **metadata only**: timestamp, duration, service type, and whether a booking was made. We do not store audio or transcripts.\n\nIf the clinic wishes to store transcripts for quality assurance, that requires opt-in and patient consent. The text then goes through redaction that masks health terms before storage.",
+            },
+            {
+              q: "Can we get a Data Processing Agreement (DPA)?",
+              a: "Yes, always. The DPA is part of the standard contract. It covers us as data processor and you as data controller, with clear lines of responsibility.",
+            },
+          ],
         },
         {
-          q: "What if the AI answers incorrectly or misunderstands?",
-          a: "Aria is trained specifically for your clinic — your services, opening hours, prices and procedures. If Aria is uncertain about something, she automatically escalates to a human instead of guessing. You have full visibility into all conversations in the dashboard and can adjust responses and rules at any time. We continuously monitor and improve the AI based on real conversations. During the first weeks we actively fine-tune together with you to make sure Aria answers correctly.",
+          id: "drift",
+          icon: "02",
+          iconClass: "drift",
+          title: "Operations & onboarding",
+          count: "5 questions",
+          questions: [
+            {
+              q: "How long does implementation take?",
+              a: "Live in 7 days. Onboarding has 3 steps:\n\n1. **Connect** (Days 1–2): We connect to your calendar and email system.\n2. **Train** (Days 3–5): Aria reads your services, prices, and opening hours, and builds the knowledge base automatically.\n3. **Test and live** (Days 6–7): Pilot calls with the team before we go live for real patients.",
+            },
+            {
+              q: "Do we need to train Aria ourselves?",
+              a: "No. We do the entire onboarding for you. Aria reads existing emails, FAQs, and documents, and builds the knowledge base automatically. You can adjust rules or fill in knowledge gaps any time after you go live.",
+            },
+            {
+              q: "Does Aria integrate with our practice management system?",
+              a: "Yes. We integrate with the largest Nordic practice management systems: **Opus, Anita, and Muntra**. Other systems can be adapted on request. Contact us for specific setup.",
+            },
+            {
+              q: "What about our existing phone number?",
+              a: "You can keep it. We either forward incoming calls to Aria, or give you a new +47 number that forwards directly. Both work. You choose what fits best.",
+            },
+            {
+              q: "Can we pause Aria temporarily?",
+              a: "Yes. You can switch Aria on and off from the dashboard, for example when the reception is extra staffed, or for special days. Toggling takes one click.",
+            },
+          ],
         },
         {
-          q: "How quickly are we up and running?",
-          a: "7 business days from signing to a live system. Days 1–2: we gather information about your clinic — services, prices, opening hours, common questions. Days 3–5: we build and train Aria on your clinic. Days 6–7: testing together with you and launch. You don't need to do anything technical — we handle everything.",
+          id: "pris",
+          icon: "03",
+          iconClass: "pris",
+          title: "Pricing & terms",
+          count: "5 questions",
+          questions: [
+            {
+              q: "What does Ekspedenten cost?",
+              a: "**AI Receptionist** (the core): NOK 11,000/mo per clinic. Includes phone, SMS, chat, AI chatbot, and CRM dashboard.\n\nAdd-ons as needed:\n• Lead Follower: NOK 7,500/mo\n• Reviews engine: NOK 2,500/mo\n• Custom voice: NOK 1,500/mo\n\nOne-time setup: NOK 10,000 on the first contract. All prices excluding VAT.",
+            },
+            {
+              q: "What is the founding price?",
+              a: "The first 5 clinics that sign get a 50% discount for 3 years. It's a price we offer early customers because they help us build the product. We get feedback, you get premium pricing.",
+            },
+            {
+              q: "Is there a binding period?",
+              a: "No. Monthly cancellation. We offer a 14-day free trial first, and a 60-day ROI guarantee after that. If Ekspedenten doesn't deliver measurable value in months 1 and 2, we refund.",
+            },
+            {
+              q: "What is the ROI guarantee?",
+              a: "If Ekspedenten doesn't pay for itself (generating more value in bookings than it costs) within the first 60 days, you get your money back. We measure bookings, missed calls saved, and compare against the numbers from before you installed.",
+            },
+            {
+              q: "Can multiple clinics share one solution?",
+              a: "Yes. If you own a chain with multiple clinics you get a multi-clinic discount. Each clinic has its own Aria with its own services, prices, and opening hours, but all data and analytics gather in one dashboard.",
+            },
+          ],
         },
         {
-          q: "What if it doesn't work — can we cancel?",
-          a: "We offer a 14-day money-back guarantee. If you're not satisfied within the first 14 days, you get a full refund — no questions asked. After that there is a 3-month minimum period, because real results take time to build. After the minimum period you can cancel with 30 days' notice. We believe in proving value, not locking you in.",
+          id: "pasient",
+          icon: "04",
+          iconClass: "pasient",
+          title: "Patient experience",
+          count: "5 questions",
+          questions: [
+            {
+              q: "Does the patient know they're talking to an AI?",
+              a: "Yes. Aria always introduces herself clearly as an AI receptionist when she answers the phone. We believe trust comes from openness, not from pretending the technology is something it isn't.",
+            },
+            {
+              q: "What if the patient doesn't want to talk to AI?",
+              a: "Aria automatically transfers to the human behind if the patient asks, or if the conversation requires human judgment. She works with the team, not instead of it.",
+            },
+            {
+              q: "What about elderly patients who aren't technical?",
+              a: "Aria speaks clear Norwegian, in natural pace, with a warm voice. Most elderly people don't experience that she's \"different\" from a human receptionist. Patients who struggle are transferred immediately to the clinic when Aria notices.",
+            },
+            {
+              q: "Does Aria send SMS confirmation?",
+              a: "Yes. After each booking Aria automatically sends SMS with booking details and a link to confirm. She also sends reminders before the appointment, multi-touch (1 week / 1 day / 2 hours before) to reduce no-shows.",
+            },
+            {
+              q: "Can Aria handle complaints or urgent cases?",
+              a: "For complaints: Aria takes the complaint empathetically, logs it, and promises that the clinic will call back shortly. She does not try to resolve it herself.\n\nFor urgent cases: Aria prioritizes an urgent appointment immediately if the patient describes pain or emergency, and flags the clinic about a case requiring follow-up.",
+            },
+          ],
         },
         {
-          q: "Which systems do you integrate with?",
-          a: "We integrate with most systems used by Norwegian dental clinics. For appointment booking and practice management we have experience with Opus Dental and can adapt integrations for other systems such as Dentica and Plandent. We also connect with Google Calendar, Outlook, and most calendar solutions. For CRM we support HubSpot, Pipedrive and others via API. Have a specific system? Contact us and we'll confirm compatibility — it takes 5 minutes.",
-        },
-        {
-          q: "What about GDPR, patient data and confidentiality?",
-          a: "Important clarification: Aria does NOT handle patient records, diagnoses or medical information. Aria handles only administrative communication — appointment booking, opening hours, prices and general questions. All data is processed in accordance with GDPR. For clinics with strict requirements for data storage within the EU/EEA we recommend an individual assessment — we are happy to help with this.",
-        },
-        {
-          q: "Who owns the data, and what happens to it when we leave?",
-          a: "You own all data — conversation logs, contact information, booking history and reports. We have no rights to your data. Upon cancellation we export all data to you in standard format (CSV/JSON) and delete it from our systems within 30 days. No data is retained after cancellation.",
-        },
-        {
-          q: "What does Aria sound like? Can we hear a demo?",
-          a: "Aria communicates primarily via text — website chat, SMS and email. For voice-based reception, Aria uses a natural Norwegian voice adapted to the clinic's tone. The best way to experience Aria is to try our chatbot directly — click the chat icon at the bottom right of this page. For a full demo of the voice system, book a free 15-minute call with us.",
-        },
-        {
-          q: "What about older or technology-averse patients?",
-          a: "Aria is designed to be simple and natural to talk to — just like a regular receptionist. Patients don't need to download anything or learn new technology. They call the clinic as usual, and Aria answers and books the appointment. For chat enquiries the interface is as simple as sending an SMS. And if a patient prefers to speak with a human, Aria transfers the call immediately. No one is left behind.",
-        },
-        {
-          q: "Will this take the receptionist's job?",
-          a: "No — Aria doesn't replace the receptionist, she takes the load off. Most clinics we speak to have receptionists drowning in phone calls, repetitive questions and booking admin. Aria takes over that routine work so the receptionist can focus on the patients in the clinic, handle complex enquiries and provide better service. Think of Aria as an extra colleague who is never sick, never takes lunch, and never forgets to follow up.",
-        },
-        {
-          q: "Which languages are supported?",
-          a: "Aria supports Norwegian (bokmål and nynorsk), English, and over 50 other languages. She automatically detects which language the patient is writing or speaking in and responds in the same language. For dental clinics in Norway, Norwegian and English are the most common, but Aria also handles Arabic, Polish, Somali and other languages that are common among patients in Norway.",
-        },
-        {
-          q: "What is the uptime guarantee / SLA?",
-          a: "We guarantee 99.9% uptime. Aria runs 24/7 on redundant infrastructure. In the unlikely event of downtime, we notify you immediately and work to resolve it within 4 hours. In practice this means Aria is available to your patients around the clock, all year — including weekends, public holidays and vacations.",
-        },
-        {
-          q: "Can we control what Aria answers and what she doesn't?",
-          a: "Absolutely. You have full control. You decide which services Aria can book, which questions she answers, and when she should escalate to a human. We set up rules together during onboarding — for example that Aria should never give medical advice, that certain types of enquiry should always go to the receptionist, or that booking is only available for specific treatments. You can adjust the rules at any time via the dashboard.",
-        },
-        {
-          q: "What happens with emergency enquiries (pain, swelling, trauma)?",
-          a: "Aria is trained to recognise acute enquiries. If a patient describes acute symptoms such as severe pain, swelling, bleeding or trauma, Aria will NOT attempt to handle this herself. She immediately escalates to the clinic via SMS alert to the responsible person and gives the patient a clear message to call the clinic directly or visit the emergency room if it is outside opening hours. Emergency handling is always priority one in the system.",
+          id: "teknisk",
+          icon: "05",
+          iconClass: "teknisk",
+          title: "Technical",
+          count: "4 questions",
+          questions: [
+            {
+              q: "What technology do you use?",
+              a: "Aria is built on LiveKit (voice AI), Azure OpenAI (Sweden Central) for the language model, and Azure Cognitive Services for Norwegian speech (nb-NO Pernille). All EU-hosted, GDPR-safe.",
+            },
+            {
+              q: "What if Aria makes a mistake?",
+              a: "We monitor all conversations in real time. If Aria misses (books wrong time, forgets info), it's flagged automatically and one of us looks at it the same day. You get notified and refunded if it causes real losses.",
+            },
+            {
+              q: "Can we customize what Aria says?",
+              a: "Yes. The clinic's own tone, phrasing, and priorities are fed into Aria during onboarding. You can also adjust over time via the dashboard. Change what she says in urgent cases, which questions she prioritizes, and so on.",
+            },
+            {
+              q: "What if the network or system is down?",
+              a: "We have a 99.9% uptime guarantee. If Aria is down, calls are automatically forwarded to the clinic's main number or a backup. You never lose a call because our technology fails.",
+            },
+          ],
         },
       ],
+      cta: {
+        title1: "Your question",
+        titleEm: "isn't on the list",
+        titleEnd: "?",
+        subtitle: "Book a no-obligation discovery call. We answer everything, and put a concrete number on what Ekspedenten would be worth for your clinic.",
+        primary: "Book demo",
+        secondary: "Send email",
+        secondaryHref: "mailto:hei@ekspedenten.no",
+      },
     },
     booking: {
       tag: "Book a call",
@@ -875,66 +981,172 @@ export const translations = {
       ],
     },
     faq: {
-      title: "Ofte stilte spørsmål",
-      subtitle: "Ærlige svar på alt tannklinikken din trenger å vite før dere kommer i gang.",
-      sections: [
+      hero: {
+        pill: "Vanlige spørsmål",
+        title1: "Spørsmål klinikker stiller",
+        titleEm: "før de signerer",
+        titleEnd: ".",
+        subtitle: "Ærlige svar på alt vi får spørsmål om, fra GDPR til pris til hvordan Ária faktisk håndterer en akutt-samtale.",
+      },
+      tabs: {
+        sikkerhet: "Sikkerhet & GDPR",
+        drift: "Drift & onboarding",
+        pris: "Pris & vilkår",
+        pasient: "Pasient-opplevelse",
+        teknisk: "Teknisk",
+      },
+      categories: [
         {
-          q: "Hva koster det, og hva får vi igjen?",
-          a: "Vi har tre pakker tilpasset tannklinikker. AI Chatbot til kr 4 490/mnd fanger leads fra nettsiden din 24/7. AI Resepsjonist til kr 8 590/mnd svarer innkommende samtaler, booker timer og følger opp pasienter automatisk. Leadgen System til kr 5 790/mnd automatiserer hele leadprosessen fra henvendelse til booket time. Alle pakker har et engangs oppsettgebyr på kr 9 000. Det du får igjen: færre tapte anrop, flere bookede timer, og en resepsjon som aldri tar pause. De fleste klinikker tjener inn investeringen allerede første måned gjennom timer som ellers ville gått tapt.",
+          id: "sikkerhet",
+          icon: "01",
+          iconClass: "gdpr",
+          title: "Sikkerhet & GDPR",
+          count: "5 spørsmål",
+          questions: [
+            {
+              q: "Hvor lagres pasientdataene?",
+              a: "All pasientdata behandles innenfor EU. CRM-data (samtaler, bookinger, kontaktinfo) lagres i Frankfurt via Supabase. Voice-AI kjører på Azure i Sweden Central. Begge regionene er innenfor EU og dekkes av GDPR.\n\n**Ingen pasientdata forlater EU.** Databehandleravtale (DPA) er tilgjengelig som standard.",
+            },
+            {
+              q: "Spør Ária om symptomer eller helseopplysninger?",
+              a: "Nei. Ária er bevisst designet for å **ikke** samle inn detaljerte helseopplysninger. Hun spør kun om tjeneste-kategori (tannrens, kontroll, akutt) og foreslår booking.\n\nHvis pasienten frivillig nevner symptomer, gir Ária kort empati og foreslår akutt-time uten å spørre om mer detaljer. Helseopplysninger og anamnese tas opp av tannlegen på klinikken, der de hører hjemme.",
+            },
+            {
+              q: "Er dere GDPR-compliant?",
+              a: "Ja. Hele stacken er GDPR-compliant fra dag én:\n\n• Data lagret i EU (Frankfurt og Sweden Central)\n• Aria spør ikke om særlige kategorier (helsedata)\n• DPA tilgjengelig for alle klinikker\n• Klare retningslinjer for sletting og tilgang\n• Vi planlegger Datatilsynet sandkasse-søknad før kunde 5",
+            },
+            {
+              q: "Hva skjer med samtalene? Lagres de?",
+              a: "Som default lagrer vi **kun metadata**: tidspunkt, varighet, tjeneste-type, og om det ble booket. Vi lagrer ikke audio eller transkripsjon.\n\nHvis klinikken ønsker å lagre transkripter for kvalitetssikring, krever det opt-in og pasient-samtykke. Da går teksten gjennom redaksjon som maskerer helsetermer før lagring.",
+            },
+            {
+              q: "Kan vi få databehandleravtale (DPA)?",
+              a: "Ja, alltid. DPA er en del av standard kontrakt. Den dekker oss som databehandler og deg som behandlingsansvarlig, med klare ansvarslinjer.",
+            },
+          ],
         },
         {
-          q: "Hva skjer hvis AI-en svarer feil eller misforstår?",
-          a: "Aria er trent spesifikt på din klinikk — dine tjenester, åpningstider, priser og rutiner. Hvis Aria er usikker på noe, eskalerer hun automatisk til et menneske i stedet for å gjette. Du har full oversikt over alle samtaler i dashboardet og kan justere svar og regler når som helst. Vi overvåker kontinuerlig og forbedrer AI-en basert på ekte samtaler. De første ukene finjusterer vi aktivt sammen med deg for å sikre at Aria svarer riktig.",
+          id: "drift",
+          icon: "02",
+          iconClass: "drift",
+          title: "Drift & onboarding",
+          count: "5 spørsmål",
+          questions: [
+            {
+              q: "Hvor lang tid tar implementering?",
+              a: "Live på 7 dager. Onboardingen består av 3 steg:\n\n1. **Kobling** (Dag 1–2): Vi kobler til kalenderen og e-postsystemet ditt.\n2. **Opplæring** (Dag 3–5): Ária leser klinikkens egne tjenester, priser og åpningstider, og bygger kunnskapsbasen automatisk.\n3. **Test og live** (Dag 6–7): Pilot-samtaler med teamet før vi går live for ekte pasienter.",
+            },
+            {
+              q: "Trenger vi å lære opp Ária selv?",
+              a: "Nei. Vi gjør hele onboardingen for dere. Ária leser eksisterende e-poster, FAQ og dokumenter, og bygger kunnskapsbasen automatisk. Dere kan justere regler eller fylle inn hull i kunnskap når som helst etter at dere er live.",
+            },
+            {
+              q: "Integrerer Ária med vårt journalsystem?",
+              a: "Ja. Vi integrerer mot de største nordiske journalsystemene: **Opus, Anita og Muntra**. Andre systemer kan tilpasses etter behov. Kontakt oss for spesifikt oppsett.",
+            },
+            {
+              q: "Hva med vårt eksisterende telefonnummer?",
+              a: "Du kan beholde det. Vi enten viderekobler innkommende anrop til Ária, eller gir dere et nytt +47-nummer som videresender direkte. Begge løsninger fungerer. Du velger hva som passer best.",
+            },
+            {
+              q: "Kan vi pause Ária midlertidig?",
+              a: "Ja. Du kan slå Ária av og på fra dashbordet, for eksempel når resepsjonen er ekstra bemannet, eller hvis dere har spesielle dager. Tilbakestilling tar ett klikk.",
+            },
+          ],
         },
         {
-          q: "Hvor raskt er vi oppe og kjører?",
-          a: "7 virkedager fra signering til live system. Dag 1–2: vi samler inn informasjon om klinikken din — tjenester, priser, åpningstider, vanlige spørsmål. Dag 3–5: vi bygger og trener Aria på din klinikk. Dag 6–7: testing sammen med deg og lansering. Du trenger ikke gjøre noe teknisk — vi håndterer alt.",
+          id: "pris",
+          icon: "03",
+          iconClass: "pris",
+          title: "Pris & vilkår",
+          count: "5 spørsmål",
+          questions: [
+            {
+              q: "Hva koster Ekspedenten?",
+              a: "**AI Resepsjonist** (kjernen): kr 11 000/mnd per klinikk. Inkluderer telefon, SMS, chat, AI-chatbot og CRM-dashboard.\n\nTillegg ved behov:\n• Lead-Oppfølger: kr 7 500/mnd\n• Anmeldelse-motor: kr 2 500/mnd\n• Custom stemme: kr 1 500/mnd\n\nEngangsoppsett: kr 10 000 ved første kontrakt. Alle priser eksklusive mva.",
+            },
+            {
+              q: "Hva er founding-pris?",
+              a: "Første 5 klinikker som signerer får 50% rabatt i 3 år. Det er en pris vi gir tidlige kunder fordi de hjelper oss å bygge produktet. Vi får tilbakemeldinger, dere får premium-pris.",
+            },
+            {
+              q: "Er det bindingstid?",
+              a: "Nei. Månedsoppsigelse. Vi gir 14 dagers gratis prøve først, og 60 dagers ROI-garanti etter det. Hvis Ekspedenten ikke leverer målbar verdi i månedene 1 og 2, refunderer vi.",
+            },
+            {
+              q: "Hva er ROI-garantien?",
+              a: "Hvis Ekspedenten ikke betaler seg inn (genererer mer verdi i bookinger enn det koster) i løpet av de første 60 dagene, får du pengene tilbake. Vi måler bookinger, missed calls reddet, og sammenligner med tallene fra før dere installerte.",
+            },
+            {
+              q: "Kan flere klinikker dele én løsning?",
+              a: "Ja. Hvis du eier en kjede med flere klinikker får du multi-klinikk-rabatt. Hver klinikk har sin egen Ária med sine egne tjenester, priser og åpningstider, men alle data og analytics samles i ett dashboard.",
+            },
+          ],
         },
         {
-          q: "Hva om det ikke fungerer — kan vi si opp?",
-          a: "Vi har 14 dagers pengene-tilbake-garanti. Er du ikke fornøyd i løpet av de første 14 dagene, får du full refusjon — ingen spørsmål stilt. Etter det har vi en 3 måneders minimumsperiode fordi ekte resultater tar tid å bygge opp. Etter minimumsperioden kan du si opp med 30 dagers varsel. Vi tror på å bevise verdien, ikke å låse deg inne.",
+          id: "pasient",
+          icon: "04",
+          iconClass: "pasient",
+          title: "Pasient-opplevelse",
+          count: "5 spørsmål",
+          questions: [
+            {
+              q: "Vet pasienten at de snakker med en AI?",
+              a: "Ja. Ária presenterer seg alltid tydelig som AI-resepsjonist når hun tar telefonen. Vi tror tillit kommer fra åpenhet, ikke fra å late som teknologien er noe den ikke er.",
+            },
+            {
+              q: "Hva hvis pasienten ikke vil snakke med AI?",
+              a: "Ária overfører automatisk til mennesket bak hvis pasienten ber om det, eller hvis samtalen krever menneskelig vurdering. Hun jobber med teamet, ikke i stedet for det.",
+            },
+            {
+              q: "Hva med eldre pasienter som ikke er teknisk?",
+              a: "Ária snakker tydelig norsk, i naturlig tempo, med varm stemme. De fleste eldre opplever ikke at hun er \"annerledes\" enn en menneskelig resepsjonist. Pasienter som strever overføres umiddelbart til klinikken når Ária merker det.",
+            },
+            {
+              q: "Sender Ária SMS-bekreftelse?",
+              a: "Ja. Etter hver booking sender Ária automatisk SMS med booking-detaljer og lenke til å bekrefte. Hun sender også påminnelser før timen, multi-touch (1 uke / 1 dag / 2 timer før) for å redusere no-shows.",
+            },
+            {
+              q: "Kan Ária håndtere klager eller akutte saker?",
+              a: "For klager: Ária tar imot klagen empatisk, logger den, og lover at klinikken ringer tilbake innen kort tid. Hun forsøker ikke å løse selv.\n\nFor akutt-saker: Ária prioriterer akutt-time umiddelbart hvis pasienten beskriver smerte eller nødssituasjon, og sender klinikken et flagg om sak som krever oppfølging.",
+            },
+          ],
         },
         {
-          q: "Hvilke systemer integrerer dere med?",
-          a: "Vi integrerer med de fleste systemer norske tannklinikker bruker. For timebestilling og journalsystemer har vi erfaring med Opus Dental og kan tilpasse integrasjoner med andre systemer som Dentica og Plandent. Vi kobler oss også til Google Calendar, Outlook, og de fleste kalenderløsninger. For CRM støtter vi HubSpot, Pipedrive og andre via API. Har du et spesifikt system? Ta kontakt så avklarer vi kompatibilitet — det tar 5 minutter.",
-        },
-        {
-          q: "Hva med GDPR, pasientdata og taushetsplikt?",
-          a: "Viktig avklaring: Aria håndterer IKKE pasientjournaler, diagnoser eller medisinsk informasjon. Aria håndterer kun administrativ kommunikasjon — timebestilling, åpningstider, priser og generelle spørsmål. All data behandles i henhold til GDPR. For klinikker med strenge krav til datalagring innenfor EU/EØS anbefaler vi en individuell vurdering — vi bistår gjerne med dette.",
-        },
-        {
-          q: "Hvem eier dataen, og hva skjer med den når vi avslutter?",
-          a: "Du eier all data — samtalelogger, kontaktinformasjon, bookinghistorikk og rapporter. Vi har ingen rettigheter til dine data. Ved avslutning eksporterer vi all data til deg i standard format (CSV/JSON) og sletter den fra våre systemer innen 30 dager. Ingen data beholdes etter avslutning.",
-        },
-        {
-          q: "Hvordan høres Aria ut? Kan vi høre en demo?",
-          a: "Aria kommuniserer primært via tekst — chat på nettsiden, SMS og e-post. For talebasert resepsjon bruker Aria en naturlig norsk stemme som er tilpasset klinikkens tone. Den beste måten å oppleve Aria på er å prøve chatboten vår direkte — klikk på chat-ikonet nede til høyre på denne siden. For en full demo av talesystemet, book en gratis 15-minutters samtale med oss.",
-        },
-        {
-          q: "Hva med eldre eller teknologi-fiendtlige pasienter?",
-          a: "Aria er designet for å være enkel og naturlig å snakke med — akkurat som en vanlig resepsjonist. Pasienter trenger ikke laste ned noe eller lære ny teknologi. De ringer klinikken som vanlig, og Aria svarer og booker timen. For chat-henvendelser er grensesnittet like enkelt som å sende en SMS. Og hvis en pasient foretrekker å snakke med et menneske, overfører Aria samtalen umiddelbart. Ingen faller utenfor.",
-        },
-        {
-          q: "Tar dette jobben fra resepsjonisten vår?",
-          a: "Nei — Aria erstatter ikke resepsjonisten, hun avlaster. De fleste klinikker vi snakker med har resepsjonister som drukner i telefoner, repetitive spørsmål og booking-administrasjon. Aria tar over det rutinearbeidet slik at resepsjonisten kan fokusere på pasientene som er i klinikken, håndtere komplekse henvendelser og gi bedre service. Tenk på Aria som en ekstra kollega som aldri er syk, aldri tar lunsj, og aldri glemmer å følge opp.",
-        },
-        {
-          q: "Hvilke språk støttes?",
-          a: "Aria støtter norsk (bokmål og nynorsk), engelsk, og over 50 andre språk. Hun oppdager automatisk hvilket språk pasienten skriver eller snakker på og svarer på samme språk. For tannklinikker i Norge er norsk og engelsk de mest brukte, men Aria håndterer også arabisk, polsk, somali og andre språk som er vanlige blant pasienter i Norge.",
-        },
-        {
-          q: "Hva er oppetidsgarantien / SLA?",
-          a: "Vi garanterer 99.9% oppetid. Aria kjører 24/7 på redundant infrastruktur. Hvis det mot formodning skulle oppstå nedetid, varsler vi deg umiddelbart og jobber med å løse det innen 4 timer. I praksis betyr dette at Aria er tilgjengelig for pasientene dine hele døgnet, hele året — inkludert helger, helligdager og ferier.",
-        },
-        {
-          q: "Kan vi styre hva Aria svarer på og ikke?",
-          a: "Absolutt. Du har full kontroll. Du bestemmer hvilke tjenester Aria kan booke, hvilke spørsmål hun svarer på, og når hun skal eskalere til et menneske. Vi setter opp regler sammen under onboarding — for eksempel at Aria aldri skal gi medisinske råd, at visse typer henvendelser alltid skal gå til resepsjonisten, eller at booking kun er tilgjengelig for bestemte behandlinger. Du kan justere reglene når som helst via dashboardet.",
-        },
-        {
-          q: "Hva skjer ved akutt-henvendelser (vondt, hevelse, trauma)?",
-          a: "Aria er trent til å gjenkjenne akutte henvendelser. Hvis en pasient beskriver akutte symptomer som sterk smerte, hevelse, blødning eller traume, vil Aria IKKE forsøke å håndtere dette selv. Hun eskalerer umiddelbart til klinikken via SMS-varsling til ansvarlig person og gir pasienten tydelig beskjed om å ringe klinikken direkte eller oppsøke legevakt hvis det er utenfor åpningstid. Akutt-håndtering er alltid prioritet én i systemet.",
+          id: "teknisk",
+          icon: "05",
+          iconClass: "teknisk",
+          title: "Teknisk",
+          count: "4 spørsmål",
+          questions: [
+            {
+              q: "Hva slags teknologi bruker dere?",
+              a: "Ária er bygget på LiveKit (voice AI), Azure OpenAI (Sweden Central) for språkmodellen, og Azure Cognitive Services for norsk tale (nb-NO Pernille). Alt EU-hosted, GDPR-trygt.",
+            },
+            {
+              q: "Hva hvis Ária gjør en feil?",
+              a: "Vi overvåker alle samtaler i sanntid. Hvis Ária bommer (booker feil tid, glemmer info), flagges det automatisk og en av oss ser på det innen samme dag. Dere får varsel og refusjon hvis det forårsaker reelle tap.",
+            },
+            {
+              q: "Kan vi tilpasse hva Ária sier?",
+              a: "Ja. Klinikkens egen tone, fraseologi og prioriteringer mates inn i Ária under onboarding. Du kan også justere over tid via dashboardet. Endre hva hun sier i akutt-saker, hvilke spørsmål hun prioriterer, og så videre.",
+            },
+            {
+              q: "Hva hvis nettet eller systemet er nede?",
+              a: "Vi har 99.9% uptime-garanti. Hvis Ária er nede, viderekobles anropene automatisk til klinikkens hovednummer eller en backup. Du mister aldri en samtale fordi vår teknologi feiler.",
+            },
+          ],
         },
       ],
+      cta: {
+        title1: "Spørsmålet ditt",
+        titleEm: "står ikke på listen",
+        titleEnd: "?",
+        subtitle: "Bestill en uforpliktende kartleggingssamtale. Vi svarer på alt, og setter et konkret tall på hva Ekspedenten ville være verdt for klinikken din.",
+        primary: "Bestill demo",
+        secondary: "Send e-post",
+        secondaryHref: "mailto:hei@ekspedenten.no",
+      },
     },
     booking: {
       tag: "Book en samtale",

@@ -1,154 +1,141 @@
 "use client";
-import { useState } from "react";
-import { ChevronDown } from "lucide-react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import "../landing.css";
+import "../faq.css";
+import { useEffect, useState, Fragment, type ReactNode } from "react";
+import Link from "next/link";
+import LandingNavbar from "@/components/landing/LandingNavbar";
+import LandingFooter from "@/components/landing/LandingFooter";
 import ChatWidget from "@/components/ChatWidget";
+import { DemoPopup } from "@/components/DemoPopup";
 import { useLanguage } from "@/lib/i18n";
+
+function renderAnswer(text: string): ReactNode {
+  const paragraphs = text.split("\n\n");
+  return paragraphs.map((para, pi) => (
+    <p key={pi}>
+      {para.split("\n").map((line, li, lines) => {
+        const segments = line.split(/(\*\*[^*]+\*\*)/g);
+        const inline = segments.map((seg, si) => {
+          if (seg.startsWith("**") && seg.endsWith("**")) {
+            return <strong key={si}>{seg.slice(2, -2)}</strong>;
+          }
+          return <Fragment key={si}>{seg}</Fragment>;
+        });
+        return (
+          <Fragment key={li}>
+            {inline}
+            {li < lines.length - 1 && <br />}
+          </Fragment>
+        );
+      })}
+    </p>
+  ));
+}
 
 export default function FAQPage() {
   const { t } = useLanguage();
-  const faq = t.faq;
-  const [open, setOpen] = useState<number | null>(null);
+  const f = t.faq;
+  const [activeId, setActiveId] = useState<string>(f.categories[0]?.id ?? "");
+
+  useEffect(() => {
+    if (typeof IntersectionObserver === "undefined") return;
+    const sections = f.categories
+      .map((c) => document.getElementById(c.id))
+      .filter((el): el is HTMLElement => !!el);
+    if (!sections.length) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible?.target.id) setActiveId(visible.target.id);
+      },
+      { threshold: [0.15, 0.5], rootMargin: "-96px 0px -50% 0px" }
+    );
+    sections.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, [f.categories]);
 
   return (
-    <>
-      <Navbar />
-      <main style={{ background: "#ffffff", minHeight: "100vh" }}>
-
-        {/* Hero */}
-        <section style={{ padding: "140px 24px 80px", textAlign: "center", background: "#ffffff" }}>
-          <div style={{ maxWidth: 640, margin: "0 auto" }}>
-            <div style={{
-              display: "inline-flex", alignItems: "center", gap: 6,
-              padding: "4px 14px", borderRadius: 999,
-              background: "#fdf9ed", border: "1px solid #f5ebd0",
-              fontSize: 12, fontWeight: 700,
-              letterSpacing: "0.07em", textTransform: "uppercase",
-              color: "#b8902e", marginBottom: 24,
-            }}>
-              FAQ
-            </div>
-            <h1 style={{
-              fontFamily: "'Playfair Display', Georgia, serif",
-              fontSize: "clamp(36px, 5vw, 62px)",
-              fontWeight: 700, fontStyle: "normal",
-              color: "#1a1a2e",
-              letterSpacing: "-0.02em",
-              lineHeight: 1.1,
-              marginBottom: 20,
-            }}>
-              {faq.title}
+    <div className="lp-root faq-root">
+      <LandingNavbar />
+      <main>
+        <section className="faq-hero">
+          <div className="faq-container">
+            <span className="faq-pill lavender">{f.hero.pill}</span>
+            <h1>
+              {f.hero.title1}
+              <br />
+              <em>{f.hero.titleEm}</em>
+              {f.hero.titleEnd}
             </h1>
-            <p style={{ fontSize: 17, color: "#5a5a6e", lineHeight: 1.7, margin: 0 }}>
-              {faq.subtitle}
-            </p>
+            <p>{f.hero.subtitle}</p>
           </div>
         </section>
 
-        {/* Accordion */}
-        <section style={{ padding: "0 24px 120px", background: "#ffffff" }}>
-          <div style={{ maxWidth: 820, margin: "0 auto", display: "flex", flexDirection: "column", gap: 16 }}>
-            {faq.sections.map((item, i) => {
-              const isOpen = open === i;
-              return (
-                <div
-                  key={i}
-                  onClick={() => setOpen(isOpen ? null : i)}
-                  style={{
-                    background: "#ffffff",
-                    border: `1px solid ${isOpen ? "#f5ebd0" : "#e8e6dc"}`,
-                    borderRadius: 16,
-                    cursor: "pointer",
-                    boxShadow: isOpen ? "0 4px 24px rgba(184,144,46,0.08)" : "none",
-                    transition: "border-color 0.2s ease, box-shadow 0.2s ease",
-                    overflow: "hidden",
-                  }}
-                  onMouseEnter={e => {
-                    if (!isOpen) {
-                      const el = e.currentTarget as HTMLElement;
-                      el.style.borderColor = "#f5ebd0";
-                      el.style.boxShadow = "0 4px 20px rgba(184,144,46,0.06)";
-                    }
-                  }}
-                  onMouseLeave={e => {
-                    if (!isOpen) {
-                      const el = e.currentTarget as HTMLElement;
-                      el.style.borderColor = "#e8e6dc";
-                      el.style.boxShadow = "none";
-                    }
-                  }}
-                >
-                  {/* Question row */}
-                  <div style={{
-                    display: "flex", alignItems: "center",
-                    justifyContent: "space-between",
-                    padding: "22px 28px", gap: 16,
-                  }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-                      {/* Number badge */}
-                      <div style={{
-                        minWidth: 36, height: 36, borderRadius: 10,
-                        background: "#fdf9ed", border: "1px solid #f5ebd0",
-                        display: "flex", alignItems: "center", justifyContent: "center",
-                        fontSize: 12, fontWeight: 700,
-                        color: "#b8902e",
-                        flexShrink: 0,
-                      }}>
-                        {String(i + 1).padStart(2, "0")}
-                      </div>
-                      {/* Question text */}
-                      <span style={{
-                        fontFamily: "inherit",
-                        fontSize: "clamp(14px, 1.8vw, 17px)",
-                        fontWeight: 500,
-                        color: "#1a1a2e",
-                        lineHeight: 1.4,
-                      }}>
-                        {item.q}
-                      </span>
-                    </div>
-                    {/* Chevron */}
-                    <div style={{
-                      color: "#8a8a98",
-                      transition: "transform 0.25s ease",
-                      transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
-                      flexShrink: 0,
-                    }}>
-                      <ChevronDown size={20} />
-                    </div>
-                  </div>
+        <div className="faq-container">
+          <div className="faq-tabs">
+            {f.categories.map((c) => (
+              <Link
+                key={c.id}
+                href={`#${c.id}`}
+                className={`faq-tab${activeId === c.id ? " active" : ""}`}
+              >
+                {c.title}
+              </Link>
+            ))}
+          </div>
+        </div>
 
-                  {/* Answer (smooth max-height transition) */}
-                  <div style={{
-                    maxHeight: isOpen ? "600px" : "0px",
-                    overflow: "hidden",
-                    transition: "max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
-                  }}>
-                    <div style={{
-                      padding: "0 28px 24px 80px",
-                      borderTop: "1px solid #f0ede6",
-                      paddingTop: 16,
-                    }}>
-                      <p style={{
-                        fontSize: 15,
-                        color: "#5a5a6e",
-                        lineHeight: 1.75,
-                        margin: 0,
-                      }}>
-                        {item.a}
-                      </p>
-                    </div>
-                  </div>
+        <section className="faq-section">
+          <div className="faq-container faq-narrow">
+            {f.categories.map((cat) => (
+              <div key={cat.id} className="faq-category" id={cat.id}>
+                <div className="faq-cat-head">
+                  <div className={`faq-cat-icon ${cat.iconClass}`}>{cat.icon}</div>
+                  <div className="faq-cat-title">{cat.title}</div>
+                  <div className="faq-cat-count">{cat.count}</div>
                 </div>
-              );
-            })}
+                <div className="faq-list">
+                  {cat.questions.map((qa, qi) => (
+                    <details
+                      className="faq-qa"
+                      key={`${cat.id}-${qi}`}
+                      {...(cat.id === f.categories[0].id && qi === 0 ? { open: true } : {})}
+                    >
+                      <summary>
+                        <span className="faq-q">{qa.q}</span>
+                        <span className="faq-toggle" aria-hidden="true">+</span>
+                      </summary>
+                      <div className="faq-a">{renderAnswer(qa.a)}</div>
+                    </details>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         </section>
 
+        <section className="faq-cta">
+          <div className="faq-container">
+            <h2>
+              {f.cta.title1}
+              <br />
+              <em>{f.cta.titleEm}</em>
+              {f.cta.titleEnd}
+            </h2>
+            <p>{f.cta.subtitle}</p>
+            <div className="faq-cta-row">
+              <DemoPopup triggerText={f.cta.primary} className="lp-btn-primary" />
+              <a href={f.cta.secondaryHref} className="faq-btn-secondary">
+                {f.cta.secondary} <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </section>
       </main>
-      <Footer />
+      <LandingFooter />
       <ChatWidget />
-    </>
+    </div>
   );
 }
