@@ -33,15 +33,19 @@ function computeAnnual(i: z.infer<typeof DiagnoseSchema>["inputs"]) {
   const mu = i.missedPct / 100;
   const ns = i.noShowPct / 100;
 
-  const callsPerMonth         = ad * 22;
+  const callsPerMonth = ad * 22;
   // 1) Ubesvarte: anrop × 22 × andel_ubesvart × 0.55 × 0.40 × 0.70 × snittpris
   const ubesvarteM    = callsPerMonth * mu * 0.55 * 0.40 * 0.70 * sp;
   // 2) Reaktivering: pb × 0.35 × 0.20 / 18 × snittpris
   const reaktiveringM = pb * 0.35 * 0.20 / 18 * sp;
   // 3) No-shows: (anrop_per_mnd × 0.7 booking-rate) × no_show_rate × 0.4 × snittpris
   const noShowsM      = callsPerMonth * 0.7 * ns * 0.4 * sp;
-  // 4) Webleads: pb × 0.008 × 0.5 × snittpris  (≈ 24 webleads/mnd ved 3000 pasienter)
-  const webleadsM     = pb * 0.008 * 0.5 * sp;
+  // 4) Webleads: pb × 0.008 × 0.5 × snittpris, floored at 2/mnd for any active
+  //    clinic (an active site always gets some after-hours leads). Returns 0
+  //    only when both anrop and pasienter are 0.
+  const hasActivity   = ad > 0 || pb > 0;
+  const webleadsBase  = hasActivity ? Math.max(2, pb * 0.008) : 0;
+  const webleadsM     = webleadsBase * 0.5 * sp;
   const totalM        = ubesvarteM + reaktiveringM + noShowsM + webleadsM;
 
   // ROI: annual leak vs annual price tier. Pilot 10 000 kr, standard 132 000 kr/år (11 000 × 12).

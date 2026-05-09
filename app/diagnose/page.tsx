@@ -9,8 +9,6 @@ import { track } from "@/lib/track";
 
 const fmtKr = (n: number) =>
   "kr " + Math.round(n).toLocaleString("nb-NO").replace(/[,  ]/g, " ");
-const fmtNum = (n: number) =>
-  Math.round(n).toLocaleString("nb-NO").replace(/[,  ]/g, " ");
 const fmtRoi = (n: number) => `${(Math.round(n * 10) / 10).toFixed(1)}x`;
 
 // Pricing tiers used for ROI denominators. Pilot: pilot price (one-time).
@@ -40,8 +38,9 @@ export default function DiagnosePage() {
 
   useEffect(() => { track("diagnose_started"); }, []);
 
-  // Per-month source values feed the totals AND the explanation panel.
-  // Per-year totals are × 12 (the leak-framing surface).
+  // Per-month source values feed the totals.
+  // Webleads gets a floor of 2/mnd for active clinics (any anrop > 0 or
+  // pasienter > 0). With both = 0 we still return 0 (preserves the 0-input fix).
   const result = useMemo(() => {
     const ad = Math.max(0, parseFloat(callsPerDay) || 0);
     const pb = Math.max(0, parseFloat(patientBase) || 0);
@@ -49,49 +48,25 @@ export default function DiagnosePage() {
     const mu = missedPct / 100;
     const ns = noShowPct / 100;
 
-    // Derived intermediates (used in explanation panel)
-    const callsPerMonth   = ad * 22;            // 22 working days/mo
-    const missedCalls     = callsPerMonth * mu;
-    const noCallback      = missedCalls * 0.55;  // ringer ikke tilbake
-    const realRequests    = noCallback * 0.40;   // reelle forespørsler
-    const recoveredBookings = realRequests * 0.70; // bookingrate
-
-    const sleepingTotal     = pb * 0.35;             // 35% sovende (18+ mnd)
-    const reactivatablePool = sleepingTotal * 0.20;  // 20% reaktiverbare
-    const reactivationsM    = reactivatablePool / 18; // spread over 18 mnd
-
-    const patientsBookedFromCalls = callsPerMonth * 0.7; // 70% booking rate
-    const baselineNoShows = patientsBookedFromCalls * ns;
-    const recoveredNoShows = baselineNoShows * 0.4;
-
-    const webleadsBaseline = pb * 0.008;        // ~0.8% av pasientbase/mnd
-    const recoveredWebleads = webleadsBaseline * 0.5;
-
-    // Per-month value sources
-    const ubesvarteM    = recoveredBookings * sp;
-    const reaktiveringM = reactivationsM * sp;
-    const noShowsM      = recoveredNoShows * sp;
-    const webleadsM     = recoveredWebleads * sp;
+    const callsPerMonth = ad * 22;
+    const ubesvarteM    = callsPerMonth * mu * 0.55 * 0.40 * 0.70 * sp;
+    const reaktiveringM = pb * 0.35 * 0.20 / 18 * sp;
+    const noShowsM      = callsPerMonth * 0.7 * ns * 0.4 * sp;
+    const hasActivity   = ad > 0 || pb > 0;
+    const webleadsBase  = hasActivity ? Math.max(2, pb * 0.008) : 0;
+    const webleadsM     = webleadsBase * 0.5 * sp;
     const totalM        = ubesvarteM + reaktiveringM + noShowsM + webleadsM;
+    const totalAnnual   = totalM * 12;
 
     return {
-      // intermediates for explanation panel
-      callsPerMonth, missedCalls, noCallback, realRequests, recoveredBookings,
-      sleepingTotal, reactivatablePool, reactivationsM,
-      patientsBookedFromCalls, baselineNoShows, recoveredNoShows,
-      webleadsBaseline, recoveredWebleads,
-      // per-month
       ubesvarteM, reaktiveringM, noShowsM, webleadsM, totalM,
-      // annual
       ubesvarte:    ubesvarteM * 12,
       reaktivering: reaktiveringM * 12,
       noShowsVerdi: noShowsM * 12,
       webleads:     webleadsM * 12,
-      total:        totalM * 12,
-      // ROI vs pricing tiers (annual / annual = dimensionless ratio)
-      pilotRoi:     totalM * 12 / PILOT_DENOM,
-      standardRoi:  totalM * 12 / STANDARD_DENOM,
-      snittpris:    sp,
+      total:        totalAnnual,
+      pilotRoi:     totalAnnual / PILOT_DENOM,
+      standardRoi:  totalAnnual / STANDARD_DENOM,
     };
   }, [callsPerDay, missedPct, patientBase, noShowPct, bookingValue]);
 
@@ -395,12 +370,13 @@ export default function DiagnosePage() {
                   <div className="calc-expl-section">
                     <h4>1. Ubesvarte anrop reddet</h4>
                     <div className="calc-formula">
-                      {fmtNum(parseFloat(callsPerDay) || 0)} anrop/dag × <span className="calc-hl">22 dager</span> = {fmtNum(result.callsPerMonth)} anrop/mnd<br />
-                      × <span className="calc-hl">{missedPct}%</span> ubesvart = {fmtNum(result.missedCalls)} ubesvart<br />
-                      × <span className="calc-hl">55%</span> ringer ikke tilbake = {fmtNum(result.noCallback)}<br />
-                      × <span className="calc-hl">40%</span> reelle forespørsler = {fmtNum(result.realRequests)}<br />
-                      × <span className="calc-hl">70%</span> bookingrate = {fmtNum(result.recoveredBookings)} reddede<br />
-                      × <span className="calc-hl">{fmtNum(result.snittpris)} kr</span> = <span className="calc-hl">{fmtKr(result.ubesvarteM)}/mnd</span>
+                      20 anrop/dag × <span className="calc-hl">22 dager</span> = 440 anrop/mnd<br />
+                      × <span className="calc-hl">38%</span> ubesvart = 167<br />
+                      × <span className="calc-hl">55%</span> ringer ikke tilbake = 92<br />
+                      × <span className="calc-hl">40%</span> reelle forespørsler = 37<br />
+                      × <span className="calc-hl">70%</span> bookingrate = 26 reddede<br />
+                      × <span className="calc-hl">3 000 kr</span> = <span className="calc-hl">78 000 kr/mnd</span><br />
+                      × 12 = <span className="calc-hl">~936 000 kr/år</span>
                     </div>
                     <p className="calc-expl-text">
                       Pasienter som ringer og ikke får svar booker hos den klinikken som svarer først. Ekspedenten tar telefonen 24/7 og fanger opp kjøpsintensjonen før den forsvinner.
@@ -412,10 +388,11 @@ export default function DiagnosePage() {
                   <div className="calc-expl-section">
                     <h4>2. Reaktivering av sovende pasienter</h4>
                     <div className="calc-formula">
-                      {fmtNum(parseFloat(patientBase) || 0)} pasienter × <span className="calc-hl">35%</span> sovende (18+ mnd) = {fmtNum(result.sleepingTotal)}<br />
-                      × <span className="calc-hl">20%</span> reaktiverbare = {fmtNum(result.reactivatablePool)}<br />
-                      ÷ <span className="calc-hl">18 mnd</span> horisont = {result.reactivationsM.toFixed(1)} per mnd<br />
-                      × <span className="calc-hl">{fmtNum(result.snittpris)} kr</span> = <span className="calc-hl">{fmtKr(result.reaktiveringM)}/mnd</span>
+                      2 000 pasienter × <span className="calc-hl">35%</span> sovende (18+ mnd) = 700<br />
+                      × <span className="calc-hl">20%</span> reaktiverbare = 140<br />
+                      ÷ <span className="calc-hl">18 mnd</span> horisont = ~8 per mnd<br />
+                      × <span className="calc-hl">3 000 kr</span> = <span className="calc-hl">24 000 kr/mnd</span><br />
+                      × 12 = <span className="calc-hl">~288 000 kr/år</span>
                     </div>
                     <p className="calc-expl-text">
                       Sovende pasienter som ikke har vært inne på 18+ mnd hentes tilbake med målrettede SMS-innkallinger. Ekspedenten kjører dem i bakgrunnen.
@@ -427,10 +404,11 @@ export default function DiagnosePage() {
                   <div className="calc-expl-section">
                     <h4>3. Reduserte no-shows</h4>
                     <div className="calc-formula">
-                      {fmtNum(result.callsPerMonth)} anrop/mnd × <span className="calc-hl">70%</span> bookingrate = {fmtNum(result.patientsBookedFromCalls)} pasienter/mnd<br />
-                      × <span className="calc-hl">{noShowPct}%</span> no-show = {result.baselineNoShows.toFixed(1)} baseline<br />
-                      × <span className="calc-hl">40%</span> reduksjon = {result.recoveredNoShows.toFixed(1)} reddede stoltimer/mnd<br />
-                      × <span className="calc-hl">{fmtNum(result.snittpris)} kr</span> = <span className="calc-hl">{fmtKr(result.noShowsM)}/mnd</span>
+                      440 anrop/mnd × <span className="calc-hl">70%</span> bookingrate = 308 pasienter/mnd<br />
+                      × <span className="calc-hl">10%</span> no-show = ~31 baseline<br />
+                      × <span className="calc-hl">40%</span> reduksjon = ~12 reddede stoltimer/mnd<br />
+                      × <span className="calc-hl">3 000 kr</span> = <span className="calc-hl">37 000 kr/mnd</span><br />
+                      × 12 = <span className="calc-hl">~444 000 kr/år</span>
                     </div>
                     <p className="calc-expl-text">
                       SMS-innkalling og bekreftelsesflyt reduserer no-shows med 38–40%. <em>Imperial College London, 2025</em>
@@ -442,9 +420,10 @@ export default function DiagnosePage() {
                   <div className="calc-expl-section">
                     <h4>4. Webleads utenom åpningstid</h4>
                     <div className="calc-formula">
-                      {fmtNum(parseFloat(patientBase) || 0)} pasienter × <span className="calc-hl">0,8%</span> = {result.webleadsBaseline.toFixed(1)} webleads/mnd<br />
-                      × <span className="calc-hl">50%</span> reddes med Ekspedenten = {result.recoveredWebleads.toFixed(1)} bookinger<br />
-                      × <span className="calc-hl">{fmtNum(result.snittpris)} kr</span> = <span className="calc-hl">{fmtKr(result.webleadsM)}/mnd</span>
+                      2 000 pasienter × <span className="calc-hl">0,8%</span> = 16 webleads/mnd<br />
+                      × <span className="calc-hl">50%</span> reddes med Ekspedenten = 8 ekstra bookinger<br />
+                      × <span className="calc-hl">3 000 kr</span> = <span className="calc-hl">24 000 kr/mnd</span><br />
+                      × 12 = <span className="calc-hl">288 000 kr/år</span>
                     </div>
                     <p className="calc-expl-text">
                       60% av webhenvendelser utenom åpningstid har booket et annet sted før klinikken rekker å svare. <em>TrueLark, 2025. 8 mill. samtaler</em>
@@ -459,6 +438,12 @@ export default function DiagnosePage() {
                       En typisk norsk tannpasient genererer 15 000–25 000 kr over 5 år. 20% av reddede bookinger er nye pasienter, så CLV-effekten kommer i tillegg til månedstallene over.
                     </p>
                   </div>
+
+                  <div className="calc-expl-divider" />
+
+                  <p className="calc-expl-note">
+                    Eksempel-klinikk for å vise utregningen. Dine faktiske tall sendes på e-post når du trykker «Send meg diagnosen».
+                  </p>
                 </div>
               )}
             </div>
@@ -772,6 +757,10 @@ export default function DiagnosePage() {
         }
         .calc-expl-divider {
           height: 1px; background: var(--calc-border); margin: 18px 0;
+        }
+        .calc-expl-note {
+          font-size: 11px; color: var(--calc-ink-tertiary);
+          font-style: italic; line-height: 1.55; margin: 0;
         }
 
         /* Mobile */
