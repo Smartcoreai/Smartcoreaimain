@@ -47,7 +47,7 @@ export default function MidCTA() {
                 {s.subtitle}
               </p>
               <a
-                href="/calculator"
+                href="/diagnose"
                 style={{
                   display: "inline-flex", alignItems: "center", gap: 8,
                   padding: "14px 28px", borderRadius: 11,

@@ -16,7 +16,7 @@ export default function AboutCTA() {
         </p>
         <div className="ab-cta-row">
           <DemoPopup triggerText="Bestill demo" className="lp-btn-primary" />
-          <Link href="/calculator" className="ab-btn-secondary">
+          <Link href="/diagnose" className="ab-btn-secondary">
             Beregn ROI <span aria-hidden="true">→</span>
           </Link>
         </div>

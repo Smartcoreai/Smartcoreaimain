@@ -18,7 +18,7 @@ export default function LandingNavbar() {
 
         <div className="lp-nav-cta">
           <Link href="/admin" className="lp-nav-signin">Logg inn</Link>
-          <Link href="/calculator" className="lp-btn-secondary">
+          <Link href="/diagnose" className="lp-btn-secondary">
             Beregn ROI <span className="lp-arrow">→</span>
           </Link>
           <DemoPopup triggerText="Bestill demo" className="lp-btn-primary" />

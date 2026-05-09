@@ -16,7 +16,7 @@ export default function HeroSection() {
           </p>
           <div className="lp-btn-group">
             <DemoPopup triggerText="Bestill demo" className="lp-btn-primary" />
-            <Link href="/calculator" className="lp-btn-secondary">
+            <Link href="/diagnose" className="lp-btn-secondary">
               Beregn din ROI <span className="lp-arrow">→</span>
             </Link>
           </div>

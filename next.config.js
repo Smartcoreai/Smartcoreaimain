@@ -43,6 +43,13 @@ const nextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      // Reframed: calculator is now the diagnose lead-magnet at /diagnose.
+      // Use 301 explicitly so legacy bookmarks and search engines update.
+      { source: "/calculator", destination: "/diagnose", statusCode: 301 },
+    ];
+  },
 };
 
 module.exports = nextConfig;
