@@ -48,7 +48,8 @@ function computeAnnual(i: z.infer<typeof DiagnoseSchema>["inputs"]) {
   const webleadsM     = webleadsBase * 0.5 * sp;
   const totalM        = ubesvarteM + reaktiveringM + noShowsM + webleadsM;
 
-  // ROI: annual leak vs annual price tier. Pilot 10 000 kr, standard 132 000 kr/år (11 000 × 12).
+  // ROI: annual leak vs annual price tier. Both prices are MONTHLY × 12.
+  // Pilot 10 000 kr/mnd × 12 = 120 000/yr. Standard 11 000 kr/mnd × 12 = 132 000/yr.
   const totalAnnual = totalM * 12;
   return {
     ubesvarteAnnual:    ubesvarteM * 12,
@@ -56,7 +57,7 @@ function computeAnnual(i: z.infer<typeof DiagnoseSchema>["inputs"]) {
     noShowsAnnual:      noShowsM * 12,
     webleadsAnnual:     webleadsM * 12,
     totalAnnual,
-    pilotRoi:           totalAnnual / 10_000,
+    pilotRoi:           totalAnnual / 120_000,
     standardRoi:        totalAnnual / 132_000,
   };
 }
