@@ -13,13 +13,18 @@ const fmtNum = (n: number) =>
   Math.round(n).toLocaleString("nb-NO").replace(/[,  ]/g, " ");
 const fmtRoi = (n: number) => `${(Math.round(n * 10) / 10).toFixed(1)}x`;
 
+// Pricing tiers used for ROI denominators. Pilot: pilot price (one-time).
+// Standard: kr 11 000/mnd × 12 = 132 000 annual standard contract.
+const PILOT_DENOM = 10_000;
+const STANDARD_DENOM = 132_000;
+
 export default function DiagnosePage() {
   const [callsPerDay, setCallsPerDay] = useState<string>("50");
   const [missedPct, setMissedPct] = useState(30);
   const [patientBase, setPatientBase] = useState<string>("3000");
   const [noShowPct, setNoShowPct] = useState(12);
   const [bookingValue, setBookingValue] = useState<string>("2500");
-  const [showExplanation, setShowExplanation] = useState(true);
+  const [showExplanation, setShowExplanation] = useState(false);
 
   const [revealed, setRevealed] = useState(false);
   const [unlocked, setUnlocked] = useState(false);
@@ -33,12 +38,10 @@ export default function DiagnosePage() {
   const summaryRef = useRef<HTMLDivElement | null>(null);
   const fullRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
-    track("diagnose_started");
-  }, []);
+  useEffect(() => { track("diagnose_started"); }, []);
 
-  // Math is unchanged from the original calculator. Per-month numbers stay the
-  // source of truth; we display them × 12 for the annual leak framing.
+  // Per-month source values feed the totals AND the explanation panel.
+  // Per-year totals are × 12 (the leak-framing surface).
   const result = useMemo(() => {
     const ad = Math.max(0, parseFloat(callsPerDay) || 0);
     const pb = Math.max(0, parseFloat(patientBase) || 0);
@@ -46,25 +49,48 @@ export default function DiagnosePage() {
     const mu = missedPct / 100;
     const ns = noShowPct / 100;
 
-    const ubesvarteM    = ad * 30 * mu * 0.113 * sp;
-    const reaktiveringM = pb * 0.00389 * sp;
-    const noShowsM      = ns * pb * 0.022 * sp * 0.4;
-    const webleadsM     = 24 * 0.5 * sp;
+    // Derived intermediates (used in explanation panel)
+    const callsPerMonth   = ad * 22;            // 22 working days/mo
+    const missedCalls     = callsPerMonth * mu;
+    const noCallback      = missedCalls * 0.55;  // ringer ikke tilbake
+    const realRequests    = noCallback * 0.40;   // reelle forespørsler
+    const recoveredBookings = realRequests * 0.70; // bookingrate
+
+    const sleepingTotal     = pb * 0.35;             // 35% sovende (18+ mnd)
+    const reactivatablePool = sleepingTotal * 0.20;  // 20% reaktiverbare
+    const reactivationsM    = reactivatablePool / 18; // spread over 18 mnd
+
+    const patientsBookedFromCalls = callsPerMonth * 0.7; // 70% booking rate
+    const baselineNoShows = patientsBookedFromCalls * ns;
+    const recoveredNoShows = baselineNoShows * 0.4;
+
+    const webleadsBaseline = pb * 0.008;        // ~0.8% av pasientbase/mnd
+    const recoveredWebleads = webleadsBaseline * 0.5;
+
+    // Per-month value sources
+    const ubesvarteM    = recoveredBookings * sp;
+    const reaktiveringM = reactivationsM * sp;
+    const noShowsM      = recoveredNoShows * sp;
+    const webleadsM     = recoveredWebleads * sp;
     const totalM        = ubesvarteM + reaktiveringM + noShowsM + webleadsM;
 
     return {
-      // per-month (kept for explanation panel formulas)
+      // intermediates for explanation panel
+      callsPerMonth, missedCalls, noCallback, realRequests, recoveredBookings,
+      sleepingTotal, reactivatablePool, reactivationsM,
+      patientsBookedFromCalls, baselineNoShows, recoveredNoShows,
+      webleadsBaseline, recoveredWebleads,
+      // per-month
       ubesvarteM, reaktiveringM, noShowsM, webleadsM, totalM,
-      // per-year (the diagnose framing)
+      // annual
       ubesvarte:    ubesvarteM * 12,
       reaktivering: reaktiveringM * 12,
       noShowsVerdi: noShowsM * 12,
       webleads:     webleadsM * 12,
       total:        totalM * 12,
-      // ROI is a dimensionless multiplier (annual / annual = monthly / monthly)
-      pilotRoi:     totalM / 10000,
-      standardRoi:  totalM / 25000,
-      reddedeStoltimer: sp > 0 ? noShowsM / sp : 0,
+      // ROI vs pricing tiers (annual / annual = dimensionless ratio)
+      pilotRoi:     totalM * 12 / PILOT_DENOM,
+      standardRoi:  totalM * 12 / STANDARD_DENOM,
       snittpris:    sp,
     };
   }, [callsPerDay, missedPct, patientBase, noShowPct, bookingValue]);
@@ -140,14 +166,6 @@ export default function DiagnosePage() {
         <div className="calc-container">
           <div className="calc-topbar">
             <a href="/" className="calc-back">← Tilbake</a>
-            <button
-              type="button"
-              className="calc-toggle"
-              onClick={() => setShowExplanation((v) => !v)}
-              aria-pressed={showExplanation}
-            >
-              {showExplanation ? "× Skjul forklaring" : "+ Vis forklaring"}
-            </button>
           </div>
 
           <header className="calc-hero">
@@ -157,9 +175,9 @@ export default function DiagnosePage() {
             </p>
           </header>
 
-          <div className={`calc-layout ${showExplanation ? "" : "no-explanation"}`}>
+          <div className="calc-layout">
             {/* COL 1: Inputs */}
-            <div className="calc-panel">
+            <div className="calc-panel calc-col">
               <div className="calc-panel-label">Klinikkens situasjon</div>
 
               <div className="calc-field">
@@ -173,7 +191,6 @@ export default function DiagnosePage() {
                     value={callsPerDay}
                     onChange={(e) => setCallsPerDay(e.target.value)}
                     onFocus={(e) => e.target.select()}
-                    onBlur={(e) => { if (!e.target.value) setCallsPerDay("50"); }}
                   />
                 </div>
               </div>
@@ -208,7 +225,6 @@ export default function DiagnosePage() {
                     value={patientBase}
                     onChange={(e) => setPatientBase(e.target.value)}
                     onFocus={(e) => e.target.select()}
-                    onBlur={(e) => { if (!e.target.value) setPatientBase("3000"); }}
                   />
                 </div>
               </div>
@@ -244,7 +260,6 @@ export default function DiagnosePage() {
                     value={bookingValue}
                     onChange={(e) => setBookingValue(e.target.value)}
                     onFocus={(e) => e.target.select()}
-                    onBlur={(e) => { if (!e.target.value) setBookingValue("2500"); }}
                   />
                 </div>
               </div>
@@ -256,8 +271,8 @@ export default function DiagnosePage() {
               )}
             </div>
 
-            {/* COL 2: Center column. Phase-aware. */}
-            <div className="calc-center-col" ref={summaryRef}>
+            {/* COL 2: Results / Gate / Explanation */}
+            <div className="calc-col calc-center-col" ref={summaryRef}>
               {!revealed && (
                 <div className="calc-panel calc-teaser">
                   <div className="calc-panel-label">Klar når du er</div>
@@ -301,36 +316,26 @@ export default function DiagnosePage() {
                   </p>
                   <div className="calc-gate-row">
                     <input
-                      type="text"
-                      className="calc-gate-input"
+                      type="text" className="calc-gate-input"
                       placeholder="Navn (valgfritt)"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      maxLength={100}
-                      autoComplete="name"
+                      value={name} onChange={(e) => setName(e.target.value)}
+                      maxLength={100} autoComplete="name"
                     />
                   </div>
                   <div className="calc-gate-row">
                     <input
-                      type="text"
-                      className="calc-gate-input"
+                      type="text" className="calc-gate-input"
                       placeholder="Klinikknavn (valgfritt)"
-                      value={clinicName}
-                      onChange={(e) => setClinicName(e.target.value)}
-                      maxLength={200}
-                      autoComplete="organization"
+                      value={clinicName} onChange={(e) => setClinicName(e.target.value)}
+                      maxLength={200} autoComplete="organization"
                     />
                   </div>
                   <div className="calc-gate-row">
                     <input
-                      type="email"
-                      className="calc-gate-input"
+                      type="email" className="calc-gate-input"
                       placeholder="E-post*"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                      maxLength={254}
-                      autoComplete="email"
+                      value={email} onChange={(e) => setEmail(e.target.value)}
+                      required maxLength={254} autoComplete="email"
                     />
                   </div>
                   <button type="submit" className="calc-gate-submit" disabled={submitting || !email}>
@@ -372,51 +377,91 @@ export default function DiagnosePage() {
                   </p>
                 </>
               )}
+
+              {/* Vis/Skjul forklaring toggle — only relevant once revealed */}
+              {revealed && (
+                <button
+                  type="button"
+                  className="calc-expl-toggle"
+                  onClick={() => setShowExplanation((v) => !v)}
+                  aria-pressed={showExplanation}
+                >
+                  {showExplanation ? "− Skjul forklaring" : "+ Vis forklaring"}
+                </button>
+              )}
+
+              {revealed && showExplanation && (
+                <div className="calc-panel calc-explanation">
+                  <div className="calc-expl-section">
+                    <h4>1. Ubesvarte anrop reddet</h4>
+                    <div className="calc-formula">
+                      {fmtNum(parseFloat(callsPerDay) || 0)} anrop/dag × <span className="calc-hl">22 dager</span> = {fmtNum(result.callsPerMonth)} anrop/mnd<br />
+                      × <span className="calc-hl">{missedPct}%</span> ubesvart = {fmtNum(result.missedCalls)} ubesvart<br />
+                      × <span className="calc-hl">55%</span> ringer ikke tilbake = {fmtNum(result.noCallback)}<br />
+                      × <span className="calc-hl">40%</span> reelle forespørsler = {fmtNum(result.realRequests)}<br />
+                      × <span className="calc-hl">70%</span> bookingrate = {fmtNum(result.recoveredBookings)} reddede<br />
+                      × <span className="calc-hl">{fmtNum(result.snittpris)} kr</span> = <span className="calc-hl">{fmtKr(result.ubesvarteM)}/mnd</span>
+                    </div>
+                    <p className="calc-expl-text">
+                      Pasienter som ringer og ikke får svar booker hos den klinikken som svarer først. Ekspedenten tar telefonen 24/7 og fanger opp kjøpsintensjonen før den forsvinner.
+                    </p>
+                  </div>
+
+                  <div className="calc-expl-divider" />
+
+                  <div className="calc-expl-section">
+                    <h4>2. Reaktivering av sovende pasienter</h4>
+                    <div className="calc-formula">
+                      {fmtNum(parseFloat(patientBase) || 0)} pasienter × <span className="calc-hl">35%</span> sovende (18+ mnd) = {fmtNum(result.sleepingTotal)}<br />
+                      × <span className="calc-hl">20%</span> reaktiverbare = {fmtNum(result.reactivatablePool)}<br />
+                      ÷ <span className="calc-hl">18 mnd</span> horisont = {result.reactivationsM.toFixed(1)} per mnd<br />
+                      × <span className="calc-hl">{fmtNum(result.snittpris)} kr</span> = <span className="calc-hl">{fmtKr(result.reaktiveringM)}/mnd</span>
+                    </div>
+                    <p className="calc-expl-text">
+                      Sovende pasienter som ikke har vært inne på 18+ mnd hentes tilbake med målrettede SMS-innkallinger. Ekspedenten kjører dem i bakgrunnen.
+                    </p>
+                  </div>
+
+                  <div className="calc-expl-divider" />
+
+                  <div className="calc-expl-section">
+                    <h4>3. Reduserte no-shows</h4>
+                    <div className="calc-formula">
+                      {fmtNum(result.callsPerMonth)} anrop/mnd × <span className="calc-hl">70%</span> bookingrate = {fmtNum(result.patientsBookedFromCalls)} pasienter/mnd<br />
+                      × <span className="calc-hl">{noShowPct}%</span> no-show = {result.baselineNoShows.toFixed(1)} baseline<br />
+                      × <span className="calc-hl">40%</span> reduksjon = {result.recoveredNoShows.toFixed(1)} reddede stoltimer/mnd<br />
+                      × <span className="calc-hl">{fmtNum(result.snittpris)} kr</span> = <span className="calc-hl">{fmtKr(result.noShowsM)}/mnd</span>
+                    </div>
+                    <p className="calc-expl-text">
+                      SMS-innkalling og bekreftelsesflyt reduserer no-shows med 38–40%. <em>Imperial College London, 2025</em>
+                    </p>
+                  </div>
+
+                  <div className="calc-expl-divider" />
+
+                  <div className="calc-expl-section">
+                    <h4>4. Webleads utenom åpningstid</h4>
+                    <div className="calc-formula">
+                      {fmtNum(parseFloat(patientBase) || 0)} pasienter × <span className="calc-hl">0,8%</span> = {result.webleadsBaseline.toFixed(1)} webleads/mnd<br />
+                      × <span className="calc-hl">50%</span> reddes med Ekspedenten = {result.recoveredWebleads.toFixed(1)} bookinger<br />
+                      × <span className="calc-hl">{fmtNum(result.snittpris)} kr</span> = <span className="calc-hl">{fmtKr(result.webleadsM)}/mnd</span>
+                    </div>
+                    <p className="calc-expl-text">
+                      60% av webhenvendelser utenom åpningstid har booket et annet sted før klinikken rekker å svare. <em>TrueLark, 2025. 8 mill. samtaler</em>
+                    </p>
+                  </div>
+
+                  <div className="calc-expl-divider" />
+
+                  <div className="calc-expl-section">
+                    <h4>5. Customer Lifetime Value</h4>
+                    <p className="calc-expl-text">
+                      En typisk norsk tannpasient genererer 15 000–25 000 kr over 5 år. 20% av reddede bookinger er nye pasienter, så CLV-effekten kommer i tillegg til månedstallene over.
+                    </p>
+                  </div>
+                </div>
+              )}
             </div>
-
-            {/* COL 3: Explanation */}
-            {showExplanation && (
-              <div className="calc-panel calc-explanation">
-                <div className="calc-expl-section">
-                  <h4>Reduserte no-shows</h4>
-                  <div className="calc-formula">
-                    Baseline no-show: <span className="calc-hl">{noShowPct}%</span><br />
-                    Ekspedenten reduserer med <span className="calc-hl">40%</span><br />
-                    = ~<span>{result.reddedeStoltimer.toFixed(1)}</span> reddede stoltimer/mnd<br />
-                    × <span className="calc-hl">{fmtNum(result.snittpris)} kr</span><br />
-                    × 12 mnd = <span className="calc-hl">{fmtNum(result.noShowsVerdi)} kr/år</span>
-                  </div>
-                  <p className="calc-expl-text">
-                    SMS-innkalling og bekreftelsesflyt reduserer no-shows med 38–40%. <em>Imperial College London, 2025</em>
-                  </p>
-                </div>
-
-                <div className="calc-expl-divider" />
-
-                <div className="calc-expl-section">
-                  <h4>Webleads utenom åpningstid</h4>
-                  <div className="calc-formula">
-                    ~<span className="calc-hl">24 webleads/mnd</span><br />
-                    × <span className="calc-hl">50%</span> reddes med Ekspedenten<br />
-                    = 12 ekstra bookinger/mnd<br />
-                    × <span className="calc-hl">{fmtNum(result.snittpris)} kr</span><br />
-                    × 12 mnd = <span className="calc-hl">{fmtNum(result.webleads)} kr/år</span>
-                  </div>
-                  <p className="calc-expl-text">
-                    60% av webhenvendelser utenom åpningstid har booket et annet sted før klinikken rekker å svare. <em>TrueLark, 2025. 8 mill. samtaler</em>
-                  </p>
-                </div>
-
-                <div className="calc-expl-divider" />
-
-                <div className="calc-expl-section">
-                  <h4>Customer Lifetime Value</h4>
-                  <p className="calc-expl-text">
-                    En typisk norsk tannpasient genererer 15 000–25 000 kr over 5 år. 20% av reddede bookinger er nye pasienter, så CLV-effekten kommer i tillegg til årstallene over.
-                  </p>
-                </div>
-              </div>
-            )}
           </div>
         </div>
       </main>
@@ -448,28 +493,17 @@ export default function DiagnosePage() {
         .calc-page * { box-sizing: border-box; }
 
         .calc-main { padding: 32px 24px 80px; }
-        .calc-container { max-width: 1280px; margin: 0 auto; }
+        .calc-container { max-width: 1100px; margin: 0 auto; }
 
         .calc-topbar {
-          display: flex; justify-content: space-between; align-items: center;
-          margin-bottom: 24px; padding: 0 8px; gap: 16px;
+          display: flex; justify-content: flex-start; align-items: center;
+          margin-bottom: 24px; padding: 0 8px;
         }
         .calc-back {
           color: var(--calc-ink-secondary); text-decoration: none;
           font-size: 14px; font-weight: 500; transition: color 0.2s;
         }
         .calc-back:hover { color: var(--calc-ink); }
-        .calc-toggle {
-          background: var(--calc-bg-card); color: var(--calc-gold);
-          border: 1px solid var(--calc-border);
-          padding: 10px 18px; border-radius: 999px;
-          font-size: 13px; font-weight: 500; cursor: pointer;
-          transition: border-color 0.2s, color 0.2s, background 0.2s;
-        }
-        .calc-toggle:hover {
-          border-color: var(--calc-gold-soft);
-          background: var(--calc-gold-bg);
-        }
 
         .calc-hero { padding: 8px 8px 28px; max-width: 720px; }
         .calc-h1 {
@@ -483,14 +517,14 @@ export default function DiagnosePage() {
           line-height: 1.6; margin: 0;
         }
 
+        /* Two-column grid with equal-height columns */
         .calc-layout {
           display: grid;
-          grid-template-columns: 1fr 1fr 1fr;
-          gap: 24px;
-        }
-        .calc-layout.no-explanation {
           grid-template-columns: 1fr 1fr;
+          gap: 24px;
+          align-items: stretch;
         }
+        .calc-col { min-width: 0; }
 
         .calc-panel {
           background: var(--calc-bg-card); border-radius: 16px;
@@ -508,11 +542,21 @@ export default function DiagnosePage() {
         }
         .calc-panel.dark .calc-panel-label { color: var(--calc-gold-soft); }
 
+        /* Right column. Stretches to row height; teaser sits at top via flex-start. */
         .calc-center-col {
           display: flex; flex-direction: column; gap: 14px;
+          background: transparent; box-shadow: none; padding: 0;
           scroll-margin-top: 24px;
         }
+        .calc-center-col > .calc-panel { padding: 24px 22px; }
 
+        /* Teaser pre-Kjør state */
+        .calc-teaser-text {
+          font-size: 14px; color: var(--calc-ink-secondary);
+          line-height: 1.6; margin: 0;
+        }
+
+        /* Inputs */
         .calc-field { margin-bottom: 20px; }
         .calc-field--last { margin-bottom: 0; }
         .calc-field-head {
@@ -571,10 +615,8 @@ export default function DiagnosePage() {
           font-size: 11px; color: var(--calc-ink-tertiary);
         }
 
-        /* Run-diagnose CTA at bottom of input column */
         .calc-run {
-          width: 100%;
-          margin-top: 20px;
+          width: 100%; margin-top: 20px;
           background: var(--calc-bg-dark); color: white;
           border: none; padding: 14px 20px; border-radius: 12px;
           font-size: 14px; font-weight: 600; font-family: inherit;
@@ -586,13 +628,7 @@ export default function DiagnosePage() {
           box-shadow: 0 8px 20px rgba(26, 31, 58, 0.2);
         }
 
-        /* Teaser shown before user clicks Kjør */
-        .calc-teaser-text {
-          font-size: 14px; color: var(--calc-ink-secondary);
-          line-height: 1.6; margin: 0;
-        }
-
-        /* Total / breakdown / ROI */
+        /* Result panels */
         .calc-total-value {
           font-family: var(--font-inter), -apple-system, system-ui, sans-serif;
           font-size: 40px; font-weight: 700;
@@ -603,7 +639,6 @@ export default function DiagnosePage() {
         .calc-total-sub {
           font-size: 12px; color: var(--calc-ink-secondary);
         }
-
         .calc-row {
           display: flex; justify-content: space-between; align-items: center;
           padding: 10px 0; border-bottom: 1px solid var(--calc-border);
@@ -615,7 +650,6 @@ export default function DiagnosePage() {
           font-feature-settings: "tnum" 1; letter-spacing: -0.01em;
           white-space: nowrap;
         }
-
         .calc-roi-grid {
           display: grid; grid-template-columns: 1fr 1fr;
           gap: 12px; margin-top: 4px;
@@ -678,7 +712,6 @@ export default function DiagnosePage() {
           font-style: italic; margin: 10px 0 0;
         }
 
-        /* CTA after unlock */
         .calc-cta {
           background: var(--calc-bg-dark); color: white;
           border: none; padding: 14px 20px; border-radius: 12px;
@@ -696,7 +729,24 @@ export default function DiagnosePage() {
           text-align: center; margin: 4px 0 0; font-style: italic;
         }
 
-        /* Explanation */
+        /* Vis/Skjul forklaring toggle */
+        .calc-expl-toggle {
+          align-self: center;
+          margin-top: 8px;
+          background: var(--calc-bg-card);
+          color: var(--calc-gold);
+          border: 1px solid var(--calc-border);
+          padding: 10px 18px; border-radius: 999px;
+          font-size: 13px; font-weight: 500; font-family: inherit;
+          cursor: pointer;
+          transition: border-color 0.2s, color 0.2s, background 0.2s;
+        }
+        .calc-expl-toggle:hover {
+          border-color: var(--calc-gold-soft);
+          background: var(--calc-gold-bg);
+        }
+
+        /* Explanation panel */
         .calc-expl-section { margin-bottom: 20px; }
         .calc-expl-section:last-child { margin-bottom: 0; }
         .calc-expl-section h4 {
@@ -724,17 +774,15 @@ export default function DiagnosePage() {
           height: 1px; background: var(--calc-border); margin: 18px 0;
         }
 
-        /* Mobile / tablet */
-        @media (max-width: 1024px) {
-          .calc-layout,
-          .calc-layout.no-explanation { grid-template-columns: 1fr; }
+        /* Mobile */
+        @media (max-width: 880px) {
+          .calc-layout { grid-template-columns: 1fr; }
         }
         @media (max-width: 640px) {
           .calc-main { padding: 24px 16px 64px; }
           .calc-panel { padding: 20px 18px; }
           .calc-total-value { font-size: 32px; }
           .calc-roi-value { font-size: 26px; }
-          .calc-toggle { padding: 8px 14px; font-size: 12px; }
           .calc-h1 { font-size: 26px; }
         }
       `}</style>
