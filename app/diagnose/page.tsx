@@ -160,7 +160,7 @@ export default function DiagnosePage() {
             </p>
           </header>
 
-          <div className="calc-layout">
+          <div className="calc-layout" data-unlocked={unlocked ? "true" : "false"}>
             {/* COL 1: Inputs */}
             <div className="calc-col calc-col-input">
               <div className="calc-panel calc-panel-fill">
@@ -261,7 +261,6 @@ export default function DiagnosePage() {
             {/* COL 2: Result + gate/CTA */}
             <div
               className="calc-col calc-col-result"
-              data-locked={revealed && !unlocked ? "true" : "false"}
               ref={summaryRef}
             >
               {!revealed ? (
@@ -413,8 +412,8 @@ export default function DiagnosePage() {
                     × <span className="calc-hl">55%</span> ringer ikke tilbake = 92<br />
                     × <span className="calc-hl">40%</span> reelle = 37<br />
                     × <span className="calc-hl">70%</span> bookingrate = 26 reddede<br />
-                    × <span className="calc-hl">3 000 kr</span> = <span className="calc-hl">78 000 kr/mnd</span><br />
-                    × 12 = <span className="calc-hl">~936 000 kr/år</span>
+                    × <span className="calc-hl">3 000 kr</span> = <span className="calc-hl calc-amount">78 000 kr/mnd</span><br />
+                    × 12 = <span className="calc-hl calc-amount">~936 000 kr/år</span>
                   </div>
                   <p className="calc-expl-text">
                     Pasienter som ringer og ikke får svar booker hos den klinikken som svarer først. Ekspedenten tar telefonen 24/7.
@@ -429,8 +428,8 @@ export default function DiagnosePage() {
                     2 000 pasienter × <span className="calc-hl">35%</span> sovende = 700<br />
                     × <span className="calc-hl">20%</span> reaktiverbare = 140<br />
                     ÷ <span className="calc-hl">18 mnd</span> horisont = ~8/mnd<br />
-                    × <span className="calc-hl">3 000 kr</span> = <span className="calc-hl">24 000 kr/mnd</span><br />
-                    × 12 = <span className="calc-hl">~288 000 kr/år</span>
+                    × <span className="calc-hl">3 000 kr</span> = <span className="calc-hl calc-amount">24 000 kr/mnd</span><br />
+                    × 12 = <span className="calc-hl calc-amount">~288 000 kr/år</span>
                   </div>
                   <p className="calc-expl-text">
                     Sovende pasienter (18+ mnd) hentes tilbake med målrettede SMS-innkallinger.
@@ -445,8 +444,8 @@ export default function DiagnosePage() {
                     440 anrop/mnd × <span className="calc-hl">70%</span> bookingrate = 308 pasienter/mnd<br />
                     × <span className="calc-hl">10%</span> no-show = ~31 baseline<br />
                     × <span className="calc-hl">40%</span> reduksjon = ~12 reddede stoltimer/mnd<br />
-                    × <span className="calc-hl">3 000 kr</span> = <span className="calc-hl">37 000 kr/mnd</span><br />
-                    × 12 = <span className="calc-hl">~444 000 kr/år</span>
+                    × <span className="calc-hl">3 000 kr</span> = <span className="calc-hl calc-amount">37 000 kr/mnd</span><br />
+                    × 12 = <span className="calc-hl calc-amount">~444 000 kr/år</span>
                   </div>
                   <p className="calc-expl-text">
                     SMS-innkalling og bekreftelsesflyt reduserer no-shows med 38–40%. <em>Imperial College London, 2025</em>
@@ -460,8 +459,8 @@ export default function DiagnosePage() {
                   <div className="calc-formula">
                     2 000 pasienter × <span className="calc-hl">0,8%</span> = 16 webleads/mnd<br />
                     × <span className="calc-hl">50%</span> reddes med Ekspedenten = 8 ekstra bookinger<br />
-                    × <span className="calc-hl">3 000 kr</span> = <span className="calc-hl">24 000 kr/mnd</span><br />
-                    × 12 = <span className="calc-hl">288 000 kr/år</span>
+                    × <span className="calc-hl">3 000 kr</span> = <span className="calc-hl calc-amount">24 000 kr/mnd</span><br />
+                    × 12 = <span className="calc-hl calc-amount">288 000 kr/år</span>
                   </div>
                   <p className="calc-expl-text">
                     60% av webhenvendelser utenom åpningstid har booket et annet sted før klinikken rekker å svare. <em>TrueLark, 2025. 8 mill. samtaler</em>
@@ -473,7 +472,7 @@ export default function DiagnosePage() {
                 <div className="calc-expl-section">
                   <h4>5. Customer Lifetime Value</h4>
                   <p className="calc-expl-text">
-                    En typisk norsk tannpasient genererer 15 000–25 000 kr over 5 år. 20% av reddede bookinger er nye pasienter, så CLV-effekten kommer i tillegg til månedstallene over.
+                    En typisk norsk tannpasient genererer <span className="calc-amount">15 000–25 000 kr</span> over 5 år. 20% av reddede bookinger er nye pasienter, så CLV-effekten kommer i tillegg til månedstallene over.
                   </p>
                 </div>
 
@@ -571,17 +570,20 @@ export default function DiagnosePage() {
         }
         .calc-panel.dark .calc-panel-label { color: var(--calc-gold-soft); }
 
-        /* Blur lock — only the breakdown amounts (.calc-amount) are gated.
+        /* Blur lock — applies to every .calc-amount span across the layout.
            Total leak number and the ROI multipliers are always visible: total
            is the headline shock value, ROI is the value prop. The user must
-           submit email to see WHICH leak source is largest. */
-        .calc-col-result[data-locked="true"] .calc-amount {
+           submit email to see WHICH leak source is largest AND the monetary
+           outputs in the "how we calculate" formulas. The single
+           data-unlocked attribute on .calc-layout drives blur for both the
+           result-column breakdown rows and the explanation-column totals. */
+        .calc-layout[data-unlocked="false"] .calc-amount {
           filter: blur(8px);
           user-select: none;
           pointer-events: none;
           transition: filter 0.4s cubic-bezier(0.22, 1, 0.36, 1);
         }
-        .calc-col-result[data-locked="false"] .calc-amount {
+        .calc-layout[data-unlocked="true"] .calc-amount {
           filter: blur(0);
           transition: filter 0.4s cubic-bezier(0.22, 1, 0.36, 1);
         }
