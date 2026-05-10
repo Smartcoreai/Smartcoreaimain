@@ -1,9 +1,15 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
-import { MessageCircle, X, Send, Bot, Sparkles } from "lucide-react";
+import { X, Send, Bot, Sparkles } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
 
 type Message = { role: "user" | "assistant"; content: string };
+
+// Soft pastels for the halo + accents (kept literal because the demo specifies
+// these exact tones — they read calmer than the more saturated --lp-lavender
+// once filtered through opacity/blur).
+const LAVENDER = "#ebe4f7";
+const PEACH = "#fce4d3";
 
 export default function ChatWidget() {
   const { lang, t } = useLanguage();
@@ -15,7 +21,6 @@ export default function ChatWidget() {
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Reset messages when language changes so the welcome is in the right language
   useEffect(() => {
     setMessages([{ role: "assistant", content: t.chat.welcome }]);
     setShowQuickReplies(true);
@@ -29,7 +34,8 @@ export default function ChatWidget() {
     if (open) setTimeout(() => inputRef.current?.focus(), 100);
   }, [open]);
 
-  // Allow any component to open the widget via a custom event
+  // External components can pop the widget via a custom event (legacy hook,
+  // kept for the openAriaChat dispatcher in older components).
   useEffect(() => {
     const handler = () => { setOpen(true); };
     window.addEventListener("openAriaChat", handler);
@@ -75,55 +81,47 @@ export default function ChatWidget() {
 
   return (
     <>
-      {/* Floating button */}
-      <button
-        onClick={() => { setOpen(true); }}
-        aria-label="Open AI chat"
-        className="aria-chat-btn"
+      {/* Floating pill: compact → expanded once after 5s, then resting */}
+      <div
+        className="chatbot-widget"
         style={{
-          position: "fixed", bottom: 24, right: 24, zIndex: 9998,
-          width: 68, height: 68,
-          background: "linear-gradient(135deg, #1a1a2e 0%, #2a2a4a 50%, #1a1a2e 100%)",
-          borderRadius: "50%", cursor: "pointer",
-          display: "flex", alignItems: "center", justifyContent: "center",
-          boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
-          transition: "transform 0.3s ease, box-shadow 0.4s ease, opacity 0.3s",
-          transform: open ? "scale(0) rotate(90deg)" : "scale(1) rotate(0deg)",
+          position: "fixed", bottom: 32, right: 32, zIndex: 9998,
           opacity: open ? 0 : 1,
+          transform: open ? "scale(0.85) translateY(8px)" : "scale(1) translateY(0)",
           pointerEvents: open ? "none" : "auto",
-          overflow: "visible",
-          padding: 0,
+          transition: "opacity 0.25s ease, transform 0.3s ease",
         }}
       >
-        {/* Inner wrapper for shimmer (overflow: hidden scoped here) */}
-        <div style={{
-          position: "absolute", inset: 0, borderRadius: "50%",
-          overflow: "hidden", pointerEvents: "none",
-        }}>
-          <div className="aria-btn-shimmer" />
-        </div>
-
-        <MessageCircle size={28} color="#D4AF37" style={{ position: "relative", zIndex: 2 }} />
-
-        {/* Green online dot — outside the overflow:hidden wrapper */}
-        <div style={{
-          position: "absolute", top: -2, right: -2,
-          width: 16, height: 16, background: "#22c55e", borderRadius: "50%",
-          border: "2.5px solid #f7f6f1",
-          zIndex: 10,
-          animation: "dot-pulse 2.5s ease-in-out infinite",
-        }} />
-
-      </button>
+        <button
+          type="button"
+          className="chatbot-pill"
+          onClick={() => setOpen(true)}
+          aria-label={t.chat.openLabel}
+        >
+          <span className="chatbot-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+              <circle cx="8" cy="10" r="0.8" fill="currentColor" />
+              <circle cx="12" cy="10" r="0.8" fill="currentColor" />
+              <circle cx="16" cy="10" r="0.8" fill="currentColor" />
+            </svg>
+          </span>
+          <span className="chatbot-message">
+            {t.chat.teaserPre} <em>{t.chat.teaserEm}</em>
+            <span className="chatbot-arrow" aria-hidden="true">→</span>
+          </span>
+        </button>
+        <span className="chatbot-status" aria-hidden="true" />
+      </div>
 
       {/* Chat window */}
       <div className="chat-window" style={{
-        position: "fixed", bottom: 24, right: 24, zIndex: 9999,
+        position: "fixed", bottom: 32, right: 32, zIndex: 9999,
         width: 368, display: "flex", flexDirection: "column",
         background: "linear-gradient(180deg, #1a1a2e 0%, #242442 50%, #1a1a2e 100%)",
-        border: "1.5px solid #b8902e",
+        border: "1px solid rgba(255,255,255,0.10)",
         borderRadius: 22,
-        boxShadow: "0 24px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(184,144,46,0.1)",
+        boxShadow: "0 24px 80px rgba(0,0,0,0.45), 0 0 0 1px rgba(184,168,232,0.08)",
         overflow: "hidden", height: 540,
         transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
         transform: open ? "scale(1) translateY(0)" : "scale(0.85) translateY(20px)",
@@ -131,47 +129,44 @@ export default function ChatWidget() {
         pointerEvents: open ? "auto" : "none",
         transformOrigin: "bottom right",
       }}>
-        {/* Shimmer stripe at top of widget */}
-        <div className="aria-widget-shimmer-stripe" />
-
         {/* Header */}
         <div style={{
           padding: "16px 18px", display: "flex", alignItems: "center", justifyContent: "space-between",
-          background: "rgba(0,0,0,0.25)",
-          borderBottom: "1px solid rgba(184,144,46,0.15)",
+          background: "rgba(0,0,0,0.22)",
+          borderBottom: "1px solid rgba(255,255,255,0.06)",
         }}>
           <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
             <div style={{ position: "relative" }}>
-              {/* Header avatar */}
               <div style={{
                 width: 44, height: 44, borderRadius: 14,
                 background: "linear-gradient(135deg, #0f0f1f, #2a2a4a)",
-                border: "1.5px solid #b8902e",
+                border: "1px solid rgba(255,255,255,0.12)",
                 display: "flex", alignItems: "center", justifyContent: "center",
-                boxShadow: "0 4px 12px rgba(184,144,46,0.2)",
+                boxShadow: "0 4px 12px rgba(26,26,46,0.4)",
               }}>
-                <Bot size={22} color="#b8902e" />
+                <Bot size={22} color={LAVENDER} />
               </div>
-              {/* Green dot outside avatar */}
               <div style={{
                 position: "absolute", top: -3, right: -3,
                 width: 13, height: 13, background: "#22c55e", borderRadius: "50%",
                 border: "2.5px solid #1a1a2e",
-                boxShadow: "0 0 6px rgba(34,197,94,0.8)",
+                boxShadow: "0 0 6px rgba(34,197,94,0.7)",
               }} />
             </div>
             <div>
               <div style={{ fontSize: 14, fontWeight: 700, color: "#F5F0E8", display: "flex", alignItems: "center", gap: 6 }}>
-                Ekspedenten <Sparkles size={12} color="#D4AF37" />
+                Ekspedenten <Sparkles size={12} color={LAVENDER} />
               </div>
-              <div style={{ fontSize: 11, color: "rgba(255,255,255,0.40)" }}>Ekspedenten · Always online</div>
+              <div style={{ fontSize: 11, color: "rgba(255,255,255,0.40)" }}>Always online</div>
             </div>
           </div>
           <button
+            type="button"
             onClick={() => setOpen(false)}
+            aria-label={t.chat.closeLabel}
             style={{
               background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.10)",
-              borderRadius: 8, padding: "6px", color: "rgba(255,255,255,0.50)",
+              borderRadius: 8, padding: "6px", color: "rgba(255,255,255,0.55)",
               cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
               transition: "background 0.2s",
             }}
@@ -190,20 +185,20 @@ export default function ChatWidget() {
                 <div style={{
                   width: 32, height: 32, borderRadius: 10,
                   background: "linear-gradient(135deg, #0f0f1f, #2a2a4a)",
-                  border: "1.5px solid rgba(184,144,46,0.5)",
+                  border: "1px solid rgba(255,255,255,0.10)",
                   display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
                 }}>
-                  <Bot size={16} color="#b8902e" />
+                  <Bot size={16} color={LAVENDER} />
                 </div>
               )}
               <div className="chat-bubble" style={{
                 padding: "10px 14px",
                 borderRadius: m.role === "user" ? "18px 18px 4px 18px" : "18px 18px 18px 4px",
                 background: m.role === "user"
-                  ? "linear-gradient(135deg, #B8960C, #D4AF37)"
+                  ? `linear-gradient(135deg, ${LAVENDER}, ${PEACH})`
                   : "linear-gradient(135deg, #242442, #2e2e54)",
-                border: m.role === "assistant" ? "1px solid rgba(184,144,46,0.18)" : "none",
-                fontSize: 13, color: m.role === "user" ? "#1A1A1A" : "#F0EDE8",
+                border: m.role === "assistant" ? "1px solid rgba(255,255,255,0.08)" : "none",
+                fontSize: 13, color: m.role === "user" ? "#1a1a2e" : "#F0EDE8",
                 maxWidth: "78%", lineHeight: 1.6,
                 whiteSpace: "pre-wrap", wordBreak: "break-word", overflowWrap: "break-word",
               }}>{m.content}</div>
@@ -215,19 +210,19 @@ export default function ChatWidget() {
               <div style={{
                 width: 32, height: 32, borderRadius: 10,
                 background: "linear-gradient(135deg, #0f0f1f, #2a2a4a)",
-                border: "1.5px solid rgba(184,144,46,0.5)",
+                border: "1px solid rgba(255,255,255,0.10)",
                 display: "flex", alignItems: "center", justifyContent: "center",
               }}>
-                <Bot size={16} color="#b8902e" />
+                <Bot size={16} color={LAVENDER} />
               </div>
               <div style={{
                 padding: "12px 16px", borderRadius: "18px 18px 18px 4px",
                 background: "linear-gradient(135deg, #242442, #2e2e54)",
-                border: "1px solid rgba(184,144,46,0.18)",
+                border: "1px solid rgba(255,255,255,0.08)",
                 display: "flex", gap: 4, alignItems: "center",
               }}>
                 {[0, 1, 2].map(j => (
-                  <div key={j} style={{ width: 5, height: 5, borderRadius: "50%", background: "#D4AF37", animation: `blink 1.2s ${j * 0.2}s step-end infinite` }} />
+                  <div key={j} style={{ width: 5, height: 5, borderRadius: "50%", background: LAVENDER, animation: `blink 1.2s ${j * 0.2}s step-end infinite` }} />
                 ))}
               </div>
             </div>
@@ -237,12 +232,14 @@ export default function ChatWidget() {
             <div style={{ display: "flex", flexDirection: "column", gap: 6, marginTop: 4 }}>
               {t.chat.quickReplies.map(q => (
                 <button key={q} onClick={() => send(q)} style={{
-                  padding: "8px 14px", textAlign: "left", fontSize: 12, color: "#D4AF37",
-                  background: "rgba(212,175,55,0.07)", border: "1px solid rgba(212,175,55,0.20)",
+                  padding: "8px 14px", textAlign: "left", fontSize: 12,
+                  color: LAVENDER,
+                  background: "rgba(216,201,237,0.08)",
+                  border: "1px solid rgba(216,201,237,0.22)",
                   borderRadius: 12, cursor: "pointer", fontFamily: "inherit", transition: "all 0.2s",
                 }}
-                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "rgba(212,175,55,0.15)"; }}
-                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "rgba(212,175,55,0.07)"; }}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "rgba(216,201,237,0.16)"; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "rgba(216,201,237,0.08)"; }}
                 >{q}</button>
               ))}
             </div>
@@ -254,13 +251,13 @@ export default function ChatWidget() {
         {/* Input */}
         <div style={{
           padding: "12px 14px",
-          borderTop: "1px solid rgba(184,144,46,0.12)",
+          borderTop: "1px solid rgba(255,255,255,0.06)",
           background: "rgba(0,0,0,0.20)",
         }}>
           <div style={{
             display: "flex", gap: 8, alignItems: "center",
             background: "rgba(255,255,255,0.06)",
-            border: "1px solid rgba(184,144,46,0.18)",
+            border: "1px solid rgba(255,255,255,0.10)",
             borderRadius: 14, padding: "6px 8px 6px 14px",
           }}>
             <input
@@ -275,18 +272,20 @@ export default function ChatWidget() {
               }}
             />
             <button
+              type="button"
               onClick={() => send()}
               disabled={!input.trim() || loading}
+              aria-label="Send"
               style={{
                 width: 34, height: 34, borderRadius: 10, border: "none",
                 cursor: input.trim() ? "pointer" : "not-allowed",
                 background: input.trim()
-                  ? "linear-gradient(135deg, #B8960C, #D4AF37)"
+                  ? `linear-gradient(135deg, ${LAVENDER}, ${PEACH})`
                   : "rgba(255,255,255,0.06)",
                 display: "flex", alignItems: "center", justifyContent: "center",
                 transition: "all 0.2s", flexShrink: 0,
               }}>
-              <Send size={14} color={input.trim() ? "#1A1A1A" : "rgba(255,255,255,0.25)"} />
+              <Send size={14} color={input.trim() ? "#1a1a2e" : "rgba(255,255,255,0.25)"} />
             </button>
           </div>
           <div style={{ textAlign: "center", marginTop: 8, fontSize: 10, color: "rgba(255,255,255,0.35)" }}>
@@ -296,66 +295,190 @@ export default function ChatWidget() {
       </div>
 
       <style>{`
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
-
-        @keyframes dot-pulse {
-          0%   { box-shadow: 0 0 0 0   rgba(34,197,94,0.7); }
-          70%  { box-shadow: 0 0 0 6px rgba(34,197,94,0);   }
-          100% { box-shadow: 0 0 0 0   rgba(34,197,94,0);   }
+        /* ── New pill widget ───────────────────────────────────────────── */
+        .chatbot-pill {
+          position: relative;
+          display: flex;
+          align-items: center;
+          gap: 0;
+          height: 64px;
+          width: 64px;
+          background: #1a1a2e;
+          border: none;
+          border-radius: 999px;
+          padding: 0;
+          margin: 0;
+          color: white;
+          cursor: pointer;
+          overflow: hidden;
+          font-family: inherit;
+          box-shadow:
+            0 12px 32px -8px rgba(26, 26, 46, 0.32),
+            0 4px 12px -2px rgba(26, 26, 46, 0.18);
+          transition:
+            width 700ms cubic-bezier(0.22, 1, 0.36, 1),
+            background 700ms ease;
+          animation: chatbot-once 7s ease-in-out 5s 1 forwards;
         }
-        @keyframes aria-shimmer { 0% { left: -100%; } 100% { left: 100%; } }
-        @keyframes aria-widget-shimmer {
-          0%   { transform: translateX(-100%); }
-          100% { transform: translateX(400%); }
-        }
-
-        /* Shimmer stripe on the floating button (inside inner wrapper) */
-        .aria-btn-shimmer {
+        .chatbot-pill::before {
+          content: "";
           position: absolute;
-          top: 0; left: -100%;
-          width: 100%; height: 100%;
-          background: linear-gradient(90deg, transparent, rgba(212,175,55,0.45), transparent);
-          animation: aria-shimmer 3.5s infinite;
+          inset: -8px;
+          border-radius: 999px;
+          background: conic-gradient(
+            from 0deg,
+            ${LAVENDER} 0%,
+            ${PEACH} 25%,
+            ${LAVENDER} 50%,
+            ${PEACH} 75%,
+            ${LAVENDER} 100%
+          );
+          z-index: -1;
+          opacity: 0.55;
+          filter: blur(14px);
+          animation:
+            chatbot-halo-rotate 8s linear infinite,
+            chatbot-halo-breathe 3s ease-in-out infinite;
+        }
+        .chatbot-pill::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          border-radius: 999px;
+          background: radial-gradient(
+            circle at 30% 30%,
+            rgba(216, 201, 237, 0.18) 0%,
+            transparent 60%
+          );
           pointer-events: none;
         }
 
-        /* Gold shimmer stripe at top of widget */
-        .aria-widget-shimmer-stripe {
+        .chatbot-icon {
+          position: relative;
+          width: 64px;
+          height: 64px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          z-index: 2;
+        }
+        .chatbot-icon svg {
+          width: 26px;
+          height: 26px;
+          color: white;
+          animation: chatbot-icon-float 3s ease-in-out infinite;
+        }
+
+        .chatbot-message {
+          flex-shrink: 0;
+          padding: 0 22px 0 4px;
+          color: white;
+          font-size: 15px;
+          font-weight: 500;
+          letter-spacing: -0.005em;
+          white-space: nowrap;
+          opacity: 0;
+          transform: translateX(8px);
+          z-index: 2;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          animation: chatbot-message-once 7s ease-in-out 5s 1 forwards;
+        }
+        .chatbot-message em {
+          font-style: italic;
+          font-weight: 500;
+          color: ${LAVENDER};
+        }
+        .chatbot-arrow {
+          color: ${PEACH};
+          font-size: 18px;
+          margin-top: -2px;
+        }
+
+        /* Hover: pause the one-shot animation, hold expanded */
+        .chatbot-widget:hover .chatbot-pill {
+          width: 320px;
+          animation-play-state: paused;
+        }
+        .chatbot-widget:hover .chatbot-message {
+          opacity: 1;
+          transform: translateX(0);
+          animation-play-state: paused;
+        }
+
+        .chatbot-status {
           position: absolute;
-          top: 0; left: 0; right: 0;
-          height: 2px;
-          background: linear-gradient(90deg, transparent 0%, #b8902e 30%, #D4AF37 50%, #b8902e 70%, transparent 100%);
-          overflow: hidden;
+          top: 4px;
+          right: 4px;
+          width: 14px;
+          height: 14px;
+          background: #4ade80;
+          border: 2px solid #1a1a2e;
+          border-radius: 50%;
           z-index: 5;
-        }
-        .aria-widget-shimmer-stripe::after {
-          content: '';
-          position: absolute;
-          top: 0; left: 0;
-          width: 25%; height: 100%;
-          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
-          animation: aria-widget-shimmer 3s 1s ease-in-out infinite;
+          animation: chatbot-status-pulse 2s ease-in-out infinite;
         }
 
-
-        .aria-chat-btn:hover {
-          transform: scale(1.05) !important;
-          box-shadow: inset 0 2px 8px rgba(0,0,0,0.3), 0 0 16px 4px rgba(212,175,55,0.5), 0 0 40px 10px rgba(212,175,55,0.35), 0 0 80px 16px rgba(212,175,55,0.2) !important;
+        @keyframes chatbot-once {
+          0%   { width: 64px; }
+          25%  { width: 320px; }
+          75%  { width: 320px; }
+          100% { width: 64px; }
+        }
+        @keyframes chatbot-message-once {
+          0%, 25%   { opacity: 0; transform: translateX(8px); }
+          35%, 70%  { opacity: 1; transform: translateX(0); }
+          80%, 100% { opacity: 0; transform: translateX(8px); }
+        }
+        @keyframes chatbot-halo-rotate {
+          0%   { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+        @keyframes chatbot-halo-breathe {
+          0%, 100% { opacity: 0.4; }
+          50%      { opacity: 0.65; }
+        }
+        @keyframes chatbot-icon-float {
+          0%, 100% { transform: translateY(0); }
+          50%      { transform: translateY(-2px); }
+        }
+        @keyframes chatbot-status-pulse {
+          0%, 100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.5); }
+          50%      { box-shadow: 0 0 0 6px rgba(74, 222, 128, 0); }
+        }
+        @keyframes blink {
+          0%, 100% { opacity: 1; }
+          50%      { opacity: 0.2; }
         }
 
-        /* Scrollbar styling for messages */
+        /* Scrollbar — soft lavender thumb on transparent track */
         .chat-messages::-webkit-scrollbar { width: 4px; }
         .chat-messages::-webkit-scrollbar-track { background: transparent; }
-        .chat-messages::-webkit-scrollbar-thumb { background: rgba(184,144,46,0.3); border-radius: 2px; }
-
-        @media (prefers-reduced-motion: reduce) {
-          .aria-btn-shimmer { animation: none; }
-
-          .aria-widget-shimmer-stripe::after { animation: none; }
-          @keyframes dot-pulse { 0%, 100% { box-shadow: none; } }
+        .chat-messages::-webkit-scrollbar-thumb {
+          background: rgba(216, 201, 237, 0.28);
+          border-radius: 2px;
         }
+
+        /* Respect prefers-reduced-motion: kill all looping/teaser animations */
+        @media (prefers-reduced-motion: reduce) {
+          .chatbot-pill,
+          .chatbot-pill::before,
+          .chatbot-message,
+          .chatbot-icon svg,
+          .chatbot-status {
+            animation: none !important;
+          }
+        }
+
+        /* Mobile: chat window goes full-width, pill stays bottom-right */
         @media (max-width: 480px) {
-          .chat-window { width: calc(100vw - 16px) !important; right: 8px !important; left: 8px !important; }
+          .chat-window {
+            width: calc(100vw - 16px) !important;
+            right: 8px !important;
+            left: 8px !important;
+          }
           .chat-messages { overflow-x: hidden; width: 100%; }
           .chat-bubble { max-width: 85% !important; white-space: normal !important; }
         }

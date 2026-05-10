@@ -509,6 +509,10 @@ export const translations = {
       quickReplies: ["What services do you offer?", "How much does it cost?", "How fast can we get started?"],
       placeholder: "Ask me anything...",
       poweredBy: "Powered by Ekspedenten · responses may vary",
+      teaserPre: "Ready to",
+      teaserEm: "patch the leak?",
+      openLabel: "Open chat with Ekspedenten",
+      closeLabel: "Close chat",
     },
     pricingPage: {
       back: "← Back",
@@ -1224,6 +1228,10 @@ export const translations = {
       quickReplies: ["Hvilke tjenester tilbyr dere?", "Hva koster det?", "Hvor raskt kan vi starte?"],
       placeholder: "Spør meg om hva som helst...",
       poweredBy: "Drevet av Ekspedenten · svar kan variere",
+      teaserPre: "Klar for å",
+      teaserEm: "tette hullet?",
+      openLabel: "Åpne chat med Ekspedenten",
+      closeLabel: "Lukk chat",
     },
     pricingPage: {
       back: "← Tilbake",
