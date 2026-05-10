@@ -61,6 +61,16 @@ export const translations = {
       ],
       sources: "Sources: Resonate AI (2025), Peerlogic, Harvard Business Review / Oldroyd (MIT, 2011), American Dental Association.",
     },
+    bridge: {
+      eyebrow: "Our mission",
+      lead: "Marketing only fills the bucket faster than it leaks out.",
+      mottoPre: "Ekspedenten patches the",
+      mottoEm: "leak.",
+      quote: "We're building Ekspedenten because dental-clinic receptions deserve better tools. Automatic handling of inbound inquiries should be the standard, not a luxury.",
+      founders: "Aleksander Bjørndal & Henrik Andreassen Bøe",
+      role: "Founders, Ekspedenten · Bergen",
+      teamPlaceholder: "team photo",
+    },
     solution: {
       eyebrow: "THE SOLUTION",
       headline: "Meet Ekspedenten — your clinic's digital receptionist.",
@@ -765,6 +775,16 @@ export const translations = {
         },
       ],
       sources: "Kilder: Resonate AI (2025), Peerlogic, Harvard Business Review / Oldroyd (MIT, 2011), American Dental Association.",
+    },
+    bridge: {
+      eyebrow: "Vår misjon",
+      lead: "Markedsføring fyller kun bøtten raskere enn det lekker ut.",
+      mottoPre: "Ekspedenten fikser",
+      mottoEm: "lekkasjen.",
+      quote: "Vi bygger Ekspedenten fordi resepsjoner i tannklinikker fortjener bedre verktøy. Automatisk besvarelse av henvendelser burde være standard, ikke luksus.",
+      founders: "Aleksander Bjørndal & Henrik Andreassen Bøe",
+      role: "Gründere, Ekspedenten · Bergen",
+      teamPlaceholder: "team-bilde",
     },
     solution: {
       eyebrow: "LØSNINGEN",

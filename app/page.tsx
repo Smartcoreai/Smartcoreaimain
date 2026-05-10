@@ -3,6 +3,7 @@ import LandingNavbar from "@/components/landing/LandingNavbar";
 import HeroSection from "@/components/landing/HeroSection";
 import SubHeroStrip from "@/components/landing/SubHeroStrip";
 import ProblemGrid from "@/components/landing/ProblemGrid";
+import BridgeSection from "@/components/landing/BridgeSection";
 import SolutionIntro from "@/components/landing/SolutionIntro";
 import AgentChatDemo from "@/components/landing/AgentChatDemo";
 import CRMSection from "@/components/landing/CRMSection";
@@ -21,6 +22,7 @@ export default function HomePage() {
         <HeroSection />
         <SubHeroStrip />
         <ProblemGrid />
+        <BridgeSection />
         <SolutionIntro />
         <AgentChatDemo />
         <CRMSection />

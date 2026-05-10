@@ -1280,3 +1280,242 @@
   .lp-how-card { padding: 24px; }
   .lp-footer-grid { grid-template-columns: 1fr; gap: 24px; }
 }
+
+/* =========================================================================
+ * Bridge section (Problem → Bridge → Solution)
+ * ========================================================================= */
+.lp-bridge {
+  position: relative;
+  padding: 120px 0;
+  background: var(--bg-soft);
+  overflow: hidden;
+}
+.lp-bridge::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent 0px,
+    transparent 100px,
+    rgba(184, 168, 232, 0.06) 100px,
+    rgba(184, 168, 232, 0.06) 200px,
+    transparent 200px,
+    transparent 300px,
+    rgba(245, 196, 168, 0.06) 300px,
+    rgba(245, 196, 168, 0.06) 400px
+  );
+  pointer-events: none;
+}
+.lp-bridge-orbs {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.lp-bridge-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+}
+.lp-bridge-orb.lavender {
+  width: 420px; height: 420px;
+  background: var(--lp-lavender);
+  top: -100px; left: -100px;
+  opacity: 0.32;
+}
+.lp-bridge-orb.peach {
+  width: 360px; height: 360px;
+  background: var(--lp-peach);
+  top: 30%; right: -140px;
+  opacity: 0.28;
+}
+.lp-bridge-orb.lavender-2 {
+  width: 300px; height: 300px;
+  background: var(--lp-lavender);
+  bottom: -80px; left: 35%;
+  opacity: 0.22;
+}
+
+.lp-bridge-eyebrow-wrap {
+  position: relative;
+  text-align: center;
+  margin-bottom: 36px;
+}
+.lp-bridge-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  border-radius: 100px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+.lp-bridge-eyebrow .lp-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--lp-lavender);
+}
+
+.lp-bridge-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow:
+    0 30px 80px -20px rgba(26, 26, 46, 0.25),
+    0 8px 24px -8px rgba(26, 26, 46, 0.12);
+  min-height: 460px;
+
+  /* Card entry animation (scoped to .reveal wrapper added by ScrollReveal) */
+}
+.reveal .lp-bridge-card {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.visible .lp-bridge-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.lp-bridge-card-left {
+  background: var(--lp-bg-dark);
+  color: white;
+  padding: 64px 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+.lp-bridge-card-left::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 20% 0%,
+    rgba(184, 168, 232, 0.10) 0%,
+    transparent 50%
+  );
+  pointer-events: none;
+}
+.lp-bridge-card-left > * { position: relative; }
+
+.lp-bridge-motto-lead {
+  font-size: 22px;
+  line-height: 1.45;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: rgba(255, 255, 255, 0.72);
+  margin: 0 0 18px;
+  max-width: 520px;
+}
+.lp-bridge-motto {
+  font-size: 48px;
+  line-height: 1.08;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: white;
+  margin: 0 0 36px;
+}
+.lp-bridge-motto em {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--lp-lavender-soft);
+}
+.lp-bridge-quote {
+  font-size: 16.5px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.62);
+  font-style: italic;
+  font-weight: 400;
+  margin: 0 0 36px;
+  max-width: 480px;
+}
+
+.lp-bridge-attribution {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.lp-bridge-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--lp-lavender) 0%, var(--lp-peach) 100%);
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(26, 26, 46, 0.15);
+}
+.lp-bridge-attribution-text strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 2px;
+  letter-spacing: -0.005em;
+}
+.lp-bridge-attribution-text span {
+  font-size: 13.5px;
+  color: rgba(255, 255, 255, 0.55);
+  font-weight: 400;
+}
+
+.lp-bridge-card-right {
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4) 0%, transparent 55%),
+    linear-gradient(135deg, var(--lp-lavender) 0%, var(--lp-peach) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  position: relative;
+  overflow: hidden;
+}
+.lp-bridge-card-right::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 75% 80%,
+    rgba(255, 255, 255, 0.25) 0%,
+    transparent 50%
+  );
+  pointer-events: none;
+}
+.lp-bridge-card-right .lp-bridge-team-pill {
+  position: relative;
+  z-index: 1;
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px dashed rgba(26, 26, 46, 0.2);
+  border-radius: 100px;
+  backdrop-filter: blur(4px);
+}
+
+@media (max-width: 900px) {
+  .lp-bridge-card {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+  .lp-bridge-card-right { min-height: 240px; }
+  .lp-bridge-card-left { padding: 48px 36px; }
+  .lp-bridge-motto-lead { font-size: 17px; }
+  .lp-bridge-motto { font-size: 34px; }
+  .lp-bridge-quote { font-size: 15px; }
+}
+@media (max-width: 768px) {
+  .lp-bridge { padding: 80px 0; }
+}
