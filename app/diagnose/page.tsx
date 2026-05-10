@@ -5,6 +5,7 @@ import LandingNavbar from "@/components/landing/LandingNavbar";
 import LandingFooter from "@/components/landing/LandingFooter";
 import ChatWidget from "@/components/ChatWidget";
 import { track } from "@/lib/track";
+import { useLanguage } from "@/lib/i18n";
 
 const fmtKr = (n: number) =>
   "kr " + Math.round(n).toLocaleString("nb-NO").replace(/[,  ]/g, " ");
@@ -25,6 +26,9 @@ export default function DiagnosePage() {
   const [patientBase, setPatientBase] = useState<string>("3000");
   const [noShowPct, setNoShowPct] = useState(12);
   const [bookingValue, setBookingValue] = useState<string>("2500");
+
+  const { t } = useLanguage();
+  const idle = t.diagnose.idle;
 
   const [revealed, setRevealed] = useState(false);
   const [unlocked, setUnlocked] = useState(false);
@@ -262,10 +266,39 @@ export default function DiagnosePage() {
             >
               {!revealed ? (
                 <div className="calc-panel calc-teaser calc-panel-fill">
-                  <div className="calc-panel-label">Klar når du er</div>
-                  <p className="calc-teaser-text">
-                    Vi regner ut ubesvarte anrop, sovende pasienter, no-shows og webleads utenom åpningstid, og legger sammen til ett årstall. Trykk «Kjør diagnosen» når du er klar.
+                  <div className="calc-panel-label">{idle.eyebrow}</div>
+                  <p className="calc-idle-intro">
+                    {idle.introPre} <strong>{idle.introEm}</strong>{idle.introPost}
                   </p>
+                  <ul className="calc-idle-list">
+                    {idle.items.map((it, i) => (
+                      <li className="calc-idle-item" key={i}>
+                        <div
+                          className={`calc-idle-marker ${i % 2 === 0 ? "lavender" : "peach"}`}
+                          aria-hidden="true"
+                        >
+                          {String(i + 1).padStart(2, "0")}
+                        </div>
+                        <div className="calc-idle-content">
+                          <div className="calc-idle-title">{it.title}</div>
+                          <div className="calc-idle-desc">{it.desc}</div>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="calc-idle-hint">
+                    <svg
+                      width="18" height="18" viewBox="0 0 24 24"
+                      fill="none" stroke="currentColor" strokeWidth="2.2"
+                      strokeLinecap="round" strokeLinejoin="round"
+                      aria-hidden="true"
+                    >
+                      <circle cx="12" cy="12" r="10" />
+                      <line x1="12" y1="8" x2="12" y2="12" />
+                      <line x1="12" y1="16" x2="12.01" y2="16" />
+                    </svg>
+                    <span>{idle.hint}</span>
+                  </div>
                 </div>
               ) : (
                 <>
@@ -551,9 +584,80 @@ export default function DiagnosePage() {
           transition: filter 0.4s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
-        .calc-teaser-text {
-          font-size: 14px; color: var(--calc-ink-secondary);
-          line-height: 1.6; margin: 0;
+        /* Idle (pre-Kjør) panel content — bullet list of leak sources */
+        .calc-teaser { display: flex; flex-direction: column; }
+        .calc-idle-intro {
+          font-size: 15px;
+          color: var(--calc-ink-secondary);
+          line-height: 1.6;
+          margin: 0 0 16px;
+        }
+        .calc-idle-intro strong {
+          color: var(--calc-ink);
+          font-weight: 600;
+        }
+        .calc-idle-list {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          display: flex;
+          flex-direction: column;
+        }
+        .calc-idle-item {
+          display: flex;
+          gap: 16px;
+          padding: 16px 0;
+          border-bottom: 1px solid var(--calc-border);
+        }
+        .calc-idle-item:last-of-type {
+          border-bottom: none;
+          padding-bottom: 6px;
+        }
+        .calc-idle-marker {
+          flex-shrink: 0;
+          width: 36px;
+          height: 36px;
+          border-radius: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 13px;
+          font-weight: 700;
+          color: var(--calc-ink);
+          margin-top: 2px;
+          font-feature-settings: "tnum" 1;
+          letter-spacing: -0.01em;
+        }
+        .calc-idle-marker.lavender { background: #ebe4f7; }
+        .calc-idle-marker.peach    { background: #fce4d3; }
+        .calc-idle-content { flex: 1; min-width: 0; }
+        .calc-idle-title {
+          font-size: 15px;
+          font-weight: 600;
+          color: var(--calc-ink);
+          margin-bottom: 4px;
+          letter-spacing: -0.005em;
+        }
+        .calc-idle-desc {
+          font-size: 13px;
+          color: var(--calc-ink-secondary);
+          line-height: 1.55;
+        }
+        .calc-idle-hint {
+          margin-top: auto;
+          padding-top: 20px;
+          border-top: 1px solid var(--calc-border);
+          display: flex;
+          align-items: flex-start;
+          gap: 10px;
+          font-size: 13px;
+          color: var(--calc-ink-secondary);
+          line-height: 1.5;
+        }
+        .calc-idle-hint svg {
+          flex-shrink: 0;
+          color: var(--calc-gold);
+          margin-top: 1px;
         }
 
         /* Inputs */

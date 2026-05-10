@@ -668,6 +668,21 @@ export const translations = {
       cta: "Book a free call to get started →",
       backLink: "← Back",
     },
+    diagnose: {
+      idle: {
+        eyebrow: "Ready when you are",
+        introPre: "We measure",
+        introEm: "four leak sources",
+        introPost: " for your clinic and sum them into one annual figure: what unanswered calls, dormant patients, no-shows, and after-hours web leads actually cost you each year.",
+        items: [
+          { title: "Unanswered calls", desc: "Patients who call but don't get through. They typically dial the next clinic on the list." },
+          { title: "Dormant patients", desc: "People in your patient base who haven't visited in 18+ months. A share can be re-engaged with structured follow-up." },
+          { title: "No-shows", desc: "Booked patients who don't show up. SMS confirmation and automated follow-up typically reduce this by 38–40%." },
+          { title: "After-hours web leads", desc: "Form/chat inquiries while you're closed. Most find another clinic before your next workday." },
+        ],
+        hint: "Press «Run diagnosis» when ready, you'll have your clinic's number a moment later.",
+      },
+    },
     personvern: {
       back: "← Back",
       headline: "Privacy Policy",
@@ -1386,6 +1401,21 @@ export const translations = {
       heroBox2Sub: "i ekstra bookinger",
       cta: "Book en gratis samtale for å komme i gang →",
       backLink: "← Tilbake",
+    },
+    diagnose: {
+      idle: {
+        eyebrow: "Klar når du er",
+        introPre: "Vi regner ut",
+        introEm: "fire lekkasjekilder",
+        introPost: " for klinikken din, og legger sammen til ett årstall. Hva ubesvarte anrop, sovende pasienter, no-shows og webleads utenom åpningstid faktisk koster dere i året.",
+        items: [
+          { title: "Ubesvarte anrop", desc: "Pasienter som ringer, men ikke får svar, og som typisk ringer neste klinikk på lista." },
+          { title: "Sovende pasienter", desc: "Personer i basen som ikke har vært inne på 18+ måneder. En andel kan reaktiveres med strukturert oppfølging." },
+          { title: "No-shows", desc: "Bookede pasienter som ikke møter. SMS-bekreftelse og automatisk oppfølging reduserer typisk 38–40%." },
+          { title: "Webleads utenom åpningstid", desc: "Henvendelser via skjema/chat når dere er stengt. Flertallet finner en annen klinikk før neste virkedag." },
+        ],
+        hint: "Trykk «Kjør diagnosen» når du er klar, du får tallet for klinikken din i sekundet etter.",
+      },
     },
     personvern: {
       back: "← Tilbake",
