@@ -14,7 +14,7 @@ const SECTIONS = [
     bullets: [
       "Kontaktinformasjon (navn, e-post, telefonnummer) når du booker en samtale eller sender en henvendelse",
       "Bruksdata fra nettsiden via cookies og analyseverktøy",
-      "Samtalelogger mellom AI-assistenten Aria og besøkende på nettsiden",
+      "Samtalelogger mellom AI-assistenten Ekspedenten og besøkende på nettsiden",
       "Data som våre klienter deler med oss for å konfigurere og forbedre AI-systemer",
     ],
   },

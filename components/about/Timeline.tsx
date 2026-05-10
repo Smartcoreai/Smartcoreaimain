@@ -2,7 +2,7 @@ const STEPS = [
   {
     date: "Okt 2025",
     title: "Idéen tar form",
-    body: "Etter å ha sett klinikker miste leads gang etter gang, begynner Aleksander og Henrik å bygge en prototype av Ária.",
+    body: "Etter å ha sett klinikker miste leads gang etter gang, begynner Aleksander og Henrik å bygge en prototype av Ekspedenten.",
   },
   {
     date: "Mar 2026",
@@ -11,7 +11,7 @@ const STEPS = [
   },
   {
     date: "Apr 2026",
-    title: "Ária live i sandbox",
+    title: "Ekspedenten live i sandbox",
     body: "Første fungerende voice AI på norsk. Booker time, sender SMS, alt EU-hosted. Klar for første pilot-klinikker.",
   },
   {

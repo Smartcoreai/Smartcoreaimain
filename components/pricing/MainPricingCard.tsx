@@ -8,7 +8,7 @@ const FEATURES = [
   "CRM-dashboard med sanntids-aktivitet",
   "GDPR-trygt. Data lagret i Frankfurt",
   "Månedsrapport med konkret ROI",
-  "Live på 7 dager. 14 dagers gratis prøve",
+  "Live på 7 dager. 60 dagers ROI-garanti",
 ];
 
 export default function MainPricingCard() {

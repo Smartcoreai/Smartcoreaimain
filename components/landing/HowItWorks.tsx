@@ -5,7 +5,7 @@ export default function HowItWorks() {
         <div className="lp-section-header">
           <span className="lp-pill peach">Slik funker det</span>
           <h2>Vi tar oss av oppsett og opplæring<br />som en del av avtalen.</h2>
-          <p>Ária leser klinikkens egne tjenester, priser og åpningstider, og bygger din kunnskapsbase automatisk.</p>
+          <p>Ekspedenten leser klinikkens egne tjenester, priser og åpningstider, og bygger din kunnskapsbase automatisk.</p>
         </div>
 
         <div className="lp-how-grid">
@@ -17,12 +17,12 @@ export default function HowItWorks() {
           <div className="lp-how-card">
             <div className="lp-how-num">2</div>
             <h4>Lær opp</h4>
-            <p>Ária leser dine tjenester, priser og åpningstider. Bygger kunnskapsbase automatisk.</p>
+            <p>Ekspedenten leser dine tjenester, priser og åpningstider. Bygger kunnskapsbase automatisk.</p>
           </div>
           <div className="lp-how-card">
             <div className="lp-how-num">3</div>
             <h4>Automatiser</h4>
-            <p>Ária tar telefonen 24/7. Sjekker kalenderen. Booker time. Sender SMS-bekreftelse.</p>
+            <p>Ekspedenten tar telefonen 24/7. Sjekker kalenderen. Booker time. Sender SMS-bekreftelse.</p>
           </div>
           <div className="lp-how-card">
             <div className="lp-how-num">4</div>

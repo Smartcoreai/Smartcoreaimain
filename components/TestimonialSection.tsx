@@ -68,7 +68,7 @@ function PhoneChatVisual() {
           fontSize: 13, fontWeight: 800, color: "#fff", flexShrink: 0,
         }}>A</div>
         <div>
-          <div style={{ fontSize: 12, fontWeight: 700, color: "#fff" }}>Aria</div>
+          <div style={{ fontSize: 12, fontWeight: 700, color: "#fff" }}>Ekspedenten</div>
           <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
             <div style={{ width: 5, height: 5, borderRadius: "50%", background: "#4ade80", boxShadow: "0 0 4px #4ade80" }} />
             <span style={{ fontSize: 9.5, color: "#4ade80", fontWeight: 600 }}>Online</span>
@@ -91,7 +91,7 @@ function PhoneChatVisual() {
                 fontSize: 11.5, lineHeight: 1.5,
                 boxShadow: "0 1px 3px rgba(0,0,0,0.07)",
               }}>
-                {!isUser && <div style={{ fontSize: 9, fontWeight: 700, color: "#b8902e", marginBottom: 2 }}>Aria ✨</div>}
+                {!isUser && <div style={{ fontSize: 9, fontWeight: 700, color: "#b8902e", marginBottom: 2 }}>Ekspedenten ✨</div>}
                 {msg.text}
               </div>
               <div style={{ fontSize: 9, color: "#8a8a98", marginTop: 2, textAlign: isUser ? "right" : "left", paddingInline: 2 }}>

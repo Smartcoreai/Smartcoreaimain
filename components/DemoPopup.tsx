@@ -209,7 +209,7 @@ export function DemoPopup({
                   fontSize: 14.5, color: TEXT_MUTED,
                   lineHeight: 1.6, margin: "0 0 22px",
                 }}>
-                  Vi viser deg hvordan Aria ville hørtes ut for din klinikk. Tar 15 minutter.
+                  Vi viser deg hvordan Ekspedenten ville hørtes ut for din klinikk. Tar 15 minutter.
                 </p>
 
                 <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 10 }}>

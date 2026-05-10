@@ -20,10 +20,10 @@ export const translations = {
       tag: "FOR SCANDINAVIAN DENTAL CLINICS",
       headline1: "Patient inquiries.",
       headline2: "Handled automatically.",
-      subtext: "Aria is the dental clinic's digital receptionist — she answers calls and chat, books appointments, sends reminders to existing patients, and re-engages website visitors who didn't book. Live in 7 days.",
+      subtext: "Ekspedenten is the dental clinic's digital receptionist — she answers calls and chat, books appointments, sends reminders to existing patients, and re-engages website visitors who didn't book. Live in 7 days.",
       ctaPrimary: "Book a free call",
       ctaSecondary: "See how it works",
-      ctaTryAria: "Try Aria →",
+      ctaTryEkspedenten: "Try Ekspedenten →",
       stats: [
         { value: "🚀", label: "Built for growth" },
         { value: "⚡", label: "Ready in days, not months" },
@@ -36,8 +36,8 @@ export const translations = {
         { icon: "🤖", text: "AI responding",     sub: "24/7 active" },
       ],
       headlineNew: "Your dental clinic's digital receptionist.",
-      subNew: "Aria answers the phone, sends reminders to existing patients, and follows up with website visitors who didn't book. Live in 7 days.",
-      trustLine: "3-month minimum · 14-day money-back guarantee",
+      subNew: "Ekspedenten answers the phone, sends reminders to existing patients, and follows up with website visitors who didn't book. Live in 7 days.",
+      trustLine: "3-month minimum · 60-day ROI guarantee",
     },
     problem: {
       eyebrow: "THE PROBLEM",
@@ -63,7 +63,7 @@ export const translations = {
     },
     solution: {
       eyebrow: "THE SOLUTION",
-      headline: "Meet Aria — your clinic's digital receptionist.",
+      headline: "Meet Ekspedenten — your clinic's digital receptionist.",
       headline1: "Zero missed inquiries.",
       headline2: "Zero lost patients.",
       subtitle: "Responds in your business's tone, qualifies leads automatically — with full visibility into everything.",
@@ -71,7 +71,7 @@ export const translations = {
         {
           label: "AI Receptionist",
           title: "Your patients get answers in seconds. Not hours.",
-          desc: "Aria answers incoming calls and web chat in your clinic's tone — checks availability, books appointments and confirms with the patient. Your team only steps in when needed.",
+          desc: "Ekspedenten answers incoming calls and web chat in your clinic's tone — checks availability, books appointments and confirms with the patient. Your team only steps in when needed.",
           features: ["Responds within 2 seconds", "Handles phone and web chat", "Books directly into the calendar", "Sends SMS confirmation", "Transfers to you when needed"],
         },
         {
@@ -160,7 +160,7 @@ export const translations = {
       headline: "Ready to let AI do the work?",
       subtitle: "Book a no-obligation call. We'll show you exactly what we can build for your business — and you decide if it's worth it.",
       cta: "Book a free call",
-      trustLine: "3-month minimum · 14-day money-back guarantee · Response within 4 hours",
+      trustLine: "3-month minimum · 60-day ROI guarantee · Response within 4 hours",
     },
     ticker: [
       "AI Chatbot", "Booking Automation", "CRM System", "Lead Capture",
@@ -184,7 +184,7 @@ export const translations = {
         {
           num: "03",
           title: "You launch and we iterate",
-          desc: "Go live with a 14-day free trial. If you're not satisfied, you get a full refund — no questions asked.",
+          desc: "Go live with our 60-day ROI guarantee. If Ekspedenten doesn't deliver measurable ROI within 60 days, we refund the monthly subscription.",
         },
       ],
     },
@@ -238,7 +238,7 @@ export const translations = {
       foundingPrice: "Founding price",
       setupFee: "kr 10,000 one-time setup",
       setupFeeCustom: "Setup fee by agreement",
-      bottomNote: "All plans include onboarding support · 14-day money-back guarantee · ",
+      bottomNote: "All plans include onboarding support · 60-day ROI guarantee · ",
       customBundles: "Custom bundles available",
       priceCustom: "Custom quote for every project",
       plans: [
@@ -281,7 +281,7 @@ export const translations = {
         title1: "Questions clinics ask",
         titleEm: "before they sign",
         titleEnd: ".",
-        subtitle: "Honest answers to everything we get asked, from GDPR to pricing to how Aria actually handles an emergency call.",
+        subtitle: "Honest answers to everything we get asked, from GDPR to pricing to how Ekspedenten actually handles an emergency call.",
       },
       tabs: {
         sikkerhet: "Security & GDPR",
@@ -303,12 +303,12 @@ export const translations = {
               a: "All patient data is processed within the EU. CRM data (conversations, bookings, contacts) is stored in Frankfurt via Supabase. Voice AI runs on Azure in Sweden Central. Both regions are inside the EU and covered by GDPR.\n\n**No patient data leaves the EU.** A Data Processing Agreement (DPA) is available as standard.",
             },
             {
-              q: "Does Aria ask about symptoms or health information?",
-              a: "No. Aria is intentionally designed **not** to collect detailed health information. She only asks about service category (cleaning, check-up, urgent) and suggests booking.\n\nIf the patient voluntarily mentions symptoms, Aria offers brief empathy and suggests an urgent appointment without asking for more details. Health information and anamnesis are taken up by the dentist at the clinic, where they belong.",
+              q: "Does Ekspedenten ask about symptoms or health information?",
+              a: "No. Ekspedenten is intentionally designed **not** to collect detailed health information. She only asks about service category (cleaning, check-up, urgent) and suggests booking.\n\nIf the patient voluntarily mentions symptoms, Ekspedenten offers brief empathy and suggests an urgent appointment without asking for more details. Health information and anamnesis are taken up by the dentist at the clinic, where they belong.",
             },
             {
               q: "Are you GDPR-compliant?",
-              a: "Yes. The full stack is GDPR-compliant from day one:\n\n• Data stored in the EU (Frankfurt and Sweden Central)\n• Aria does not ask about special categories (health data)\n• DPA available for all clinics\n• Clear policies for deletion and access\n• We plan to apply for the Datatilsynet sandbox before our 5th customer",
+              a: "Yes. The full stack is GDPR-compliant from day one:\n\n• Data stored in the EU (Frankfurt and Sweden Central)\n• Ekspedenten does not ask about special categories (health data)\n• DPA available for all clinics\n• Clear policies for deletion and access\n• We plan to apply for the Datatilsynet sandbox before our 5th customer",
             },
             {
               q: "What happens to the conversations? Are they stored?",
@@ -329,23 +329,23 @@ export const translations = {
           questions: [
             {
               q: "How long does implementation take?",
-              a: "Live in 7 days. Onboarding has 3 steps:\n\n1. **Connect** (Days 1–2): We connect to your calendar and email system.\n2. **Train** (Days 3–5): Aria reads your services, prices, and opening hours, and builds the knowledge base automatically.\n3. **Test and live** (Days 6–7): Pilot calls with the team before we go live for real patients.",
+              a: "Live in 7 days. Onboarding has 3 steps:\n\n1. **Connect** (Days 1–2): We connect to your calendar and email system.\n2. **Train** (Days 3–5): Ekspedenten reads your services, prices, and opening hours, and builds the knowledge base automatically.\n3. **Test and live** (Days 6–7): Pilot calls with the team before we go live for real patients.",
             },
             {
-              q: "Do we need to train Aria ourselves?",
-              a: "No. We do the entire onboarding for you. Aria reads existing emails, FAQs, and documents, and builds the knowledge base automatically. You can adjust rules or fill in knowledge gaps any time after you go live.",
+              q: "Do we need to train Ekspedenten ourselves?",
+              a: "No. We do the entire onboarding for you. Ekspedenten reads existing emails, FAQs, and documents, and builds the knowledge base automatically. You can adjust rules or fill in knowledge gaps any time after you go live.",
             },
             {
-              q: "Does Aria integrate with our practice management system?",
+              q: "Does Ekspedenten integrate with our practice management system?",
               a: "Yes. We integrate with the largest Nordic practice management systems: **Opus, Anita, and Muntra**. Other systems can be adapted on request. Contact us for specific setup.",
             },
             {
               q: "What about our existing phone number?",
-              a: "You can keep it. We either forward incoming calls to Aria, or give you a new +47 number that forwards directly. Both work. You choose what fits best.",
+              a: "You can keep it. We either forward incoming calls to Ekspedenten, or give you a new +47 number that forwards directly. Both work. You choose what fits best.",
             },
             {
-              q: "Can we pause Aria temporarily?",
-              a: "Yes. You can switch Aria on and off from the dashboard, for example when the reception is extra staffed, or for special days. Toggling takes one click.",
+              q: "Can we pause Ekspedenten temporarily?",
+              a: "Yes. You can switch Ekspedenten on and off from the dashboard, for example when the reception is extra staffed, or for special days. Toggling takes one click.",
             },
           ],
         },
@@ -366,7 +366,7 @@ export const translations = {
             },
             {
               q: "Is there a binding period?",
-              a: "No. Monthly cancellation. We offer a 14-day free trial first, and a 60-day ROI guarantee after that. If Ekspedenten doesn't deliver measurable value in months 1 and 2, we refund.",
+              a: "No. Monthly cancellation. We offer a 60-day ROI guarantee. If Ekspedenten doesn't deliver measurable ROI within the first 60 days, we refund the monthly subscription.",
             },
             {
               q: "What is the ROI guarantee?",
@@ -374,7 +374,7 @@ export const translations = {
             },
             {
               q: "Can multiple clinics share one solution?",
-              a: "Yes. If you own a chain with multiple clinics you get a multi-clinic discount. Each clinic has its own Aria with its own services, prices, and opening hours, but all data and analytics gather in one dashboard.",
+              a: "Yes. If you own a chain with multiple clinics you get a multi-clinic discount. Each clinic has its own Ekspedenten with its own services, prices, and opening hours, but all data and analytics gather in one dashboard.",
             },
           ],
         },
@@ -387,23 +387,23 @@ export const translations = {
           questions: [
             {
               q: "Does the patient know they're talking to an AI?",
-              a: "Yes. Aria always introduces herself clearly as an AI receptionist when she answers the phone. We believe trust comes from openness, not from pretending the technology is something it isn't.",
+              a: "Yes. Ekspedenten always introduces herself clearly as an AI receptionist when she answers the phone. We believe trust comes from openness, not from pretending the technology is something it isn't.",
             },
             {
               q: "What if the patient doesn't want to talk to AI?",
-              a: "Aria automatically transfers to the human behind if the patient asks, or if the conversation requires human judgment. She works with the team, not instead of it.",
+              a: "Ekspedenten automatically transfers to the human behind if the patient asks, or if the conversation requires human judgment. She works with the team, not instead of it.",
             },
             {
               q: "What about elderly patients who aren't technical?",
-              a: "Aria speaks clear Norwegian, in natural pace, with a warm voice. Most elderly people don't experience that she's \"different\" from a human receptionist. Patients who struggle are transferred immediately to the clinic when Aria notices.",
+              a: "Ekspedenten speaks clear Norwegian, in natural pace, with a warm voice. Most elderly people don't experience that she's \"different\" from a human receptionist. Patients who struggle are transferred immediately to the clinic when Ekspedenten notices.",
             },
             {
-              q: "Does Aria send SMS confirmation?",
-              a: "Yes. After each booking Aria automatically sends SMS with booking details and a link to confirm. She also sends reminders before the appointment, multi-touch (1 week / 1 day / 2 hours before) to reduce no-shows.",
+              q: "Does Ekspedenten send SMS confirmation?",
+              a: "Yes. After each booking Ekspedenten automatically sends SMS with booking details and a link to confirm. She also sends reminders before the appointment, multi-touch (1 week / 1 day / 2 hours before) to reduce no-shows.",
             },
             {
-              q: "Can Aria handle complaints or urgent cases?",
-              a: "For complaints: Aria takes the complaint empathetically, logs it, and promises that the clinic will call back shortly. She does not try to resolve it herself.\n\nFor urgent cases: Aria prioritizes an urgent appointment immediately if the patient describes pain or emergency, and flags the clinic about a case requiring follow-up.",
+              q: "Can Ekspedenten handle complaints or urgent cases?",
+              a: "For complaints: Ekspedenten takes the complaint empathetically, logs it, and promises that the clinic will call back shortly. She does not try to resolve it herself.\n\nFor urgent cases: Ekspedenten prioritizes an urgent appointment immediately if the patient describes pain or emergency, and flags the clinic about a case requiring follow-up.",
             },
           ],
         },
@@ -416,19 +416,19 @@ export const translations = {
           questions: [
             {
               q: "What technology do you use?",
-              a: "Aria is built on LiveKit (voice AI), Azure OpenAI (Sweden Central) for the language model, and Azure Cognitive Services for Norwegian speech (nb-NO Pernille). All EU-hosted, GDPR-safe.",
+              a: "Ekspedenten is built on LiveKit (voice AI), Azure OpenAI (Sweden Central) for the language model, and Azure Cognitive Services for Norwegian speech (nb-NO Pernille). All EU-hosted, GDPR-safe.",
             },
             {
-              q: "What if Aria makes a mistake?",
-              a: "We monitor all conversations in real time. If Aria misses (books wrong time, forgets info), it's flagged automatically and one of us looks at it the same day. You get notified and refunded if it causes real losses.",
+              q: "What if Ekspedenten makes a mistake?",
+              a: "We monitor all conversations in real time. If Ekspedenten misses (books wrong time, forgets info), it's flagged automatically and one of us looks at it the same day. You get notified and refunded if it causes real losses.",
             },
             {
-              q: "Can we customize what Aria says?",
-              a: "Yes. The clinic's own tone, phrasing, and priorities are fed into Aria during onboarding. You can also adjust over time via the dashboard. Change what she says in urgent cases, which questions she prioritizes, and so on.",
+              q: "Can we customize what Ekspedenten says?",
+              a: "Yes. The clinic's own tone, phrasing, and priorities are fed into Ekspedenten during onboarding. You can also adjust over time via the dashboard. Change what she says in urgent cases, which questions she prioritizes, and so on.",
             },
             {
               q: "What if the network or system is down?",
-              a: "We have a 99.9% uptime guarantee. If Aria is down, calls are automatically forwarded to the clinic's main number or a backup. You never lose a call because our technology fails.",
+              a: "We have a 99.9% uptime guarantee. If Ekspedenten is down, calls are automatically forwarded to the clinic's main number or a backup. You never lose a call because our technology fails.",
             },
           ],
         },
@@ -495,7 +495,7 @@ export const translations = {
       },
     },
     chat: {
-      welcome: "Hey! I'm Aria, Ekspedenten's assistant 👋\n\nI can tell you about our services and pricing, or help you figure out which solution fits your business best.\n\nWhat can I help you with?",
+      welcome: "Hey! I'm Ekspedenten, the digital assistant on this site 👋\n\nI can tell you about our services and pricing, or help you figure out which solution fits your business best.\n\nWhat can I help you with?",
       quickReplies: ["What services do you offer?", "How much does it cost?", "How fast can we get started?"],
       placeholder: "Ask me anything...",
       poweredBy: "Powered by Ekspedenten · responses may vary",
@@ -512,21 +512,21 @@ export const translations = {
       priceCustom: "Custom quote for every project",
       getStarted: "Book a free call",
       bookCall: "Book a free call",
-      bottomNote: "All plans include onboarding support · 14-day money-back guarantee",
+      bottomNote: "All plans include onboarding support · 60-day ROI guarantee",
       urgencyBarPrefix: "Only ",
       urgencyBarSuffix: " founding-client spots available. Prices revert to standard pricing once filled.",
       heroEyebrow: "PRICING",
       heroHeadline1: "Simple pricing.",
       heroHeadline2: "Real value.",
       heroSubtitle: "No hidden costs. No long contracts. Just AI systems that pay for themselves — or your money back.",
-      trustItems: ["14-day trial", "Money-back guarantee", "Live in 7 days"],
+      trustItems: ["60-day ROI guarantee", "Money-back guarantee", "Live in 7 days"],
       foundingBadge: "Founding price",
       planNames: ["AI Receptionist", "Lead Follow-up", "Full Package"],
       planTaglines: ["Your always-on AI receptionist", "Automatic lead follow-up", "Everything in one package"],
       guarantee: {
         items: [
-          { title: "14-day trial", desc: "Try the full system for free with no commitment" },
-          { title: "Money-back guarantee", desc: "Not satisfied within 14 days? Full refund, no questions asked" },
+          { title: "60-day ROI guarantee", desc: "If Ekspedenten doesn't deliver measurable ROI within 60 days, we refund the monthly subscription." },
+          { title: "Money-back guarantee", desc: "Refund of the monthly subscription if we miss the 60-day ROI target. No questions, no friction." },
           { title: "Live in 7 days", desc: "From signing to production — or you don't pay" },
           { title: "GDPR compliant", desc: "All data processed in accordance with GDPR. You own your data." },
         ],
@@ -619,7 +619,7 @@ export const translations = {
         headline: "Ready for a conversation?",
         subtitle: "Let's find out if AI can add measurable value to your business — no pitch, no pressure.",
         button: "Book a free call →",
-        trustLine: "No commitment · 14-day money-back guarantee · Response within 4 hours",
+        trustLine: "No commitment · 60-day ROI guarantee · Response within 4 hours",
       },
     },
     calculator: {
@@ -661,7 +661,7 @@ export const translations = {
       intro: "We are currently updating our privacy policy in connection with our rebrand from SmartcoreAI to Ekspedenten. A complete version will be available shortly.",
       processorsHeadline: "Data processors we use",
       processors: [
-        { name: "Anthropic", desc: "Powers the Aria AI assistant. Conversation data may be processed on Anthropic's servers." },
+        { name: "Anthropic", desc: "Powers the Ekspedenten AI assistant. Conversation data may be processed on Anthropic's servers." },
         { name: "Resend", desc: "Sends transactional emails (contact form confirmations, notifications)." },
         { name: "Calendly", desc: "Used for meeting booking via an external link. Users are redirected to Calendly's own site and are subject to Calendly's privacy policy." },
         { name: "Vercel", desc: "Hosts the website and API. Data is processed in their secure infrastructure." },
@@ -725,10 +725,10 @@ export const translations = {
       tag: "FOR SKANDINAVISKE TANNKLINIKKER",
       headline1: "Pasienthenvendelser.",
       headline2: "Håndtert automatisk.",
-      subtext: "Aria er tannklinikkens digitale ekspedient — hun svarer anrop og chat, booker timer, sender påminnelser til eksisterende pasienter og henter tilbake nettbesøkende som ikke bookte. Live på 7 dager.",
+      subtext: "Ekspedenten er tannklinikkens digitale ekspedient — hun svarer anrop og chat, booker timer, sender påminnelser til eksisterende pasienter og henter tilbake nettbesøkende som ikke bookte. Live på 7 dager.",
       ctaPrimary: "Book gratis samtale",
       ctaSecondary: "Se hvordan det fungerer",
-      ctaTryAria: "Prøv Aria →",
+      ctaTryEkspedenten: "Prøv Ekspedenten →",
       stats: [
         { value: "🚀", label: "Bygget for vekst" },
         { value: "⚡", label: "Klar på dager, ikke måneder" },
@@ -741,8 +741,8 @@ export const translations = {
         { icon: "🤖", text: "AI svarer",          sub: "24/7 aktiv" },
       ],
       headlineNew: "Tannklinikkens digitale ekspedient.",
-      subNew: "Aria tar telefonen, sender påminnelser til eksisterende pasienter, og følger opp nettbesøkende som ikke booket. Live på 7 dager.",
-      trustLine: "3 måneders minimumsperiode · 14 dagers pengene-tilbake-garanti",
+      subNew: "Ekspedenten tar telefonen, sender påminnelser til eksisterende pasienter, og følger opp nettbesøkende som ikke booket. Live på 7 dager.",
+      trustLine: "3 måneders minimumsperiode · 60 dagers ROI-garanti",
     },
     problem: {
       eyebrow: "PROBLEMET",
@@ -768,7 +768,7 @@ export const translations = {
     },
     solution: {
       eyebrow: "LØSNINGEN",
-      headline: "Møt Aria — klinikkens digitale ekspedient.",
+      headline: "Møt Ekspedenten — klinikkens digitale ekspedient.",
       headline1: "Null tapte henvendelser.",
       headline2: "Null tapte pasienter.",
       subtitle: "Svarer i din bedrifts tone, kvalifiserer leads automatisk — med full oversikt over alt som skjer.",
@@ -776,7 +776,7 @@ export const translations = {
         {
           label: "AI-resepsjonist",
           title: "Pasientene dine får svar på sekunder. Ikke timer.",
-          desc: "Aria svarer innkommende samtaler og chat i klinikkens tone — sjekker tilgjengelighet, booker timer og bekrefter med pasienten. Teamet ditt trår bare inn når det trengs.",
+          desc: "Ekspedenten svarer innkommende samtaler og chat i klinikkens tone — sjekker tilgjengelighet, booker timer og bekrefter med pasienten. Teamet ditt trår bare inn når det trengs.",
           features: ["Svarer innen 2 sekunder", "Håndterer telefon og web-chat", "Booker direkte i kalenderen", "Sender bekreftelse på SMS", "Overfører til deg ved behov"],
         },
         {
@@ -865,7 +865,7 @@ export const translations = {
       headline: "Klar til å la AI gjøre jobben?",
       subtitle: "Book en uforpliktende samtale. Vi viser deg nøyaktig hva vi kan bygge for din bedrift — og du bestemmer om det er verdt det.",
       cta: "Book en gratis samtale",
-      trustLine: "3 måneders minimumsperiode · 14 dagers pengene-tilbake-garanti · Svar innen 4 timer",
+      trustLine: "3 måneders minimumsperiode · 60 dagers ROI-garanti · Svar innen 4 timer",
     },
     ticker: [
       "AI-chatbot", "Bookingautomatisering", "CRM-system", "Leadfangst",
@@ -889,7 +889,7 @@ export const translations = {
         {
           num: "03",
           title: "Du lanserer og vi forbedrer",
-          desc: "Gå live med 14 dagers gratis prøveperiode. Ikke fornøyd? Full refusjon — ingen spørsmål stilt.",
+          desc: "Gå live med 60 dagers ROI-garanti. Hvis Ekspedenten ikke leverer målbar ROI innen 60 dager, refunderer vi månedsabonnementet.",
         },
       ],
     },
@@ -943,7 +943,7 @@ export const translations = {
       foundingPrice: "Lanseringspris",
       setupFee: "kr 10 000 engangsoppsett",
       setupFeeCustom: "Oppsettgebyr avtales",
-      bottomNote: "Alle planer inkluderer onboarding-støtte · 14-dagers pengene-tilbake-garanti · ",
+      bottomNote: "Alle planer inkluderer onboarding-støtte · 60 dagers ROI-garanti · ",
       customBundles: "Tilpassede pakker tilgjengelig",
       priceCustom: "Skreddersydd pris for hvert prosjekt",
       plans: [
@@ -986,7 +986,7 @@ export const translations = {
         title1: "Spørsmål klinikker stiller",
         titleEm: "før de signerer",
         titleEnd: ".",
-        subtitle: "Ærlige svar på alt vi får spørsmål om, fra GDPR til pris til hvordan Ária faktisk håndterer en akutt-samtale.",
+        subtitle: "Ærlige svar på alt vi får spørsmål om, fra GDPR til pris til hvordan Ekspedenten faktisk håndterer en akutt-samtale.",
       },
       tabs: {
         sikkerhet: "Sikkerhet & GDPR",
@@ -1008,12 +1008,12 @@ export const translations = {
               a: "All pasientdata behandles innenfor EU. CRM-data (samtaler, bookinger, kontaktinfo) lagres i Frankfurt via Supabase. Voice-AI kjører på Azure i Sweden Central. Begge regionene er innenfor EU og dekkes av GDPR.\n\n**Ingen pasientdata forlater EU.** Databehandleravtale (DPA) er tilgjengelig som standard.",
             },
             {
-              q: "Spør Ária om symptomer eller helseopplysninger?",
-              a: "Nei. Ária er bevisst designet for å **ikke** samle inn detaljerte helseopplysninger. Hun spør kun om tjeneste-kategori (tannrens, kontroll, akutt) og foreslår booking.\n\nHvis pasienten frivillig nevner symptomer, gir Ária kort empati og foreslår akutt-time uten å spørre om mer detaljer. Helseopplysninger og anamnese tas opp av tannlegen på klinikken, der de hører hjemme.",
+              q: "Spør Ekspedenten om symptomer eller helseopplysninger?",
+              a: "Nei. Ekspedenten er bevisst designet for å **ikke** samle inn detaljerte helseopplysninger. Hun spør kun om tjeneste-kategori (tannrens, kontroll, akutt) og foreslår booking.\n\nHvis pasienten frivillig nevner symptomer, gir Ekspedenten kort empati og foreslår akutt-time uten å spørre om mer detaljer. Helseopplysninger og anamnese tas opp av tannlegen på klinikken, der de hører hjemme.",
             },
             {
               q: "Er dere GDPR-compliant?",
-              a: "Ja. Hele stacken er GDPR-compliant fra dag én:\n\n• Data lagret i EU (Frankfurt og Sweden Central)\n• Aria spør ikke om særlige kategorier (helsedata)\n• DPA tilgjengelig for alle klinikker\n• Klare retningslinjer for sletting og tilgang\n• Vi planlegger Datatilsynet sandkasse-søknad før kunde 5",
+              a: "Ja. Hele stacken er GDPR-compliant fra dag én:\n\n• Data lagret i EU (Frankfurt og Sweden Central)\n• Ekspedenten spør ikke om særlige kategorier (helsedata)\n• DPA tilgjengelig for alle klinikker\n• Klare retningslinjer for sletting og tilgang\n• Vi planlegger Datatilsynet sandkasse-søknad før kunde 5",
             },
             {
               q: "Hva skjer med samtalene? Lagres de?",
@@ -1034,23 +1034,23 @@ export const translations = {
           questions: [
             {
               q: "Hvor lang tid tar implementering?",
-              a: "Live på 7 dager. Onboardingen består av 3 steg:\n\n1. **Kobling** (Dag 1–2): Vi kobler til kalenderen og e-postsystemet ditt.\n2. **Opplæring** (Dag 3–5): Ária leser klinikkens egne tjenester, priser og åpningstider, og bygger kunnskapsbasen automatisk.\n3. **Test og live** (Dag 6–7): Pilot-samtaler med teamet før vi går live for ekte pasienter.",
+              a: "Live på 7 dager. Onboardingen består av 3 steg:\n\n1. **Kobling** (Dag 1–2): Vi kobler til kalenderen og e-postsystemet ditt.\n2. **Opplæring** (Dag 3–5): Ekspedenten leser klinikkens egne tjenester, priser og åpningstider, og bygger kunnskapsbasen automatisk.\n3. **Test og live** (Dag 6–7): Pilot-samtaler med teamet før vi går live for ekte pasienter.",
             },
             {
-              q: "Trenger vi å lære opp Ária selv?",
-              a: "Nei. Vi gjør hele onboardingen for dere. Ária leser eksisterende e-poster, FAQ og dokumenter, og bygger kunnskapsbasen automatisk. Dere kan justere regler eller fylle inn hull i kunnskap når som helst etter at dere er live.",
+              q: "Trenger vi å lære opp Ekspedenten selv?",
+              a: "Nei. Vi gjør hele onboardingen for dere. Ekspedenten leser eksisterende e-poster, FAQ og dokumenter, og bygger kunnskapsbasen automatisk. Dere kan justere regler eller fylle inn hull i kunnskap når som helst etter at dere er live.",
             },
             {
-              q: "Integrerer Ária med vårt journalsystem?",
+              q: "Integrerer Ekspedenten med vårt journalsystem?",
               a: "Ja. Vi integrerer mot de største nordiske journalsystemene: **Opus, Anita og Muntra**. Andre systemer kan tilpasses etter behov. Kontakt oss for spesifikt oppsett.",
             },
             {
               q: "Hva med vårt eksisterende telefonnummer?",
-              a: "Du kan beholde det. Vi enten viderekobler innkommende anrop til Ária, eller gir dere et nytt +47-nummer som videresender direkte. Begge løsninger fungerer. Du velger hva som passer best.",
+              a: "Du kan beholde det. Vi enten viderekobler innkommende anrop til Ekspedenten, eller gir dere et nytt +47-nummer som videresender direkte. Begge løsninger fungerer. Du velger hva som passer best.",
             },
             {
-              q: "Kan vi pause Ária midlertidig?",
-              a: "Ja. Du kan slå Ária av og på fra dashbordet, for eksempel når resepsjonen er ekstra bemannet, eller hvis dere har spesielle dager. Tilbakestilling tar ett klikk.",
+              q: "Kan vi pause Ekspedenten midlertidig?",
+              a: "Ja. Du kan slå Ekspedenten av og på fra dashbordet, for eksempel når resepsjonen er ekstra bemannet, eller hvis dere har spesielle dager. Tilbakestilling tar ett klikk.",
             },
           ],
         },
@@ -1071,7 +1071,7 @@ export const translations = {
             },
             {
               q: "Er det bindingstid?",
-              a: "Nei. Månedsoppsigelse. Vi gir 14 dagers gratis prøve først, og 60 dagers ROI-garanti etter det. Hvis Ekspedenten ikke leverer målbar verdi i månedene 1 og 2, refunderer vi.",
+              a: "Nei. Månedsoppsigelse. Vi gir 60 dagers ROI-garanti. Hvis Ekspedenten ikke leverer målbar ROI innen de første 60 dagene, refunderer vi månedsabonnementet.",
             },
             {
               q: "Hva er ROI-garantien?",
@@ -1079,7 +1079,7 @@ export const translations = {
             },
             {
               q: "Kan flere klinikker dele én løsning?",
-              a: "Ja. Hvis du eier en kjede med flere klinikker får du multi-klinikk-rabatt. Hver klinikk har sin egen Ária med sine egne tjenester, priser og åpningstider, men alle data og analytics samles i ett dashboard.",
+              a: "Ja. Hvis du eier en kjede med flere klinikker får du multi-klinikk-rabatt. Hver klinikk har sin egen Ekspedenten med sine egne tjenester, priser og åpningstider, men alle data og analytics samles i ett dashboard.",
             },
           ],
         },
@@ -1092,23 +1092,23 @@ export const translations = {
           questions: [
             {
               q: "Vet pasienten at de snakker med en AI?",
-              a: "Ja. Ária presenterer seg alltid tydelig som AI-resepsjonist når hun tar telefonen. Vi tror tillit kommer fra åpenhet, ikke fra å late som teknologien er noe den ikke er.",
+              a: "Ja. Ekspedenten presenterer seg alltid tydelig som AI-resepsjonist når hun tar telefonen. Vi tror tillit kommer fra åpenhet, ikke fra å late som teknologien er noe den ikke er.",
             },
             {
               q: "Hva hvis pasienten ikke vil snakke med AI?",
-              a: "Ária overfører automatisk til mennesket bak hvis pasienten ber om det, eller hvis samtalen krever menneskelig vurdering. Hun jobber med teamet, ikke i stedet for det.",
+              a: "Ekspedenten overfører automatisk til mennesket bak hvis pasienten ber om det, eller hvis samtalen krever menneskelig vurdering. Hun jobber med teamet, ikke i stedet for det.",
             },
             {
               q: "Hva med eldre pasienter som ikke er teknisk?",
-              a: "Ária snakker tydelig norsk, i naturlig tempo, med varm stemme. De fleste eldre opplever ikke at hun er \"annerledes\" enn en menneskelig resepsjonist. Pasienter som strever overføres umiddelbart til klinikken når Ária merker det.",
+              a: "Ekspedenten snakker tydelig norsk, i naturlig tempo, med varm stemme. De fleste eldre opplever ikke at hun er \"annerledes\" enn en menneskelig resepsjonist. Pasienter som strever overføres umiddelbart til klinikken når Ekspedenten merker det.",
             },
             {
-              q: "Sender Ária SMS-bekreftelse?",
-              a: "Ja. Etter hver booking sender Ária automatisk SMS med booking-detaljer og lenke til å bekrefte. Hun sender også påminnelser før timen, multi-touch (1 uke / 1 dag / 2 timer før) for å redusere no-shows.",
+              q: "Sender Ekspedenten SMS-bekreftelse?",
+              a: "Ja. Etter hver booking sender Ekspedenten automatisk SMS med booking-detaljer og lenke til å bekrefte. Hun sender også påminnelser før timen, multi-touch (1 uke / 1 dag / 2 timer før) for å redusere no-shows.",
             },
             {
-              q: "Kan Ária håndtere klager eller akutte saker?",
-              a: "For klager: Ária tar imot klagen empatisk, logger den, og lover at klinikken ringer tilbake innen kort tid. Hun forsøker ikke å løse selv.\n\nFor akutt-saker: Ária prioriterer akutt-time umiddelbart hvis pasienten beskriver smerte eller nødssituasjon, og sender klinikken et flagg om sak som krever oppfølging.",
+              q: "Kan Ekspedenten håndtere klager eller akutte saker?",
+              a: "For klager: Ekspedenten tar imot klagen empatisk, logger den, og lover at klinikken ringer tilbake innen kort tid. Hun forsøker ikke å løse selv.\n\nFor akutt-saker: Ekspedenten prioriterer akutt-time umiddelbart hvis pasienten beskriver smerte eller nødssituasjon, og sender klinikken et flagg om sak som krever oppfølging.",
             },
           ],
         },
@@ -1121,19 +1121,19 @@ export const translations = {
           questions: [
             {
               q: "Hva slags teknologi bruker dere?",
-              a: "Ária er bygget på LiveKit (voice AI), Azure OpenAI (Sweden Central) for språkmodellen, og Azure Cognitive Services for norsk tale (nb-NO Pernille). Alt EU-hosted, GDPR-trygt.",
+              a: "Ekspedenten er bygget på LiveKit (voice AI), Azure OpenAI (Sweden Central) for språkmodellen, og Azure Cognitive Services for norsk tale (nb-NO Pernille). Alt EU-hosted, GDPR-trygt.",
             },
             {
-              q: "Hva hvis Ária gjør en feil?",
-              a: "Vi overvåker alle samtaler i sanntid. Hvis Ária bommer (booker feil tid, glemmer info), flagges det automatisk og en av oss ser på det innen samme dag. Dere får varsel og refusjon hvis det forårsaker reelle tap.",
+              q: "Hva hvis Ekspedenten gjør en feil?",
+              a: "Vi overvåker alle samtaler i sanntid. Hvis Ekspedenten bommer (booker feil tid, glemmer info), flagges det automatisk og en av oss ser på det innen samme dag. Dere får varsel og refusjon hvis det forårsaker reelle tap.",
             },
             {
-              q: "Kan vi tilpasse hva Ária sier?",
-              a: "Ja. Klinikkens egen tone, fraseologi og prioriteringer mates inn i Ária under onboarding. Du kan også justere over tid via dashboardet. Endre hva hun sier i akutt-saker, hvilke spørsmål hun prioriterer, og så videre.",
+              q: "Kan vi tilpasse hva Ekspedenten sier?",
+              a: "Ja. Klinikkens egen tone, fraseologi og prioriteringer mates inn i Ekspedenten under onboarding. Du kan også justere over tid via dashboardet. Endre hva hun sier i akutt-saker, hvilke spørsmål hun prioriterer, og så videre.",
             },
             {
               q: "Hva hvis nettet eller systemet er nede?",
-              a: "Vi har 99.9% uptime-garanti. Hvis Ária er nede, viderekobles anropene automatisk til klinikkens hovednummer eller en backup. Du mister aldri en samtale fordi vår teknologi feiler.",
+              a: "Vi har 99.9% uptime-garanti. Hvis Ekspedenten er nede, viderekobles anropene automatisk til klinikkens hovednummer eller en backup. Du mister aldri en samtale fordi vår teknologi feiler.",
             },
           ],
         },
@@ -1200,7 +1200,7 @@ export const translations = {
       },
     },
     chat: {
-      welcome: "Hei! Jeg er Aria, Ekspedenten sin assistent 👋\n\nJeg kan fortelle deg om tjenestene og prisene våre, eller hjelpe deg å finne ut hvilken løsning som passer best for din bedrift.\n\nHva kan jeg hjelpe deg med?",
+      welcome: "Hei! Jeg er Ekspedenten, den digitale assistenten her på nettsiden 👋\n\nJeg kan fortelle deg om tjenestene og prisene våre, eller hjelpe deg å finne ut hvilken løsning som passer best for din bedrift.\n\nHva kan jeg hjelpe deg med?",
       quickReplies: ["Hvilke tjenester tilbyr dere?", "Hva koster det?", "Hvor raskt kan vi starte?"],
       placeholder: "Spør meg om hva som helst...",
       poweredBy: "Drevet av Ekspedenten · svar kan variere",
@@ -1217,21 +1217,21 @@ export const translations = {
       priceCustom: "Skreddersydd pris for hvert prosjekt",
       getStarted: "Book en gratis samtale",
       bookCall: "Book en gratis samtale",
-      bottomNote: "Alle planer inkluderer onboardingstøtte · 14-dagers pengene-tilbake-garanti",
+      bottomNote: "Alle planer inkluderer onboardingstøtte · 60 dagers ROI-garanti",
       urgencyBarPrefix: "Kun ",
       urgencyBarSuffix: " grunnleggerplasser tilgjengelig. Prisene går tilbake til standardpris når fylt.",
       heroEyebrow: "PRISER",
       heroHeadline1: "Enkle priser.",
       heroHeadline2: "Ekte verdi.",
       heroSubtitle: "Ingen skjulte kostnader. Ingen lange kontrakter. Bare AI-systemer som betaler seg selv — eller pengene tilbake.",
-      trustItems: ["14 dagers prøveperiode", "Pengene tilbake-garanti", "Live på 7 dager"],
+      trustItems: ["60 dagers ROI-garanti", "Pengene-tilbake-garanti", "Live på 7 dager"],
       foundingBadge: "Lanseringspris",
       planNames: ["AI Resepsjonist", "Lead-Oppfølger", "Full pakke"],
       planTaglines: ["Din alltid-tilgjengelige AI-resepsjonist", "Automatisk oppfølging av leads", "Alt i én pakke"],
       guarantee: {
         items: [
-          { title: "14 dagers prøveperiode",    desc: "Prøv hele systemet helt gratis uten forpliktelser" },
-          { title: "Pengene tilbake-garanti",   desc: "Ikke fornøyd innen 14 dager? Full refusjon, ingen spørsmål" },
+          { title: "60 dagers ROI-garanti",     desc: "Hvis Ekspedenten ikke leverer målbar ROI innen 60 dager, refunderer vi månedsabonnementet." },
+          { title: "Pengene-tilbake-garanti",   desc: "Refusjon av månedsabonnementet hvis vi ikke når 60-dagers ROI-målet. Ingen spørsmål, ingen friksjon." },
           { title: "Live på 7 dager",           desc: "Fra signering til produksjon — eller du betaler ikke" },
           { title: "GDPR-kompatibel",           desc: "All data behandles i henhold til GDPR. Du eier dataene." },
         ],
@@ -1324,7 +1324,7 @@ export const translations = {
         headline: "Klar for en samtale?",
         subtitle: "La oss finne ut om AI kan tilføre målbar verdi til din bedrift — ingen salgspress.",
         button: "Book en gratis samtale →",
-        trustLine: "3 måneders minimumsperiode · 14 dagers pengene-tilbake-garanti · Svar innen 4 timer",
+        trustLine: "3 måneders minimumsperiode · 60 dagers ROI-garanti · Svar innen 4 timer",
       },
     },
     calculator: {
@@ -1366,7 +1366,7 @@ export const translations = {
       intro: "Vi oppdaterer for tiden vår personvernerklæring i forbindelse med rebrand fra SmartcoreAI til Ekspedenten. Fullstendig versjon kommer innen kort tid.",
       processorsHeadline: "Databehandlere vi bruker",
       processors: [
-        { name: "Anthropic", desc: "Driver AI-assistenten Aria. Samtaledata kan behandles på Anthropics servere." },
+        { name: "Anthropic", desc: "Driver AI-assistenten Ekspedenten. Samtaledata kan behandles på Anthropics servere." },
         { name: "Resend", desc: "Sender transaksjonsbaserte e-poster (kontaktskjemabekreftelser, varsler)." },
         { name: "Calendly", desc: "Brukes til møtebooking via ekstern lenke. Brukere videresendes til Calendlys egen nettside og er underlagt Calendlys personvernregler." },
         { name: "Vercel", desc: "Drifter nettsiden og API-et. Data behandles i deres sikrede infrastruktur." },

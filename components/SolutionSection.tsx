@@ -56,7 +56,7 @@ function CallVisual() {
             background: "rgba(45,122,79,0.08)",
             padding: "3px 9px", borderRadius: 999,
           }}>
-            Aria svarer...
+            Ekspedenten svarer...
           </div>
         </div>
       </div>

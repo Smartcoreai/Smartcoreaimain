@@ -72,7 +72,7 @@ function ChatBubble({ msg }: { msg: typeof CHAT_MSGS[0] }) {
       }}>
         {!isUser && (
           <div style={{ fontSize: 9.5, fontWeight: 700, color: "#b8902e", marginBottom: 3, letterSpacing: "0.02em" }}>
-            Aria ✨
+            Ekspedenten ✨
           </div>
         )}
         {msg.text}
@@ -211,7 +211,7 @@ function PhoneMockup() {
               A
             </div>
             <div>
-              <div style={{ fontSize: 12, fontWeight: 700, color: "#ffffff" }}>Aria — AI Resepsjonist</div>
+              <div style={{ fontSize: 12, fontWeight: 700, color: "#ffffff" }}>Ekspedenten — AI Resepsjonist</div>
               <div style={{ display: "flex", alignItems: "center", gap: 4, marginTop: 2 }}>
                 <div style={{ width: 5, height: 5, borderRadius: "50%", background: "#4ade80", boxShadow: "0 0 4px #4ade80" }} />
                 <span style={{ fontSize: 9.5, color: "#4ade80", fontWeight: 600 }}>Online</span>
@@ -317,7 +317,7 @@ export default function Hero() {
               margin: "0 0 36px",
               maxWidth: 480,
             }}>
-              Aria er tannklinikkens digitale ekspedient — hun svarer anrop og chat, booker timer, sender påminnelser til eksisterende pasienter og henter tilbake nettbesøkende som ikke bookte. Live på 7 dager.
+              Ekspedenten er tannklinikkens digitale ekspedient — hun svarer anrop og chat, booker timer, sender påminnelser til eksisterende pasienter og henter tilbake nettbesøkende som ikke bookte. Live på 7 dager.
             </p>
 
             {/* CTAs */}
@@ -348,7 +348,7 @@ export default function Hero() {
                   el.style.color = "#1a1a2e";
                 }}
               >
-                Prøv Aria selv
+                Prøv Ekspedenten selv
               </a>
             </div>
 
@@ -357,7 +357,7 @@ export default function Hero() {
               fontSize: 13, color: "#8a8a98",
               margin: 0, lineHeight: 1.5,
             }}>
-              Live på 7 dager · 14-dagers pengene-tilbake-garanti · Svar fra oss innen 4 timer
+              Live på 7 dager · 60 dagers ROI-garanti · Svar fra oss innen 4 timer
             </p>
           </div>
 

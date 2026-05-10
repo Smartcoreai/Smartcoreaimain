@@ -12,7 +12,7 @@ export default function HeroSection() {
             Telefonen.<br />Besvart automatisk.
           </h1>
           <p className="lp-lead">
-            Ária svarer pasienter 24/7 på norsk og booker time direkte i kalenderen, mens teamet ditt fokuserer på pasientene som er foran dem.
+            Ekspedenten svarer pasienter 24/7 på norsk og booker time direkte i kalenderen, mens teamet ditt fokuserer på pasientene som er foran dem.
           </p>
           <div className="lp-btn-group">
             <DemoPopup triggerText="Bestill demo" className="lp-btn-primary" />
@@ -65,7 +65,7 @@ export default function HeroSection() {
               <div className="lp-text">"Jeg trenger en tannrens. Har dere noe ledig denne uken?"</div>
             </div>
             <div className="lp-transcript-line aria">
-              <div className="lp-speaker">Ária</div>
+              <div className="lp-speaker">Ekspedenten</div>
               <div className="lp-text">"Selvsagt. Vi har ledig torsdag formiddag klokka ti, eller fredag ettermiddag klokka to. Hva passer best?"</div>
             </div>
             <div className="lp-transcript-line patient">

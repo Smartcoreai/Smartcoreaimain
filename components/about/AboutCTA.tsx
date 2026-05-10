@@ -12,7 +12,7 @@ export default function AboutCTA() {
           <em>en av de første</em>?
         </h2>
         <p>
-          Founding-pris for første 5 klinikker. 14 dagers gratis prøve. Live på 7 dager.
+          Founding-pris for første 5 klinikker. Live på 7 dager. 60 dagers ROI-garanti.
         </p>
         <div className="ab-cta-row">
           <DemoPopup triggerText="Bestill demo" className="lp-btn-primary" />
@@ -21,7 +21,7 @@ export default function AboutCTA() {
           </Link>
         </div>
         <p className="ab-cta-trust">
-          14 dagers pengene-tilbake-garanti · Svar innen 4 timer
+          60 dagers ROI-garanti · Svar innen 4 timer
         </p>
       </div>
     </section>

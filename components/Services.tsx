@@ -15,7 +15,7 @@ function AriaChatTeaser() {
           <Bot size={16} color="#D4AF37" />
         </div>
         <div>
-          <div style={{ fontSize: 13, fontWeight: 600, color: "#F5F0E8" }}>{isNo ? "Aria — AI-assistent" : "Aria — AI Assistant"}</div>
+          <div style={{ fontSize: 13, fontWeight: 600, color: "#F5F0E8" }}>{isNo ? "Ekspedenten — AI-assistent" : "Ekspedenten — AI Assistant"}</div>
           <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
             <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#4ade80" }} />
             <span style={{ fontSize: 11, color: "rgba(255,255,255,0.6)" }}>{isNo ? "Online · svarer umiddelbart" : "Online · replying instantly"}</span>
@@ -29,12 +29,12 @@ function AriaChatTeaser() {
         </div>
         <div>
           <div style={{ fontSize: 15, fontWeight: 600, color: "#F5F0E8", marginBottom: 8 }}>
-            {isNo ? "Prøv Aria live" : "Try Aria live"}
+            {isNo ? "Prøv Ekspedenten live" : "Try Ekspedenten live"}
           </div>
           <div style={{ fontSize: 13, color: "#8A8070", lineHeight: 1.6 }}>
             {isNo
-              ? "Aria er vår ekte AI-assistent. Still henne et spørsmål og se selv hvordan den fungerer."
-              : "Aria is our real AI assistant. Ask her a question and see exactly how it works."}
+              ? "Ekspedenten er vår ekte AI-assistent. Still henne et spørsmål og se selv hvordan den fungerer."
+              : "Ekspedenten is our real AI assistant. Ask her a question and see exactly how it works."}
           </div>
         </div>
         <button
@@ -47,7 +47,7 @@ function AriaChatTeaser() {
             border: "none", cursor: "pointer", fontFamily: "inherit",
           }}
         >
-          {isNo ? "Start chat med Aria" : "Chat with Aria"} <ArrowRight size={14} />
+          {isNo ? "Start chat med Ekspedenten" : "Chat with Ekspedenten"} <ArrowRight size={14} />
         </button>
       </div>
     </div>
@@ -111,7 +111,7 @@ function LeadgenDemo() {
 
 /* ─── Voice Agent Demo ─── */
 const TRANSCRIPT = [
-  { role: "ai",   text: "Hello, you've reached Klinikk Sentrum — this is Aria. How can I help you?" },
+  { role: "ai",   text: "Hello, you've reached Klinikk Sentrum — this is Ekspedenten. How can I help you?" },
   { role: "lead", text: "I'd like to book an appointment with the dentist" },
   { role: "ai",   text: "Of course! I've booked you in for Wednesday at 10:00 AM. You'll receive a confirmation by SMS ✅" },
 ];
@@ -120,7 +120,7 @@ function VoiceAgentDemo() {
   const { lang } = useLanguage();
   const [visibleLines, setVisibleLines] = useState(0);
   const transcript = lang === "no" ? [
-    { role: "ai",   text: "Hei, du har ringt til Klinikk Sentrum — dette er Aria. Hvordan kan jeg hjelpe deg?" },
+    { role: "ai",   text: "Hei, du har ringt til Klinikk Sentrum — dette er Ekspedenten. Hvordan kan jeg hjelpe deg?" },
     { role: "lead", text: "Jeg vil bestille en time hos tannlegen" },
     { role: "ai",   text: "Selvfølgelig! Jeg har booket deg inn onsdag kl. 10:00. Du mottar bekreftelse på SMS ✅" },
   ] : TRANSCRIPT;

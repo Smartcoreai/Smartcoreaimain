@@ -162,7 +162,7 @@ export default function ChatWidget() {
             </div>
             <div>
               <div style={{ fontSize: 14, fontWeight: 700, color: "#F5F0E8", display: "flex", alignItems: "center", gap: 6 }}>
-                Aria <Sparkles size={12} color="#D4AF37" />
+                Ekspedenten <Sparkles size={12} color="#D4AF37" />
               </div>
               <div style={{ fontSize: 11, color: "rgba(255,255,255,0.40)" }}>Ekspedenten · Always online</div>
             </div>

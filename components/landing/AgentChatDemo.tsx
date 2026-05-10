@@ -5,7 +5,7 @@ export default function AgentChatDemo() {
         <div className="lp-section-header">
           <span className="lp-pill mint">AI-resepsjonist</span>
           <h2>Pasientene får svar på minutter.<br />Ikke timer.</h2>
-          <p>Ária svarer øyeblikkelig på norsk. Hun sjekker tilgjengelighet, foreslår tider, og sender bekreftelse. Resepsjonen tar kun de samtalene som faktisk trenger menneskelig vurdering.</p>
+          <p>Ekspedenten svarer øyeblikkelig på norsk. Hun sjekker tilgjengelighet, foreslår tider, og sender bekreftelse. Resepsjonen tar kun de samtalene som faktisk trenger menneskelig vurdering.</p>
         </div>
 
         <div className="lp-chat-mockup">
@@ -23,7 +23,7 @@ export default function AgentChatDemo() {
             <span className="lp-booking-confirmed">✓ Akutt-time booket · 15:00</span>
           </div>
           <div className="lp-chat-meta" style={{ justifyContent: "flex-end" }}>
-            <span>Ária · Bergen Tannklinikk · 09:16</span>
+            <span>Ekspedenten · Bergen Tannklinikk · 09:16</span>
           </div>
         </div>
       </div>
