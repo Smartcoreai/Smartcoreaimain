@@ -347,7 +347,7 @@ export default function DiagnosePage() {
                     <form className="calc-panel calc-gate" onSubmit={submitEmail}>
                       <div className="calc-gate-title">Få den fulle diagnosen</div>
                       <p className="calc-gate-body">
-                        Detaljert rapport med fordeling, hvilken kilde har størst potensial, og hva som kreves for å tette hullet. Sendes på e-post.
+                        Detaljert rapport med fordeling, hvilken kilde har størst potensial, og hva som kreves for å fikse lekkasjen. Sendes på e-post.
                       </p>
                       <div className="calc-gate-row">
                         <input
