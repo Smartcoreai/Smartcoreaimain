@@ -404,6 +404,7 @@ export default function DiagnosePage() {
               <div className="calc-panel calc-explanation calc-panel-fill">
                 <div className="calc-panel-label">Hvordan vi regner</div>
 
+                <div className="calc-expl-scroll">
                 <div className="calc-expl-section">
                   <h4>1. Ubesvarte anrop reddet</h4>
                   <div className="calc-formula">
@@ -481,6 +482,7 @@ export default function DiagnosePage() {
                 <p className="calc-expl-note">
                   Eksempel-klinikk for å vise utregningen. Dine faktiske tall sendes på e-post når du trykker «Send meg diagnosen».
                 </p>
+                </div>
               </div>
             </div>
           </div>
@@ -865,6 +867,42 @@ export default function DiagnosePage() {
           font-style: italic; line-height: 1.55; margin: 0;
         }
 
+        /* Desktop only: cap the explanation column so its 5 sections never
+           push the page taller than the input column. Use position: absolute
+           on the panel so the column contributes zero to the grid's row
+           height — the row is then driven by input + result columns.
+           Internal flex: label pinned at top, sections scroll. */
+        .calc-col-explanation {
+          position: relative;
+          min-height: 0;
+        }
+        .calc-col-explanation .calc-explanation {
+          position: absolute;
+          inset: 0;
+          display: flex;
+          flex-direction: column;
+          overflow: hidden;
+        }
+        .calc-col-explanation .calc-panel-label { flex-shrink: 0; }
+        .calc-expl-scroll {
+          flex: 1 1 auto;
+          min-height: 0;
+          overflow-y: auto;
+          padding-right: 8px;
+          margin-right: -4px;
+          scrollbar-width: thin;
+          scrollbar-color: var(--calc-border) transparent;
+        }
+        .calc-expl-scroll::-webkit-scrollbar { width: 6px; }
+        .calc-expl-scroll::-webkit-scrollbar-track { background: transparent; }
+        .calc-expl-scroll::-webkit-scrollbar-thumb {
+          background: var(--calc-border);
+          border-radius: 3px;
+        }
+        .calc-expl-scroll::-webkit-scrollbar-thumb:hover {
+          background: var(--calc-ink-tertiary);
+        }
+
         /* Tablet: 2-col with explanation below */
         @media (max-width: 1100px) {
           .calc-layout {
@@ -876,6 +914,20 @@ export default function DiagnosePage() {
         @media (max-width: 768px) {
           .calc-layout { grid-template-columns: 1fr; }
           .calc-col-explanation { grid-column: auto; }
+        }
+        /* Below the 3-col view: drop the absolute trick — sections flow
+           naturally and the page can grow with them. */
+        @media (max-width: 1100px) {
+          .calc-col-explanation { position: static; }
+          .calc-col-explanation .calc-explanation {
+            position: static;
+            overflow: visible;
+          }
+          .calc-expl-scroll {
+            overflow-y: visible;
+            padding-right: 0;
+            margin-right: 0;
+          }
         }
         @media (max-width: 640px) {
           .calc-main { padding: 24px 16px 64px; }
