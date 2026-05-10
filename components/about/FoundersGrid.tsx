@@ -26,33 +26,35 @@ export default function FoundersGrid() {
         <div className="ab-section-header">
           <span className="ab-pill mint">Gründerne</span>
           <h2>
-            To i Bergen som så<br />
+            To kamerater som så<br />
             <em>det samme problemet</em>.
           </h2>
         </div>
 
-        <div className="ab-founders-grid">
+        <div className="ab-founders-list">
           {FOUNDERS.map((f, i) => (
             <div
-              className={`ab-founder-card ab-fade-target${i ? " delay-1" : ""}`}
+              className={`ab-founder-row ab-fade-target${i ? " delay-1" : ""}`}
               key={f.email}
             >
               <div className="ab-founder-photo">
                 <img src={f.photo} alt={f.name} />
               </div>
-              <div className="ab-founder-name">{f.name}</div>
-              <div className="ab-founder-role">{f.role}</div>
-              <p className="ab-founder-bio">{f.bio}</p>
-              <div className="ab-founder-links">
-                <a href={`mailto:${f.email}`} className="ab-founder-link">{f.email}</a>
-                <a
-                  href={f.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="ab-founder-link"
-                >
-                  LinkedIn
-                </a>
+              <div className="ab-founder-info">
+                <div className="ab-founder-name">{f.name}</div>
+                <div className="ab-founder-role">{f.role}</div>
+                <p className="ab-founder-bio">{f.bio}</p>
+                <div className="ab-founder-links">
+                  <a href={`mailto:${f.email}`} className="ab-founder-link">{f.email}</a>
+                  <a
+                    href={f.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="ab-founder-link"
+                  >
+                    LinkedIn
+                  </a>
+                </div>
               </div>
             </div>
           ))}

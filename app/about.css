@@ -241,24 +241,47 @@
 }
 
 /* ===== Founders ===== */
-.ab-founders-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
+.ab-founders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
   max-width: 1080px;
   margin: 0 auto;
 }
-.ab-founder-card {
+.ab-founder-row {
+  display: flex;
+  gap: 24px;
+  align-items: stretch;
+}
+.ab-founder-photo {
+  flex: 0 0 320px;
+  min-height: 360px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--lp-bg-card);
+  box-shadow: 0 1px 3px rgba(26, 31, 58, 0.04);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.ab-founder-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.ab-founder-info {
+  flex: 1;
   background: var(--lp-bg-card);
   border: 1px solid var(--lp-border);
-  border-radius: 18px;
+  border-radius: 16px;
   padding: 36px 32px;
   box-shadow: 0 1px 3px rgba(26, 31, 58, 0.04);
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.ab-founder-card::before {
+.ab-founder-info::before {
   content: "";
   position: absolute;
   top: -40px;
@@ -268,28 +291,15 @@
   background: radial-gradient(circle, rgba(184, 168, 232, 0.18) 0%, transparent 70%);
   pointer-events: none;
 }
-.ab-founder-card:nth-child(2)::before {
+.ab-founder-row:nth-child(2) .ab-founder-info::before {
   background: radial-gradient(circle, rgba(245, 196, 168, 0.22) 0%, transparent 70%);
 }
-.ab-founder-card:hover {
+.ab-founder-row:hover .ab-founder-photo,
+.ab-founder-row:hover .ab-founder-info {
   transform: translateY(-2px);
   box-shadow: 0 4px 20px rgba(26, 31, 58, 0.06);
 }
-.ab-founder-card > * { position: relative; }
-.ab-founder-photo {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 14px rgba(201, 162, 74, 0.18);
-}
-.ab-founder-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
+.ab-founder-info > * { position: relative; }
 .ab-founder-name {
   font-size: 22px;
   font-weight: 800;
@@ -316,6 +326,7 @@
   gap: 12px;
   align-items: center;
   flex-wrap: wrap;
+  margin-top: auto;
 }
 .ab-founder-link {
   color: var(--lp-ink);
@@ -505,8 +516,16 @@
   .ab-section { padding: 64px 0; }
   .ab-hero { padding: 56px 0 80px; }
   .ab-stats-row,
-  .ab-values-grid,
-  .ab-founders-grid { grid-template-columns: 1fr; }
+  .ab-values-grid { grid-template-columns: 1fr; }
+  .ab-founder-row { flex-direction: column; gap: 16px; }
+  .ab-founder-photo {
+    flex: none;
+    width: 100%;
+    height: 280px;
+    min-height: 0;
+  }
+  .ab-founder-info { padding: 28px 24px; }
+  .ab-founders-list { gap: 24px; }
   .ab-timeline { padding: 28px 22px; }
   .ab-timeline-row { grid-template-columns: 1fr; gap: 6px; }
 }

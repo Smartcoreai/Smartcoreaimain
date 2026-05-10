@@ -536,18 +536,17 @@ export default function DiagnosePage() {
         }
         .calc-panel.dark .calc-panel-label { color: var(--calc-gold-soft); }
 
-        /* Blur lock — applies to value-bearing elements in the result column */
-        .calc-col-result[data-locked="true"] .calc-total-value,
-        .calc-col-result[data-locked="true"] .calc-amount,
-        .calc-col-result[data-locked="true"] .calc-roi-value {
+        /* Blur lock — only the breakdown amounts (.calc-amount) are gated.
+           Total leak number and the ROI multipliers are always visible: total
+           is the headline shock value, ROI is the value prop. The user must
+           submit email to see WHICH leak source is largest. */
+        .calc-col-result[data-locked="true"] .calc-amount {
           filter: blur(8px);
           user-select: none;
           pointer-events: none;
           transition: filter 0.4s cubic-bezier(0.22, 1, 0.36, 1);
         }
-        .calc-col-result[data-locked="false"] .calc-total-value,
-        .calc-col-result[data-locked="false"] .calc-amount,
-        .calc-col-result[data-locked="false"] .calc-roi-value {
+        .calc-col-result[data-locked="false"] .calc-amount {
           filter: blur(0);
           transition: filter 0.4s cubic-bezier(0.22, 1, 0.36, 1);
         }

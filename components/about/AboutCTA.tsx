@@ -17,7 +17,7 @@ export default function AboutCTA() {
         <div className="ab-cta-row">
           <DemoPopup triggerText="Bestill demo" className="lp-btn-primary" />
           <Link href="/diagnose" className="ab-btn-secondary">
-            Beregn ROI <span aria-hidden="true">→</span>
+            Beregn lekkasje <span aria-hidden="true">→</span>
           </Link>
         </div>
         <p className="ab-cta-trust">
