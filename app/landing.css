@@ -1020,59 +1020,6 @@
   line-height: 1.55;
 }
 
-/* ===== Founders / testimonial split ===== */
-.lp-testimonial {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  border-radius: 24px;
-  overflow: hidden;
-  margin: 0 auto;
-  max-width: 1200px;
-  box-shadow: 0 4px 20px rgba(26, 31, 58, 0.06);
-}
-.lp-testimonial-text {
-  background: var(--lp-bg-dark);
-  color: white;
-  padding: 60px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: 400px;
-}
-.lp-testimonial-text blockquote {
-  font-family: var(--font-playfair), serif;
-  font-size: 26px;
-  line-height: 1.4;
-  font-weight: 500;
-  color: white;
-}
-.lp-testimonial-author {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-top: 32px;
-}
-.lp-testimonial-author .lp-avatar-lg {
-  width: 48px;
-  height: 48px;
-  background: linear-gradient(135deg, var(--lp-gold-soft), var(--lp-gold));
-  border-radius: 50%;
-}
-.lp-testimonial-author .lp-name { font-weight: 600; font-size: 16px; color: white; }
-.lp-testimonial-author .lp-role { font-size: 14px; color: rgba(255,255,255,0.6); margin-top: 2px; }
-.lp-testimonial-img {
-  background: linear-gradient(135deg, #6b4423, #c9a24a 60%, #f1d99a);
-  min-height: 400px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-family: serif;
-  font-style: italic;
-  text-align: center;
-  padding: 24px;
-}
-
 /* ===== Bottom 3-card grid ===== */
 .lp-feature-grid {
   display: grid;
@@ -1252,9 +1199,6 @@
   .lp-problem-grid { grid-template-columns: 1fr; }
   .lp-feature-grid { grid-template-columns: 1fr; }
   .lp-how-grid { grid-template-columns: 1fr; }
-  .lp-testimonial { grid-template-columns: 1fr; }
-  .lp-testimonial-text { padding: 40px 28px; min-height: 0; }
-  .lp-testimonial-img { min-height: 240px; }
   .lp-footer-grid { grid-template-columns: 1fr 1fr; }
   .lp-section-header { margin-bottom: 48px; }
   .lp-center-hero { padding: 64px 0; }
