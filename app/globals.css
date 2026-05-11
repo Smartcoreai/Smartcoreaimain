@@ -47,7 +47,15 @@ html {
   background-color: #000000;
   min-width: 100vw;
   margin: 0;
+  scroll-behavior: smooth;
 }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+/* Offset hash-anchor jumps so the sticky navbar doesn't cover section
+   titles. ~84px navbar + a little breathing room. */
+section[id] { scroll-margin-top: 100px; }
 
 
 @layer base {

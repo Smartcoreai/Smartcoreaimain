@@ -9,9 +9,9 @@ export default function LandingNavbar() {
         <Link href="/" className="lp-logo">Ekspedenten</Link>
 
         <ul className="lp-nav-links">
-          <li><a href="#problem">Problem</a></li>
-          <li><a href="#solution">Løsning</a></li>
-          <li><a href="#how">Slik funker det</a></li>
+          <li><Link href="/#problem">Problem</Link></li>
+          <li><Link href="/#solution">Løsning</Link></li>
+          <li><Link href="/#how">Slik funker det</Link></li>
           <li><Link href="/pricing">Priser</Link></li>
           <li><Link href="/about">Om oss</Link></li>
         </ul>
