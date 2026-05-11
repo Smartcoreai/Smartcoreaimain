@@ -19,6 +19,7 @@ const STANDARD_PRIS_AAR = STANDARD_PRIS_MND * 12; // 132 000
 
 const CALENDLY_URL = "https://calendly.com/smartcoreaimeeting/new-meeting";
 const SESSION_KEY = "diagnose_unlocked";
+const SHOW_FORMULA_KEY = "diagnose-show-formula";
 
 export default function DiagnosePage() {
   const [callsPerDay, setCallsPerDay] = useState<string>("50");
@@ -32,6 +33,7 @@ export default function DiagnosePage() {
 
   const [revealed, setRevealed] = useState(false);
   const [unlocked, setUnlocked] = useState(false);
+  const [showFormula, setShowFormula] = useState(false);
 
   const [name, setName] = useState("");
   const [clinicName, setClinicName] = useState("");
@@ -46,12 +48,28 @@ export default function DiagnosePage() {
   useEffect(() => {
     track("diagnose_started");
     try {
-      if (typeof sessionStorage !== "undefined" && sessionStorage.getItem(SESSION_KEY) === "true") {
-        setUnlocked(true);
-        setRevealed(true);
+      if (typeof sessionStorage !== "undefined") {
+        if (sessionStorage.getItem(SESSION_KEY) === "true") {
+          setUnlocked(true);
+          setRevealed(true);
+        }
+        if (sessionStorage.getItem(SHOW_FORMULA_KEY) === "true") {
+          setShowFormula(true);
+        }
       }
     } catch { /* sessionStorage unavailable (e.g. privacy mode) */ }
   }, []);
+
+  function toggleFormula() {
+    setShowFormula((prev) => {
+      const next = !prev;
+      try {
+        if (next) sessionStorage.setItem(SHOW_FORMULA_KEY, "true");
+        else sessionStorage.removeItem(SHOW_FORMULA_KEY);
+      } catch { /* noop */ }
+      return next;
+    });
+  }
 
   // Per-month source values feed the totals; per-year totals are × 12.
   const result = useMemo(() => {
@@ -160,7 +178,30 @@ export default function DiagnosePage() {
             </p>
           </header>
 
-          <div className="calc-layout" data-unlocked={unlocked ? "true" : "false"}>
+          <button
+            type="button"
+            className="calc-formula-toggle"
+            onClick={toggleFormula}
+            aria-expanded={showFormula}
+            aria-controls="calc-formula-col"
+          >
+            <span>{showFormula ? t.diagnose.hideFormula : t.diagnose.showFormula}</span>
+            <svg
+              className="calc-formula-toggle-chevron"
+              width="14" height="14" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" strokeWidth="2.4"
+              strokeLinecap="round" strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <polyline points="9 6 15 12 9 18" />
+            </svg>
+          </button>
+
+          <div
+            className="calc-layout"
+            data-unlocked={unlocked ? "true" : "false"}
+            data-show-formula={showFormula ? "true" : "false"}
+          >
             {/* COL 1: Inputs */}
             <div className="calc-col calc-col-input">
               <div className="calc-panel calc-panel-fill">
@@ -398,8 +439,9 @@ export default function DiagnosePage() {
               )}
             </div>
 
-            {/* COL 3: Explanation (always visible, fixed example values) */}
-            <div className="calc-col calc-col-explanation">
+            {/* COL 3: Explanation — toggled via the "Show how we calculate" button */}
+            {showFormula && (
+            <div className="calc-col calc-col-explanation" id="calc-formula-col">
               <div className="calc-panel calc-explanation calc-panel-fill">
                 <div className="calc-panel-label">Hvordan vi regner</div>
 
@@ -484,6 +526,7 @@ export default function DiagnosePage() {
                 </div>
               </div>
             </div>
+            )}
           </div>
         </div>
       </main>
@@ -539,12 +582,18 @@ export default function DiagnosePage() {
           line-height: 1.6; margin: 0;
         }
 
-        /* Three-column grid with stretched columns */
+        /* Grid: 2 cols by default (input + result), 3 cols when "how we
+           calculate" is toggled open. The browser can't smoothly interpolate
+           between 2 and 3 explicit tracks, so the layout snaps; the new
+           column then fades/slides in via its own animation. */
         .calc-layout {
           display: grid;
-          grid-template-columns: 1fr 1.2fr 1fr;
+          grid-template-columns: 1fr 1fr;
           gap: 24px;
           align-items: stretch;
+        }
+        .calc-layout[data-show-formula="true"] {
+          grid-template-columns: 1fr 1fr 1fr;
         }
         .calc-col {
           min-width: 0;
@@ -905,16 +954,21 @@ export default function DiagnosePage() {
           background: var(--calc-ink-tertiary);
         }
 
-        /* Tablet: 2-col with explanation below */
+        /* Tablet: input + result side-by-side, explanation (if shown)
+           stacks full-width below. */
         @media (max-width: 1100px) {
-          .calc-layout {
+          .calc-layout,
+          .calc-layout[data-show-formula="true"] {
             grid-template-columns: 1fr 1.2fr;
           }
           .calc-col-explanation { grid-column: 1 / -1; }
         }
         /* Mobile: full stack */
         @media (max-width: 768px) {
-          .calc-layout { grid-template-columns: 1fr; }
+          .calc-layout,
+          .calc-layout[data-show-formula="true"] {
+            grid-template-columns: 1fr;
+          }
           .calc-col-explanation { grid-column: auto; }
         }
         /* Below the 3-col view: drop the absolute trick — sections flow
@@ -930,6 +984,65 @@ export default function DiagnosePage() {
             padding-right: 0;
             margin-right: 0;
           }
+        }
+
+        /* "How we calculate" toggle button.
+           Desktop: pinned top-right of the viewport so it's reachable
+           regardless of scroll position. Mobile: inline above the inputs. */
+        .calc-formula-toggle {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          background: var(--calc-bg-card);
+          border: 1px solid var(--calc-border);
+          border-radius: 100px;
+          padding: 10px 18px;
+          font-size: 14px;
+          font-weight: 500;
+          font-family: inherit;
+          color: var(--calc-ink);
+          cursor: pointer;
+          transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+        }
+        .calc-formula-toggle:hover {
+          border-color: var(--calc-gold);
+          transform: translateY(-1px);
+          box-shadow: 0 6px 18px rgba(26, 31, 58, 0.08);
+        }
+        .calc-formula-toggle:focus-visible {
+          outline: none;
+          border-color: var(--calc-gold);
+          box-shadow: 0 0 0 3px rgba(201, 162, 74, 0.18);
+        }
+        .calc-formula-toggle-chevron {
+          color: var(--calc-gold);
+          transition: transform 300ms ease;
+        }
+        .calc-formula-toggle[aria-expanded="true"] .calc-formula-toggle-chevron {
+          transform: rotate(180deg);
+        }
+        @media (min-width: 881px) {
+          .calc-formula-toggle {
+            position: fixed;
+            top: 100px;
+            right: 32px;
+            z-index: 60;
+          }
+        }
+        @media (max-width: 880px) {
+          .calc-formula-toggle {
+            align-self: flex-start;
+            margin: 0 8px 16px;
+          }
+        }
+
+        /* Fade + slide-in for the explanation column on mount. */
+        @keyframes formulaColIn {
+          from { opacity: 0; transform: translateX(20px); }
+          to   { opacity: 1; transform: translateX(0); }
+        }
+        .calc-col-explanation {
+          animation: formulaColIn 400ms ease both;
         }
         @media (max-width: 640px) {
           .calc-main { padding: 24px 16px 64px; }

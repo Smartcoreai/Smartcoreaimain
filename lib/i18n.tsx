@@ -683,6 +683,8 @@ export const translations = {
         ],
         hint: "Press «Run diagnosis» when ready, you'll have your clinic's number a moment later.",
       },
+      showFormula: "Show how we calculate",
+      hideFormula: "Hide how we calculate",
     },
     personvern: {
       back: "← Back",
@@ -1418,6 +1420,8 @@ export const translations = {
         ],
         hint: "Trykk «Kjør diagnosen» når du er klar, du får tallet for klinikken din i sekundet etter.",
       },
+      showFormula: "Vis hvordan vi regner",
+      hideFormula: "Skjul hvordan vi regner",
     },
     personvern: {
       back: "← Tilbake",
