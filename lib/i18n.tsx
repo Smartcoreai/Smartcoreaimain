@@ -687,20 +687,124 @@ export const translations = {
       hideFormula: "Hide how we calculate",
     },
     personvern: {
-      back: "← Back",
+      eyebrow: "Legal",
       headline: "Privacy Policy",
-      updated: "Last updated: 22 April 2026",
-      intro: "We are currently updating our privacy policy in connection with our rebrand from SmartcoreAI to Ekspedenten. A complete version will be available shortly.",
-      processorsHeadline: "Data processors we use",
-      processors: [
-        { name: "Anthropic", desc: "Powers the Ekspedenten AI assistant. Conversation data may be processed on Anthropic's servers." },
-        { name: "Resend", desc: "Sends transactional emails (contact form confirmations, notifications)." },
-        { name: "Calendly", desc: "Used for meeting booking via an external link. Users are redirected to Calendly's own site and are subject to Calendly's privacy policy." },
-        { name: "Vercel", desc: "Hosts the website and API. Data is processed in their secure infrastructure." },
-        { name: "Google Workspace", desc: "Used for internal communication and document storage." },
+      updated: "Last updated: 12 May 2026",
+      reviewed: "Last legal review: N/A (after pilot)",
+      scope: "Covers ekspedenten.no and app.ekspedenten.no.",
+      tocLabel: "On this page",
+      toc: [
+        { id: "innledning", title: "1. Introduction" },
+        { id: "data", title: "2. What data we collect" },
+        { id: "lagring", title: "3. Where data is stored (sub-processors)" },
+        { id: "grunnlag", title: "4. Legal basis (GDPR Art. 6)" },
+        { id: "lagringstid", title: "5. Retention" },
+        { id: "rettigheter", title: "6. Your rights (GDPR)" },
+        { id: "cookies", title: "7. Cookies" },
+        { id: "endringer", title: "8. Changes" },
+        { id: "datatilsynet", title: "9. Supervisory authority" },
       ],
-      contactHeadline: "Privacy enquiries",
-      contactDesc: "Questions about how we handle your data? Contact us at",
+      intro: {
+        title: "1. Introduction",
+        paragraphs: [
+          "Ekspedenten AS (registration pending) is a Norwegian company based in Bergen. We provide an AI-powered digital receptionist for dental clinics. Ekspedenten answers calls, and a CRM platform handles leads, follow-up and bookings.",
+          "This policy explains which personal data we process, why, and what rights you have. It covers both ekspedenten.no (marketing and demo) and app.ekspedenten.no (the CRM platform).",
+        ],
+        contactLabel: "Contact:",
+        contacts: [
+          { label: "General", emails: ["aleksander@ekspedenten.no", "henrik@ekspedenten.no"] },
+        ],
+      },
+      data: {
+        title: "2. What data we collect",
+        groups: [
+          {
+            heading: "Website visitors (ekspedenten.no)",
+            bullets: [
+              "Demo popup: name, email, phone, clinic name",
+              "Diagnosis form: email and the numbers you enter into the calculator",
+            ],
+          },
+          {
+            heading: "CRM users (app.ekspedenten.no)",
+            bullets: [
+              "User profile and login credentials",
+              "Clinic membership and role",
+            ],
+          },
+          {
+            heading: "Patients calling Ekspedenten",
+            bullets: [
+              "Phone number (from the call)",
+              "Text transcript of the conversation (max 30 days)",
+              "Booking data (requested slot, chosen appointment, etc.)",
+              "No audio is stored, only the text transcript",
+            ],
+          },
+        ],
+        role: "We process patient data on behalf of the clinic. The clinic is the data controller; Ekspedenten is the data processor. A Data Processing Agreement (DPA) is signed with every clinic before going live.",
+      },
+      storage: {
+        title: "3. Where data is stored (sub-processors)",
+        intro: "We use the following sub-processors. All transfers are encrypted (TLS), and patient data stays within the EU/EEA.",
+        headers: ["Provider", "Location", "Purpose"],
+        rows: [
+          { provider: "Supabase", location: "Frankfurt, EU", purpose: "Database (users, leads, CRM, transcripts)" },
+          { provider: "Microsoft Azure", location: "Sweden Central, EU", purpose: "AI language model, speech-to-text (STT) and text-to-speech (TTS)" },
+          { provider: "Leyr.io", location: "EU", purpose: "Booking integration with dental practice-management systems" },
+          { provider: "Vercel", location: "US (DPF-certified)", purpose: "Static website hosting (no patient or health data)" },
+          { provider: "LiveKit Cloud", location: "EU region", purpose: "Real-time audio for Ekspedenten calls" },
+          { provider: "DIDWW", location: "Ireland, EU", purpose: "Telephony provider (activated at first pilot)" },
+        ],
+      },
+      legal: {
+        title: "4. Legal basis (GDPR Art. 6)",
+        intro: "We process personal data on the following grounds:",
+        items: [
+          { label: "Website leads (demo, diagnosis)", basis: "Consent", article: "Art. 6 (1) (a)", desc: "You voluntarily submit the form so we can contact you." },
+          { label: "CRM users (clinic staff)", basis: "Contract", article: "Art. 6 (1) (b)", desc: "Processing is necessary to deliver the service the clinic has signed up for." },
+          { label: "Patient data (transcripts, bookings)", basis: "Clinic's legal basis", article: "Art. 6 (1) (b) / (c)", desc: "Typically the healthcare contract or a legal record-keeping obligation. We process only on documented instructions from the clinic." },
+        ],
+      },
+      retention: {
+        title: "5. Retention",
+        bullets: [
+          "Leads (demo, diagnosis): up to 24 months if not converted to a contract, then deleted.",
+          "Conversation transcripts: max 30 days, then automatic deletion.",
+          "Booking data: for as long as the clinic's agreement with Ekspedenten is in force.",
+          "On termination, clinic and patient data is deleted within 90 days (unless law requires longer retention).",
+        ],
+      },
+      rights: {
+        title: "6. Your rights (GDPR)",
+        intro: "Under the GDPR you have the right to:",
+        bullets: [
+          "Access the data we hold about you",
+          "Rectification of inaccurate or incomplete data",
+          "Erasure (\"the right to be forgotten\")",
+          "Restriction of processing",
+          "Data portability: receive your data in a machine-readable format",
+          "Object to processing",
+        ],
+        howBefore: "For patient data, the request must be directed to the clinic (the data controller). For website and CRM data, email ",
+        email: "aleksander@ekspedenten.no",
+        howAfter: ". We respond within 30 days.",
+        complaint: "You can also lodge a complaint with the Norwegian Data Protection Authority (Datatilsynet) if you believe we are processing data in breach of the GDPR.",
+      },
+      cookies: {
+        title: "7. Cookies",
+        body: "We use only technical cookies required for authentication and basic site functionality. We do not set tracking cookies and do not use analytics tools such as Google Analytics. If this changes, this policy will be updated and consent will be obtained where required.",
+      },
+      changes: {
+        title: "8. Changes",
+        body: "We may update this policy as needed. Material changes are announced via a banner on the website and email to registered users. The current version is always available on this page, with the date of the most recent update.",
+      },
+      authority: {
+        title: "9. Supervisory authority",
+        body: "You have the right to lodge a complaint with the Norwegian Data Protection Authority (Datatilsynet) if you believe we are processing personal data in breach of the GDPR.",
+        linkLabel: "datatilsynet.no",
+        linkHref: "https://www.datatilsynet.no",
+      },
     },
     bookCall: {
       label: "Book a free consultation →",
@@ -1424,20 +1528,124 @@ export const translations = {
       hideFormula: "Skjul hvordan vi regner",
     },
     personvern: {
-      back: "← Tilbake",
+      eyebrow: "Juridisk",
       headline: "Personvernerklæring",
-      updated: "Sist oppdatert: 22. april 2026",
-      intro: "Vi oppdaterer for tiden vår personvernerklæring i forbindelse med rebrand fra SmartcoreAI til Ekspedenten. Fullstendig versjon kommer innen kort tid.",
-      processorsHeadline: "Databehandlere vi bruker",
-      processors: [
-        { name: "Anthropic", desc: "Driver AI-assistenten Ekspedenten. Samtaledata kan behandles på Anthropics servere." },
-        { name: "Resend", desc: "Sender transaksjonsbaserte e-poster (kontaktskjemabekreftelser, varsler)." },
-        { name: "Calendly", desc: "Brukes til møtebooking via ekstern lenke. Brukere videresendes til Calendlys egen nettside og er underlagt Calendlys personvernregler." },
-        { name: "Vercel", desc: "Drifter nettsiden og API-et. Data behandles i deres sikrede infrastruktur." },
-        { name: "Google Workspace", desc: "Brukes til intern kommunikasjon og dokumentlagring." },
+      updated: "Sist oppdatert: 12. mai 2026",
+      reviewed: "Sist gjennomgått av juridisk: N/A (etter pilot)",
+      scope: "Dekker ekspedenten.no og app.ekspedenten.no.",
+      tocLabel: "På denne siden",
+      toc: [
+        { id: "innledning", title: "1. Innledning" },
+        { id: "data", title: "2. Hva slags data vi samler" },
+        { id: "lagring", title: "3. Hvor data lagres (sub-processors)" },
+        { id: "grunnlag", title: "4. Lovlig grunnlag (GDPR Art. 6)" },
+        { id: "lagringstid", title: "5. Lagringstid" },
+        { id: "rettigheter", title: "6. Dine rettigheter (GDPR)" },
+        { id: "cookies", title: "7. Cookies" },
+        { id: "endringer", title: "8. Endringer" },
+        { id: "datatilsynet", title: "9. Datatilsynet" },
       ],
-      contactHeadline: "Personvernspørsmål",
-      contactDesc: "Spørsmål om hvordan vi behandler dine data? Ta kontakt på",
+      intro: {
+        title: "1. Innledning",
+        paragraphs: [
+          "Ekspedenten AS (under registrering) er et norsk selskap med base i Bergen. Vi leverer en AI-basert digital ekspedient til tannklinikker. Ekspedenten svarer på telefon, og en CRM-plattform håndterer leads, oppfølging og bookinger.",
+          "Denne erklæringen forklarer hvilke personopplysninger vi behandler, hvorfor, og hvilke rettigheter du har. Den dekker både ekspedenten.no (markedsføring og demo) og app.ekspedenten.no (CRM-plattformen).",
+        ],
+        contactLabel: "Kontakt:",
+        contacts: [
+          { label: "Generelt", emails: ["aleksander@ekspedenten.no", "henrik@ekspedenten.no"] },
+        ],
+      },
+      data: {
+        title: "2. Hva slags data vi samler",
+        groups: [
+          {
+            heading: "Nettside-besøkende (ekspedenten.no)",
+            bullets: [
+              "Demo-popup: navn, e-post, telefon, klinikk-navn",
+              "Diagnose-skjema: e-post og tallene du fyller inn i kalkulatoren",
+            ],
+          },
+          {
+            heading: "CRM-brukere (app.ekspedenten.no)",
+            bullets: [
+              "Brukerprofil og innloggings-credentials",
+              "Klinikk-tilhørighet og rolle",
+            ],
+          },
+          {
+            heading: "Pasienter som ringer Ekspedenten",
+            bullets: [
+              "Telefonnummer (fra anropet)",
+              "Tekst-transcript av samtalen (maks 30 dager)",
+              "Booking-data (timeønske, valgt time, e.l.)",
+              "Lyd lagres ikke, kun tekst-transcript",
+            ],
+          },
+        ],
+        role: "Vi behandler pasientdata på vegne av klinikken. Klinikken er behandlingsansvarlig (data controller); Ekspedenten er databehandler (data processor). En databehandleravtale (DPA) signeres med hver klinikk før produksjonssetting.",
+      },
+      storage: {
+        title: "3. Hvor data lagres (sub-processors)",
+        intro: "Vi bruker følgende sub-processors. All overføring skjer kryptert (TLS), og pasientdata holdes innenfor EU/EØS.",
+        headers: ["Leverandør", "Lokasjon", "Formål"],
+        rows: [
+          { provider: "Supabase", location: "Frankfurt, EU", purpose: "Database (brukere, leads, CRM, transcripts)" },
+          { provider: "Microsoft Azure", location: "Sweden Central, EU", purpose: "AI-språkmodell, tale-til-tekst (STT) og tekst-til-tale (TTS)" },
+          { provider: "Leyr.io", location: "EU", purpose: "Booking-integrasjon mot tannlege-journalsystemer" },
+          { provider: "Vercel", location: "US (DPF-sertifisert)", purpose: "Statisk nettside-hosting (ingen pasient- eller helsedata)" },
+          { provider: "LiveKit Cloud", location: "EU-region", purpose: "Sanntid-audio for Ekspedenten-samtaler" },
+          { provider: "DIDWW", location: "Irland, EU", purpose: "Telefoni-leverandør (aktiveres ved første pilot)" },
+        ],
+      },
+      legal: {
+        title: "4. Lovlig grunnlag (GDPR Art. 6)",
+        intro: "Vi behandler personopplysninger på følgende grunnlag:",
+        items: [
+          { label: "Nettside-leads (demo, diagnose)", basis: "Samtykke", article: "Art. 6 (1) (a)", desc: "Du fyller frivillig ut skjemaet for å bli kontaktet." },
+          { label: "CRM-brukere (klinikk-ansatte)", basis: "Avtale", article: "Art. 6 (1) (b)", desc: "Behandlingen er nødvendig for å levere tjenesten klinikken har bestilt." },
+          { label: "Pasientdata (transcripts, booking)", basis: "Klinikkens behandlingsgrunnlag", article: "Art. 6 (1) (b) / (c)", desc: "Typisk avtale om helsehjelp eller rettslig forpliktelse til journalføring. Vi behandler kun på dokumentert instruks fra klinikken." },
+        ],
+      },
+      retention: {
+        title: "5. Lagringstid",
+        bullets: [
+          "Leads (demo, diagnose): inntil 24 måneder hvis ikke konvertert til avtale, deretter slettes de.",
+          "Samtale-transcripts: maks 30 dager, deretter automatisk sletting.",
+          "Booking-data: så lenge avtalen mellom klinikken og Ekspedenten varer.",
+          "Ved avtalens opphør slettes klinikk- og pasientdata innen 90 dager (med mindre lov pålegger lengre lagring).",
+        ],
+      },
+      rights: {
+        title: "6. Dine rettigheter (GDPR)",
+        intro: "Under GDPR har du rett til:",
+        bullets: [
+          "Innsyn i hvilke opplysninger vi har om deg",
+          "Retting av feil eller ufullstendige data",
+          "Sletting (\"retten til å bli glemt\")",
+          "Begrensning av behandling",
+          "Dataportabilitet: få dataene i et maskinlesbart format",
+          "Å protestere mot behandlingen",
+        ],
+        howBefore: "For pasientdata må forespørsel rettes til klinikken (som er behandlingsansvarlig). For nettside- og CRM-data, send e-post til ",
+        email: "aleksander@ekspedenten.no",
+        howAfter: ". Vi svarer innen 30 dager.",
+        complaint: "Du kan også klage til Datatilsynet hvis du mener vi behandler personopplysninger i strid med GDPR.",
+      },
+      cookies: {
+        title: "7. Cookies",
+        body: "Vi bruker kun tekniske cookies for autentisering og nettsidens funksjonalitet. Vi setter ingen sporings-cookies og bruker ikke analytics-verktøy som Google Analytics. Hvis dette endrer seg, vil erklæringen oppdateres og samtykke innhentes der det kreves.",
+      },
+      changes: {
+        title: "8. Endringer",
+        body: "Vi kan oppdatere denne erklæringen ved behov. Vesentlige endringer varsles via banner på nettsiden og e-post til registrerte brukere. Den til enhver tid gjeldende versjonen ligger alltid på denne siden, med dato for siste oppdatering.",
+      },
+      authority: {
+        title: "9. Datatilsynet",
+        body: "Du har rett til å klage til Datatilsynet hvis du mener vi behandler personopplysninger i strid med GDPR.",
+        linkLabel: "datatilsynet.no",
+        linkHref: "https://www.datatilsynet.no",
+      },
     },
     bookCall: {
       label: "Book en gratis samtale →",

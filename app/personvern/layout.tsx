@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
-// Prevent search engines from indexing this placeholder page
 export const metadata: Metadata = {
-  robots: { index: false, follow: false },
+  title: "Personvernerklæring · Ekspedenten",
+  description: "Hvordan Ekspedenten behandler personopplysninger for nettside-besøkende, CRM-brukere og pasienter som ringer Ekspedenten.",
 };
 
 export default function PersonvernLayout({ children }: { children: React.ReactNode }) {
