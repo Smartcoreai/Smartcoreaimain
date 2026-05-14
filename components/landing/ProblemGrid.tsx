@@ -22,9 +22,9 @@ export default function ProblemGrid() {
           <div className="lp-problem-card">
             <div className="lp-problem-mockup">
               <div className="lp-mock-line danger">
-                ⚠ Booking gikk til konkurrenten
+                ⚠ Booking gikk til konkurrenten.
                 <br />
-                <small>de svarte raskere</small>
+                <small>De svarte raskere.</small>
               </div>
               <div className="lp-mock-row">
                 <div className="lp-mock-line">

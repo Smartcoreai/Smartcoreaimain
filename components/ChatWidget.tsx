@@ -107,7 +107,7 @@ export default function ChatWidget() {
             </svg>
           </span>
           <span className="chatbot-message">
-            {t.chat.teaserPre} <em>{t.chat.teaserEm}</em>{t.chat.teaserPost}
+            {t.chat.teaserPre} <em>{t.chat.teaserEm}</em>{t.chat.teaserPost}{" "}
             <span className="chatbot-arrow" aria-hidden="true">→</span>
           </span>
         </button>

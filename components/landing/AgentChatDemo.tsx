@@ -14,7 +14,7 @@ export default function AgentChatDemo() {
             <div className="lp-avatar-dot" />
             <span>Anonym pasient · 09:14</span>
           </div>
-          <div className="lp-chat-bubble sent">Det høres ut som du burde komme inn raskt. Vi har akutt-time på 30 minutter til 1200 kroner. Vil du jeg sjekker hva som er ledig?</div>
+          <div className="lp-chat-bubble sent">Det høres ut som du burde komme inn raskt. Vi har akutt-time på 30 minutter til 1 200 kroner. Vil du at jeg sjekker hva som er ledig?</div>
           <div className="lp-chat-bubble received">Ja takk, helst i dag.</div>
           <div className="lp-chat-bubble sent">Vi har ledig i dag klokka tre om ettermiddagen. Passer det?</div>
           <div className="lp-chat-bubble received">Perfekt!</div>

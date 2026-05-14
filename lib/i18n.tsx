@@ -318,7 +318,7 @@ export const translations = {
             },
             {
               q: "Are you GDPR-compliant?",
-              a: "Yes. The full stack is GDPR-compliant from day one:\n\n• Data stored in the EU (Frankfurt and Sweden Central)\n• Ekspedenten does not ask about special categories (health data)\n• DPA available for all clinics\n• Clear policies for deletion and access\n• We plan to apply for the Datatilsynet sandbox before our 5th customer",
+              a: "Yes. The full stack is GDPR-compliant from day one:\n\n• Data stored in the EU (Frankfurt and Sweden Central)\n• Ekspedenten does not ask about special categories (health data)\n• DPA available for all clinics\n• Clear policies for deletion and access",
             },
             {
               q: "What happens to the conversations? Are they stored?",
@@ -1159,7 +1159,7 @@ export const translations = {
             },
             {
               q: "Er dere GDPR-compliant?",
-              a: "Ja. Hele stacken er GDPR-compliant fra dag én:\n\n• Data lagret i EU (Frankfurt og Sweden Central)\n• Ekspedenten spør ikke om særlige kategorier (helsedata)\n• DPA tilgjengelig for alle klinikker\n• Klare retningslinjer for sletting og tilgang\n• Vi planlegger Datatilsynet sandkasse-søknad før kunde 5",
+              a: "Ja. Hele stacken er GDPR-compliant fra dag én:\n\n• Data lagret i EU (Frankfurt og Sweden Central)\n• Ekspedenten spør ikke om særlige kategorier (helsedata)\n• DPA tilgjengelig for alle klinikker\n• Klare retningslinjer for sletting og tilgang",
             },
             {
               q: "Hva skjer med samtalene? Lagres de?",

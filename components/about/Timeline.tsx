@@ -17,7 +17,7 @@ const STEPS = [
   {
     date: "Mai 2026",
     title: "Founding-pris åpner",
-    body: "Første 5 klinikker får founding-pris med 50% rabatt. Vi bygger sammen med dem mot Datatilsynet sandkasse.",
+    body: "Første 5 klinikker får founding-pris med 50% rabatt. Vi bygger produktet sammen med dem.",
   },
 ];
 

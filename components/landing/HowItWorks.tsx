@@ -27,7 +27,7 @@ export default function HowItWorks() {
           <div className="lp-how-card">
             <div className="lp-how-num">4</div>
             <h4>Forbedre</h4>
-            <p>Reglene blir bedre etter hver samtale. Du fyller inn kunnskaps-hull manuelt når du vil.</p>
+            <p>Ekspedenten lærer av hver samtale. Du fyller inn kunnskapshull manuelt når du vil.</p>
           </div>
         </div>
       </div>

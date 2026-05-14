@@ -84,7 +84,7 @@ export default function CRMSection() {
                   <div className="lp-activity-dot" />
                   <div className="lp-activity-text">
                     <strong>Ekspedenten svarte utenom åpningstid</strong>
-                    <span>Bookinger spurt 22:14 · besvart 22:14</span>
+                    <span>Henvendelse 22:14 · besvart 22:14</span>
                   </div>
                   <div className="lp-activity-time">i går</div>
                 </div>

@@ -4,8 +4,8 @@ export default function SolutionIntro() {
       <div className="lp-container">
         <div className="lp-center-hero">
           <span className="lp-pill peach">Løsningen</span>
-          <h2>Ekspedenten svarer pasientene<br />teamet ditt ikke trenger å.</h2>
-          <p>Pasienten ringer eller sender melding. Ekspedenten sjekker kalenderen, foreslår tider på pasientens språk, og bekrefter bookingen. Teamet ditt steg inn kun når det trengs.</p>
+          <h2>Ekspedenten svarer pasientene<br />som teamet ditt ikke trenger å svare på.</h2>
+          <p>Pasienten ringer eller sender melding. Ekspedenten sjekker kalenderen, foreslår tider på pasientens språk, og bekrefter bookingen. Teamet ditt trer inn kun når det trengs.</p>
         </div>
       </div>
     </section>
