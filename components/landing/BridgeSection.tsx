@@ -28,7 +28,7 @@ export default function BridgeSection() {
               <div>
                 <p className="lp-bridge-motto-lead">{b.lead}</p>
                 <h2 className="lp-bridge-motto">
-                  {b.mottoPre} <em>{b.mottoEm}</em>
+                  {b.mottoPre} <em>{b.mottoEm}</em>.
                 </h2>
                 <p className="lp-bridge-quote">&ldquo;{b.quote}&rdquo;</p>
               </div>
