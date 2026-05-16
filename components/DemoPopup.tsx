@@ -44,31 +44,55 @@ export function DemoPopup({
     setSending(true);
     setError(null);
 
+    const fd = new FormData(e.currentTarget);
+    const klinikk_navn  = String(fd.get("klinikk_navn") ?? "").trim();
+    const kontaktperson = String(fd.get("kontaktperson") ?? "").trim();
+    const email         = String(fd.get("email") ?? "").trim();
+    const telefon       = String(fd.get("telefon") ?? "").trim();
+    const by            = String(fd.get("by") ?? "").trim();
+    const melding       = String(fd.get("melding") ?? "").trim();
+
     const supabase = createClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     );
 
-    const fd = new FormData(e.currentTarget);
-    const { error } = await supabase.from("leads").insert({
-      klinikk_navn: String(fd.get("klinikk_navn") ?? ""),
-      type_klinikk: "tannlege",
-      by: String(fd.get("by") ?? "") || null,
-      kontaktperson: String(fd.get("kontaktperson") ?? "") || null,
-      email: String(fd.get("email") ?? "") || null,
-      telefon: String(fd.get("telefon") ?? "") || null,
-      notater: String(fd.get("melding") ?? "") || null,
-      status: "ny",
-      kilde: "web",
-    });
+    const [{ error: dbError }, emailRes] = await Promise.all([
+      supabase.from("leads").insert({
+        klinikk_navn,
+        type_klinikk: "tannlege",
+        by: by || null,
+        kontaktperson: kontaktperson || null,
+        email: email || null,
+        telefon: telefon || null,
+        notater: melding || null,
+        status: "ny",
+        kilde: "web",
+      }),
+      fetch("/api/demo", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          klinikk_navn,
+          kontaktperson: kontaktperson || undefined,
+          email,
+          telefon: telefon || undefined,
+          by: by || undefined,
+          melding: melding || undefined,
+        }),
+      }).catch(() => null),
+    ]);
 
     setSending(false);
-    if (error) {
-      setError(error.message);
-    } else {
-      setDone(true);
-      setTimeout(() => setOpen(false), 3000);
+    if (dbError) {
+      setError(dbError.message);
+      return;
     }
+    if (!emailRes || !emailRes.ok) {
+      console.warn("Demo email request did not return OK");
+    }
+    setDone(true);
+    setTimeout(() => setOpen(false), 3000);
   };
 
   const inputStyle: React.CSSProperties = {
