@@ -52,13 +52,14 @@ export function DemoPopup({
     const by            = String(fd.get("by") ?? "").trim();
     const melding       = String(fd.get("melding") ?? "").trim();
 
-    const supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    );
+    try {
+      const supabase = createClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+      );
 
-    const [{ error: dbError }, emailRes] = await Promise.all([
-      supabase.from("leads").insert({
+      // 1. Critical: lead must be saved before we show success.
+      const { error: dbError } = await supabase.from("leads").insert({
         klinikk_navn,
         type_klinikk: "tannlege",
         by: by || null,
@@ -68,7 +69,16 @@ export function DemoPopup({
         notater: melding || null,
         status: "ny",
         kilde: "web",
-      }),
+      });
+
+      if (dbError) {
+        setError(dbError.message);
+        return;
+      }
+
+      // 2. Fire-and-forget email. We never await this — the lead is already
+      //    captured in Supabase, so a slow or failing Resend call must not
+      //    block the user from seeing success.
       fetch("/api/demo", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -80,19 +90,21 @@ export function DemoPopup({
           by: by || undefined,
           melding: melding || undefined,
         }),
-      }).catch(() => null),
-    ]);
+      })
+        .then((res) => {
+          if (!res.ok) console.warn("Demo email send failed:", res.status);
+        })
+        .catch((err) => console.warn("Demo email send error:", err));
 
-    setSending(false);
-    if (dbError) {
-      setError(dbError.message);
-      return;
+      // 3. Show success immediately.
+      setDone(true);
+      setTimeout(() => setOpen(false), 3000);
+    } catch (err) {
+      console.error("Demo submit failed:", err);
+      setError("Noe gikk galt. Prøv igjen.");
+    } finally {
+      setSending(false);
     }
-    if (!emailRes || !emailRes.ok) {
-      console.warn("Demo email request did not return OK");
-    }
-    setDone(true);
-    setTimeout(() => setOpen(false), 3000);
   };
 
   const inputStyle: React.CSSProperties = {

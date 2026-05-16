@@ -49,6 +49,16 @@ export async function POST(req: NextRequest) {
       const firstName = (kontaktperson || "").split(/\s+/)[0] || "der";
       const timestamp = new Date().toLocaleString("nb-NO", { timeZone: "Europe/Oslo" });
 
+      // Each Resend call gets a 5s ceiling so a hung upstream can never
+      // block this route past Vercel's function timeout.
+      const withTimeout = <T,>(p: Promise<T>, label: string) =>
+        Promise.race<T>([
+          p,
+          new Promise<T>((_, reject) =>
+            setTimeout(() => reject(new Error(`${label} timeout (5s)`)), 5000),
+          ),
+        ]);
+
       const internalHtml = `
         <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,sans-serif;max-width:600px;margin:0 auto;color:#1a1f3a">
           <h2 style="color:#1a1f3a;font-size:20px;margin:0 0 16px">Ny demo-bestilling</h2>
@@ -81,20 +91,26 @@ export async function POST(req: NextRequest) {
       `;
 
       const results = await Promise.allSettled([
-        resend.emails.send({
-          from: "Ekspedenten <noreply@ekspedenten.no>",
-          to: ["aleksander@ekspedenten.no", "henrik@ekspedenten.no"],
-          replyTo: email,
-          subject: `Ny demo-bestilling: ${klinikk_navn} / ${kontaktperson || email}`,
-          html: internalHtml,
-        }),
-        resend.emails.send({
-          from: "Ekspedenten <noreply@ekspedenten.no>",
-          to: email,
-          replyTo: "hei@ekspedenten.no",
-          subject: `Takk for demo-bestillingen, ${firstName}`,
-          html: ackHtml,
-        }),
+        withTimeout(
+          resend.emails.send({
+            from: "Ekspedenten <noreply@ekspedenten.no>",
+            to: ["aleksander@ekspedenten.no", "henrik@ekspedenten.no"],
+            replyTo: email,
+            subject: `Ny demo-bestilling: ${klinikk_navn} / ${kontaktperson || email}`,
+            html: internalHtml,
+          }),
+          "internal",
+        ),
+        withTimeout(
+          resend.emails.send({
+            from: "Ekspedenten <noreply@ekspedenten.no>",
+            to: email,
+            replyTo: "hei@ekspedenten.no",
+            subject: `Takk for demo-bestillingen, ${firstName}`,
+            html: ackHtml,
+          }),
+          "ack",
+        ),
       ]);
 
       results.forEach((r, i) => {
