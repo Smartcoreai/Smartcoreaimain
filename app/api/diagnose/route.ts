@@ -182,11 +182,21 @@ export async function POST(req: NextRequest) {
   const { email, name, clinicName, inputs, meta } = parsed.data;
   const out = computeAnnual(inputs);
 
+  // Service-role key bypasses RLS for server-side writes. Anon key fails
+  // silently on RLS-protected tables, so we never fall back to it here —
+  // if the service-role env var is missing, log loudly and skip the insert.
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-  if (supabaseUrl && supabaseKey) {
+  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!supabaseUrl || !supabaseKey) {
+    console.error(
+      "Diagnose: Supabase insert skipped — missing env",
+      { hasUrl: !!supabaseUrl, hasServiceKey: !!supabaseKey },
+    );
+  } else {
     try {
-      const supabase = createClient(supabaseUrl, supabaseKey);
+      const supabase = createClient(supabaseUrl, supabaseKey, {
+        auth: { autoRefreshToken: false, persistSession: false },
+      });
       const notater = JSON.stringify({
         kind: "diagnose",
         inputs,
@@ -205,9 +215,17 @@ export async function POST(req: NextRequest) {
         status:        "ny",
         kilde:         "diagnose",
       });
-      if (dbError) console.error("Supabase insert failed:", dbError);
+      if (dbError) {
+        console.error("Diagnose: Supabase insert failed", {
+          code:    dbError.code,
+          message: dbError.message,
+          details: dbError.details,
+          hint:    dbError.hint,
+          email,
+        });
+      }
     } catch (err) {
-      console.error("Supabase client error:", err);
+      console.error("Diagnose: Supabase client error", err);
     }
   }
 
@@ -216,33 +234,46 @@ export async function POST(req: NextRequest) {
     try {
       const resend = new Resend(apiKey);
       const html = buildEmailHtml({ name, clinicName, inputs, out });
-      const subjectClinic = clinicName ? ` for ${clinicName}` : "";
-      await resend.emails.send({
-        from: "Ekspedenten <onboarding@resend.dev>",
-        to: email,
-        subject: `Diagnose${subjectClinic}: ${fmtKr(out.totalAnnual)}/år i lekkasje`,
-        html,
-        replyTo: process.env.CONTACT_EMAIL || "hei@ekspedenten.no",
-      });
+      const clinicLabel = clinicName || "klinikken din";
+      const timestamp = new Date().toLocaleString("nb-NO", { timeZone: "Europe/Oslo" });
 
-      const internalTo = process.env.CONTACT_EMAIL;
-      if (internalTo) {
-        await resend.emails.send({
-          from: "Ekspedenten <onboarding@resend.dev>",
-          to: internalTo,
-          subject: `Ny diagnose-lead: ${email}${clinicName ? ` (${clinicName})` : ""}`,
-          html: `<p>Ny lead fra /diagnose:</p>
-<ul>
-  <li>Email: <strong>${escapeHtml(email)}</strong></li>
-  <li>Navn: ${escapeHtml(name ?? "—")}</li>
-  <li>Klinikk: ${escapeHtml(clinicName ?? "—")}</li>
-  <li>Total lekkasje (år): <strong>${fmtKr(out.totalAnnual)}</strong></li>
-  <li>Pilot ROI: ${fmtRoi(out.pilotRoi)} · Standard ROI: ${fmtRoi(out.standardRoi)}</li>
-</ul>
-<p>Inputs: ${escapeHtml(JSON.stringify(inputs))}</p>
-<p>Referrer: ${escapeHtml(meta?.referrer ?? "—")}</p>`,
-        });
-      }
+      const results = await Promise.allSettled([
+        resend.emails.send({
+          from: "Ekspedenten <noreply@ekspedenten.no>",
+          to: email,
+          subject: `Din diagnose: ${clinicLabel} kan ha lekkasje på ${fmtKr(out.totalAnnual)} / år`,
+          html,
+          replyTo: "hei@ekspedenten.no",
+        }),
+        resend.emails.send({
+          from: "Ekspedenten <noreply@ekspedenten.no>",
+          to: ["aleksander@ekspedenten.no", "henrik@ekspedenten.no"],
+          replyTo: email,
+          subject: `Ny lead: ${clinicName || "Ukjent klinikk"} / ${name || email}`,
+          html: `<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,sans-serif;max-width:600px;margin:0 auto;color:#1a1f3a">
+  <h2 style="color:#1a1f3a;font-size:20px;margin:0 0 16px">Ny lead fra /diagnose</h2>
+  <table style="width:100%;border-collapse:collapse;font-size:14px">
+    <tr><td style="padding:8px 0;color:#5a5f73;width:140px">Navn</td><td style="padding:8px 0"><strong>${escapeHtml(name ?? "—")}</strong></td></tr>
+    <tr><td style="padding:8px 0;color:#5a5f73">E-post</td><td style="padding:8px 0"><a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></td></tr>
+    <tr><td style="padding:8px 0;color:#5a5f73">Klinikk</td><td style="padding:8px 0">${escapeHtml(clinicName ?? "—")}</td></tr>
+    <tr><td style="padding:8px 0;color:#5a5f73">Total lekkasje (år)</td><td style="padding:8px 0"><strong>${fmtKr(out.totalAnnual)}</strong></td></tr>
+    <tr><td style="padding:8px 0;color:#5a5f73">ROI</td><td style="padding:8px 0">Pilot ${fmtRoi(out.pilotRoi)} · Standard ${fmtRoi(out.standardRoi)}</td></tr>
+    <tr><td style="padding:8px 0;color:#5a5f73">Tidspunkt</td><td style="padding:8px 0">${escapeHtml(timestamp)}</td></tr>
+    <tr><td style="padding:8px 0;color:#5a5f73">Referrer</td><td style="padding:8px 0">${escapeHtml(meta?.referrer ?? "—")}</td></tr>
+  </table>
+  <hr style="margin:16px 0;border:none;border-top:1px solid #e8e3d6" />
+  <p style="font-size:13px;color:#5a5f73;margin:0 0 6px">Inputs:</p>
+  <pre style="font-size:12px;background:#fbf6ec;border:1px solid #e8d5a1;border-radius:8px;padding:10px;color:#1a1f3a;white-space:pre-wrap">${escapeHtml(JSON.stringify(inputs, null, 2))}</pre>
+  <p style="color:#c9a24a;font-size:13px;font-weight:600;margin-top:16px">Følg opp innen 24 timer.</p>
+</div>`,
+        }),
+      ]);
+
+      results.forEach((r, i) => {
+        if (r.status === "rejected") {
+          console.error(`Diagnose email failed (${i === 0 ? "lead" : "internal"}):`, r.reason);
+        }
+      });
     } catch (err) {
       console.error("Resend send failed:", err);
     }
