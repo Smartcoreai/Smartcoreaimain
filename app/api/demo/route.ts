@@ -81,14 +81,24 @@ export async function POST(req: NextRequest) {
       `;
 
       const ackHtml = `
-        <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,sans-serif;max-width:560px;margin:0 auto;color:#1a1f3a;line-height:1.6">
-          <p style="font-size:15px">Hei ${escapeHtml(firstName)},</p>
-          <p style="font-size:15px">Takk for at du bestilte demo av Ekspedenten.<br>Henrik eller Aleksander tar kontakt innen 24 timer for å avtale tid.</p>
-          <p style="font-size:15px">Vi gleder oss til å vise dere hvordan Ekspedenten ville hørtes ut for ${escapeHtml(klinikk_navn)}.</p>
-          <p style="font-size:15px;margin:24px 0 4px">— Ekspedenten-teamet</p>
-          <p style="font-size:13px;color:#5a5f73;margin:0">Bergen, Norge</p>
+        <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,sans-serif;max-width:560px;margin:0 auto;color:#1a1f3a;line-height:1.6;font-size:15px">
+          Hei ${escapeHtml(firstName)},<br><br>
+          Takk for at du tok kontakt. Henrik eller Aleksander ringer dere innen 24 timer for å avtale demo.<br><br>
+          Sees snart.<br><br>
+          — Ekspedenten-teamet<br>
+          <span style="font-size:13px;color:#5a5f73">Bergen, Norge</span>
         </div>
       `;
+
+      const ackText = `Hei ${firstName},
+
+Takk for at du tok kontakt. Henrik eller Aleksander ringer dere innen 24 timer for å avtale demo.
+
+Sees snart.
+
+— Ekspedenten-teamet
+Bergen, Norge
+`;
 
       const results = await Promise.allSettled([
         withTimeout(
@@ -106,8 +116,9 @@ export async function POST(req: NextRequest) {
             from: "Ekspedenten <noreply@ekspedenten.no>",
             to: email,
             replyTo: "hei@ekspedenten.no",
-            subject: `Takk for demo-bestillingen, ${firstName}`,
+            subject: `Takk for interessen, ${firstName}`,
             html: ackHtml,
+            text: ackText,
           }),
           "ack",
         ),
