@@ -3,7 +3,7 @@ import "./globals.css";
 import { LanguageProvider } from "@/lib/i18n";
 import ScrollReset from "@/components/ScrollReset";
 import ForceScrollTop from "@/components/ForceScrollTop";
-import CookieConsent from "@/components/CookieConsent";
+import CookieBanner from "@/components/CookieBanner";
 import { Inter, Playfair_Display, Syne, DM_Sans } from "next/font/google";
 
 const inter = Inter({
@@ -78,7 +78,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ScrollReset />
         <LanguageProvider>
           {children}
-          <CookieConsent />
+          <CookieBanner />
         </LanguageProvider>
       </body>
     </html>

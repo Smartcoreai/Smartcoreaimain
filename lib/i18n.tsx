@@ -811,21 +811,12 @@ export const translations = {
     },
     cookies: {
       banner: {
-        title: "We use cookies",
-        desc: "We use cookies to improve your experience. You are in full control.",
-        accept: "Accept all",
-        decline: "Decline all",
-        customize: "Customize",
-        policyLink: "Cookie policy",
+        title: "Cookies",
+        body: "We only use essential technical cookies for authentication and site functionality. We don't track you.",
+        policyLink: "Read more in our privacy policy",
+        button: "Got it",
+        ariaLabel: "Cookie notice",
       },
-      categories: {
-        necessary: { label: "Necessary", desc: "Required for the website to function. Cannot be disabled." },
-        functional: { label: "Functional", desc: "Enables enhanced site features." },
-        analytics:  { label: "Analytics",  desc: "Helps us understand how visitors use the site." },
-        marketing:  { label: "Marketing",  desc: "Used for targeted advertising and retargeting." },
-      },
-      save: "Save preferences",
-      manageLink: "Manage cookie preferences",
       settingsLink: "Cookie settings",
     },
     testimonialWidget: {
@@ -1652,21 +1643,12 @@ export const translations = {
     },
     cookies: {
       banner: {
-        title: "Vi bruker informasjonskapsler",
-        desc: "Vi bruker informasjonskapsler for å forbedre din opplevelse. Du har full kontroll.",
-        accept: "Godta alle",
-        decline: "Avslå alle",
-        customize: "Tilpass",
-        policyLink: "Cookie-policy",
+        title: "Cookies",
+        body: "Vi bruker kun nødvendige tekniske cookies for innlogging og nettsidens funksjonalitet. Vi sporer deg ikke.",
+        policyLink: "Les mer i personvernerklæringen",
+        button: "Forstått",
+        ariaLabel: "Cookie-melding",
       },
-      categories: {
-        necessary: { label: "Nødvendige", desc: "Kreves for at nettsiden skal fungere. Kan ikke deaktiveres." },
-        functional: { label: "Funksjonelle", desc: "Aktiverer forbedrede nettsidefunksjoner." },
-        analytics:  { label: "Analyse",      desc: "Hjelper oss å forstå hvordan besøkende bruker siden." },
-        marketing:  { label: "Markedsføring", desc: "Brukes til målrettet annonsering og retargeting." },
-      },
-      save: "Lagre valg",
-      manageLink: "Administrer cookie-innstillinger",
       settingsLink: "Cookie-innstillinger",
     },
     testimonialWidget: {
