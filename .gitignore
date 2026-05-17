@@ -7,7 +7,10 @@ data/
 .env.test.local
 .env.production.local
 .env.production
+.env.local.save
 *.log
+*.bak
+*.tsbuildinfo
 Smartcoreaimain/
 .DS_Store
 **/.DS_Store
