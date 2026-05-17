@@ -47,30 +47,74 @@ export async function POST(req: NextRequest) {
     console.error("Failed to save lead:", err);
   }
 
-  // Send email via Resend (escapeHtml for HTML template only — data already stripped)
+  // Send emails via Resend (escapeHtml for HTML template only — data already stripped)
   const apiKey = process.env.RESEND_API_KEY;
   if (apiKey) {
     try {
       const resend = new Resend(apiKey);
-      await resend.emails.send({
-        from: "Ekspedenten <onboarding@resend.dev>",
-        to: process.env.CONTACT_EMAIL || "hei@ekspedenten.no",
-        subject: `New enquiry from ${name}`,
-        html: `
-          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-            <h2 style="color: #D4AF37;">New contact form submission</h2>
-            <table style="width: 100%; border-collapse: collapse;">
-              <tr><td style="padding: 8px 0; color: #666; width: 120px;">Name</td><td style="padding: 8px 0;"><strong>${escapeHtml(name)}</strong></td></tr>
-              <tr><td style="padding: 8px 0; color: #666;">Email</td><td style="padding: 8px 0;"><a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></td></tr>
-              <tr><td style="padding: 8px 0; color: #666;">Business</td><td style="padding: 8px 0;">${escapeHtml(business || "—")}</td></tr>
-            </table>
-            <hr style="margin: 16px 0; border: none; border-top: 1px solid #eee;" />
-            <h3 style="color: #333; margin-bottom: 8px;">Message</h3>
-            <p style="color: #444; line-height: 1.6;">${escapeHtml(message).replace(/\n/g, "<br>")}</p>
-            <hr style="margin: 24px 0; border: none; border-top: 1px solid #eee;" />
-            <p style="color: #999; font-size: 12px;">Sent from ekspedenten.no contact form</p>
-          </div>
-        `,
+      const firstName = name.split(/\s+/)[0] || name;
+      const timestamp = new Date().toLocaleString("nb-NO", { timeZone: "Europe/Oslo" });
+
+      const internalHtml = `
+        <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif; max-width: 600px; margin: 0 auto; color: #1a1f3a;">
+          <h2 style="color: #1a1f3a; font-size: 20px; margin: 0 0 16px;">Ny henvendelse fra kontaktskjemaet</h2>
+          <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+            <tr><td style="padding: 8px 0; color: #5a5f73; width: 120px;">Navn</td><td style="padding: 8px 0;"><strong>${escapeHtml(name)}</strong></td></tr>
+            <tr><td style="padding: 8px 0; color: #5a5f73;">E-post</td><td style="padding: 8px 0;"><a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></td></tr>
+            <tr><td style="padding: 8px 0; color: #5a5f73;">Telefon</td><td style="padding: 8px 0;">${escapeHtml(phone || "—")}</td></tr>
+            <tr><td style="padding: 8px 0; color: #5a5f73;">Klinikk</td><td style="padding: 8px 0;">${escapeHtml(business || "—")}</td></tr>
+            <tr><td style="padding: 8px 0; color: #5a5f73;">Tidspunkt</td><td style="padding: 8px 0;">${escapeHtml(timestamp)}</td></tr>
+          </table>
+          <hr style="margin: 16px 0; border: none; border-top: 1px solid #e8e3d6;" />
+          <h3 style="color: #1a1f3a; margin: 0 0 8px; font-size: 15px;">Melding</h3>
+          <p style="color: #444; line-height: 1.6; font-size: 14px;">${escapeHtml(message).replace(/\n/g, "<br>")}</p>
+          <hr style="margin: 24px 0; border: none; border-top: 1px solid #e8e3d6;" />
+          <p style="color: #c9a24a; font-size: 13px; font-weight: 600;">Følg opp innen 24 timer.</p>
+        </div>
+      `;
+
+      const ackHtml = `
+        <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,sans-serif;max-width:560px;margin:0 auto;color:#1a1f3a;line-height:1.6;font-size:15px">
+          Hei ${escapeHtml(firstName)},<br><br>
+          Takk for at du tok kontakt. Henrik eller Aleksander ringer dere innen 24 timer for å avtale demo.<br><br>
+          Sees snart.<br><br>
+          — Ekspedenten-teamet<br>
+          <span style="font-size:13px;color:#5a5f73">Bergen, Norge</span>
+        </div>
+      `;
+
+      const ackText = `Hei ${firstName},
+
+Takk for at du tok kontakt. Henrik eller Aleksander ringer dere innen 24 timer for å avtale demo.
+
+Sees snart.
+
+— Ekspedenten-teamet
+Bergen, Norge
+`;
+
+      const results = await Promise.allSettled([
+        resend.emails.send({
+          from: "Ekspedenten <noreply@ekspedenten.no>",
+          to: ["aleksander@ekspedenten.no", "henrik@ekspedenten.no"],
+          replyTo: email,
+          subject: `Ny lead: ${business || "Ukjent klinikk"} / ${name}`,
+          html: internalHtml,
+        }),
+        resend.emails.send({
+          from: "Ekspedenten <noreply@ekspedenten.no>",
+          to: email,
+          replyTo: "hei@ekspedenten.no",
+          subject: `Takk for interessen, ${firstName}`,
+          html: ackHtml,
+          text: ackText,
+        }),
+      ]);
+
+      results.forEach((r, i) => {
+        if (r.status === "rejected") {
+          console.error(`Email send failed (${i === 0 ? "internal" : "ack"}):`, r.reason);
+        }
       });
     } catch (err) {
       console.error("Email send failed:", err);
