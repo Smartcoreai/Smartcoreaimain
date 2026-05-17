@@ -49,7 +49,7 @@ function computeAnnual(i: z.infer<typeof DiagnoseSchema>["inputs"]) {
   const totalM        = ubesvarteM + reaktiveringM + noShowsM + webleadsM;
 
   // ROI: annual leak vs annual price tier. Both prices are MONTHLY × 12.
-  // Pilot 10 000 kr/mnd × 12 = 120 000/yr. Standard 11 000 kr/mnd × 12 = 132 000/yr.
+  // Founding 6 900 kr/mnd × 12 = 82 800/yr. Ordinary 10 000 kr/mnd × 12 = 120 000/yr.
   const totalAnnual = totalM * 12;
   return {
     ubesvarteAnnual:    ubesvarteM * 12,
@@ -57,8 +57,8 @@ function computeAnnual(i: z.infer<typeof DiagnoseSchema>["inputs"]) {
     noShowsAnnual:      noShowsM * 12,
     webleadsAnnual:     webleadsM * 12,
     totalAnnual,
-    pilotRoi:           totalAnnual / 120_000,
-    standardRoi:        totalAnnual / 132_000,
+    foundingRoi:        totalAnnual / 82_800,
+    ordinaryRoi:        totalAnnual / 120_000,
   };
 }
 
@@ -112,12 +112,12 @@ function buildEmailHtml(args: {
     <table style="width:100%;border-collapse:collapse">
       <tr>
         <td style="text-align:center;padding:6px">
-          <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#e8d5a1;font-weight:600;margin:0 0 6px">Pilotpris</div>
-          <div style="font-size:24px;font-weight:800;letter-spacing:-0.03em">${fmtRoi(args.out.pilotRoi)}</div>
+          <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#e8d5a1;font-weight:600;margin:0 0 6px">Founding-pris</div>
+          <div style="font-size:24px;font-weight:800;letter-spacing:-0.03em">${fmtRoi(args.out.foundingRoi)}</div>
         </td>
         <td style="text-align:center;padding:6px">
-          <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#e8d5a1;font-weight:600;margin:0 0 6px">Standardpris</div>
-          <div style="font-size:24px;font-weight:800;letter-spacing:-0.03em">${fmtRoi(args.out.standardRoi)}</div>
+          <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#e8d5a1;font-weight:600;margin:0 0 6px">Ordinær pris</div>
+          <div style="font-size:24px;font-weight:800;letter-spacing:-0.03em">${fmtRoi(args.out.ordinaryRoi)}</div>
         </td>
       </tr>
     </table>
@@ -257,7 +257,7 @@ export async function POST(req: NextRequest) {
     <tr><td style="padding:8px 0;color:#5a5f73">E-post</td><td style="padding:8px 0"><a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></td></tr>
     <tr><td style="padding:8px 0;color:#5a5f73">Klinikk</td><td style="padding:8px 0">${escapeHtml(clinicName ?? "—")}</td></tr>
     <tr><td style="padding:8px 0;color:#5a5f73">Total lekkasje (år)</td><td style="padding:8px 0"><strong>${fmtKr(out.totalAnnual)}</strong></td></tr>
-    <tr><td style="padding:8px 0;color:#5a5f73">ROI</td><td style="padding:8px 0">Pilot ${fmtRoi(out.pilotRoi)} · Standard ${fmtRoi(out.standardRoi)}</td></tr>
+    <tr><td style="padding:8px 0;color:#5a5f73">ROI</td><td style="padding:8px 0">Founding ${fmtRoi(out.foundingRoi)} · Ordinær ${fmtRoi(out.ordinaryRoi)}</td></tr>
     <tr><td style="padding:8px 0;color:#5a5f73">Tidspunkt</td><td style="padding:8px 0">${escapeHtml(timestamp)}</td></tr>
     <tr><td style="padding:8px 0;color:#5a5f73">Referrer</td><td style="padding:8px 0">${escapeHtml(meta?.referrer ?? "—")}</td></tr>
   </table>

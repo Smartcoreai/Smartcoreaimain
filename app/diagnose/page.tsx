@@ -12,10 +12,10 @@ const fmtKr = (n: number) =>
 const fmtRoi = (n: number) => `${(Math.round(n * 10) / 10).toFixed(1)}x`;
 
 // Pricing tiers — both are MONTHLY costs. Annual cost = ×12 in the ROI denominator.
-const PILOT_PRIS_MND = 10_000;
-const STANDARD_PRIS_MND = 11_000;
-const PILOT_PRIS_AAR = PILOT_PRIS_MND * 12;       // 120 000
-const STANDARD_PRIS_AAR = STANDARD_PRIS_MND * 12; // 132 000
+const FOUNDING_PRIS_MND = 6_900;
+const ORDINARY_PRIS_MND = 10_000;
+const FOUNDING_PRIS_AAR = FOUNDING_PRIS_MND * 12; // 82 800
+const ORDINARY_PRIS_AAR = ORDINARY_PRIS_MND * 12; // 120 000
 
 const CALENDLY_URL = "https://calendly.com/smartcoreaimeeting/new-meeting";
 const SESSION_KEY = "diagnose_unlocked";
@@ -95,8 +95,8 @@ export default function DiagnosePage() {
       noShowsVerdi: noShowsM * 12,
       webleads:     webleadsM * 12,
       total:        totalAnnual,
-      pilotRoi:     totalAnnual / PILOT_PRIS_AAR,
-      standardRoi:  totalAnnual / STANDARD_PRIS_AAR,
+      foundingRoi: totalAnnual / FOUNDING_PRIS_AAR,
+      ordinaryRoi: totalAnnual / ORDINARY_PRIS_AAR,
     };
   }, [callsPerDay, missedPct, patientBase, noShowPct, bookingValue]);
 
@@ -374,12 +374,12 @@ export default function DiagnosePage() {
                     <div className="calc-panel-label">Avkastning på Ekspedenten</div>
                     <div className="calc-roi-grid">
                       <div className="calc-roi-cell">
-                        <div className="calc-roi-label">Pilotpris</div>
-                        <div className="calc-roi-value">{fmtRoi(result.pilotRoi)}</div>
+                        <div className="calc-roi-label">Founding-pris</div>
+                        <div className="calc-roi-value">{fmtRoi(result.foundingRoi)}</div>
                       </div>
                       <div className="calc-roi-cell">
-                        <div className="calc-roi-label">Standardpris</div>
-                        <div className="calc-roi-value">{fmtRoi(result.standardRoi)}</div>
+                        <div className="calc-roi-label">Ordinær pris</div>
+                        <div className="calc-roi-value">{fmtRoi(result.ordinaryRoi)}</div>
                       </div>
                     </div>
                   </div>
