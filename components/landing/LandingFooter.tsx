@@ -14,6 +14,7 @@ export default function LandingFooter() {
             <ul>
               <li><a href="#how">Slik funker det</a></li>
               <li><Link href="/pricing">Priser</Link></li>
+              <li><Link href="/pakke">Pakke</Link></li>
               <li><Link href="/faq">FAQ</Link></li>
             </ul>
           </div>
