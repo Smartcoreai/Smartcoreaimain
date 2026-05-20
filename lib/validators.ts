@@ -28,20 +28,6 @@ export const ContactSchema = z.object({
   message:  z.string().min(10, "Meldingen må være mellom 10 og 2000 tegn").max(2000, "Meldingen må være mellom 10 og 2000 tegn").transform(stripTags),
 });
 
-// ── Quote calculator lead ─────────────────────────────────────────────────────
-export const LeadSchema = z.object({
-  name:      z.string().min(2, "Name required (2–100 chars)").max(100).transform(stripTags),
-  email:     z.string().email("Valid email required").max(254),
-  phone:     z.string().max(20).optional().transform(v => v ? stripTags(v) : v),
-  company:   z.string().max(200).optional().transform(v => v ? stripTags(v) : v),
-  services:  z.string().max(500).optional().transform(v => v ? stripTags(v) : v),
-  employees: z.string().max(50).optional(),
-  budget:    z.string().max(50).optional(),
-  message:   z.string().max(2000).optional().transform(v => v ? stripTags(v) : v),
-  quote:     z.number().optional(),
-  source:    z.string().max(100).optional().transform(v => v ? stripTags(v) : v),
-});
-
 // ── Aria chat messages ────────────────────────────────────────────────────────
 export const ChatSchema = z.object({
   messages: z.array(z.object({

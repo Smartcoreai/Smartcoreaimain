@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
-import { insertLead } from "@/lib/db";
+import { createClient } from "@supabase/supabase-js";
 import { formRatelimit, getClientIp } from "@/lib/ratelimit";
 import { ContactSchema, checkContentLength, escapeHtml } from "@/lib/validators";
 
@@ -40,11 +40,43 @@ export async function POST(req: NextRequest) {
 
   const { name, email, phone, business, message } = result.data;
 
-  // Save to leads database
-  try {
-    insertLead({ name, email, company: business, message, source: "contact-form" });
-  } catch (err) {
-    console.error("Failed to save lead:", err);
+  // GDPR: persondata lagres KUN i Supabase (Frankfurt, EU). Service-role-key
+  // bypasser RLS for server-side system-writes — samme mønster som /api/diagnose.
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!supabaseUrl || !supabaseKey) {
+    console.error(
+      "Contact: Supabase insert skipped — missing env",
+      { hasUrl: !!supabaseUrl, hasServiceKey: !!supabaseKey },
+    );
+  } else {
+    try {
+      const supabase = createClient(supabaseUrl, supabaseKey, {
+        auth: { autoRefreshToken: false, persistSession: false },
+      });
+      const { error: dbError } = await supabase.from("leads").insert({
+        klinikk_navn:  business || null,
+        type_klinikk:  "tannlege",
+        by:            null,
+        kontaktperson: name,
+        email,
+        telefon:       phone || null,
+        notater:       message,
+        status:        "ny",
+        kilde:         "kontakt",
+      });
+      if (dbError) {
+        console.error("Contact: Supabase insert failed", {
+          code:    dbError.code,
+          message: dbError.message,
+          details: dbError.details,
+          hint:    dbError.hint,
+          email,
+        });
+      }
+    } catch (err) {
+      console.error("Contact: Supabase client error", err);
+    }
   }
 
   // Send emails via Resend (escapeHtml for HTML template only — data already stripped)

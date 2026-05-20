@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import Anthropic from "@anthropic-ai/sdk";
-import { insertLead } from "@/lib/db";
+import { createClient } from "@supabase/supabase-js";
 import { chatRatelimit, getClientIp } from "@/lib/ratelimit";
 import { ChatSchema, checkContentLength } from "@/lib/validators";
 
@@ -129,15 +129,47 @@ export async function POST(req: NextRequest) {
 
     let text = response.content[0].type === "text" ? response.content[0].text : "";
 
-    // Parse and strip lead capture tag — save lead server-side, visitor sees clean reply
+    // Parse and strip lead capture tag — save lead server-side, visitor sees clean reply.
+    // GDPR: persondata lagres KUN i Supabase (Frankfurt, EU) med service-role-key.
     const match = text.match(LEAD_TAG_RE);
     if (match) {
       const [, name, email] = match;
       text = text.replace(LEAD_TAG_RE, "");
-      try {
-        insertLead({ name, email, source: "chat" });
-      } catch (err) {
-        console.error("[chat lead] DB insert failed:", err);
+      const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+      const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+      if (!supabaseUrl || !supabaseKey) {
+        console.error(
+          "Chat: Supabase insert skipped — missing env",
+          { hasUrl: !!supabaseUrl, hasServiceKey: !!supabaseKey },
+        );
+      } else {
+        try {
+          const supabase = createClient(supabaseUrl, supabaseKey, {
+            auth: { autoRefreshToken: false, persistSession: false },
+          });
+          const { error: dbError } = await supabase.from("leads").insert({
+            klinikk_navn:  null,
+            type_klinikk:  "tannlege",
+            by:            null,
+            kontaktperson: name,
+            email,
+            telefon:       null,
+            notater:       null,
+            status:        "ny",
+            kilde:         "chat",
+          });
+          if (dbError) {
+            console.error("Chat: Supabase insert failed", {
+              code:    dbError.code,
+              message: dbError.message,
+              details: dbError.details,
+              hint:    dbError.hint,
+              email,
+            });
+          }
+        } catch (err) {
+          console.error("Chat: Supabase client error", err);
+        }
       }
     }
 

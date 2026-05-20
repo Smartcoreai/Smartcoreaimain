@@ -17,7 +17,7 @@ export default function LandingNavbar() {
         </ul>
 
         <div className="lp-nav-cta">
-          <Link href="/admin" className="lp-nav-signin">Logg inn</Link>
+          <a href="https://app.ekspedenten.no" className="lp-nav-signin">Logg inn</a>
           <Link href="/diagnose" className="lp-btn-secondary">
             Beregn lekkasje <span className="lp-arrow">→</span>
           </Link>
