@@ -56,31 +56,31 @@ export default function ContactForm() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 items-start">
-          <div className="bg-white border border-[#e9e5da] rounded-[20px] p-7 sm:p-9 flex flex-col gap-7">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 items-stretch">
+          <div className="bg-[#1a1f3a] rounded-[20px] p-7 sm:p-9 flex flex-col gap-7 text-white">
             <div>
-              <h2 className="font-display text-[20px] sm:text-[22px] font-bold text-[#1a1f3a]">Hva du kan forvente</h2>
+              <h2 className="font-display text-[20px] sm:text-[22px] font-bold text-white">Hva du kan forvente</h2>
               <ul className="mt-5 flex flex-col gap-4">
                 {[
                   "Svar innen 4 timer i arbeidstiden",
                   "Ingen spam, aldri",
                   "En konkret kartlegging av hva Ekspedenten er verdt for klinikken",
                 ].map(p => (
-                  <li key={p} className="flex gap-3 text-[15px] text-[#3a3f5c] leading-snug">
-                    <svg className="shrink-0 w-[18px] h-[18px] mt-0.5 text-[#1a1f3a]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" aria-hidden="true"><path d="M5 12l5 5L20 7" /></svg>
+                  <li key={p} className="flex gap-3 text-[15px] text-white/90 leading-snug">
+                    <svg className="shrink-0 w-[18px] h-[18px] mt-0.5 text-[#c4b6e0]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" aria-hidden="true"><path d="M5 12l5 5L20 7" /></svg>
                     {p}
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div className="border-t border-[#efebe1] pt-6">
-              <p className="text-[12px] font-semibold uppercase tracking-[0.08em] text-[#9a9eb0] mb-3">Direkte</p>
+            <div className="mt-auto border-t border-white/15 pt-6">
+              <p className="text-[12px] font-semibold uppercase tracking-[0.08em] text-white/55 mb-3">Eller nå oss direkte</p>
               <div className="flex flex-col gap-1.5 text-[15px]">
-                <a href="mailto:henrik@ekspedenten.no" className="text-[#1a1f3a] font-medium hover:text-[#3a3f5c] transition-colors">henrik@ekspedenten.no</a>
-                <a href="mailto:aleksander@ekspedenten.no" className="text-[#1a1f3a] font-medium hover:text-[#3a3f5c] transition-colors">aleksander@ekspedenten.no</a>
+                <a href="mailto:henrik@ekspedenten.no" className="text-white font-medium hover:text-[#c4b6e0] transition-colors">henrik@ekspedenten.no</a>
+                <a href="mailto:aleksander@ekspedenten.no" className="text-white font-medium hover:text-[#c4b6e0] transition-colors">aleksander@ekspedenten.no</a>
               </div>
-              <p className="mt-3 text-[14px] text-[#9a9eb0]">Bergen, Norge</p>
+              <p className="mt-3 text-[14px] text-white/55">Bergen, Norge</p>
             </div>
           </div>
 
