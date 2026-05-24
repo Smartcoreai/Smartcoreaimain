@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import styles from "./FaqTeaser.module.css";
 
 const FAQS: { q: string; a: React.ReactNode }[] = [
@@ -12,36 +13,40 @@ const FAQS: { q: string; a: React.ReactNode }[] = [
 ];
 
 export default function FaqTeaser() {
-  const [open, setOpen] = useState<number[]>([0, 1]);
+  const [open, setOpen] = useState<number[]>([]);
   const toggle = (i: number) =>
     setOpen((p) => (p.includes(i) ? p.filter((x) => x !== i) : [...p, i]));
 
   return (
-    <section className={styles.faqt}>
-      <div className={styles.band}>
+    <section className={styles.faq}>
+      <div className={styles.head}>
         <span className={styles.eyebrow}><span className={styles.dot} />De vanligste spørsmålene</span>
         <h2 className={styles.h2}>Det klinikker lurer på <i>før de signerer</i></h2>
         <p className={styles.sub}>De fem tingene vi får oftest — besvart med en gang, før du booker samtalen.</p>
+      </div>
 
-        <div className={styles.list}>
-          {FAQS.map((item, i) => {
-            const isOpen = open.includes(i);
-            return (
-              <div key={i} className={`${styles.item} ${isOpen ? styles.open : ""}`}>
-                <button className={styles.q} aria-expanded={isOpen} onClick={() => toggle(i)}>
-                  {item.q}
-                  <svg className={styles.chev} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
-                </button>
-                <div className={styles.a}><div className={styles.aInner}>{item.a}</div></div>
-              </div>
-            );
-          })}
-        </div>
+      <div className={styles.grid}>
+        {FAQS.map((item, i) => {
+          const isOpen = open.includes(i);
+          const numClass = [styles.n1, styles.n2, styles.n3, styles.n4, styles.n5][i];
+          return (
+            <div key={i} className={`${styles.box} ${isOpen ? styles.open : ""}`}>
+              <button className={styles.row} aria-expanded={isOpen} onClick={() => toggle(i)}>
+                <span className={`${styles.num} ${numClass}`}>{String(i + 1).padStart(2, "0")}</span>
+                <span className={styles.q}>{item.q}</span>
+                <span className={styles.toggle}>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4"><path d="M12 5v14M5 12h14" /></svg>
+                </span>
+              </button>
+              <div className={styles.ans}><div className={styles.ansInner}>{item.a}</div></div>
+            </div>
+          );
+        })}
 
-        <div className={styles.footer}>
-          <span className={styles.note}>Flere spørsmål om pris, integrasjoner, sikkerhet og teknologi?</span>
-          <a href="/faq" className={styles.link}>Se alle spørsmål <span aria-hidden="true">→</span></a>
-        </div>
+        <Link href="/faq" className={styles.ctaCell}>
+          <span className={styles.ctaLink}>Se alle spørsmål <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4"><path d="M5 12h14M13 6l6 6-6 6" /></svg></span>
+          <span className={styles.ctaSub}>Pris · integrasjoner · sikkerhet · teknisk</span>
+        </Link>
       </div>
     </section>
   );
