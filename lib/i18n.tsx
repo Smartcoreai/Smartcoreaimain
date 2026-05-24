@@ -289,11 +289,11 @@ export const translations = {
           questions: [
             {
               q: "What does Ekspedenten cost?",
-              a: "**Ekspedenten Standard** is one package for Norwegian dental clinics.\n\n• Founding price kr 6,900/mo (first 10 clinics)\n• Regular price kr 10,000/mo\n• Setup kr 7,500 one-time\n• 3-month commitment, then monthly\n\nFounding price locked for 12 months from signing. All prices excluding VAT.",
+              a: "**Ekspedenten Standard** is one package for Norwegian dental clinics.\n\n• Founding price kr 6,900/mo (first 5 clinics)\n• Regular price kr 10,000/mo\n• Setup kr 7,500 one-time\n• 3-month commitment, then monthly\n\nFounding price locked for 12 months from signing. All prices excluding VAT.",
             },
             {
               q: "What is the founding price?",
-              a: "The first 5 clinics that sign get a 50% discount for 3 years. It's a price we offer early customers because they help us build the product. We get feedback, you get premium pricing.",
+              a: "The first 5 clinics to sign get kr 6,900/mo instead of the regular kr 10,000/mo. The founding price is locked for 12 months from signing. We offer it to early customers because they help us build the product — we get feedback, you get premium pricing.",
             },
             {
               q: "Is there a binding period?",
@@ -719,7 +719,7 @@ export const translations = {
       ],
       priceHeading: "Price",
       pricingTag: "Founding",
-      pricingMonthlyLabel: "Monthly — first 10 clinics",
+      pricingMonthlyLabel: "Monthly — first 5 clinics",
       pricingStrikethrough: "kr 10,000 / mo",
       pricingPrice: "kr 6,900",
       pricingPriceSuffix: "/ mo",
@@ -728,7 +728,7 @@ export const translations = {
       pricingStartupSuffix: "one-time",
       pricingLockLabel: "Commitment",
       pricingLockValue: "3 mo",
-      pricingNote: "After 3 months: monthly cancellation with 30 days' notice. Founding price locked for 12 months from signing — does not increase even after the first 10 clinics are filled.",
+      pricingNote: "After 3 months: monthly cancellation with 30 days' notice. Founding price locked for 12 months from signing — does not increase even after the first 5 clinics are filled.",
       onboardingHeading: "Onboarding — 7 working days once prerequisites are in place",
       timelineDays: [
         { label: "Day 1",    text: "Kickoff call" },
@@ -767,7 +767,7 @@ export const translations = {
       heroSubtitle: "Ekspedenten Standard for Norwegian dental clinics.",
       cardTitle: "Ekspedenten Standard",
       oneLiner: "AI receptionist that answers 24/7 and books directly in Opus, Muntra and Anita.",
-      foundingTag: "Founding · first 10 clinics",
+      foundingTag: "Founding · first 5 clinics",
       regularPrice: "kr 10,000",
       foundingPrice: "kr 6,900",
       period: "/mo",
@@ -1079,11 +1079,11 @@ export const translations = {
           questions: [
             {
               q: "Hva koster Ekspedenten?",
-              a: "**Ekspedenten Standard** er én pakke for norske tannklinikker.\n\n• Founding-pris kr 6 900/mnd (første 10 klinikker)\n• Ordinær pris kr 10 000/mnd\n• Oppstart kr 7 500 engangs\n• 3 måneders binding, deretter månedlig\n\nFounding-pris låst i 12 måneder fra signering. Alle priser eksklusive mva.",
+              a: "**Ekspedenten Standard** er én pakke for norske tannklinikker.\n\n• Founding-pris kr 6 900/mnd (første 5 klinikker)\n• Ordinær pris kr 10 000/mnd\n• Oppstart kr 7 500 engangs\n• 3 måneders binding, deretter månedlig\n\nFounding-pris låst i 12 måneder fra signering. Alle priser eksklusive mva.",
             },
             {
               q: "Hva er founding-pris?",
-              a: "Første 5 klinikker som signerer får 50% rabatt i 3 år. Det er en pris vi gir tidlige kunder fordi de hjelper oss å bygge produktet. Vi får tilbakemeldinger, dere får premium-pris.",
+              a: "De første 5 klinikkene som signerer får kr 6 900/mnd i stedet for ordinær kr 10 000/mnd. Founding-prisen er låst i 12 måneder fra signering. Det er en pris vi gir tidlige kunder fordi de hjelper oss å bygge produktet — vi får tilbakemeldinger, dere får premium-pris.",
             },
             {
               q: "Er det bindingstid?",
@@ -1509,7 +1509,7 @@ export const translations = {
       ],
       priceHeading: "Pris",
       pricingTag: "Founding",
-      pricingMonthlyLabel: "Månedlig — første 10 klinikker",
+      pricingMonthlyLabel: "Månedlig — første 5 klinikker",
       pricingStrikethrough: "kr 10 000 / mnd",
       pricingPrice: "kr 6 900",
       pricingPriceSuffix: "/ mnd",
@@ -1518,7 +1518,7 @@ export const translations = {
       pricingStartupSuffix: "engangs",
       pricingLockLabel: "Binding",
       pricingLockValue: "3 mnd",
-      pricingNote: "Etter 3 måneders binding: månedlig oppsigelse med 30 dagers varsel. Founding-pris låst i 12 måneder fra signering — øker ikke selv etter de 10 første klinikkene er fylt.",
+      pricingNote: "Etter 3 måneders binding: månedlig oppsigelse med 30 dagers varsel. Founding-pris låst i 12 måneder fra signering — øker ikke selv etter de 5 første klinikkene er fylt.",
       onboardingHeading: "Onboarding — 7 virkedager fra forutsetninger på plass",
       timelineDays: [
         { label: "Dag 1",    text: "Kickoff-samtale" },
@@ -1557,7 +1557,7 @@ export const translations = {
       heroSubtitle: "Ekspedenten Standard for norske tannklinikker.",
       cardTitle: "Ekspedenten Standard",
       oneLiner: "AI-resepsjonist som tar telefonen 24/7 og booker direkte i Opus, Muntra og Anita.",
-      foundingTag: "Founding · første 10 klinikker",
+      foundingTag: "Founding · første 5 klinikker",
       regularPrice: "kr 10 000",
       foundingPrice: "kr 6 900",
       period: "/mnd",
