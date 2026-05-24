@@ -1,0 +1,67 @@
+.faqt { max-width: 1180px; margin: 0 auto; padding: 22px 30px 56px; }
+
+.band {
+  position: relative; overflow: hidden;
+  background: #fff; border: 1px solid #e9e5da; border-radius: 22px;
+  padding: 36px 38px 28px; box-shadow: 0 18px 50px rgba(26, 31, 58, 0.06);
+}
+.band::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, #1a1f3a, rgba(26, 31, 58, 0.15));
+}
+
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.1em; color: #9a9eb0;
+}
+.dot { width: 6px; height: 6px; border-radius: 50%; background: #1a1f3a; }
+
+.h2 {
+  font-family: "Playfair Display", Georgia, serif; font-weight: 700;
+  font-size: 26px; letter-spacing: -0.015em; color: #1a1f3a; margin: 10px 0 0;
+}
+.h2 i { font-style: italic; font-weight: 600; color: #3a3f5c; }
+
+.sub { color: #5d6175; font-size: 14.5px; line-height: 1.6; margin-top: 8px; max-width: 450px; }
+
+.list { display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px; margin-top: 24px; }
+
+.item { border-bottom: 1px solid #efebe1; }
+
+.q {
+  width: 100%; text-align: left; background: none; border: none; cursor: pointer;
+  font-family: inherit; font-size: 15px; font-weight: 600; color: #1a1f3a;
+  line-height: 1.35; padding: 15px 30px 15px 0; position: relative;
+}
+.q:hover { color: #3a3f5c; }
+
+.chev {
+  position: absolute; right: 0; top: 17px; width: 16px; height: 16px;
+  color: #9a9eb0; transition: transform 0.25s ease, color 0.25s ease;
+}
+.item.open .chev { transform: rotate(180deg); color: #1a1f3a; }
+
+.a { max-height: 0; overflow: hidden; color: #5d6175; font-size: 14px; line-height: 1.6; transition: max-height 0.32s ease; }
+.item.open .a { max-height: 300px; }
+.aInner { padding: 0 28px 17px 0; }
+.aInner b { color: #1a1f3a; font-weight: 600; }
+
+.footer {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 16px; margin-top: 26px; padding-top: 22px; border-top: 1px solid #e9e5da;
+}
+.note { color: #9a9eb0; font-size: 14px; }
+
+.link {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: #fff; color: #1a1f3a; border: 1px solid #e9e5da; border-radius: 10px;
+  padding: 11px 19px; font-size: 14px; font-weight: 600; text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.link:hover { transform: translateY(-1px); box-shadow: 0 9px 24px rgba(26, 31, 58, 0.15); }
+
+@media (max-width: 920px) {
+  .list { grid-template-columns: 1fr; }
+  .band { padding: 26px 20px; }
+}
