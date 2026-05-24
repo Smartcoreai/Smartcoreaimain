@@ -39,6 +39,13 @@ export function DemoPopup({
     }
   }, [open]);
 
+  useEffect(() => {
+    if (!open) return;
+    const original = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = original; };
+  }, [open]);
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSending(true);
@@ -161,6 +168,7 @@ export function DemoPopup({
 
       {open && (
         <div
+          className="demo-popup-overlay"
           onClick={() => setOpen(false)}
           style={{
             position: "fixed", inset: 0,
@@ -176,6 +184,7 @@ export function DemoPopup({
           aria-labelledby="demo-popup-title"
         >
           <div
+            className="demo-popup-card"
             onClick={e => e.stopPropagation()}
             style={{
               background: BG_CREAM,
@@ -351,6 +360,24 @@ export function DemoPopup({
             @keyframes demoPopupSlideUp {
               from { opacity: 0; transform: translateY(12px) scale(0.98); }
               to   { opacity: 1; transform: translateY(0) scale(1); }
+            }
+            /* Mobile: opaque fullscreen modal — no peek of page behind */
+            @media (max-width: 640px) {
+              .demo-popup-overlay {
+                padding: 0 !important;
+                background: ${BG_CREAM} !important;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+              }
+              .demo-popup-card {
+                width: 100% !important;
+                height: 100dvh !important;
+                max-width: none !important;
+                max-height: 100dvh !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
+                padding: 24px 20px !important;
+              }
             }
           `}</style>
         </div>

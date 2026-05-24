@@ -34,6 +34,13 @@ export default function ChatWidget() {
     if (open) setTimeout(() => inputRef.current?.focus(), 100);
   }, [open]);
 
+  useEffect(() => {
+    if (!open) return;
+    const original = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = original; };
+  }, [open]);
+
   // External components can pop the widget via a custom event (legacy hook,
   // kept for the openAriaChat dispatcher in older components).
   useEffect(() => {
@@ -472,17 +479,23 @@ export default function ChatWidget() {
           }
         }
 
-        /* Mobile: chat window goes full-width, pill stays bottom-right */
-        @media (max-width: 480px) {
+        /* Mobile: chat takes over the entire viewport — opaque fullscreen modal */
+        @media (max-width: 640px) {
           .chat-window {
-            width: calc(100vw - 16px) !important;
-            right: 8px !important;
-            left: 8px !important;
+            top: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100dvh !important;
+            max-height: 100dvh !important;
+            border-radius: 0 !important;
+            border: none !important;
           }
           .chat-messages { overflow-x: hidden; width: 100%; }
           .chat-bubble { max-width: 85% !important; white-space: normal !important; }
         }
-        @media (min-width: 481px) and (max-width: 768px) {
+        @media (min-width: 641px) and (max-width: 768px) {
           .chat-window { width: calc(100vw - 32px) !important; }
           .chat-messages { overflow-x: hidden; width: 100%; }
           .chat-bubble { max-width: 85% !important; white-space: normal !important; }
