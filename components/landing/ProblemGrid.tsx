@@ -4,7 +4,7 @@ export default function ProblemGrid() {
       <div className="lp-container">
         <div className="lp-section-header left">
           <span className="lp-pill lavender">Problemet</span>
-          <h2>Pasienthenvendelser stopper aldri.<br />De fleste trenger ikke teamet ditt.</h2>
+          <h2>Pasienthenvendelser stopper aldri.<br className="hidden sm:inline" /> De fleste trenger ikke teamet ditt.</h2>
         </div>
 
         <div className="lp-problem-grid">

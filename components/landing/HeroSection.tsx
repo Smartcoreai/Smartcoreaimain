@@ -9,7 +9,7 @@ export default function HeroSection() {
         <div>
           <span className="lp-pill">Bygget for nordiske klinikker</span>
           <h1>
-            Telefonen.<br />Besvart automatisk.
+            Telefonen.<br className="hidden sm:inline" /> Besvart automatisk.
           </h1>
           <p className="lp-lead">
             Ekspedenten svarer pasienter 24/7 på norsk og booker time direkte i kalenderen, mens teamet ditt fokuserer på pasientene som er foran dem.

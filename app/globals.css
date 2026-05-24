@@ -45,7 +45,6 @@
 /* ── Base html reset ── */
 html {
   background-color: #000000;
-  min-width: 100vw;
   margin: 0;
   scroll-behavior: smooth;
 }
@@ -69,7 +68,6 @@ section[id] { scroll-margin-top: 100px; }
     color: #F5F0E8;
     font-family: var(--font-inter), system-ui, sans-serif;
     overflow-x: hidden;
-    min-width: 100vw;
     margin: 0;
     position: relative;
   }

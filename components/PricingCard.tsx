@@ -10,7 +10,7 @@ export default function PricingCard() {
           <div className="p-8 sm:p-12">
             <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
               <div className="max-w-md">
-                <h2 className="font-display text-[40px] leading-[1.05] font-bold tracking-tight">Ekspedenten Standard</h2>
+                <h2 className="font-display text-[28px] sm:text-[40px] leading-[1.05] font-bold tracking-tight">Ekspedenten Standard</h2>
                 <p className="mt-3 text-[16.5px] text-[#5d6175] leading-relaxed">AI-resepsjonist som tar telefonen 24/7 og booker direkte i Opus, Muntra og Anita.</p>
               </div>
 
@@ -19,7 +19,7 @@ export default function PricingCard() {
                 <p className="mt-[18px] text-[14px] text-[#9a9eb0]">Ordinær pris kr 10 000/mnd</p>
                 <div className="mt-1 flex items-baseline md:justify-end gap-1.5">
                   <span className="text-[26px] font-semibold text-[#1a1f3a]">kr</span>
-                  <span className="text-[56px] leading-none font-bold tracking-[-0.03em] tabular-nums text-[#1a1f3a]">6&nbsp;900</span>
+                  <span className="text-[40px] sm:text-[56px] leading-none font-bold tracking-[-0.03em] tabular-nums text-[#1a1f3a]">6&nbsp;900</span>
                   <span className="text-[17px] font-medium text-[#5d6175]">/mnd</span>
                 </div>
                 <p className="mt-3 text-[12.5px] leading-snug text-[#9a9eb0] md:ml-auto md:max-w-[300px]">Founding-pris låst i 12 måneder fra signering. Øker ikke selv etter de 5 første klinikkene er fylt.</p>

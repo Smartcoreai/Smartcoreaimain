@@ -4,7 +4,7 @@ export default function HowItWorks() {
       <div className="lp-container">
         <div className="lp-section-header">
           <span className="lp-pill peach">Slik funker det</span>
-          <h2>Vi tar oss av oppsett og opplæring<br />som en del av avtalen.</h2>
+          <h2>Vi tar oss av oppsett og opplæring<br className="hidden sm:inline" /> som en del av avtalen.</h2>
           <p>Ekspedenten leser klinikkens egne tjenester, priser og åpningstider, og bygger din kunnskapsbase automatisk.</p>
         </div>
 
