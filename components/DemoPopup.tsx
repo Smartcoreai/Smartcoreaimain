@@ -203,11 +203,12 @@ export function DemoPopup({
               onClick={() => setOpen(false)}
               aria-label="Lukk"
               style={{
-                position: "absolute", top: 14, right: 14,
-                width: 32, height: 32, borderRadius: "50%",
+                position: "absolute", top: 10, right: 10,
+                width: 44, height: 44, borderRadius: "50%",
                 border: "none", background: "transparent",
-                color: TEXT_MUTED, fontSize: 22, lineHeight: 1,
+                color: TEXT_MUTED, fontSize: 24, lineHeight: 1,
                 cursor: "pointer", transition: "color 0.15s, background 0.15s",
+                display: "inline-flex", alignItems: "center", justifyContent: "center",
               }}
               onMouseEnter={e => {
                 const el = e.currentTarget as HTMLElement;

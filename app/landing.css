@@ -153,6 +153,104 @@
   font-weight: 500;
 }
 
+/* ───── Hamburger + mobile menu (visibility controlled by media query) ───── */
+.lp-burger {
+  display: none;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: 1px solid var(--lp-border);
+  border-radius: 10px;
+  color: var(--lp-ink);
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  padding: 0;
+}
+.lp-burger svg { width: 22px; height: 22px; }
+
+.lp-mobile-menu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100dvh;
+  background: #f6f3ec;
+  z-index: 200;
+  flex-direction: column;
+  padding: 88px 24px 32px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  opacity: 1;
+}
+.lp-mobile-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.lp-mobile-links li { display: block; }
+.lp-mobile-links a {
+  display: flex;
+  align-items: center;
+  min-height: 56px;
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: 22px;
+  color: var(--lp-ink);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  border-bottom: 1px solid rgba(26, 31, 58, 0.08);
+  text-decoration: none;
+}
+.lp-mobile-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 24px;
+}
+.lp-mobile-row {
+  display: flex;
+  gap: 12px;
+}
+.lp-mobile-secondary {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: transparent;
+  border: 1px solid var(--lp-border);
+  color: var(--lp-ink);
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  font-family: inherit;
+}
+.lp-mobile-primary-wrap { width: 100%; }
+.lp-mobile-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 52px;
+  padding: 14px 20px;
+  border-radius: 12px;
+  background: var(--lp-bg-dark);
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
 /* ===== HERO ===== */
 .lp-hero {
   padding: 80px 0 120px;
@@ -1185,7 +1283,9 @@
 
 @media (max-width: 880px) {
   .lp-nav-links { display: none; }
-  .lp-nav-signin { display: none; }
+  .lp-nav-cta { display: none; }
+  .lp-burger { display: inline-flex; }
+  .lp-mobile-menu { display: flex; }
 }
 
 @media (max-width: 768px) {
@@ -1215,15 +1315,25 @@
   .lp-strip-items { gap: 16px; justify-content: center; }
 }
 
+@media (max-width: 640px) {
+  /* Floating hero cards are decorative; hide them on phones so nothing
+     sticks past the call-card edge. */
+  .lp-floating-sms,
+  .lp-floating-booking { display: none; }
+  /* Without the floating cards there's no stage to reserve; drop the
+     560px min-height so the hero doesn't leave a huge blank gap. */
+  .lp-hero-stage { min-height: 0; }
+}
+
 @media (max-width: 480px) {
   .lp-container { padding: 0 16px; }
   .lp-hero h1 { font-size: 44px; }
   .lp-nav-cta { gap: 8px; }
-  .lp-btn-primary { padding: 12px 20px; font-size: 14px; }
-  .lp-btn-secondary { padding: 12px 18px; font-size: 14px; }
+  .lp-btn-primary { padding: 14px 20px; font-size: 15px; }
+  .lp-btn-secondary { padding: 14px 18px; font-size: 15px; }
   .lp-call-card { padding: 20px 16px; }
   .lp-transcript-line { font-size: 13px; }
-  .lp-feature-card { padding: 28px 24px; min-height: 320px; }
+  .lp-feature-card { padding: 28px 24px; min-height: 0; }
   .lp-problem-card { padding: 24px; }
   .lp-how-card { padding: 24px; }
   .lp-footer-grid { grid-template-columns: 1fr; gap: 24px; }

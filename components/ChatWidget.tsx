@@ -183,15 +183,17 @@ export default function ChatWidget() {
             onClick={() => setOpen(false)}
             aria-label={t.chat.closeLabel}
             style={{
+              width: 44, height: 44,
               background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.10)",
-              borderRadius: 8, padding: "6px", color: "rgba(255,255,255,0.55)",
+              borderRadius: 10, padding: 0, color: "rgba(255,255,255,0.55)",
               cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
               transition: "background 0.2s",
+              flexShrink: 0,
             }}
             onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.14)"; }}
             onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.08)"; }}
           >
-            <X size={16} />
+            <X size={18} />
           </button>
         </div>
 
