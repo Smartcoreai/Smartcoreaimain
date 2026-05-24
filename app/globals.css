@@ -74,8 +74,12 @@ section[id] { scroll-margin-top: 100px; }
     position: relative;
   }
   ::selection {
-    background: rgba(212,175,55,0.25);
-    color: #F5F0E8;
+    background: #1a1f3a;
+    color: #ffffff;
+  }
+  ::-moz-selection {
+    background: #1a1f3a;
+    color: #ffffff;
   }
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: #1A1A1A; }
