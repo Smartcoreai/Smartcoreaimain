@@ -297,7 +297,7 @@ export const translations = {
             },
             {
               q: "Is there a binding period?",
-              a: "No. Monthly cancellation. We offer a 60-day ROI guarantee. If Ekspedenten doesn't deliver measurable ROI within the first 60 days, we refund the monthly subscription.",
+              a: "Yes — 3-month minimum, then monthly. Our 60-day ROI guarantee lets you test it risk-free: if Ekspedenten doesn't deliver measurable ROI within the first 60 days, we refund the monthly subscription.",
             },
             {
               q: "What is the ROI guarantee?",
@@ -1087,7 +1087,7 @@ export const translations = {
             },
             {
               q: "Er det bindingstid?",
-              a: "Nei. Månedsoppsigelse. Vi gir 60 dagers ROI-garanti. Hvis Ekspedenten ikke leverer målbar ROI innen de første 60 dagene, refunderer vi månedsabonnementet.",
+              a: "Ja — 3 måneders binding, deretter månedlig. 60 dagers ROI-garanti gir deg tryggheten til å teste risikofritt: hvis Ekspedenten ikke leverer målbar ROI innen de første 60 dagene, refunderer vi månedsabonnementet.",
             },
             {
               q: "Hva er ROI-garantien?",

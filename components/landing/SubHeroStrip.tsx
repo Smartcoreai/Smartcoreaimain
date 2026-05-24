@@ -12,7 +12,7 @@ export default function SubHeroStrip() {
             <div className="lp-strip-item"><span className="lp-check">✓</span> Live på 7 dager</div>
             <div className="lp-strip-item"><span className="lp-check">✓</span> 60 dagers ROI-garanti</div>
             <div className="lp-strip-item"><span className="lp-check">✓</span> GDPR. Data i Frankfurt</div>
-            <div className="lp-strip-item"><span className="lp-check">✓</span> Avbestill når som helst</div>
+            <div className="lp-strip-item"><span className="lp-check">✓</span> 24/7 på norsk</div>
           </div>
         </div>
       </div>
