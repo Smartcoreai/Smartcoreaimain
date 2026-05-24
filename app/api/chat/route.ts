@@ -11,6 +11,19 @@ const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 // [LEAD:name=…,email=…] tags, the capture-and-insert block below still works.
 const LEAD_TAG_RE = /^\[LEAD:name=([^,\]]+),email=([^\]]+)\]\s*/;
 
+// Belt-and-braces filter: the prompt forbids em/en/double dashes, but the
+// model still slips them in. Run on the fully assembled reply (we don't
+// stream), so a "--" split across tokens can't sneak through.
+function stripDashes(text: string): string {
+  return text
+    .replace(/\s*[-—–]{2,}\s*/g, ", ")  // -- / --- / —— → comma
+    .replace(/\s*[—–]\s*/g, ", ")        // single em/en dash → comma
+    .replace(/([.!?]),\s*/g, "$1 ")      // ". , Foo" → ". Foo"
+    .replace(/,\s*,+/g, ",")             // ",,," → ","
+    .replace(/[ \t]{2,}/g, " ")          // collapse runs of spaces
+    .trim();
+}
+
 
 export async function POST(req: NextRequest) {
   // Reject oversized bodies
@@ -102,7 +115,7 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    return NextResponse.json({ reply: text });
+    return NextResponse.json({ reply: stripDashes(text) });
   } catch (e) {
     console.error(e);
     return NextResponse.json({ reply: "Sorry, I'm having trouble connecting right now. Please try again shortly." }, { status: 200 });
