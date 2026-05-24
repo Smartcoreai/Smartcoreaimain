@@ -14,6 +14,7 @@ import LandingFooter from "@/components/landing/LandingFooter";
 import ChatWidget from "@/components/ChatWidget";
 import HashScroller from "@/components/HashScroller";
 import FaqTeaser from "@/components/FaqTeaser";
+import PricingCard from "@/components/PricingCard";
 
 export default function HomePage() {
   return (
@@ -30,6 +31,7 @@ export default function HomePage() {
         <CRMSection />
         <HowItWorks />
         <FeatureCards />
+        <PricingCard />
         <FinalCTA />
       </main>
       <LandingFooter />

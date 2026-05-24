@@ -5,7 +5,7 @@ import LandingFooter from "@/components/landing/LandingFooter";
 import ChatWidget from "@/components/ChatWidget";
 import FadeObserver from "@/components/pricing/FadeObserver";
 import PricingHero from "@/components/pricing/PricingHero";
-import MainPricingCard from "@/components/pricing/MainPricingCard";
+import PricingCard from "@/components/PricingCard";
 import PricingFootnote from "@/components/pricing/PricingFootnote";
 
 export const metadata = {
@@ -22,7 +22,7 @@ export default function PricingPage() {
         <section className="pp-section">
           <div className="pp-container">
             <PricingHero />
-            <MainPricingCard />
+            <PricingCard />
             <PricingFootnote />
           </div>
         </section>
