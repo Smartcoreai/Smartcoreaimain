@@ -361,13 +361,18 @@ export function DemoPopup({
               from { opacity: 0; transform: translateY(12px) scale(0.98); }
               to   { opacity: 1; transform: translateY(0) scale(1); }
             }
-            /* Mobile: opaque fullscreen modal — no peek of page behind */
+            /* Mobile: opaque fullscreen modal — no peek of page behind.
+               Card itself is the scroll container so all fields stay reachable
+               while body scroll is locked and the keyboard is up. */
             @media (max-width: 640px) {
               .demo-popup-overlay {
                 padding: 0 !important;
                 background: ${BG_CREAM} !important;
                 backdrop-filter: none !important;
                 -webkit-backdrop-filter: none !important;
+                align-items: stretch !important;
+                justify-content: stretch !important;
+                overflow: hidden !important;
               }
               .demo-popup-card {
                 width: 100% !important;
@@ -376,7 +381,10 @@ export function DemoPopup({
                 max-height: 100dvh !important;
                 border-radius: 0 !important;
                 box-shadow: none !important;
-                padding: 24px 20px !important;
+                padding: 24px 20px 40px !important;
+                overflow-y: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+                overscroll-behavior: contain !important;
               }
             }
           `}</style>

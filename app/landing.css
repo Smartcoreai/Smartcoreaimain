@@ -833,7 +833,10 @@
   margin-bottom: 6px;
   line-height: 1;
   letter-spacing: -0.02em;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
 }
+.lp-crm-stat { min-width: 0; }
 .lp-crm-stat.highlight .lp-stat-value { color: white; }
 .lp-stat-trend {
   font-size: 11px;
@@ -1205,7 +1208,8 @@
   .lp-final-cta { padding: 80px 0; }
   .lp-crm-content { padding: 20px; }
   .lp-crm-stats { grid-template-columns: repeat(2, 1fr); }
-  .lp-stat-value { font-size: 26px; }
+  .lp-crm-stat { padding: 16px 14px; }
+  .lp-stat-value { font-size: 22px; }
   .lp-sub-hero-inner { gap: 16px; }
   .lp-strip-divider { display: none; }
   .lp-strip-items { gap: 16px; justify-content: center; }
@@ -1223,6 +1227,11 @@
   .lp-problem-card { padding: 24px; }
   .lp-how-card { padding: 24px; }
   .lp-footer-grid { grid-template-columns: 1fr; gap: 24px; }
+}
+
+@media (max-width: 420px) {
+  .lp-crm-stats { grid-template-columns: 1fr; }
+  .lp-stat-value { font-size: 24px; }
 }
 
 /* =========================================================================
