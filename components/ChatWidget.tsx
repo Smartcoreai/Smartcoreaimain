@@ -121,6 +121,17 @@ export default function ChatWidget() {
         <span className="chatbot-status" aria-hidden="true" />
       </div>
 
+      {/* Mobile backdrop — only visible under 640px when chat is open */}
+      <div
+        className="chat-backdrop"
+        onClick={() => setOpen(false)}
+        aria-hidden="true"
+        style={{
+          opacity: open ? 1 : 0,
+          pointerEvents: open ? "auto" : "none",
+        }}
+      />
+
       {/* Chat window */}
       <div className="chat-window" style={{
         position: "fixed", bottom: 32, right: 32, zIndex: 9999,
@@ -479,18 +490,32 @@ export default function ChatWidget() {
           }
         }
 
-        /* Mobile: chat takes over the entire viewport — opaque fullscreen modal */
+        /* Backdrop only exists on mobile. Hidden on desktop. */
+        .chat-backdrop { display: none; }
+
+        /* Mobile: chat becomes a bottom-anchored panel (85dvh) with a
+           dimmed backdrop behind so the page is still partly visible
+           through the top ~15% — tap there to close. */
         @media (max-width: 640px) {
+          .chat-backdrop {
+            display: block;
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 12, 24, 0.45);
+            z-index: 9997;
+            transition: opacity 0.3s ease;
+          }
           .chat-window {
-            top: 0 !important;
+            top: auto !important;
             right: 0 !important;
             bottom: 0 !important;
             left: 0 !important;
             width: 100% !important;
-            height: 100dvh !important;
-            max-height: 100dvh !important;
-            border-radius: 0 !important;
+            height: 85dvh !important;
+            max-height: 85dvh !important;
+            border-radius: 20px 20px 0 0 !important;
             border: none !important;
+            transform-origin: bottom center !important;
           }
           .chat-messages { overflow-x: hidden; width: 100%; }
           .chat-bubble { max-width: 85% !important; white-space: normal !important; }
