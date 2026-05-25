@@ -97,50 +97,54 @@ export default function ContactForm() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                <div>
-                  <label htmlFor="contact-name" className="block text-[13px] font-semibold text-[#3a3f5c] mb-2">Navn *</label>
-                  <input
-                    id="contact-name"
-                    type="text"
-                    required
-                    minLength={2}
-                    value={form.name}
-                    onChange={e => setForm({ ...form, name: e.target.value })}
-                    className={inputClass}
-                  />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor="contact-name" className="block text-[13px] font-semibold text-[#3a3f5c] mb-2">Navn *</label>
+                    <input
+                      id="contact-name"
+                      type="text"
+                      required
+                      minLength={2}
+                      value={form.name}
+                      onChange={e => setForm({ ...form, name: e.target.value })}
+                      className={inputClass}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="contact-email" className="block text-[13px] font-semibold text-[#3a3f5c] mb-2">E-post *</label>
+                    <input
+                      id="contact-email"
+                      type="email"
+                      required
+                      value={form.email}
+                      onChange={e => setForm({ ...form, email: e.target.value })}
+                      className={inputClass}
+                    />
+                  </div>
                 </div>
-                <div>
-                  <label htmlFor="contact-email" className="block text-[13px] font-semibold text-[#3a3f5c] mb-2">E-post *</label>
-                  <input
-                    id="contact-email"
-                    type="email"
-                    required
-                    value={form.email}
-                    onChange={e => setForm({ ...form, email: e.target.value })}
-                    className={inputClass}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="contact-phone" className="block text-[13px] font-semibold text-[#3a3f5c] mb-2">
-                    Telefon <span className="text-[#9a9eb0] font-normal">(valgfritt)</span>
-                  </label>
-                  <input
-                    id="contact-phone"
-                    type="tel"
-                    value={form.phone}
-                    onChange={e => setForm({ ...form, phone: e.target.value })}
-                    className={inputClass}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="contact-business" className="block text-[13px] font-semibold text-[#3a3f5c] mb-2">Klinikk</label>
-                  <input
-                    id="contact-business"
-                    type="text"
-                    value={form.business}
-                    onChange={e => setForm({ ...form, business: e.target.value })}
-                    className={inputClass}
-                  />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor="contact-phone" className="block text-[13px] font-semibold text-[#3a3f5c] mb-2">
+                      Telefon <span className="text-[#9a9eb0] font-normal">(valgfritt)</span>
+                    </label>
+                    <input
+                      id="contact-phone"
+                      type="tel"
+                      value={form.phone}
+                      onChange={e => setForm({ ...form, phone: e.target.value })}
+                      className={inputClass}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="contact-business" className="block text-[13px] font-semibold text-[#3a3f5c] mb-2">Klinikk</label>
+                    <input
+                      id="contact-business"
+                      type="text"
+                      value={form.business}
+                      onChange={e => setForm({ ...form, business: e.target.value })}
+                      className={inputClass}
+                    />
+                  </div>
                 </div>
                 <div>
                   <label htmlFor="contact-message" className="block text-[13px] font-semibold text-[#3a3f5c] mb-2">Hva lurer du på? *</label>

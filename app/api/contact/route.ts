@@ -106,23 +106,23 @@ export async function POST(req: NextRequest) {
       `;
 
       const ackHtml = `
-        <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,sans-serif;max-width:560px;margin:0 auto;color:#1a1f3a;line-height:1.6;font-size:15px">
-          Hei ${escapeHtml(firstName)},<br><br>
-          Takk for at du tok kontakt. Henrik eller Aleksander ringer dere innen 24 timer for å avtale demo.<br><br>
-          Sees snart.<br><br>
-          — Ekspedenten-teamet<br>
-          <span style="font-size:13px;color:#5a5f73">Bergen, Norge</span>
+        <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,sans-serif;max-width:560px;margin:0 auto;color:#1a1f3a;line-height:1.65;font-size:15px;padding:8px">
+          <p style="margin:0 0 16px">Hei ${escapeHtml(firstName)},</p>
+          <p style="margin:0 0 16px">Takk for at du tok kontakt med Ekspedenten! Vi ser på tallene for klinikken din og svarer deg innen 4 timer i arbeidstiden.</p>
+          <p style="margin:0 0 16px">I mellomtiden kan du gjerne kjøre vår <a href="https://ekspedenten.no/diagnose" style="color:#1a1f3a;font-weight:600;text-decoration:underline">lekkasje-kalkulator</a> for å se hva tapte anrop koster dere i dag.</p>
+          <p style="margin:24px 0 4px">— Henrik &amp; Aleksander</p>
+          <p style="margin:0;font-size:13px;color:#5a5f73">Ekspedenten · Bergen, Norge</p>
         </div>
       `;
 
       const ackText = `Hei ${firstName},
 
-Takk for at du tok kontakt. Henrik eller Aleksander ringer dere innen 24 timer for å avtale demo.
+Takk for at du tok kontakt med Ekspedenten! Vi ser på tallene for klinikken din og svarer deg innen 4 timer i arbeidstiden.
 
-Sees snart.
+I mellomtiden kan du gjerne kjøre vår lekkasje-kalkulator for å se hva tapte anrop koster dere i dag: https://ekspedenten.no/diagnose
 
-— Ekspedenten-teamet
-Bergen, Norge
+— Henrik & Aleksander
+Ekspedenten · Bergen, Norge
 `;
 
       const results = await Promise.allSettled([
