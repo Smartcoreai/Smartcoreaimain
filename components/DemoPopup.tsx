@@ -74,8 +74,8 @@ export function DemoPopup({
         email: email || null,
         telefon: telefon || null,
         notater: melding || null,
-        status: "ny",
-        kilde: "web",
+        status: "nye_leads",
+        kilde: "demo",
       });
 
       if (dbError) {

@@ -97,7 +97,7 @@ export async function POST(req: NextRequest) {
             email,
             telefon:       null,
             notater:       null,
-            status:        "ny",
+            status:        "nye_leads",
             kilde:         "chat",
           });
           if (dbError) {

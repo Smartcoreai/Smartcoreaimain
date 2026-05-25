@@ -212,7 +212,7 @@ export async function POST(req: NextRequest) {
         email,
         telefon:       null,
         notater,
-        status:        "ny",
+        status:        "nye_leads",
         kilde:         "diagnose",
       });
       if (dbError) {

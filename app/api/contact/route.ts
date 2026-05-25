@@ -62,7 +62,7 @@ export async function POST(req: NextRequest) {
         email,
         telefon:       phone || null,
         notater:       message,
-        status:        "ny",
+        status:        "nye_leads",
         kilde:         "kontakt",
       });
       if (dbError) {
