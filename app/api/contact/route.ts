@@ -42,6 +42,7 @@ export async function POST(req: NextRequest) {
 
   // GDPR: persondata lagres KUN i Supabase (Frankfurt, EU). Service-role-key
   // bypasser RLS for server-side system-writes — samme mønster som /api/diagnose.
+  let leadSaved = false;
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!supabaseUrl || !supabaseKey) {
@@ -73,6 +74,8 @@ export async function POST(req: NextRequest) {
           hint:    dbError.hint,
           email,
         });
+      } else {
+        leadSaved = true;
       }
     } catch (err) {
       console.error("Contact: Supabase client error", err);
@@ -150,8 +153,15 @@ Ekspedenten · Bergen, Norge
       });
     } catch (err) {
       console.error("Email send failed:", err);
-      // Still return success — lead was saved
+      // Email failure is non-critical — lead storage is what matters
     }
+  }
+
+  if (!leadSaved) {
+    return NextResponse.json(
+      { error: "Kunne ikke lagre henvendelsen. Prøv igjen eller kontakt oss direkte." },
+      { status: 500 },
+    );
   }
 
   return NextResponse.json({ ok: true });
