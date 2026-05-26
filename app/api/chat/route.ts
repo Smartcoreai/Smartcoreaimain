@@ -73,9 +73,11 @@ export async function POST(req: NextRequest) {
 
     // Parse and strip lead capture tag — save lead server-side, visitor sees clean reply.
     // GDPR: persondata lagres KUN i Supabase (Frankfurt, EU) med service-role-key.
+    console.log("Chat: model output (first 200)", text.slice(0, 200));
     const match = text.match(LEAD_TAG_RE);
     if (match) {
       const [, name, email] = match;
+      console.log("Chat: LEAD tag matched", { name, email });
       text = text.replace(LEAD_TAG_RE, "");
       const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
       const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -89,7 +91,7 @@ export async function POST(req: NextRequest) {
           const supabase = createClient(supabaseUrl, supabaseKey, {
             auth: { autoRefreshToken: false, persistSession: false },
           });
-          const { error: dbError } = await supabase.from("leads").insert({
+          const { data, error: dbError } = await supabase.from("leads").insert({
             klinikk_navn:  null,
             type_klinikk:  "tannlege",
             by:            null,
@@ -99,7 +101,7 @@ export async function POST(req: NextRequest) {
             notater:       null,
             status:        "nye_leads",
             kilde:         "chat",
-          });
+          }).select("id").maybeSingle();
           if (dbError) {
             console.error("Chat: Supabase insert failed", {
               code:    dbError.code,
@@ -108,6 +110,8 @@ export async function POST(req: NextRequest) {
               hint:    dbError.hint,
               email,
             });
+          } else {
+            console.log("Chat: lead inserted", { email, id: data?.id });
           }
         } catch (err) {
           console.error("Chat: Supabase client error", err);
