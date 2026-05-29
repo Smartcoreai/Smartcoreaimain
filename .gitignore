@@ -14,3 +14,7 @@ data/
 Smartcoreaimain/
 .DS_Store
 **/.DS_Store
+.vercel
+
+# Sentry Config File
+.env.sentry-build-plugin
