@@ -1,396 +1,264 @@
-"use client";
-
 import "../landing.css";
 import LandingNavbar from "@/components/landing/LandingNavbar";
 import LandingFooter from "@/components/landing/LandingFooter";
-import { useLanguage } from "@/lib/i18n";
+import styles from "./page.module.css";
 
-const FONT = "var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif";
-const INK = "var(--lp-ink)";
-const INK_SECONDARY = "var(--lp-ink-secondary)";
-const INK_TERTIARY = "var(--lp-ink-tertiary)";
-const GOLD = "var(--lp-gold)";
-const LAVENDER_BG = "var(--lp-lavender-bg)";
-const LAVENDER_SOFT = "var(--lp-lavender-soft)";
-const BORDER = "var(--lp-border)";
-const CARD_BG = "var(--lp-bg-card)";
+export const metadata = {
+  title: "Personvernerklæring · Ekspedenten",
+  description:
+    "Hvordan Ekspedenten behandler personopplysninger for nettside-besøkende, CRM-brukere og pasienter. Alt innenfor EU/EØS, i samsvar med GDPR.",
+};
 
-function MailtoLink({ email }: { email: string }) {
-  return (
-    <a
-      href={`mailto:${email}`}
-      style={{ color: GOLD, textDecoration: "underline", textUnderlineOffset: 3 }}
-    >
-      {email}
-    </a>
-  );
-}
+type TocItem = { num: string; href: string; title: string };
+
+const TOC: TocItem[] = [
+  { num: "01", href: "#innledning",        title: "Innledning" },
+  { num: "02", href: "#data",              title: "Hva slags data" },
+  { num: "03", href: "#underleverandorer", title: "Underleverandører" },
+  { num: "04", href: "#grunnlag",          title: "Lovlig grunnlag" },
+  { num: "05", href: "#lagringstid",       title: "Lagringstid" },
+  { num: "06", href: "#rettigheter",       title: "Dine rettigheter" },
+  { num: "07", href: "#cookies",           title: "Cookies" },
+  { num: "08", href: "#endringer",         title: "Endringer" },
+  { num: "09", href: "#datatilsynet",      title: "Datatilsynet" },
+];
 
 export default function PersonvernPage() {
-  const { t } = useLanguage();
-  const p = t.personvern;
-
-  const sectionStyle: React.CSSProperties = {
-    scrollMarginTop: 112,
-    borderTop: `1px solid ${BORDER}`,
-    paddingTop: 40,
-    paddingBottom: 8,
-    marginTop: 40,
-  };
-  const h2Style: React.CSSProperties = {
-    fontFamily: FONT,
-    fontSize: 24,
-    fontWeight: 700,
-    color: INK,
-    letterSpacing: "-0.01em",
-    margin: "0 0 16px",
-    lineHeight: 1.25,
-  };
-  const h3Style: React.CSSProperties = {
-    fontFamily: FONT,
-    fontSize: 16,
-    fontWeight: 700,
-    color: INK,
-    margin: "20px 0 8px",
-    letterSpacing: "-0.005em",
-  };
-  const pStyle: React.CSSProperties = {
-    fontSize: 15.5,
-    color: INK_SECONDARY,
-    lineHeight: 1.75,
-    margin: "0 0 12px",
-  };
-  const bulletListStyle: React.CSSProperties = {
-    margin: "8px 0 16px",
-    padding: 0,
-    listStyle: "none",
-    display: "flex",
-    flexDirection: "column",
-    gap: 8,
-  };
-  const bulletStyle: React.CSSProperties = {
-    display: "flex",
-    gap: 10,
-    alignItems: "flex-start",
-    fontSize: 15.5,
-    color: INK_SECONDARY,
-    lineHeight: 1.7,
-  };
-  const dotStyle: React.CSSProperties = {
-    color: GOLD,
-    fontWeight: 700,
-    flexShrink: 0,
-    marginTop: 1,
-    fontSize: 18,
-    lineHeight: 1,
-  };
-
   return (
-    <div className="lp-root" style={{ background: "var(--lp-bg-page)", minHeight: "100vh" }}>
+    <div className="lp-root">
       <LandingNavbar />
-
-      <main style={{ paddingTop: 112, paddingBottom: 96, paddingLeft: 24, paddingRight: 24 }}>
-        <div style={{ maxWidth: 800, margin: "0 auto" }}>
-
-          {/* Eyebrow */}
-          <div style={{
-            fontSize: 12, fontWeight: 700, letterSpacing: "0.1em",
-            textTransform: "uppercase", color: GOLD, marginBottom: 14,
-            fontFamily: FONT,
-          }}>
-            {p.eyebrow}
+      <main className={styles.page}>
+        {/* HERO */}
+        <section className={styles.hero}>
+          <div className={`${styles.wrap} ${styles.heroInner}`}>
+            <span className={styles.eyebrow}>
+              <span className={styles.dot} />
+              Juridisk
+            </span>
+            <h1 className={styles.h1}>Personvernerklæring</h1>
+            <p className={styles.lead}>
+              Denne erklæringen forklarer hvilke personopplysninger vi behandler, hvorfor, hvor lenge, og hvilke rettigheter du har. Vi behandler all data innenfor EU/EØS, i samsvar med GDPR.
+            </p>
+            <div className={styles.meta}>
+              <span className={styles.metaItem}>
+                <span className={styles.metaDot} />Sist oppdatert 29. mai 2026
+              </span>
+              <span className={styles.metaItem}>
+                <span className={styles.metaDot} />Dekker ekspedenten.no og app.ekspedenten.no
+              </span>
+              <span className={styles.metaItem}>
+                <span className={styles.metaDot} />Sist juridisk gjennomgang etter pilot
+              </span>
+            </div>
           </div>
+        </section>
 
-          {/* H1 */}
-          <h1 style={{
-            fontFamily: FONT,
-            fontSize: "clamp(34px, 5vw, 52px)",
-            fontWeight: 800,
-            letterSpacing: "-0.025em",
-            lineHeight: 1.1,
-            color: INK,
-            margin: "0 0 18px",
-          }}>
-            {p.headline}
-          </h1>
-
-          {/* Meta */}
-          <p style={{ fontSize: 14, color: INK_TERTIARY, margin: "0 0 4px", fontFamily: FONT }}>
-            {p.updated}
-          </p>
-          <p style={{ fontSize: 14, color: INK_TERTIARY, margin: "0 0 4px", fontFamily: FONT }}>
-            {p.reviewed}
-          </p>
-          <p style={{ fontSize: 14, color: INK_TERTIARY, margin: "0 0 40px", fontFamily: FONT }}>
-            {p.scope}
-          </p>
-
-          {/* TOC */}
-          <nav
-            aria-label={p.tocLabel}
-            style={{
-              background: LAVENDER_BG,
-              border: `1px solid ${LAVENDER_SOFT}`,
-              borderRadius: 14,
-              padding: "20px 24px",
-              marginBottom: 8,
-            }}
-          >
-            <div style={{
-              fontSize: 12, fontWeight: 700, letterSpacing: "0.08em",
-              textTransform: "uppercase", color: INK, marginBottom: 12,
-              fontFamily: FONT,
-            }}>
-              {p.tocLabel}
-            </div>
-            <ol style={{
-              margin: 0, padding: 0, listStyle: "none",
-              display: "grid", gap: 6,
-              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-            }}>
-              {p.toc.map((item) => (
-                <li key={item.id}>
-                  <a
-                    href={`#${item.id}`}
-                    style={{
-                      fontSize: 14, color: INK, textDecoration: "none",
-                      display: "inline-block", padding: "2px 0",
-                      fontFamily: FONT,
-                      borderBottom: "1px solid transparent",
-                      transition: "border-color 0.15s, color 0.15s",
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.color = GOLD;
-                      e.currentTarget.style.borderBottomColor = GOLD;
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.color = INK;
-                      e.currentTarget.style.borderBottomColor = "transparent";
-                    }}
-                  >
-                    {item.title}
+        {/* TOC */}
+        <section className={styles.tocSection}>
+          <div className={styles.wrap}>
+            <div className={`${styles.toc} ${styles.narrow}`}>
+              <p className={styles.tocTitle}>På denne siden</p>
+              <div className={styles.tocGrid}>
+                {TOC.map((item) => (
+                  <a key={item.num} href={item.href} className={styles.tocItem}>
+                    <span className={styles.tocNum}>{item.num}</span>
+                    <span>{item.title}</span>
                   </a>
-                </li>
-              ))}
-            </ol>
-          </nav>
-
-          {/* 1. Innledning */}
-          <section id="innledning" style={sectionStyle}>
-            <h2 style={h2Style}>{p.intro.title}</h2>
-            {p.intro.paragraphs.map((para, i) => (
-              <p key={i} style={pStyle}>{para}</p>
-            ))}
-            <p style={{ ...pStyle, margin: "12px 0 4px", fontWeight: 600, color: INK }}>
-              {p.intro.contactLabel}
-            </p>
-            <ul style={bulletListStyle}>
-              {p.intro.contacts.map((c) => (
-                <li key={c.label} style={bulletStyle}>
-                  <span style={dotStyle}>·</span>
-                  <span>
-                    <strong style={{ color: INK, fontWeight: 600 }}>{c.label}:</strong>{" "}
-                    {c.emails.map((email, i) => (
-                      <span key={email}>
-                        <MailtoLink email={email} />
-                        {i < c.emails.length - 1 && ", "}
-                      </span>
-                    ))}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </section>
-
-          {/* 2. Data */}
-          <section id="data" style={sectionStyle}>
-            <h2 style={h2Style}>{p.data.title}</h2>
-            {p.data.groups.map((g) => (
-              <div key={g.heading}>
-                <h3 style={h3Style}>{g.heading}</h3>
-                <ul style={bulletListStyle}>
-                  {g.bullets.map((b) => (
-                    <li key={b} style={bulletStyle}>
-                      <span style={dotStyle}>·</span>
-                      <span>{b}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-            <div style={{
-              marginTop: 16,
-              background: CARD_BG,
-              border: `1px solid ${BORDER}`,
-              borderRadius: 12,
-              padding: "16px 18px",
-            }}>
-              <p style={{ ...pStyle, margin: 0, color: INK }}>{p.data.role}</p>
-            </div>
-          </section>
-
-          {/* 3. Storage / sub-processors */}
-          <section id="lagring" style={sectionStyle}>
-            <h2 style={h2Style}>{p.storage.title}</h2>
-            <p style={pStyle}>{p.storage.intro}</p>
-
-            <div style={{
-              marginTop: 8,
-              border: `1px solid ${BORDER}`,
-              borderRadius: 12,
-              overflow: "hidden",
-              background: CARD_BG,
-            }}>
-              <div style={{ overflowX: "auto" }}>
-                <table style={{
-                  width: "100%",
-                  borderCollapse: "collapse",
-                  fontSize: 14.5,
-                  fontFamily: FONT,
-                  minWidth: 560,
-                }}>
-                  <thead>
-                    <tr style={{ background: "var(--lp-gold-bg)" }}>
-                      {p.storage.headers.map((h) => (
-                        <th
-                          key={h}
-                          scope="col"
-                          style={{
-                            textAlign: "left",
-                            padding: "12px 16px",
-                            fontWeight: 700,
-                            color: INK,
-                            letterSpacing: "-0.005em",
-                            borderBottom: `1px solid ${BORDER}`,
-                          }}
-                        >
-                          {h}
-                        </th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {p.storage.rows.map((row, i) => (
-                      <tr key={row.provider} style={{
-                        borderTop: i === 0 ? "none" : `1px solid ${BORDER}`,
-                      }}>
-                        <td style={{
-                          padding: "12px 16px",
-                          color: INK,
-                          fontWeight: 600,
-                          verticalAlign: "top",
-                          whiteSpace: "nowrap",
-                        }}>
-                          {row.provider}
-                        </td>
-                        <td style={{
-                          padding: "12px 16px",
-                          color: INK_SECONDARY,
-                          verticalAlign: "top",
-                          whiteSpace: "nowrap",
-                        }}>
-                          {row.location}
-                        </td>
-                        <td style={{
-                          padding: "12px 16px",
-                          color: INK_SECONDARY,
-                          verticalAlign: "top",
-                          lineHeight: 1.55,
-                        }}>
-                          {row.purpose}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+                ))}
               </div>
             </div>
-          </section>
+          </div>
+        </section>
 
-          {/* 4. Legal */}
-          <section id="grunnlag" style={sectionStyle}>
-            <h2 style={h2Style}>{p.legal.title}</h2>
-            <p style={pStyle}>{p.legal.intro}</p>
-            <ul style={bulletListStyle}>
-              {p.legal.items.map((it) => (
-                <li key={it.label} style={{ ...bulletStyle, alignItems: "flex-start" }}>
-                  <span style={dotStyle}>·</span>
-                  <span>
-                    <strong style={{ color: INK, fontWeight: 600 }}>{it.label}:</strong>{" "}
-                    {it.basis} <span style={{ color: INK_TERTIARY }}>({it.article})</span>: {it.desc}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </section>
+        {/* HOVED-KORT */}
+        <section>
+          <div className={styles.wrap}>
+            <div className={`${styles.mainCard} ${styles.narrow}`}>
+              <div className={styles.mainInner}>
 
-          {/* 5. Retention */}
-          <section id="lagringstid" style={sectionStyle}>
-            <h2 style={h2Style}>{p.retention.title}</h2>
-            <ul style={bulletListStyle}>
-              {p.retention.bullets.map((b) => (
-                <li key={b} style={bulletStyle}>
-                  <span style={dotStyle}>·</span>
-                  <span>{b}</span>
-                </li>
-              ))}
-            </ul>
-          </section>
+                {/* 01 Innledning */}
+                <article id="innledning" className={styles.section}>
+                  <div className={styles.sectionHead}>
+                    <span className={styles.sectionNum}>01</span>
+                    <h2 className={styles.sectionTitle}>
+                      <i>Inn</i>ledning
+                    </h2>
+                  </div>
+                  <p className={styles.p}>
+                    Ekspedenten AS (under registrering) er et norsk selskap med base i Bergen. Vi leverer en AI-basert digital ekspedient til tannklinikker. Hun svarer på telefon og web-chat, booker timer, og sender bekreftelser, mens en CRM-plattform håndterer leads og oppfølging.
+                  </p>
+                  <p className={styles.p}>
+                    Klinikken er behandlingsansvarlig for pasientdata. Ekspedenten er databehandler på vegne av klinikken, basert på signert databehandleravtale (DPA).
+                  </p>
+                </article>
 
-          {/* 6. Rights */}
-          <section id="rettigheter" style={sectionStyle}>
-            <h2 style={h2Style}>{p.rights.title}</h2>
-            <p style={pStyle}>{p.rights.intro}</p>
-            <ul style={bulletListStyle}>
-              {p.rights.bullets.map((b) => (
-                <li key={b} style={bulletStyle}>
-                  <span style={dotStyle}>·</span>
-                  <span>{b}</span>
-                </li>
-              ))}
-            </ul>
-            <p style={pStyle}>
-              {p.rights.howBefore}
-              <MailtoLink email={p.rights.email} />
-              {p.rights.howAfter}
-            </p>
-            <p style={pStyle}>{p.rights.complaint}</p>
-          </section>
+                {/* 02 Hva slags data */}
+                <article id="data" className={styles.section}>
+                  <div className={styles.sectionHead}>
+                    <span className={styles.sectionNum}>02</span>
+                    <h2 className={styles.sectionTitle}>
+                      <i>Hva</i> slags data vi behandler
+                    </h2>
+                  </div>
+                  <p className={styles.p}>Vi behandler kun det som er nødvendig for å levere tjenesten:</p>
+                  <ul className={styles.list}>
+                    <li><strong>Kontaktopplysninger:</strong> navn, telefonnummer, e-postadresse.</li>
+                    <li><strong>Booking-detaljer:</strong> tjeneste, tidspunkt, klinikk-tilknytning.</li>
+                    <li><strong>Samtale-metadata:</strong> tidspunkt, varighet, utfall. Transkribert tekst lagres for kvalitetssikring, men rå lyd lagres aldri.</li>
+                    <li><strong>Tekniske logger:</strong> IP-adresse, nettleser, feilmeldinger. Brukes til drift og feilretting.</li>
+                  </ul>
+                  <div className={styles.callout}>
+                    <span className={styles.calloutLabel}>Helse-data</span>
+                    <p className={styles.calloutText}>
+                      Ekspedenten spør ikke aktivt om symptomer, diagnoser eller andre helseopplysninger. Nevner pasienten det frivillig, lagres det ikke utover det som er nødvendig for å overføre samtalen til klinikken.
+                    </p>
+                  </div>
+                </article>
 
-          {/* 7. Cookies */}
-          <section id="cookies" style={sectionStyle}>
-            <h2 style={h2Style}>{p.cookies.title}</h2>
-            <p style={pStyle}>{p.cookies.body}</p>
-          </section>
+                {/* 03 Underleverandører */}
+                <article id="underleverandorer" className={styles.section}>
+                  <div className={styles.sectionHead}>
+                    <span className={styles.sectionNum}>03</span>
+                    <h2 className={styles.sectionTitle}>
+                      <i>Under</i>leverandører
+                    </h2>
+                  </div>
+                  <p className={styles.p}>
+                    Vi behandler data sammen med noen utvalgte underleverandører, alle innenfor EU/EØS og med signert databehandleravtale (DPA). Den til enhver tid gjeldende listen finner du her:{" "}
+                    <a href="/underleverandorer" className={styles.linkInternal}>Underleverandører →</a>
+                  </p>
+                  <div className={styles.callout}>
+                    <span className={styles.calloutLabel}>Hvor lagres data</span>
+                    <p className={styles.calloutText}>
+                      All persondata behandles og lagres innenfor EU/EØS. CRM og database ligger i Frankfurt (Supabase). AI-stemmemotor kjører i Sweden Central (Microsoft Azure). Ingen pasientdata forlater EU.
+                    </p>
+                  </div>
+                </article>
 
-          {/* 8. Changes */}
-          <section id="endringer" style={sectionStyle}>
-            <h2 style={h2Style}>{p.changes.title}</h2>
-            <p style={pStyle}>{p.changes.body}</p>
-          </section>
+                {/* 04 Lovlig grunnlag */}
+                <article id="grunnlag" className={styles.section}>
+                  <div className={styles.sectionHead}>
+                    <span className={styles.sectionNum}>04</span>
+                    <h2 className={styles.sectionTitle}>
+                      <i>Lov</i>lig grunnlag (GDPR Art. 6)
+                    </h2>
+                  </div>
+                  <p className={styles.p}>Vi baserer behandlingen på følgende grunnlag:</p>
+                  <ul className={styles.list}>
+                    <li><strong>Berettigede interesser (Art. 6(1)(f))</strong> for å levere tjenesten klinikken har bestilt, og for sikkerhets- og driftsformål.</li>
+                    <li><strong>Avtale (Art. 6(1)(b))</strong> når en pasient booker time eller tar kontakt via klinikken.</li>
+                    <li><strong>Samtykke (Art. 6(1)(a))</strong> når dette eksplisitt innhentes, for eksempel ved tilmelding på underleverandør-varsler.</li>
+                  </ul>
+                </article>
 
-          {/* 9. Authority */}
-          <section id="datatilsynet" style={sectionStyle}>
-            <h2 style={h2Style}>{p.authority.title}</h2>
-            <p style={pStyle}>{p.authority.body}</p>
-            <p style={pStyle}>
-              <a
-                href={p.authority.linkHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color: GOLD, textDecoration: "underline", textUnderlineOffset: 3, fontWeight: 600 }}
-              >
-                {p.authority.linkLabel} ↗
-              </a>
-            </p>
-          </section>
+                {/* 05 Lagringstid */}
+                <article id="lagringstid" className={styles.section}>
+                  <div className={styles.sectionHead}>
+                    <span className={styles.sectionNum}>05</span>
+                    <h2 className={styles.sectionTitle}>
+                      <i>Lag</i>ringstid
+                    </h2>
+                  </div>
+                  <p className={styles.p}>Vi lagrer data kun så lenge det er nødvendig:</p>
+                  <ul className={styles.list}>
+                    <li><strong>Aktive lead- og bookingdata:</strong> så lenge avtalen med klinikken løper.</li>
+                    <li><strong>Etter avsluttet kundeforhold:</strong> slettes innen 30 dager. På forespørsel kan vi eksportere dataene først (CSV eller JSON).</li>
+                    <li><strong>Tekniske logger og feilrapporter:</strong> 90 dager (Sentry, Vercel).</li>
+                    <li><strong>Subscribe-liste for underleverandør-varsler:</strong> til du avmelder.</li>
+                  </ul>
+                </article>
 
-          {/* Final divider */}
-          <div style={{ borderTop: `1px solid ${BORDER}`, marginTop: 40 }} />
+                {/* 06 Dine rettigheter */}
+                <article id="rettigheter" className={styles.section}>
+                  <div className={styles.sectionHead}>
+                    <span className={styles.sectionNum}>06</span>
+                    <h2 className={styles.sectionTitle}>
+                      <i>Dine</i> rettigheter
+                    </h2>
+                  </div>
+                  <p className={styles.p}>Du har følgende rettigheter under GDPR:</p>
+                  <ul className={styles.list}>
+                    <li><strong>Innsyn (Art. 15)</strong> i hvilke data vi har om deg.</li>
+                    <li><strong>Retting (Art. 16)</strong> av feilaktige opplysninger.</li>
+                    <li><strong>Sletting (Art. 17),</strong> også kalt &quot;retten til å bli glemt&quot;.</li>
+                    <li><strong>Begrensning (Art. 18)</strong> av behandlingen.</li>
+                    <li><strong>Dataportabilitet (Art. 20).</strong> Du kan be om dataene i et maskinlesbart format.</li>
+                    <li><strong>Innsigelse (Art. 21)</strong> mot behandling basert på berettigede interesser.</li>
+                  </ul>
+                  <p className={styles.p}>
+                    For å utøve disse rettighetene, kontakt klinikken din (behandlingsansvarlig). De vil videreformidle til oss om nødvendig. Du kan også kontakte oss direkte på{" "}
+                    <a href="mailto:aleksander@ekspedenten.no" className={styles.linkMail}>aleksander@ekspedenten.no</a>.
+                  </p>
+                </article>
 
-        </div>
+                {/* 07 Cookies */}
+                <article id="cookies" className={styles.section}>
+                  <div className={styles.sectionHead}>
+                    <span className={styles.sectionNum}>07</span>
+                    <h2 className={styles.sectionTitle}>
+                      <i>Cook</i>ies
+                    </h2>
+                  </div>
+                  <p className={styles.p}>
+                    Vi bruker kun strengt nødvendige cookies på ekspedenten.no (innlogging, preferanser). Vi setter ingen tredjeparts-sporing eller markedsføringscookies uten samtykke.
+                  </p>
+                  <p className={styles.p}>
+                    På CRM-en (app.ekspedenten.no) brukes session-cookies for å holde deg innlogget.
+                  </p>
+                </article>
+
+                {/* 08 Endringer */}
+                <article id="endringer" className={styles.section}>
+                  <div className={styles.sectionHead}>
+                    <span className={styles.sectionNum}>08</span>
+                    <h2 className={styles.sectionTitle}>
+                      <i>End</i>ringer
+                    </h2>
+                  </div>
+                  <p className={styles.p}>
+                    Denne erklæringen oppdateres når det er nødvendig. Vesentlige endringer varsles til klinikker på e-post minst 30 dager før endringen trer i kraft. Datoen øverst på siden viser sist oppdatering.
+                  </p>
+                </article>
+
+                {/* 09 Datatilsynet */}
+                <article id="datatilsynet" className={styles.section}>
+                  <div className={styles.sectionHead}>
+                    <span className={styles.sectionNum}>09</span>
+                    <h2 className={styles.sectionTitle}>
+                      <i>Data</i>tilsynet
+                    </h2>
+                  </div>
+                  <p className={styles.p}>
+                    Hvis du mener at vi ikke behandler dine personopplysninger i samsvar med GDPR eller norsk personvernregelverk, kan du klage til{" "}
+                    <a
+                      href="https://www.datatilsynet.no"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.linkExternal}
+                    >
+                      Datatilsynet
+                    </a>
+                    . Vi setter pris på om du tar kontakt med oss først, slik at vi kan rette opp.
+                  </p>
+                </article>
+
+              </div>
+            </div>
+
+            {/* Note-boks */}
+            <div className={`${styles.note} ${styles.narrow}`}>
+              <h3 className={styles.noteTitle}>Spørsmål om personvern</h3>
+              <p className={styles.noteP}>
+                Behandlingsansvarlig for pasientdata er klinikken. For tekniske spørsmål om hvordan Ekspedenten behandler data, eller for behov for signert databehandleravtale (DPA), kontakt{" "}
+                <a href="mailto:aleksander@ekspedenten.no" className={styles.linkMail}>aleksander@ekspedenten.no</a>.
+              </p>
+              <p className={styles.noteP}>
+                Ekspedenten AS, Bergen, Norge. Org.nr. under registrering.
+              </p>
+            </div>
+          </div>
+        </section>
       </main>
-
       <LandingFooter />
     </div>
   );
