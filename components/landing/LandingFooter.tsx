@@ -31,6 +31,7 @@ export default function LandingFooter() {
               <li><Link href="/personvern">Personvern</Link></li>
               <li><Link href="/cookies">Cookies</Link></li>
               <li><Link href="/terms">Vilkår</Link></li>
+              <li><a href="https://ekspedenten.betteruptime.com" target="_blank" rel="noopener noreferrer">Status</a></li>
             </ul>
           </div>
         </div>
