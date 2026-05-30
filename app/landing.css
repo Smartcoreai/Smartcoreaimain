@@ -1240,7 +1240,7 @@
   margin: 0 auto;
 }
 .lp-pris-header h1 em { font-style: italic; font-weight: 400; color: var(--lp-lavender-deep); }
-.lp-pris-lead { margin: 22px auto 0; color: var(--lp-muted); font-size: 17px; max-width: 580px; line-height: 1.6; }
+.lp-pris-lead { margin: 22px auto 0; color: var(--lp-muted); font-size: 17px; max-width: 580px; line-height: 1.6; text-align: center; }
 
 .lp-pris-wrap { padding: 40px 0 90px; position: relative; }
 .lp-pris-wrap::before {
@@ -1309,12 +1309,12 @@
   color: var(--lp-muted);
   line-height: 1.5;
   text-align: right;
-  max-width: 260px;
+  max-width: 320px;
   margin-left: auto;
   font-style: italic;
   font-family: var(--font-fraunces), Georgia, serif;
 }
-.lp-pris-binding { margin-top: 8px; font-size: 12px; color: var(--lp-muted); text-align: right; }
+.lp-pris-binding { margin-top: 14px; font-size: 12px; color: var(--lp-muted); text-align: right; }
 .lp-pris-binding b { color: var(--lp-navy); font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; font-size: 10.5px; margin-right: 6px; }
 
 .lp-pris-lists { margin-top: 50px; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
