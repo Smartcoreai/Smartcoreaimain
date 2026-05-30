@@ -11,7 +11,6 @@ import HowItWorks from "@/components/landing/HowItWorks";
 import Pillars from "@/components/landing/Pillars";
 import FinalCTA from "@/components/landing/FinalCTA";
 import LandingFooter from "@/components/landing/LandingFooter";
-import ChatWidget from "@/components/ChatWidget";
 import HashScroller from "@/components/HashScroller";
 import FaqTeaser from "@/components/FaqTeaser";
 
@@ -33,7 +32,6 @@ export default function HomePage() {
         <FinalCTA />
       </main>
       <LandingFooter />
-      <ChatWidget />
       <HashScroller />
     </div>
   );
