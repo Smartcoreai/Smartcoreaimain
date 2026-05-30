@@ -1,3 +1,14 @@
+/**
+ * ChatWidget — Aria chat-bubble.
+ *
+ * STATUS: Ikke i bruk på Ekspedentens egen markedsføringsside (mai 2026).
+ * Fjernet for å unngå forvirring (chat-bot på chat-bot-produkt).
+ *
+ * Hører hjemme på klinikkenes egne nettsider, ikke vår egen.
+ * Reinstaller ved å importere og rendere den i ønsket page.tsx.
+ *
+ * Backend bevart: /api/chat, lib/chat-prompt.ts, Supabase lead-capture-logic.
+ */
 "use client";
 import { useState, useRef, useEffect } from "react";
 import { X, Send, Bot, Sparkles } from "lucide-react";
