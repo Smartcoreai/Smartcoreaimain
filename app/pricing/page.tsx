@@ -2,7 +2,6 @@ import "../landing.css";
 import "../pricing.css";
 import LandingNavbar from "@/components/landing/LandingNavbar";
 import LandingFooter from "@/components/landing/LandingFooter";
-import ChatWidget from "@/components/ChatWidget";
 import FadeObserver from "@/components/pricing/FadeObserver";
 import PricingHero from "@/components/pricing/PricingHero";
 import PricingCard from "@/components/PricingCard";
@@ -28,7 +27,6 @@ export default function PricingPage() {
         </section>
       </main>
       <LandingFooter />
-      <ChatWidget />
       <FadeObserver />
     </div>
   );

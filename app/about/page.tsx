@@ -2,7 +2,6 @@ import "../landing.css";
 import "../about.css";
 import LandingNavbar from "@/components/landing/LandingNavbar";
 import LandingFooter from "@/components/landing/LandingFooter";
-import ChatWidget from "@/components/ChatWidget";
 import FadeObserver from "@/components/about/FadeObserver";
 import AboutHero from "@/components/about/AboutHero";
 import Manifesto from "@/components/about/Manifesto";
@@ -29,7 +28,6 @@ export default function AboutPage() {
         <AboutCTA />
       </main>
       <LandingFooter />
-      <ChatWidget />
       <FadeObserver />
     </div>
   );

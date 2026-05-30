@@ -5,7 +5,6 @@ import { useEffect, useState, Fragment, type ReactNode } from "react";
 import Link from "next/link";
 import LandingNavbar from "@/components/landing/LandingNavbar";
 import LandingFooter from "@/components/landing/LandingFooter";
-import ChatWidget from "@/components/ChatWidget";
 import { DemoPopup } from "@/components/DemoPopup";
 import { useLanguage } from "@/lib/i18n";
 
@@ -135,7 +134,6 @@ export default function FAQPage() {
         </section>
       </main>
       <LandingFooter />
-      <ChatWidget />
     </div>
   );
 }

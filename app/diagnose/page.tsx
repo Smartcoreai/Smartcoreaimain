@@ -3,7 +3,6 @@ import "../landing.css";
 import { useState, useMemo, useEffect, useRef } from "react";
 import LandingNavbar from "@/components/landing/LandingNavbar";
 import LandingFooter from "@/components/landing/LandingFooter";
-import ChatWidget from "@/components/ChatWidget";
 import { track } from "@/lib/track";
 import { useLanguage } from "@/lib/i18n";
 
@@ -531,7 +530,6 @@ export default function DiagnosePage() {
         </div>
       </main>
       <LandingFooter />
-      <ChatWidget />
 
       <style jsx global>{`
         .calc-page {

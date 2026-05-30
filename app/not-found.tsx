@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
-import ChatWidget from "@/components/ChatWidget";
 
 export default function NotFound() {
   return (
@@ -63,7 +62,6 @@ export default function NotFound() {
           </Link>
         </div>
       </main>
-      <ChatWidget />
     </>
   );
 }

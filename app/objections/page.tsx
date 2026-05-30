@@ -1,6 +1,5 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import ChatWidget from "@/components/ChatWidget";
 import Objections from "@/components/Objections";
 
 export default function ObjectionsPage() {
@@ -11,7 +10,6 @@ export default function ObjectionsPage() {
         <Objections />
       </main>
       <Footer />
-      <ChatWidget />
     </>
   );
 }
