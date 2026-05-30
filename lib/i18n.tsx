@@ -71,6 +71,32 @@ export const translations = {
       role: "Founders, Ekspedenten · Bergen",
       teamPlaceholder: "team photo",
     },
+    pillars: {
+      label: "The details",
+      headingPre: "Safe, fast,",
+      headingEm: "integrated.",
+      sub: "Three things Ekspedenten delivers from day one. Speed patients notice, security the clinic can stand behind, and integrations that actually work with the systems you use.",
+      cards: [
+        {
+          title: "From inquiry to booking, automatically",
+          body: "Ekspedenten reads the message, checks the calendar, suggests times, sends an SMS link. The patient clicks and confirms.",
+          b1: "4 seconds",
+          b2: "From inquiry to confirmed booking.",
+        },
+        {
+          title: "GDPR-safe from day one",
+          body: "All data is stored in Frankfurt. Ekspedenten never asks about symptoms or health information. Details are handled by the dentist at the clinic.",
+          b1: "EU · Frankfurt",
+          b2: "GDPR-compliant. Data stored in the EU.",
+        },
+        {
+          title: "Integrates with your patient record system",
+          body: "Opus, Anita, Muntra and other Nordic record systems. Ekspedenten reads the calendar, books appointments and updates the patient register automatically.",
+          b1: "Opus · Anita · Muntra",
+          b2: "+ others on request",
+        },
+      ],
+    },
     solution: {
       eyebrow: "THE SOLUTION",
       headline: "Meet Ekspedenten — your clinic's digital receptionist.",
@@ -860,6 +886,32 @@ export const translations = {
       founders: "Aleksander Bjørndal & Henrik Andreassen Bøe",
       role: "Gründere, Ekspedenten · Bergen",
       teamPlaceholder: "team-bilde",
+    },
+    pillars: {
+      label: "Detaljene",
+      headingPre: "Trygt, raskt,",
+      headingEm: "integrert.",
+      sub: "Tre ting Ekspedenten leverer på fra dag én. Hastighet pasientene kjenner, sikkerhet klinikken kan stå for, og integrasjoner som faktisk fungerer med systemene dere bruker.",
+      cards: [
+        {
+          title: "Fra henvendelse til booking, automatisk",
+          body: "Ekspedenten leser meldingen, sjekker kalenderen, foreslår tider, sender SMS-lenke. Pasienten klikker og bekrefter selv.",
+          b1: "4 sekunder",
+          b2: "Fra henvendelse til bekreftet booking.",
+        },
+        {
+          title: "GDPR-trygt fra dag én",
+          body: "All data lagres i Frankfurt. Ekspedenten spør aldri om symptomer eller helseopplysninger. Detaljer tas opp av tannlegen på klinikken.",
+          b1: "EU · Frankfurt",
+          b2: "GDPR-compliant. Data lagret i EU.",
+        },
+        {
+          title: "Integrerer med journalsystemet deres",
+          body: "Opus, Anita, Muntra og andre nordiske journalsystem. Ekspedenten leser kalenderen, booker time og oppdaterer pasientregisteret automatisk.",
+          b1: "Opus · Anita · Muntra",
+          b2: "+ andre etter behov",
+        },
+      ],
     },
     solution: {
       eyebrow: "LØSNINGEN",

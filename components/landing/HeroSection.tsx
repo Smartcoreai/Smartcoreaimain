@@ -7,16 +7,15 @@ export default function HeroSection() {
     <section className="lp-hero">
       <div className="lp-container lp-hero-grid">
         <div>
-          <span className="lp-pill">Bygget for nordiske klinikker</span>
           <h1>
-            Telefonen.<br className="hidden sm:inline" /> Besvart automatisk.
+            Telefonen. <span className="second">Besvart automatisk.</span>
           </h1>
           <p className="lp-lead">
             Ekspedenten svarer pasienter 24/7 på norsk og booker time direkte i kalenderen, mens teamet ditt fokuserer på pasientene som er foran dem.
           </p>
           <div className="lp-btn-group">
             <DemoPopup triggerText="Bestill demo" className="lp-btn-primary" />
-            <Link href="/diagnose" className="lp-btn-secondary">
+            <Link href="/diagnose" className="lp-btn-ghost">
               Beregn din lekkasje <span className="lp-arrow">→</span>
             </Link>
           </div>
@@ -75,10 +74,14 @@ export default function HeroSection() {
           </div>
 
           <div className="lp-floating-booking">
-            <div className="lp-booking-icon">✓</div>
-            <div className="lp-booking-label">Booking bekreftet</div>
-            <div className="lp-booking-title">Tannrens</div>
-            <div className="lp-booking-time">Tor. 7. mai · 10:00</div>
+            <div className="lp-booking-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" aria-hidden="true"><path d="M5 12l4 4L19 7" /></svg>
+            </div>
+            <div className="lp-booking-info">
+              <div className="lp-booking-label">Booking bekreftet</div>
+              <div className="lp-booking-title">Tannrens</div>
+              <div className="lp-booking-time">Tor. 7. mai · 10:00</div>
+            </div>
           </div>
         </div>
       </div>

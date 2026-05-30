@@ -4,7 +4,7 @@ import { LanguageProvider } from "@/lib/i18n";
 import ScrollReset from "@/components/ScrollReset";
 import ForceScrollTop from "@/components/ForceScrollTop";
 import CookieBanner from "@/components/CookieBanner";
-import { Inter, Playfair_Display, Syne, DM_Sans } from "next/font/google";
+import { Inter, Playfair_Display, Syne, DM_Sans, Fraunces } from "next/font/google";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -31,6 +31,13 @@ const dmSans = DM_Sans({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
   variable: "--font-dm-sans",
+  display: "swap",
+});
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  axes: ["SOFT", "opsz"],
+  variable: "--font-fraunces",
   display: "swap",
 });
 
@@ -68,7 +75,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="en"
       style={{ background: "#1A1A1A" }}
-      className={`${inter.variable} ${playfair.variable} ${syne.variable} ${dmSans.variable}`}
+      className={`${inter.variable} ${playfair.variable} ${syne.variable} ${dmSans.variable} ${fraunces.variable}`}
     >
       <head>
         <meta name="theme-color" content="#1a1f3a" />

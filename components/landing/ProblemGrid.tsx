@@ -1,39 +1,39 @@
 export default function ProblemGrid() {
   return (
-    <section className="lp-section" id="problem">
+    <section className="lp-problem" id="problem">
       <div className="lp-container">
-        <div className="lp-section-header left">
-          <span className="lp-pill lavender">Problemet</span>
-          <h2>Pasienthenvendelser stopper aldri.<br className="hidden sm:inline" /> De fleste trenger ikke teamet ditt.</h2>
-        </div>
+        <span className="lp-label on-lav">Problemet</span>
+        <h2>Pasienthenvendelser stopper aldri. <em>De fleste trenger ikke teamet ditt.</em></h2>
 
         <div className="lp-problem-grid">
           <div className="lp-problem-card">
+            <span className="lp-prob-num">01.</span>
             <div className="lp-problem-mockup">
-              <div className="lp-mock-line">"Hva tid stenger dere i kveld?"</div>
-              <div className="lp-mock-line">"Kan jeg booke til torsdag?"</div>
-              <div className="lp-mock-line muted">"Tar dere drop-in?"</div>
-              <div className="lp-mock-line muted">"Er klinikken full?"</div>
+              <div className="lp-qbubble">&ldquo;Hva tid stenger dere i kveld?&rdquo;</div>
+              <div className="lp-qbubble">&ldquo;Kan jeg booke til torsdag?&rdquo;</div>
+              <div className="lp-qbubble">&ldquo;Tar dere drop-in?&rdquo;</div>
+              <div className="lp-qbubble">&ldquo;Er klinikken full?&rdquo;</div>
             </div>
             <h3>Repetitive spørsmål</h3>
             <p>Åpningstider. Pris-spørsmål. Småjusteringer på time. Resepsjonen besvarer de samme henvendelsene hele dagen.</p>
           </div>
 
           <div className="lp-problem-card">
+            <span className="lp-prob-num">02.</span>
             <div className="lp-problem-mockup">
-              <div className="lp-mock-line danger">
-                ⚠ Booking gikk til konkurrenten.
-                <br />
-                <small>De svarte raskere.</small>
+              <div className="lp-alert-line">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M12 9v4M12 17h.01M10.3 3.86l-8.18 14.18A2 2 0 003.85 21h16.3a2 2 0 001.73-2.96L13.7 3.86a2 2 0 00-3.4 0z" /></svg>
+                Booking gikk til konkurrenten.
               </div>
-              <div className="lp-mock-row">
-                <div className="lp-mock-line">
-                  <strong>Din klinikk</strong>
-                  <small style={{ color: "#d44" }}>● Ikke svart</small>
+              <div className="lp-alert-sub">De svarte raskere.</div>
+              <div className="lp-clinic-row">
+                <div className="lp-clinic-box bad">
+                  <div className="lp-clinic-name">Din klinikk</div>
+                  <div className="lp-clinic-status"><span className="lp-dot" />Ikke svart</div>
                 </div>
-                <div className="lp-mock-line">
-                  <strong>Konkurrent</strong>
-                  <small style={{ color: "#0a5f1e" }}>● Svar sendt</small>
+                <div className="lp-clinic-box good">
+                  <div className="lp-clinic-name">Konkurrent</div>
+                  <div className="lp-clinic-status"><span className="lp-dot" />Svar sendt</div>
                 </div>
               </div>
             </div>
@@ -42,14 +42,12 @@ export default function ProblemGrid() {
           </div>
 
           <div className="lp-problem-card">
-            <div className="lp-problem-mockup">
-              <div className="lp-mock-inbox-head">
-                <strong>Innboks</strong>
-                <span className="lp-mock-badge-red">834 ulest</span>
-              </div>
-              <div className="lp-mock-line">Bergen <span className="lp-line-count">87</span></div>
-              <div className="lp-mock-line">Stavanger <span className="lp-line-count">22</span></div>
-              <div className="lp-mock-line">Oslo <span className="lp-line-count">14</span></div>
+            <span className="lp-prob-num">03.</span>
+            <div className="lp-problem-mockup lp-inbox-mock">
+              <div className="lp-inbox-head">Innboks <span className="lp-inbox-unread">834 ulest</span></div>
+              <div className="lp-inbox-row"><span className="lp-inbox-city">Bergen</span><span className="lp-inbox-count">87</span></div>
+              <div className="lp-inbox-row"><span className="lp-inbox-city">Stavanger</span><span className="lp-inbox-count">22</span></div>
+              <div className="lp-inbox-row"><span className="lp-inbox-city">Oslo</span><span className="lp-inbox-count">14</span></div>
             </div>
             <h3>Innboksen er en svart boks</h3>
             <p>Mange kanaler. Ingen oversikt. Ingen tracking på hva som kommer inn og hva som faller mellom to stoler.</p>

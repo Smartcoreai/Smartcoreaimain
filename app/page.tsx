@@ -8,7 +8,7 @@ import SolutionIntro from "@/components/landing/SolutionIntro";
 import AgentChatDemo from "@/components/landing/AgentChatDemo";
 import CRMSection from "@/components/landing/CRMSection";
 import HowItWorks from "@/components/landing/HowItWorks";
-import FeatureCards from "@/components/landing/FeatureCards";
+import Pillars from "@/components/landing/Pillars";
 import FinalCTA from "@/components/landing/FinalCTA";
 import LandingFooter from "@/components/landing/LandingFooter";
 import ChatWidget from "@/components/ChatWidget";
@@ -29,7 +29,7 @@ export default function HomePage() {
         <AgentChatDemo />
         <CRMSection />
         <HowItWorks />
-        <FeatureCards />
+        <Pillars />
         <FinalCTA />
       </main>
       <LandingFooter />

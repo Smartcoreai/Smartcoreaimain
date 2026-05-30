@@ -1,10 +1,10 @@
 export default function CRMSection() {
   return (
-    <section className="lp-section" id="crm">
+    <section className="lp-crm" id="crm">
       <div className="lp-container">
         <div className="lp-section-header">
-          <span className="lp-pill lavender">CRM for klinikker</span>
-          <h2>All aktivitet samlet<br />på ett sted.</h2>
+          <span className="lp-label">CRM for klinikker</span>
+          <h2>All aktivitet samlet på ett sted.</h2>
           <p>Logg inn på dashbordet ditt og se eksakt hva Ekspedenten gjorde i dag. Samtaler, bookinger, missed calls og hvilke pasienter som trenger oppfølging fra teamet.</p>
           <p className="lp-section-header-note">Eksempel-data nedenfor viser hvordan dashbordet ser ut etter første uke i drift.</p>
         </div>
@@ -94,10 +94,10 @@ export default function CRMSection() {
                 <h4>Pasient-pipeline</h4>
                 <div className="lp-leads-card">
                   <div className="lp-leads-bar">
-                    <div className="lp-lead-bucket"><div className="lp-num">8</div><div className="lp-label">Ny</div></div>
-                    <div className="lp-lead-bucket"><div className="lp-num">5</div><div className="lp-label">Kontaktet</div></div>
-                    <div className="lp-lead-bucket gold"><div className="lp-num">3</div><div className="lp-label">Booket</div></div>
-                    <div className="lp-lead-bucket"><div className="lp-num">2</div><div className="lp-label">Bekreftet</div></div>
+                    <div className="lp-lead-bucket"><div className="lp-num">8</div><div className="lp-bucket-label">Ny</div></div>
+                    <div className="lp-lead-bucket"><div className="lp-num">5</div><div className="lp-bucket-label">Kontaktet</div></div>
+                    <div className="lp-lead-bucket active"><div className="lp-num">3</div><div className="lp-bucket-label">Booket</div></div>
+                    <div className="lp-lead-bucket"><div className="lp-num">2</div><div className="lp-bucket-label">Bekreftet</div></div>
                   </div>
                   <div className="lp-lead-list">
                     <div className="lp-lead-row">
