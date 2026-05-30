@@ -7,9 +7,11 @@ import { EKSPEDENTEN_PROMPT } from "@/lib/chat-prompt";
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
-// Regex stays in place: if the prompt is ever wired back up to emit
-// [LEAD:name=…,email=…] tags, the capture-and-insert block below still works.
-const LEAD_TAG_RE = /^\[LEAD:name=([^,\]]+),email=([^\]]+)\]\s*/;
+// Prompt emits [LEAD:name=NAVN,email=EPOST,telephone=TELEFON] on the last line
+// when it has name + (email or phone). Telephone field is optional; email may
+// be empty ('' or nothing) when only phone was given. Tag is stripped before
+// the reply reaches the client.
+const LEAD_TAG_RE = /\[LEAD:name=([^,\]]+),email=([^,\]]*)(?:,telephone=([^,\]]*))?\]/;
 
 // Belt-and-braces filter: the prompt forbids em/en/double dashes, but the
 // model still slips them in. Run on the fully assembled reply (we don't
@@ -76,9 +78,14 @@ export async function POST(req: NextRequest) {
     console.log("Chat: model output (first 200)", text.slice(0, 200));
     const match = text.match(LEAD_TAG_RE);
     if (match) {
-      const [, name, email] = match;
-      console.log("Chat: LEAD tag matched", { name, email });
-      text = text.replace(LEAD_TAG_RE, "");
+      const [, rawName, rawEmail, rawTelephone] = match;
+      const name = rawName.trim();
+      const email = rawEmail.trim().replace(/^'+|'+$/g, "");
+      const telephone = rawTelephone?.trim().replace(/^'+|'+$/g, "") || null;
+      console.log("Chat: LEAD tag matched", { name, email, telephone });
+      // Strip the tag (and any leading whitespace/newlines around it) from the reply.
+      text = text.replace(LEAD_TAG_RE, "").replace(/\s+$/g, "").trim();
+
       const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
       const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
       if (!supabaseUrl || !supabaseKey) {
@@ -86,36 +93,48 @@ export async function POST(req: NextRequest) {
           "Chat: Supabase insert skipped — missing env",
           { hasUrl: !!supabaseUrl, hasServiceKey: !!supabaseKey },
         );
-      } else {
-        try {
-          const supabase = createClient(supabaseUrl, supabaseKey, {
-            auth: { autoRefreshToken: false, persistSession: false },
-          });
-          const { data, error: dbError } = await supabase.from("leads").insert({
-            klinikk_navn:  null,
-            type_klinikk:  "tannlege",
-            by:            null,
-            kontaktperson: name,
+        return NextResponse.json(
+          { error: "lead_save_failed", message: "Supabase env missing" },
+          { status: 500 },
+        );
+      }
+
+      try {
+        const supabase = createClient(supabaseUrl, supabaseKey, {
+          auth: { autoRefreshToken: false, persistSession: false },
+        });
+        const { data, error: dbError } = await supabase.from("leads").insert({
+          klinikk_navn:  null,
+          type_klinikk:  "tannlege",
+          by:            null,
+          kontaktperson: name,
+          email:         email || null,
+          telefon:       telephone,
+          notater:       null,
+          status:        "nye_leads",
+          kilde:         "chat",
+        }).select("id").maybeSingle();
+        if (dbError) {
+          console.error("Chat: Supabase insert failed", {
+            code:    dbError.code,
+            message: dbError.message,
+            details: dbError.details,
+            hint:    dbError.hint,
             email,
-            telefon:       null,
-            notater:       null,
-            status:        "nye_leads",
-            kilde:         "chat",
-          }).select("id").maybeSingle();
-          if (dbError) {
-            console.error("Chat: Supabase insert failed", {
-              code:    dbError.code,
-              message: dbError.message,
-              details: dbError.details,
-              hint:    dbError.hint,
-              email,
-            });
-          } else {
-            console.log("Chat: lead inserted", { email, id: data?.id });
-          }
-        } catch (err) {
-          console.error("Chat: Supabase client error", err);
+          });
+          return NextResponse.json(
+            { error: "lead_save_failed", message: dbError.message },
+            { status: 500 },
+          );
         }
+        console.log("Chat: lead inserted", { email, telephone, id: data?.id });
+      } catch (err) {
+        console.error("Chat: Supabase client error", err);
+        const message = err instanceof Error ? err.message : "unknown supabase client error";
+        return NextResponse.json(
+          { error: "lead_save_failed", message },
+          { status: 500 },
+        );
       }
     }
 
