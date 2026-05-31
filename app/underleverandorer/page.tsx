@@ -2,126 +2,129 @@ import "../landing.css";
 import LandingNavbar from "@/components/landing/LandingNavbar";
 import LandingFooter from "@/components/landing/LandingFooter";
 import SubprocessorSubscribe from "@/components/SubprocessorSubscribe";
-import styles from "./page.module.css";
 
 export const metadata = {
   title: "Underleverandører — Ekspedenten",
   description:
-    "Oversikt over underleverandørene som behandler data på Ekspedentens vegne. Alle innenfor EU/EØS, med signert databehandleravtale.",
+    "Tjenestene Ekspedenten bruker for å levere produktet, og hvor data behandles. Alle innenfor EU/EØS med signert databehandleravtale.",
 };
 
 type Subprocessor = {
   name: string;
-  url: string;
-  purpose: string;
-  dataKind: string;
-  region: string;
+  meta: string;
   dpa: string;
-  addedAt: string;
+  purpose: string;
+  data: string;
+  region: string;
+  regionNorge?: boolean;
+  added: string;
 };
 
-type Category = {
-  num: string;
-  title: string;
-  items: Subprocessor[];
-};
-
-const ADDED = "Lagt til 28. mai 2026";
+type Category = { num: string; title: string; items: Subprocessor[] };
 
 const CATEGORIES: Category[] = [
   {
-    num: "01",
+    num: "i.",
     title: "Kjernedrift",
     items: [
       {
         name: "Supabase",
-        url: "https://supabase.com",
-        purpose: "Database og backend for leads, samtaler, bookinger og klinikkdata.",
-        dataKind: "Kontaktinfo, bookingdata, samtale-metadata.",
-        region: "EU · Frankfurt",
+        meta: "Database og autentisering",
         dpa: "https://supabase.com/legal/dpa",
-        addedAt: ADDED,
-      },
-      {
-        name: "Microsoft Azure",
-        url: "https://azure.microsoft.com",
-        purpose: "AI-stemmemotor (Azure OpenAI og Speech) som driver Ekspedenten på telefon.",
-        dataKind: "Transkribert tale fra pasientsamtaler. Rå lyd lagres ikke.",
-        region: "EU · Sweden Central",
-        dpa: "https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA",
-        addedAt: ADDED,
+        purpose: "Lagrer CRM-data, pasientregister, samtale-logger, brukerinnlogging.",
+        data: "Datakategori: kontaktinfo, pasient-metadata, samtaleinnhold",
+        region: "EU · Frankfurt",
+        added: "Lagt til mars 2026",
       },
       {
         name: "Vercel",
-        url: "https://vercel.com",
-        purpose: "Hosting av nettside og serverless API-endepunkter.",
-        dataKind: "Skjema-innsendinger, API-trafikk.",
-        region: "EU · Frankfurt",
+        meta: "Hosting og deployment",
         dpa: "https://vercel.com/legal/dpa",
-        addedAt: ADDED,
+        purpose: "Server nettsiden og CRM-en. Behandler IP-adresser og tekniske data for å levere innhold.",
+        data: "Datakategori: tekniske data (IP, nettlesertype)",
+        region: "EU · Frankfurt",
+        added: "Lagt til mars 2026",
+      },
+      {
+        name: "Amazon Web Services",
+        meta: "Underliggende infrastruktur (via Supabase)",
+        dpa: "https://aws.amazon.com/compliance/gdpr-center/",
+        purpose: "Fysisk infrastruktur for Supabase. All data fysisk lagret i AWS Frankfurt-region.",
+        data: "Datakategori: alle data håndtert av Supabase",
+        region: "EU · Frankfurt",
+        added: "Lagt til mars 2026",
       },
     ],
   },
   {
-    num: "02",
+    num: "ii.",
     title: "Kommunikasjon",
     items: [
       {
         name: "Telnyx",
-        url: "https://telnyx.com",
-        purpose: "Telefoni og SMS-utsendelse for innkommende anrop og varsler.",
-        dataKind: "Telefonnumre, samtalemetadata, SMS-innhold.",
-        region: "EU",
+        meta: "Telefoni og SMS",
         dpa: "https://telnyx.com/resources/data-processing-addendum",
-        addedAt: ADDED,
+        purpose: "Mottar inngående anrop, sender SMS-bekreftelser. Behandler samtale-metadata og telefonnummer.",
+        data: "Datakategori: telefonnummer, samtaletid, SMS-innhold",
+        region: "EU",
+        added: "Lagt til april 2026",
       },
       {
         name: "Resend",
-        url: "https://resend.com",
-        purpose: "Transaksjonelle e-poster (bekreftelser, varsler, kontakt-svar).",
-        dataKind: "E-postadresser og meldingsinnhold.",
-        region: "EU",
+        meta: "Transaksjonell e-post",
         dpa: "https://resend.com/legal/dpa",
-        addedAt: ADDED,
+        purpose: "Sender bekreftelsesmail, faktura, varsler. Behandler e-postadresser og meldingsinnhold.",
+        data: "Datakategori: e-postadresse, meldingsinnhold",
+        region: "EU",
+        added: "Lagt til april 2026",
       },
     ],
   },
   {
-    num: "03",
+    num: "iii.",
     title: "Integrasjoner",
     items: [
       {
-        name: "Leyr.io",
-        url: "https://leyr.io",
-        purpose: "Booking-integrasjon mot journalsystemene Opus, Muntra og Anita.",
-        dataKind: "Pasientnavn og time-detaljer (kun ved booking).",
+        name: "Microsoft Azure",
+        meta: "Voice-AI (Speech-to-Text, Text-to-Speech)",
+        dpa: "https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA",
+        purpose: "Transkriberer pasienthenvendelser og genererer Arias stemme. Behandling skjer i sanntid uten lagring.",
+        data: "Datakategori: lydstrøm, transkripsjon",
+        region: "EU · Sweden Central",
+        added: "Lagt til april 2026",
+      },
+      {
+        name: "Anthropic",
+        meta: "Språkmodell (Claude)",
+        dpa: "https://www.anthropic.com/legal/dpa",
+        purpose: "Genererer Arias svar basert på pasientens henvendelse. Data brukes ikke til modelltrening.",
+        data: "Datakategori: samtaleinnhold (anonymisert i prompt)",
         region: "EU",
-        dpa: "https://leyr.io",
-        addedAt: ADDED,
+        added: "Lagt til april 2026",
       },
     ],
   },
   {
-    num: "04",
+    num: "iv.",
     title: "Overvåkning",
     items: [
       {
         name: "Sentry",
-        url: "https://sentry.io",
-        purpose: "Feilrapportering og overvåkning i produksjon.",
-        dataKind: "Tekniske feil og kontekst (kan inneholde IP-adresse).",
-        region: "EU · Tyskland",
+        meta: "Feilrapportering",
         dpa: "https://sentry.io/legal/dpa/",
-        addedAt: ADDED,
+        purpose: "Fanger applikasjonsfeil for å forbedre stabilitet. Personopplysninger filtreres ut før sending.",
+        data: "Datakategori: tekniske feilmeldinger, stack traces",
+        region: "EU · Tyskland",
+        added: "Lagt til mai 2026",
       },
       {
         name: "BetterStack",
-        url: "https://betterstack.com",
-        purpose: "Uptime-overvåkning av offentlige tjenester og status-side.",
-        dataKind: "Offentlige URL-er. Ingen personopplysninger.",
+        meta: "Oppetidsovervåkning + status-side",
+        dpa: "https://betterstack.com/legal/data-processing-agreement",
+        purpose: "Måler oppetid og responstid. Ingen personopplysninger.",
+        data: "Datakategori: tekniske status-data",
         region: "EU",
-        dpa: "https://betterstack.com/legal/dpa",
-        addedAt: ADDED,
+        added: "Lagt til mai 2026",
       },
     ],
   },
@@ -133,90 +136,63 @@ export default function UnderleverandorerPage() {
   return (
     <div className="lp-root">
       <LandingNavbar />
-      <main className={styles.page}>
-        <section className={styles.hero}>
-          <div className={`${styles.wrap} ${styles.heroInner}`}>
-            <span className={styles.eyebrow}>
-              <span className={styles.dot} />
-              Personvern
-            </span>
-            <h1 className={styles.h1}>
-              Hvem som behandler data <i>på våre vegne.</i>
-            </h1>
-            <p className={styles.lead}>
-              Ekspedenten bruker noen underleverandører for å levere tjenesten. Alle behandler data innenfor EU/EØS, i samsvar med GDPR og signert databehandleravtale (DPA). Listen oppdateres når den endres, og klinikker varsles minst 30 dager før.
+      <main>
+        <section className="lp-doc-header">
+          <div className="lp-container">
+            <span className="lp-label">Juridisk</span>
+            <h1>Underleverandører</h1>
+            <p className="lp-doc-lead">
+              Tjenestene Ekspedenten bruker for å levere produktet, og hvor data behandles. Vi varsler om endringer minst 30 dager før de trer i kraft.
             </p>
-            <div className={styles.stats}>
-              <span>{TOTAL} underleverandører</span>
-              <span className={styles.statsSep}>·</span>
-              <span>{CATEGORIES.length} kategorier</span>
-              <span className={styles.statsSep}>·</span>
-              <span>Sist oppdatert 28. mai 2026</span>
+            <div className="lp-doc-meta">
+              <span>Sist oppdatert <b>30. mai 2026</b></span>
+              <span>Totalt <b>{TOTAL} underleverandører</b></span>
             </div>
-          </div>
-        </section>
 
-        <section className={styles.subscribeSection}>
-          <div className={styles.wrap}>
             <SubprocessorSubscribe />
           </div>
         </section>
 
-        <section>
-          <div className={styles.wrap}>
-            <div className={styles.listCard}>
-              <div className={styles.listInner}>
-                {CATEGORIES.map((cat) => (
-                  <div key={cat.num}>
-                    <div className={styles.sectionHead}>
-                      <span className={styles.sectionNum}>{cat.num}</span>
-                      <h2 className={styles.sectionTitle}>
-                        <i>{cat.title}</i>
-                      </h2>
-                    </div>
-                    {cat.items.map((item) => (
-                      <div key={item.name} className={styles.row}>
-                        <div className={styles.cellName}>
-                          <a
-                            href={item.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={styles.name}
-                          >
-                            {item.name}
-                          </a>
-                          <a
-                            href={item.dpa}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={styles.dpaLink}
-                          >
-                            DPA →
-                          </a>
-                        </div>
-                        <div className={styles.cellPurpose}>
-                          <span className={styles.purpose}>{item.purpose}</span>
-                          <span className={styles.dataKind}>{item.dataKind}</span>
-                        </div>
-                        <span className={styles.regionPill}>{item.region}</span>
-                        <span className={styles.addedAt}>{item.addedAt}</span>
-                      </div>
-                    ))}
-                  </div>
-                ))}
+        <section className="lp-doc-wrap wide">
+          <div className="lp-container">
+            <div className="lp-doc-card wide">
+              <div className="lp-doc-intro">
+                <p>En underleverandør (sub-processor) er en tredjepart som behandler personopplysninger på vegne av Ekspedenten for å kunne levere tjenesten. Vi har inngått <b>databehandleravtaler etter GDPR artikkel 28</b> med samtlige.</p>
+                <p>All databehandling foregår innenfor EU/EØS. For detaljer om hvordan vi behandler data, se vår <a className="in" href="/personvern">Personvernerklæring</a>.</p>
               </div>
+
+              {CATEGORIES.map((cat) => (
+                <div key={cat.num} className="lp-doc-cat">
+                  <div className="lp-doc-cathead">
+                    <span className="num">{cat.num}</span>
+                    <h2>{cat.title}</h2>
+                  </div>
+                  {cat.items.map((item) => (
+                    <div key={item.name} className="lp-sub-row">
+                      <div className="lp-sub-name">
+                        {item.name}
+                        <span className="meta-line">{item.meta}</span>
+                        <a className="dpa" href={item.dpa} target="_blank" rel="noopener noreferrer">DPA →</a>
+                      </div>
+                      <div className="lp-sub-purpose">
+                        {item.purpose}
+                        <span className="data">{item.data}</span>
+                      </div>
+                      <div>
+                        <span className={`lp-sub-region${item.regionNorge ? " norge" : ""}`}>{item.region}</span>
+                        <span className="lp-sub-added">{item.added}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ))}
             </div>
 
-            <div className={styles.note}>
-              <h3 className={styles.noteTitle}>Endringer og kontakt</h3>
-              <p className={styles.noteP}>
-                Ved endring av underleverandører varsler vi alle klinikker på e-post minst 30 dager før endringen trer i kraft, slik at dere kan vurdere konsekvensene for egen databehandling.
-              </p>
-              <p className={styles.noteP}>
-                Spørsmål, eller behov for en signert databehandleravtale (DPA)? Kontakt{" "}
-                <a href="mailto:aleksander@ekspedenten.no">aleksander@ekspedenten.no</a>.
-              </p>
-            </div>
+            <aside className="lp-doc-note wide">
+              <h4>Endringer og varsel</h4>
+              <p>Vi varsler alle klinikker minst <b>30 dager før</b> en ny underleverandør tas i bruk eller en eksisterende byttes ut. Du kan også abonnere via skjemaet øverst for å få varsel uavhengig av om du er kunde.</p>
+              <p>Spørsmål om underleverandører: <a href="mailto:aleksander@ekspedenten.no">aleksander@ekspedenten.no</a>. Du har også rett til å klage til <a href="https://www.datatilsynet.no" target="_blank" rel="noopener noreferrer">Datatilsynet</a>.</p>
+            </aside>
           </div>
         </section>
       </main>

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import styles from "./SubprocessorSubscribe.module.css";
 
 type Status = "idle" | "sending" | "success" | "error";
 
@@ -35,36 +34,31 @@ export default function SubprocessorSubscribe() {
   };
 
   return (
-    <div className={styles.card}>
-      <h2 className={styles.title}>Få beskjed når listen endres</h2>
-      <p className={styles.sub}>
-        Vi varsler alle berørte klinikker direkte, men du kan også få e-post når noe oppdateres.
-      </p>
+    <div className="lp-subscribe">
+      <div className="lp-subscribe-txt">
+        <div className="lp-subscribe-lab">Få varsel ved endringer</div>
+        <div className="lp-subscribe-h">Vi sender e-post når vi legger til eller bytter en underleverandør.</div>
+      </div>
 
       {status === "success" ? (
-        <p className={styles.success}>Takk! Vi varsler deg når listen endres.</p>
+        <p className="lp-subscribe-success">Takk! Vi varsler deg når listen endres.</p>
       ) : (
-        <>
-          <form className={styles.form} onSubmit={handleSubmit} noValidate>
-            <input
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="din@klinikk.no"
-              className={styles.input}
-              disabled={status === "sending"}
-              aria-label="E-postadresse"
-            />
-            <button type="submit" className={styles.btn} disabled={status === "sending"}>
-              {status === "sending" ? "Sender..." : "Få varsel"}
-            </button>
-          </form>
-          {status === "error" && <p className={styles.error}>{errorMsg}</p>}
-          <p className={styles.fine}>
-            Brukes kun til oppdateringer om denne listen. Avmeld når som helst.
-          </p>
-        </>
+        <form className="lp-subscribe-form" onSubmit={handleSubmit} noValidate>
+          <input
+            type="email"
+            name="email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="navn@klinikk.no"
+            disabled={status === "sending"}
+            aria-label="E-postadresse"
+          />
+          <button type="submit" disabled={status === "sending"}>
+            {status === "sending" ? "Sender..." : "Abonner"}
+          </button>
+          {status === "error" && <p className="lp-subscribe-error">{errorMsg}</p>}
+        </form>
       )}
     </div>
   );
