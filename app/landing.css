@@ -1589,7 +1589,11 @@
 .lp-about-person.right .lp-about-person-bio { margin-left: auto; }
 .lp-about-person.right .lp-about-person-contact { justify-content: flex-end; }
 .lp-about-photo { position: relative; overflow: hidden; background: var(--lp-lav); min-height: 480px; border: 1px solid var(--lp-navy); }
-.lp-about-photo img { object-fit: cover; }
+.lp-about-photo img { object-fit: cover; object-position: top; }
+/* Henrik (venstre) croppes for hardt i toppen — vis mer av toppen */
+.lp-about-person.left .lp-about-photo img { object-position: center 20%; }
+/* Aleksander (høyre) — default sentrering */
+.lp-about-person.right .lp-about-photo img { object-position: center; }
 .lp-about-person-text { padding: 50px; border: 1px solid var(--lp-navy); background: var(--lp-paper); display: flex; flex-direction: column; justify-content: space-between; }
 .lp-about-person-num { font-family: var(--font-fraunces), Georgia, serif; font-style: italic; font-size: 32px; font-weight: 400; color: var(--lp-lav-3); line-height: 1; margin-bottom: 18px; letter-spacing: -0.025em; }
 .lp-about-person-name { font-family: var(--font-fraunces), Georgia, serif; font-size: 38px; font-weight: 600; color: var(--lp-navy); letter-spacing: -0.03em; line-height: 1.02; margin-bottom: 8px; }
