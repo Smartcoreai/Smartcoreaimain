@@ -1471,6 +1471,20 @@
 .lp-doc-defs dt { font-weight: 600; color: var(--lp-navy); }
 .lp-doc-defs dd { color: var(--lp-muted); }
 
+/* Cookie table (/cookies) */
+.lp-ck-table { margin-top: 20px; border: 1px solid var(--lp-navy); }
+.lp-ck-row { display: grid; grid-template-columns: 1.2fr 2fr 1fr 1fr; gap: 18px; padding: 14px 20px; align-items: start; border-bottom: 1px solid var(--lp-line-soft); font-size: 14px; }
+.lp-ck-row:last-child { border-bottom: none; }
+.lp-ck-row.h { background: var(--lp-cream-2); font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--lp-faint); }
+.lp-ck-nm { font-weight: 600; color: var(--lp-navy); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12.5px; }
+.lp-ck-pp { color: var(--lp-navy); line-height: 1.5; }
+.lp-ck-ty { font-size: 11px; font-weight: 700; color: var(--lp-lavender-deep); text-transform: uppercase; letter-spacing: 0.08em; }
+.lp-ck-dur { color: var(--lp-muted); font-variant-numeric: tabular-nums; }
+@media (max-width: 820px) {
+  .lp-ck-row { grid-template-columns: 1fr; gap: 6px; padding: 14px 16px; }
+  .lp-ck-row.h { display: none; }
+}
+
 .lp-doc-note { margin-top: 30px; background: var(--lp-cream); border: 1px solid var(--lp-navy); padding: 24px 28px; max-width: 920px; margin-left: auto; margin-right: auto; position: relative; z-index: 1; }
 .lp-doc-note.wide { max-width: 1080px; }
 .lp-doc-note h4 { font-family: var(--font-dm-sans), sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: var(--lp-lavender-deep); margin-bottom: 12px; }
