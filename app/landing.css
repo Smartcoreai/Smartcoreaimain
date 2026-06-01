@@ -1240,7 +1240,9 @@
   margin: 0 auto;
 }
 .lp-pris-header h1 em { font-style: italic; font-weight: 400; color: var(--lp-lavender-deep); }
-.lp-pris-lead { margin: 22px auto 0; color: var(--lp-muted); font-size: 17px; max-width: 580px; line-height: 1.6; text-align: center; }
+/* Selector bumped to .lp-pris-header .lp-pris-lead (0-2-0) so margin:auto wins
+   over .lp-root p { margin: 0 } (0-1-1) — samme spesifisitets-bug som juridiske sider. */
+.lp-pris-header .lp-pris-lead { margin: 22px auto 0; color: var(--lp-muted); font-size: 17px; max-width: 580px; line-height: 1.6; text-align: center; }
 
 .lp-pris-wrap { padding: 40px 0 90px; position: relative; }
 .lp-pris-wrap::before {
