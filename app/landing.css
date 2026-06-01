@@ -1399,7 +1399,9 @@
 .lp-doc-header { padding: 80px 0 40px; text-align: center; }
 .lp-doc-header .lp-label { margin-left: auto; margin-right: auto; }
 .lp-doc-header h1 { font-size: 72px; color: var(--lp-navy); line-height: 1; letter-spacing: -0.04em; font-weight: 600; }
-.lp-doc-lead { margin: 22px auto 0; color: var(--lp-muted); font-size: 17px; max-width: 620px; line-height: 1.6; text-align: center; }
+/* Selector bumped to .lp-doc-header .lp-doc-lead (0-2-0) so margin:auto wins
+   over .lp-root p { margin: 0 } (0-1-1) — ellers pinnes boksen til venstre. */
+.lp-doc-header .lp-doc-lead { margin: 22px auto 0; color: var(--lp-muted); font-size: 17px; max-width: 620px; line-height: 1.6; text-align: center; }
 .lp-doc-meta {
   margin-top: 24px;
   display: flex;
